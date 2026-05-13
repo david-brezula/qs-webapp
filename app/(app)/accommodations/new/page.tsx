@@ -14,7 +14,7 @@ export default async function NewAccommodationPage() {
     <div>
       <h1 className="text-2xl font-semibold text-navy mb-8">{t("new")}</h1>
       <AccommodationForm
-        workers={workers.map((w) => ({ id: w.id, name: w.name, email: w.email }))}
+        workers={workers.map((w) => ({ id: w.id, name: w.name, email: w.email ?? w.username }))}
         projects={projects.map((p) => ({ id: p.id, name: p.name }))}
         selectedWorkerIds={[]}
       />

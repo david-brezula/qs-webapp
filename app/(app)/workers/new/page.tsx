@@ -30,8 +30,15 @@ export default function NewWorkerPage() {
     <div className="max-w-xl">
       <h1 className="text-2xl font-semibold text-navy mb-8">{t("new")}</h1>
       <form onSubmit={onSubmit} className="space-y-5" noValidate>
-        <FormField label={tCommon("email")} name="email" type="email" required error={errors.email} />
+        <FormField
+          label={tCommon("username")}
+          name="username"
+          required
+          hint={t("usernameHint")}
+          error={errors.username}
+        />
         <FormField label={tCommon("name")} name="name" required error={errors.name} />
+        <FormField label={tCommon("email")} name="email" type="email" error={errors.email} />
         <FormSelect
           label={t("role")}
           name="role"

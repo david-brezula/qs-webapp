@@ -21,6 +21,7 @@
     "language": "Language",
     "name": "Name",
     "email": "Email",
+    "username": "Username",
     "password": "Password",
     "notes": "Notes",
     "status": "Status",
@@ -74,7 +75,18 @@
     "role": "Role",
     "admin": "Admin",
     "worker": "Worker",
-    "tempPassword": "Temporary password: {password}"
+    "tempPassword": "Temporary password: {password}",
+    "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars."
+  },
+  "changePassword": {
+    "title": "Change password",
+    "forced": "Set a new password before continuing.",
+    "current": "Current password",
+    "new": "New password",
+    "confirm": "Confirm new password",
+    "submit": "Update password",
+    "success": "Password updated.",
+    "continue": "Continue"
   },
   "accommodations": {
     "list": "Accommodations",

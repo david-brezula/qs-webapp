@@ -14,6 +14,7 @@ export function EditWorkerForm({
   user: {
     id: string;
     name: string;
+    email: string | null;
     role: "ADMIN" | "WORKER";
     language: "EN" | "SK";
     active: boolean;
@@ -51,6 +52,7 @@ export function EditWorkerForm({
     <>
       <form onSubmit={onSave} className="space-y-5" noValidate>
         <FormField label={tCommon("name")} name="name" defaultValue={user.name} required error={errors.name} />
+        <FormField label={tCommon("email")} name="email" type="email" defaultValue={user.email ?? ""} error={errors.email} />
         <FormSelect
           label={t("role")}
           name="role"

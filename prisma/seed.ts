@@ -13,23 +13,26 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  const username = (process.env.SEED_ADMIN_USERNAME ?? "admin").toLowerCase();
   const email = process.env.SEED_ADMIN_EMAIL ?? "admin@quantumsphere.local";
   const password = process.env.SEED_ADMIN_PASSWORD ?? "ChangeMe!2026";
   const passwordHash = await bcrypt.hash(password, 10);
 
   const admin = await prisma.user.upsert({
-    where: { email },
+    where: { username },
     update: {},
     create: {
+      username,
       email,
       passwordHash,
       name: "Quantum Sphere Admin",
       role: Role.ADMIN,
       language: Locale.EN,
+      mustChangePassword: false,
     },
   });
 
-  console.log(`Seeded admin: ${admin.email} (password: ${password})`);
+  console.log(`Seeded admin: ${admin.username} (password: ${password})`);
 }
 
 main()

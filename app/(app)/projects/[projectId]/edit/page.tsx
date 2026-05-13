@@ -63,13 +63,13 @@ export default async function ProjectEditorPage({
           assigned={project.projectWorkers.map((pw) => ({
             userId: pw.userId,
             name: pw.user.name,
-            email: pw.user.email,
+            email: pw.user.email ?? pw.user.username,
             priceTie: Number(pw.priceTie),
             priceConnect: Number(pw.priceConnect),
           }))}
           available={allWorkers
             .filter((u) => !project.projectWorkers.find((pw) => pw.userId === u.id))
-            .map((u) => ({ id: u.id, name: u.name, email: u.email }))}
+            .map((u) => ({ id: u.id, name: u.name, email: u.email ?? u.username }))}
           labels={{
             assignWorker: t("assignWorker"),
             priceTie: t("priceTie"),

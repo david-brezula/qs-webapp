@@ -21,6 +21,7 @@
     "language": "Jazyk",
     "name": "Meno",
     "email": "Email",
+    "username": "Používateľské meno",
     "password": "Heslo",
     "notes": "Poznámky",
     "status": "Stav",
@@ -74,7 +75,18 @@
     "role": "Rola",
     "admin": "Administrátor",
     "worker": "Pracovník",
-    "tempPassword": "Dočasné heslo: {password}"
+    "tempPassword": "Dočasné heslo: {password}",
+    "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky."
+  },
+  "changePassword": {
+    "title": "Zmena hesla",
+    "forced": "Nastavte si nové heslo pred pokračovaním.",
+    "current": "Súčasné heslo",
+    "new": "Nové heslo",
+    "confirm": "Potvrďte nové heslo",
+    "submit": "Aktualizovať heslo",
+    "success": "Heslo aktualizované.",
+    "continue": "Pokračovať"
   },
   "accommodations": {
     "list": "Ubytovanie",

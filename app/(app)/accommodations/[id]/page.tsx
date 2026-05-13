@@ -35,7 +35,7 @@ export default async function EditAccommodationPage({
           currency: acc.currency as "USD" | "EUR",
           notes: acc.notes,
         }}
-        workers={workers.map((w) => ({ id: w.id, name: w.name, email: w.email }))}
+        workers={workers.map((w) => ({ id: w.id, name: w.name, email: w.email ?? w.username }))}
         projects={projects.map((p) => ({ id: p.id, name: p.name }))}
         selectedWorkerIds={acc.workers.map((w) => w.userId)}
       />

@@ -18,10 +18,11 @@ export default async function WorkersListPage() {
         <Button href="/workers/new" variant="primary">{t("new")}</Button>
       </div>
       <DataTable
-        headers={[tCommon("name"), tCommon("email"), t("role"), tCommon("status"), tCommon("actions")]}
+        headers={[tCommon("username"), tCommon("name"), tCommon("email"), t("role"), tCommon("status"), tCommon("actions")]}
         rows={users.map((u) => [
+          <span key="u" className="font-mono text-xs">{u.username}</span>,
           u.name,
-          u.email,
+          u.email ?? <span className="text-muted">—</span>,
           u.role === "ADMIN" ? t("admin") : t("worker"),
           u.active ? tCommon("active") : tCommon("closed"),
           <Link key={u.id} href={`/workers/${u.id}`} className="text-navy underline">

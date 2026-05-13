@@ -67,19 +67,21 @@ export default function LoginPage() {
           <h1 className="text-2xl font-semibold text-navy mb-6">{t("title")}</h1>
           <form onSubmit={onSubmit} className="space-y-4" noValidate>
             <div>
-              <label htmlFor="email" className="text-sm font-semibold text-navy block mb-2">
-                {tCommon("email")}
+              <label htmlFor="username" className="text-sm font-semibold text-navy block mb-2">
+                {tCommon("username")}
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
+                id="username"
+                name="username"
+                type="text"
                 autoComplete="username"
-                aria-invalid={Boolean(errors.email)}
+                autoCapitalize="none"
+                spellCheck={false}
+                aria-invalid={Boolean(errors.username)}
                 className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
               />
-              {errors.email && (
-                <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+              {errors.username && (
+                <p className="mt-1 text-xs text-red-600">{errors.username}</p>
               )}
             </div>
             <div>

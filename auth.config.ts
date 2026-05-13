@@ -15,6 +15,7 @@ export const authConfig: NextAuthConfig = {
     jwt: ({ token, user, trigger, session }) => {
       if (user) {
         token.id = (user as { id: string }).id;
+        token.username = (user as { username?: string }).username ?? "";
         token.role = (user as { role: "ADMIN" | "WORKER" }).role;
         token.language = (user as { language: "EN" | "SK" }).language;
       }
@@ -26,6 +27,7 @@ export const authConfig: NextAuthConfig = {
     session: ({ session, token }) => {
       if (session.user) {
         session.user.id = token.id as string;
+        session.user.username = token.username as string;
         session.user.role = token.role as "ADMIN" | "WORKER";
         session.user.language = token.language as "EN" | "SK";
       }
