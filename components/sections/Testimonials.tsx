@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { TESTIMONIAL } from "@/lib/content";
+import { TESTIMONIAL, PARTNERS } from "@/lib/content";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/sections/Reveal";
 
@@ -33,7 +33,7 @@ export function Testimonials() {
               <div key={src} className="relative h-10 w-full">
                 <Image
                   src={src}
-                  alt=""
+                  alt={PARTNERS[i] ?? ""}
                   fill
                   className="object-contain"
                 />

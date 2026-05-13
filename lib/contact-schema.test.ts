@@ -50,7 +50,8 @@ describe("contactSchema", () => {
   });
 
   it("accepts payload without notes (optional)", () => {
-    const { notes: _drop, ...withoutNotes } = valid;
+    const withoutNotes: Partial<typeof valid> = { ...valid };
+    delete withoutNotes.notes;
     const r = contactSchema.safeParse(withoutNotes);
     expect(r.success).toBe(true);
   });
