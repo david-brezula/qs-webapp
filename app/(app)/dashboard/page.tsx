@@ -95,7 +95,6 @@ export default async function DashboardPage() {
                   <Link
                     href={`/projects/${project.id}/edit`}
                     className="text-navy underline"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     {tCommon("edit")}
                   </Link>
