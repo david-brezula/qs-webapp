@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
 import { SectionsEditor } from "./SectionsEditor";
+import { WorkersPanel } from "./WorkersPanel";
 import { computeModules } from "@/lib/portal/modules";
 
 export default async function ProjectEditorPage({
@@ -12,15 +13,17 @@ export default async function ProjectEditorPage({
 }) {
   await requireAdmin();
   const { projectId } = await params;
-  const project = await prisma.project.findUnique({
-    where: { id: projectId },
-    include: {
-      sections: {
-        orderBy: { orderIndex: "asc" },
-        include: { tables: { orderBy: { orderIndex: "asc" } } },
+
+  const [project, allWorkers] = await Promise.all([
+    prisma.project.findUnique({
+      where: { id: projectId },
+      include: {
+        sections: { orderBy: { orderIndex: "asc" }, include: { tables: { orderBy: { orderIndex: "asc" } } } },
+        projectWorkers: { include: { user: true } },
       },
-    },
-  });
+    }),
+    prisma.user.findMany({ where: { active: true, role: "WORKER" }, orderBy: { name: "asc" } }),
+  ]);
   if (!project) notFound();
   const t = await getTranslations("projects");
 
@@ -32,13 +35,13 @@ export default async function ProjectEditorPage({
         sections={project.sections.map((s) => ({
           id: s.id,
           name: s.name,
-          tables: s.tables.map((t) => ({
-            id: t.id,
-            name: t.name,
-            rows: t.rows,
-            cols: t.cols,
-            skipped: t.skipped,
-            modules: computeModules({ rows: t.rows, cols: t.cols, skipped: t.skipped }),
+          tables: s.tables.map((tb) => ({
+            id: tb.id,
+            name: tb.name,
+            rows: tb.rows,
+            cols: tb.cols,
+            skipped: tb.skipped,
+            modules: computeModules({ rows: tb.rows, cols: tb.cols, skipped: tb.skipped }),
           })),
         }))}
         labels={{
@@ -52,6 +55,28 @@ export default async function ProjectEditorPage({
           modules: t("modules"),
         }}
       />
+
+      <div className="mt-12">
+        <h2 className="text-lg font-semibold text-navy mb-4">{t("assignedWorkers")}</h2>
+        <WorkersPanel
+          projectId={project.id}
+          assigned={project.projectWorkers.map((pw) => ({
+            userId: pw.userId,
+            name: pw.user.name,
+            email: pw.user.email,
+            priceTie: Number(pw.priceTie),
+            priceConnect: Number(pw.priceConnect),
+          }))}
+          available={allWorkers
+            .filter((u) => !project.projectWorkers.find((pw) => pw.userId === u.id))
+            .map((u) => ({ id: u.id, name: u.name, email: u.email }))}
+          labels={{
+            assignWorker: t("assignWorker"),
+            priceTie: t("priceTie"),
+            priceConnect: t("priceConnect"),
+          }}
+        />
+      </div>
     </div>
   );
 }
