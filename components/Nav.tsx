@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { NAV_LINKS } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -53,7 +53,14 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/login"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-ink hover:text-navy transition-colors"
+          >
+            <LogIn size={14} strokeWidth={1.75} />
+            Worker login
+          </Link>
           <Button href="/contact" variant="primary">
             Request capacity
           </Button>
@@ -85,6 +92,14 @@ export function Nav() {
             <Button href="/contact" variant="primary" className="w-full">
               Request capacity
             </Button>
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center gap-1.5 text-sm text-slate-ink hover:text-navy py-2"
+            >
+              <LogIn size={14} strokeWidth={1.75} />
+              Worker login
+            </Link>
           </Container>
         </div>
       )}
