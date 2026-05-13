@@ -17,7 +17,78 @@ const logSchema = z.object({
 
 export type LogResult =
   | { ok: true }
-  | { ok: false; error: "validation" | "over-cap" | "not-assigned" | "closed"; remaining?: number };
+  | {
+      ok: false;
+      error: "validation" | "over-cap" | "not-assigned" | "not-claimed" | "closed" | "has-activity";
+      remaining?: number;
+    };
+
+export async function claimTableAction(fd: FormData): Promise<LogResult> {
+  const session = await auth();
+  if (!session?.user) return { ok: false, error: "validation" };
+  const tableId = String(fd.get("tableId") ?? "");
+  if (!tableId) return { ok: false, error: "validation" };
+
+  const table = await prisma.table.findUnique({
+    where: { id: tableId },
+    include: { section: { include: { project: true } } },
+  });
+  if (!table) return { ok: false, error: "validation" };
+  if (table.section.project.status === "CLOSED") return { ok: false, error: "closed" };
+
+  const pw = await prisma.projectWorker.findUnique({
+    where: {
+      projectId_userId: {
+        projectId: table.section.projectId,
+        userId: session.user.id,
+      },
+    },
+  });
+  if (!pw) return { ok: false, error: "not-assigned" };
+
+  await prisma.tableClaim.upsert({
+    where: { tableId_projectWorkerId: { tableId, projectWorkerId: pw.id } },
+    update: {},
+    create: { tableId, projectWorkerId: pw.id },
+  });
+
+  revalidatePath(`/projects/${table.section.projectId}/log`);
+  revalidatePath(`/projects/${table.section.projectId}`);
+  return { ok: true };
+}
+
+export async function releaseClaimAction(fd: FormData): Promise<LogResult> {
+  const session = await auth();
+  if (!session?.user) return { ok: false, error: "validation" };
+  const claimId = String(fd.get("claimId") ?? "");
+  if (!claimId) return { ok: false, error: "validation" };
+
+  const claim = await prisma.tableClaim.findUnique({
+    where: { id: claimId },
+    include: {
+      projectWorker: true,
+      table: { include: { section: true, activityLogs: true } },
+    },
+  });
+  if (!claim) return { ok: false, error: "validation" };
+
+  const isOwn = claim.projectWorker.userId === session.user.id;
+  const isAdmin = session.user.role === "ADMIN";
+  if (!isOwn && !isAdmin) return { ok: false, error: "validation" };
+
+  const hasOwnActivity = claim.table.activityLogs.some(
+    (l) => l.projectWorkerId === claim.projectWorkerId,
+  );
+  if (isOwn && !isAdmin && hasOwnActivity) {
+    return { ok: false, error: "has-activity" };
+  }
+
+  await prisma.tableClaim.delete({ where: { id: claimId } });
+
+  revalidatePath(`/projects/${claim.table.section.projectId}/log`);
+  revalidatePath(`/projects/${claim.table.section.projectId}`);
+  return { ok: true };
+}
 
 export async function logActivityAction(fd: FormData): Promise<LogResult> {
   const session = await auth();
@@ -51,6 +122,11 @@ export async function logActivityAction(fd: FormData): Promise<LogResult> {
     },
   });
   if (!pw) return { ok: false, error: "not-assigned" };
+
+  const claim = await prisma.tableClaim.findUnique({
+    where: { tableId_projectWorkerId: { tableId: parsed.data.tableId, projectWorkerId: pw.id } },
+  });
+  if (!claim) return { ok: false, error: "not-claimed" };
 
   const totalModules = computeModules({ rows: table.rows, cols: table.cols, skipped: table.skipped });
   const existing = table.activityLogs.reduce((a, b) => a + b.count, 0);

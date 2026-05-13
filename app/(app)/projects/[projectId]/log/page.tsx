@@ -23,7 +23,10 @@ export default async function LogPage({
         include: {
           tables: {
             orderBy: { orderIndex: "asc" },
-            include: { activityLogs: { orderBy: { createdAt: "desc" } } },
+            include: {
+              activityLogs: { orderBy: { createdAt: "desc" } },
+              claims: { include: { projectWorker: { include: { user: true } } } },
+            },
           },
         },
       },
@@ -50,6 +53,13 @@ export default async function LogPage({
               const tied = tbl.activityLogs.filter((l) => l.action === "TIE").reduce((a, b) => a + b.count, 0);
               const connected = tbl.activityLogs.filter((l) => l.action === "CONNECT").reduce((a, b) => a + b.count, 0);
 
+              const myClaim = projectWorkerId
+                ? tbl.claims.find((c) => c.projectWorkerId === projectWorkerId) ?? null
+                : null;
+              const hasMyActivity = projectWorkerId
+                ? tbl.activityLogs.some((l) => l.projectWorkerId === projectWorkerId)
+                : false;
+
               return (
                 <TableLogger
                   key={tbl.id}
@@ -68,9 +78,16 @@ export default async function LogPage({
                           }))
                       : []
                   }
+                  claims={tbl.claims.map((c) => ({
+                    id: c.id,
+                    userId: c.projectWorker.userId,
+                    name: c.projectWorker.user.name,
+                  }))}
+                  myClaim={myClaim ? { id: myClaim.id } : null}
+                  hasMyActivity={hasMyActivity}
                   isClosed={isClosed}
                   isAdmin={user.role === "ADMIN"}
-                  canSubmit={Boolean(projectWorkerId) && !isClosed}
+                  isAssigned={Boolean(projectWorkerId)}
                   labels={{
                     iTied: t("iTied"),
                     iConnected: t("iConnected"),
@@ -82,6 +99,13 @@ export default async function LogPage({
                     overCap: t("overCap", { remaining: "{r}" }),
                     tied: tProj("tied"),
                     connected: tProj("connected"),
+                    claim: t("claim"),
+                    release: t("release"),
+                    claimedBy: t("claimedBy"),
+                    noClaims: t("noClaims"),
+                    notAssigned: t("notAssigned"),
+                    claimToLog: t("claimToLog"),
+                    cannotRelease: t("cannotRelease"),
                   }}
                 />
               );

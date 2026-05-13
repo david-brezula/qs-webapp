@@ -109,7 +109,14 @@
     "submit": "Pridať záznam",
     "recentEntries": "Posledné záznamy",
     "editWindowOver": "Záznam uzamknutý (starší ako 24h)",
-    "overCap": "Nemôžete prekročiť {remaining} zostávajúcich pre túto akciu."
+    "overCap": "Nemôžete prekročiť {remaining} zostávajúcich pre túto akciu.",
+    "claim": "Prevziať tabuľku",
+    "release": "Uvoľniť",
+    "claimedBy": "Prevzaté",
+    "noClaims": "Zatiaľ nikto",
+    "notAssigned": "Nie ste priradený k tomuto projektu.",
+    "claimToLog": "Najprv prevezmite tabuľku.",
+    "cannotRelease": "Nemôžete uvoľniť — už ste zapísali aktivitu. Požiadajte administrátora."
   },
   "errors": {
     "validation": "Skontrolujte formulár.",

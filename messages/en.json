@@ -109,7 +109,14 @@
     "submit": "Add entry",
     "recentEntries": "Recent entries",
     "editWindowOver": "Entry locked (over 24h old)",
-    "overCap": "Cannot exceed {remaining} remaining for this action."
+    "overCap": "Cannot exceed {remaining} remaining for this action.",
+    "claim": "Claim this table",
+    "release": "Release",
+    "claimedBy": "Claimed by",
+    "noClaims": "Nobody yet",
+    "notAssigned": "You are not assigned to this project.",
+    "claimToLog": "Claim the table before logging.",
+    "cannotRelease": "Cannot release — you already logged activity here. Ask an admin to remove the claim."
   },
   "errors": {
     "validation": "Please check the form.",

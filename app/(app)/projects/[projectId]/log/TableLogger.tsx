@@ -6,23 +6,33 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import {
+  claimTableAction,
+  releaseClaimAction,
   logActivityAction,
   deleteLogAction,
 } from "@/lib/actions/activity";
 
+type Claim = { id: string; userId: string; name: string };
+
 export function TableLogger({
   table,
   myLogs,
+  claims,
+  myClaim,
+  hasMyActivity,
   isClosed,
   isAdmin,
-  canSubmit,
+  isAssigned,
   labels,
 }: {
   table: { id: string; name: string; total: number; tied: number; connected: number };
   myLogs: { id: string; action: "TIE" | "CONNECT"; count: number; workDate: string; createdAt: string }[];
+  claims: Claim[];
+  myClaim: { id: string } | null;
+  hasMyActivity: boolean;
   isClosed: boolean;
   isAdmin: boolean;
-  canSubmit: boolean;
+  isAssigned: boolean;
   labels: Record<string, string>;
 }) {
   const router = useRouter();
@@ -32,6 +42,50 @@ export function TableLogger({
   const [connectCount, setConnectCount] = useState("");
   const [workDate, setWorkDate] = useState(new Date().toISOString().slice(0, 10));
   const [error, setError] = useState<string | null>(null);
+
+  const canSubmit = Boolean(myClaim) && !isClosed;
+  const canClaim = !myClaim && isAssigned && !isClosed;
+
+  function claim() {
+    const fd = new FormData();
+    fd.set("tableId", table.id);
+    setError(null);
+    start(async () => {
+      const r = await claimTableAction(fd);
+      if (!r.ok) {
+        if (r.error === "not-assigned") setError(labels.notAssigned);
+        else if (r.error === "closed") setError("Project is closed.");
+        else setError(tCommon("save"));
+        return;
+      }
+      router.refresh();
+    });
+  }
+
+  function releaseMyClaim() {
+    if (!myClaim) return;
+    const fd = new FormData();
+    fd.set("claimId", myClaim.id);
+    setError(null);
+    start(async () => {
+      const r = await releaseClaimAction(fd);
+      if (!r.ok) {
+        if (r.error === "has-activity") setError(labels.cannotRelease);
+        else setError(tCommon("save"));
+        return;
+      }
+      router.refresh();
+    });
+  }
+
+  function releaseClaim(claimId: string) {
+    const fd = new FormData();
+    fd.set("claimId", claimId);
+    start(async () => {
+      await releaseClaimAction(fd);
+      router.refresh();
+    });
+  }
 
   function submit(action: "TIE" | "CONNECT") {
     const fd = new FormData();
@@ -49,7 +103,9 @@ export function TableLogger({
       } else if (r.error === "over-cap") {
         setError(labels.overCap.replace("{r}", String(r.remaining ?? 0)));
       } else if (r.error === "not-assigned") {
-        setError("Not assigned to this project.");
+        setError(labels.notAssigned);
+      } else if (r.error === "not-claimed") {
+        setError(labels.claimToLog);
       } else if (r.error === "closed") {
         setError("Project is closed.");
       } else {
@@ -73,6 +129,52 @@ export function TableLogger({
         <h3 className="text-base font-semibold text-navy">{table.name}</h3>
         <div className="text-xs text-muted">{labels.progress}</div>
       </div>
+
+      {/* Claim state header */}
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
+        <span className="text-navy/60 uppercase tracking-[0.15em]">{labels.claimedBy}:</span>
+        {claims.length === 0 ? (
+          <span className="text-muted">{labels.noClaims}</span>
+        ) : (
+          claims.map((c) => {
+            const mine = myClaim && c.id === myClaim.id;
+            const canRelease = mine ? !hasMyActivity || isAdmin : isAdmin;
+            return (
+              <span
+                key={c.id}
+                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md ${
+                  mine ? "bg-accent/15 text-navy" : "bg-bg text-slate-ink"
+                }`}
+              >
+                {c.name}{mine && " (you)"}
+                {canRelease && (
+                  <button
+                    onClick={() => (mine ? releaseMyClaim() : releaseClaim(c.id))}
+                    disabled={pending}
+                    className="text-xs text-red-600 hover:underline ml-1"
+                    aria-label={labels.release}
+                  >
+                    ×
+                  </button>
+                )}
+              </span>
+            );
+          })
+        )}
+      </div>
+
+      {/* Claim action or counters */}
+      {canClaim && (
+        <div className="mb-3">
+          <Button onClick={claim} variant="primary" disabled={pending}>
+            {labels.claim}
+          </Button>
+        </div>
+      )}
+
+      {!isAssigned && !isAdmin && (
+        <p className="text-xs text-muted mb-2">{labels.notAssigned}</p>
+      )}
 
       {canSubmit && (
         <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto] mb-3">
@@ -118,9 +220,7 @@ export function TableLogger({
         </div>
       )}
 
-      {isClosed && (
-        <p className="text-xs text-muted mb-2">Project is closed.</p>
-      )}
+      {isClosed && <p className="text-xs text-muted mb-2">Project is closed.</p>}
 
       {error && <p className="text-xs text-red-600 mb-2" role="alert">{error}</p>}
 
