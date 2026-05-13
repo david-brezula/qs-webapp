@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <circle cx="22" cy="30" r="10" fill="none" stroke="#0B1F3A" stroke-width="2"/>
+  <text x="110" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0B1F3A">NORTHWIND</text>
+</svg>
