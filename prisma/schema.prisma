@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  WORKER
+}
+
+enum Locale {
+  EN
+  SK
+}
+
+enum ProjectStatus {
+  ACTIVE
+  CLOSED
+}
+
+enum ActivityAction {
+  TIE
+  CONNECT
+}
+
+enum Currency {
+  USD
+  EUR
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(WORKER)
+  language     Locale   @default(EN)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  projectWorkers     ProjectWorker[]
+  accommodationStays AccommodationWorker[]
+}
+
+model Project {
+  id        String        @id @default(cuid())
+  name      String
+  location  String?
+  status    ProjectStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  closedAt  DateTime?
+
+  sections       Section[]
+  projectWorkers ProjectWorker[]
+  accommodations Accommodation[]
+}
+
+model Section {
+  id         String   @id @default(cuid())
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  name       String
+  orderIndex Int      @default(0)
+  tables     Table[]
+
+  @@index([projectId])
+}
+
+model Table {
+  id         String   @id @default(cuid())
+  sectionId  String
+  section    Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  name       String
+  rows       Int
+  cols       Int
+  skipped    Int      @default(0)
+  orderIndex Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  activityLogs ActivityLog[]
+
+  @@index([sectionId])
+}
+
+model ProjectWorker {
+  id           String   @id @default(cuid())
+  projectId    String
+  userId       String
+  priceTie     Decimal  @db.Decimal(10, 2)
+  priceConnect Decimal  @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+
+  project Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs    ActivityLog[]
+
+  @@unique([projectId, userId])
+  @@index([userId])
+}
+
+model ActivityLog {
+  id              String         @id @default(cuid())
+  projectWorkerId String
+  tableId         String
+  action          ActivityAction
+  count           Int
+  workDate        DateTime       @db.Date
+  notes           String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  projectWorker ProjectWorker @relation(fields: [projectWorkerId], references: [id], onDelete: Cascade)
+  table         Table         @relation(fields: [tableId], references: [id], onDelete: Cascade)
+
+  @@index([projectWorkerId, workDate])
+  @@index([tableId, action])
+}
+
+model Accommodation {
+  id        String   @id @default(cuid())
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  name      String
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  totalCost Decimal  @db.Decimal(10, 2)
+  currency  Currency @default(USD)
+  notes     String?
+  createdAt DateTime @default(now())
+
+  workers AccommodationWorker[]
+
+  @@index([projectId])
+  @@index([startDate, endDate])
+}
+
+model AccommodationWorker {
+  id              String @id @default(cuid())
+  accommodationId String
+  userId          String
+
+  accommodation Accommodation @relation(fields: [accommodationId], references: [id], onDelete: Cascade)
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([accommodationId, userId])
+  @@index([userId])
+}
