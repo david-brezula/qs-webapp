@@ -33,8 +33,10 @@ export default async function ProjectOverviewPage({
   });
   if (!project) notFound();
 
+  const isAssigned = project.projectWorkers.some((pw) => pw.userId === user.id);
+
   // Workers can only view projects they're assigned to
-  if (user.role !== "ADMIN" && !project.projectWorkers.find((pw) => pw.userId === user.id)) {
+  if (user.role !== "ADMIN" && !isAssigned) {
     notFound();
   }
 
@@ -49,7 +51,9 @@ export default async function ProjectOverviewPage({
           {user.role === "ADMIN" && (
             <Button href={`/projects/${project.id}/edit`} variant="secondary">{tCommon("edit")}</Button>
           )}
-          <Button href={`/projects/${project.id}/log`} variant="primary">Log work</Button>
+          {isAssigned && (
+            <Button href={`/projects/${project.id}/log`} variant="primary">Log work</Button>
+          )}
         </div>
       </div>
 
