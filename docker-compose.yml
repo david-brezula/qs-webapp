@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: qs-web-db
+    environment:
+      POSTGRES_USER: qs
+      POSTGRES_PASSWORD: qs_local_dev
+      POSTGRES_DB: qs_web
+    ports:
+      - "5432:5432"
+    volumes:
+      - qs-web-db:/var/lib/postgresql/data
+volumes:
+  qs-web-db:
