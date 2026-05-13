@@ -9,15 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Quantum Sphere — Solar subcontracting at utility scale",
-  description:
-    "Quantum Sphere is a solar construction subcontractor for general contractors and EPCs. Rooftop, ground-mount, racking, BOS, commissioning, and O&M.",
+  title: "Quantum Sphere",
+  description: "Solar subcontracting at utility scale.",
   metadataBase: new URL("https://quantumsphere.example"),
-  openGraph: {
-    title: "Quantum Sphere",
-    description: "Solar subcontracting at utility scale.",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
