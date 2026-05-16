@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-display",
+  axes: ["SOFT", "opsz"],
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Quantum Sphere",
-  description: "Solar subcontracting at utility scale.",
-  metadataBase: new URL("https://quantumsphere.example"),
+  title: "Quantum Sphere — Solar EPC subcontracting across Europe",
+  description:
+    "Solar construction subcontractor based in Slovakia. Crews for utility, commercial and rooftop installations across DACH and Scandinavia.",
+  metadataBase: new URL("https://quantumsphere.eu"),
 };
 
 export default function RootLayout({
@@ -20,7 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${fraunces.variable} ${jakarta.variable} ${mono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

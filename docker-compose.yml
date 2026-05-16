@@ -1,14 +1,19 @@
 services:
   db:
-    image: postgres:16-alpine
+    image: supabase/postgres:17.4.1.064
     container_name: qs-web-db
     environment:
-      POSTGRES_USER: qs
+      # DEV ONLY — replace with a Docker secret or env var before production deployment
       POSTGRES_PASSWORD: qs_local_dev
-      POSTGRES_DB: qs_web
     ports:
       - "5432:5432"
     volumes:
       - qs-web-db:/var/lib/postgresql/data
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 volumes:
   qs-web-db:

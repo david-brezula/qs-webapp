@@ -32,7 +32,7 @@ async function main() {
     },
   });
 
-  console.log(`Seeded admin: ${admin.username} (password: ${password})`);
+  console.log(`Seeded admin: ${admin.username}`);
 }
 
 main()

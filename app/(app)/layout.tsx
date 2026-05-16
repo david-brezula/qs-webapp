@@ -5,6 +5,7 @@ import { requireUser } from "@/lib/portal/session";
 import { prisma } from "@/lib/prisma";
 import { Sidebar } from "@/components/portal/Sidebar";
 import { TopBar } from "@/components/portal/TopBar";
+import { LangSync } from "@/components/portal/LangSync";
 import { signOut } from "@/auth";
 
 export default async function PortalLayout({
@@ -31,6 +32,7 @@ export default async function PortalLayout({
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
+      <LangSync locale={locale} />
       <div className="min-h-screen flex bg-bg">
         <Sidebar role={user.role} />
         <div className="flex flex-col flex-1 min-w-0">
