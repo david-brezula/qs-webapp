@@ -26,7 +26,9 @@
     "notes": "Poznámky",
     "status": "Stav",
     "active": "Aktívny",
-    "closed": "Uzavretý"
+    "closed": "Uzavretý",
+    "saveError": "Uloženie zlyhalo. Skúste to znova.",
+    "deleteError": "Vymazanie zlyhalo. Skúste to znova."
   },
   "login": {
     "title": "Prihlásenie",
@@ -64,7 +66,12 @@
     "connected": "Zapojené",
     "noProjects": "Zatiaľ žiadne projekty.",
     "close": "Uzavrieť projekt",
-    "reopen": "Otvoriť"
+    "reopen": "Otvoriť",
+    "bulkAdd": "Hromadné pridanie",
+    "namePrefix": "Predpona názvu",
+    "startNumber": "Začať od",
+    "quantity": "Počet",
+    "addQuantity": "Pridať {count} tabuliek"
   },
   "workers": {
     "list": "Pracovníci",
@@ -128,7 +135,12 @@
     "noClaims": "Zatiaľ nikto",
     "notAssigned": "Nie ste priradený k tomuto projektu.",
     "claimToLog": "Najprv prevezmite tabuľku.",
-    "cannotRelease": "Nemôžete uvoľniť — už ste zapísali aktivitu. Požiadajte administrátora."
+    "cannotRelease": "Nemôžete uvoľniť — už ste zapísali aktivitu. Požiadajte administrátora.",
+    "addClaimFor": "Pridať prevzatie pre",
+    "selectWorker": "Vyberte pracovníka",
+    "add": "Pridať",
+    "noWorkersToClaim": "Všetci aktívni pracovníci už tabuľku prevzali.",
+    "notInProject": "nie je v projekte"
   },
   "errors": {
     "validation": "Skontrolujte formulár.",

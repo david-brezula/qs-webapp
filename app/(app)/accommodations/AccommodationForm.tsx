@@ -36,6 +36,7 @@ export function AccommodationForm({
   const tCommon = useTranslations("common");
   const [pending, start] = useTransition();
   const [selected, setSelected] = useState<Set<string>>(new Set(selectedWorkerIds));
+  const [formError, setFormError] = useState<string | null>(null);
 
   function toggle(id: string) {
     const next = new Set(selected);
@@ -46,22 +47,32 @@ export function AccommodationForm({
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setFormError(null);
     const fd = new FormData(e.currentTarget);
     if (initial?.id) fd.set("id", initial.id);
     for (const id of selected) fd.append("workerIds", id);
     start(async () => {
       const r = await saveAccommodationAction(fd);
-      if (r.ok) router.push("/accommodations");
+      if (r.ok) {
+        router.push("/accommodations");
+      } else {
+        setFormError(tCommon("saveError"));
+      }
     });
   }
 
   function onDelete() {
     if (!initial?.id) return;
+    setFormError(null);
     const fd = new FormData();
     fd.set("id", initial.id);
     start(async () => {
-      await deleteAccommodationAction(fd);
-      router.push("/accommodations");
+      const r = await deleteAccommodationAction(fd);
+      if (r.ok) {
+        router.push("/accommodations");
+      } else {
+        setFormError(tCommon("deleteError"));
+      }
     });
   }
 
@@ -99,6 +110,10 @@ export function AccommodationForm({
         </div>
       </div>
       <FormField label={tCommon("notes")} name="notes" defaultValue={initial?.notes ?? ""} />
+
+      {formError && (
+        <p role="alert" className="text-sm text-red-600">{formError}</p>
+      )}
 
       <div className="flex gap-3">
         <Button type="submit" variant="primary" disabled={pending}>

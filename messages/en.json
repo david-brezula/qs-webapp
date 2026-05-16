@@ -26,7 +26,9 @@
     "notes": "Notes",
     "status": "Status",
     "active": "Active",
-    "closed": "Closed"
+    "closed": "Closed",
+    "saveError": "Failed to save. Please try again.",
+    "deleteError": "Failed to delete. Please try again."
   },
   "login": {
     "title": "Sign in",
@@ -64,7 +66,12 @@
     "connected": "Connected",
     "noProjects": "No projects yet.",
     "close": "Close project",
-    "reopen": "Reopen"
+    "reopen": "Reopen",
+    "bulkAdd": "Bulk add",
+    "namePrefix": "Name prefix",
+    "startNumber": "Start number",
+    "quantity": "Quantity",
+    "addQuantity": "Add {count} tables"
   },
   "workers": {
     "list": "Workers",
@@ -128,7 +135,12 @@
     "noClaims": "Nobody yet",
     "notAssigned": "You are not assigned to this project.",
     "claimToLog": "Claim the table before logging.",
-    "cannotRelease": "Cannot release — you already logged activity here. Ask an admin to remove the claim."
+    "cannotRelease": "Cannot release — you already logged activity here. Ask an admin to remove the claim.",
+    "addClaimFor": "Add claim for",
+    "selectWorker": "Select a worker",
+    "add": "Add",
+    "noWorkersToClaim": "All active workers already claimed this table.",
+    "notInProject": "not in project"
   },
   "errors": {
     "validation": "Please check the form.",
