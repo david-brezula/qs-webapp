@@ -5,36 +5,47 @@ import { requireUser } from "@/lib/portal/session";
 import { Card } from "@/components/ui/Card";
 import { ProjectLogView } from "@/components/portal/ProjectLogView";
 import { computeModules } from "@/lib/portal/modules";
+import { getTableAggregates, getMyLogs } from "@/lib/portal/activity-aggregates";
 
 export default async function DashboardPage() {
   const user = await requireUser();
   const t = await getTranslations("nav");
   const tCommon = await getTranslations("common");
 
-  const myProjectWorkers = await prisma.projectWorker.findMany({
-    where: { userId: user.id, project: { status: "ACTIVE" } },
-    include: {
-      project: {
-        include: {
-          sections: {
-            orderBy: { orderIndex: "asc" },
-            include: {
-              tables: {
-                orderBy: { orderIndex: "asc" },
-                include: {
-                  activityLogs: { orderBy: { createdAt: "desc" } },
-                  claims: {
-                    include: { projectWorker: { include: { user: true } } },
+  const [myProjectWorkers, allActiveWorkers] = await Promise.all([
+    prisma.projectWorker.findMany({
+      where: { userId: user.id, project: { status: "ACTIVE" } },
+      include: {
+        project: {
+          include: {
+            sections: {
+              orderBy: { orderIndex: "asc" },
+              include: {
+                tables: {
+                  orderBy: { orderIndex: "asc" },
+                  include: {
+                    claims: {
+                      include: { projectWorker: { include: { user: true } } },
+                    },
                   },
                 },
               },
             },
+            projectWorkers: {
+              include: { user: true },
+              orderBy: { createdAt: "asc" },
+            },
           },
         },
       },
-    },
-    orderBy: { project: { createdAt: "desc" } },
-  });
+      orderBy: { project: { createdAt: "desc" } },
+    }),
+    prisma.user.findMany({
+      where: { active: true },
+      orderBy: { name: "asc" },
+      select: { id: true, name: true },
+    }),
+  ]);
 
   const assignedIds = new Set(myProjectWorkers.map((pw) => pw.projectId));
   const otherProjects =
@@ -44,6 +55,16 @@ export default async function DashboardPage() {
           orderBy: { createdAt: "desc" },
         })
       : [];
+
+  const allTableIds = myProjectWorkers.flatMap((pw) =>
+    pw.project.sections.flatMap((s) => s.tables.map((t) => t.id)),
+  );
+  const myPwIds = myProjectWorkers.map((pw) => pw.id);
+
+  const [aggregates, myLogsMap] = await Promise.all([
+    getTableAggregates(allTableIds),
+    getMyLogs(allTableIds, myPwIds),
+  ]);
 
   return (
     <div>
@@ -64,12 +85,26 @@ export default async function DashboardPage() {
               cols: tbl.cols,
               skipped: tbl.skipped,
             });
-            for (const a of tbl.activityLogs) {
-              if (a.action === "TIE") tied += a.count;
-              else connected += a.count;
-            }
+            const agg = aggregates.get(tbl.id);
+            tied += agg?.totalTied ?? 0;
+            connected += agg?.totalConnected ?? 0;
           }
         }
+
+        const sections = project.sections.map((s) => ({
+          ...s,
+          tables: s.tables.map((tbl) => {
+            const agg = aggregates.get(tbl.id) ?? { totalTied: 0, totalConnected: 0 };
+            const logEntry = myLogsMap.get(tbl.id) ?? { logs: [], hasActivity: false };
+            return {
+              ...tbl,
+              totalTied: agg.totalTied,
+              totalConnected: agg.totalConnected,
+              myLogs: logEntry.logs,
+              hasMyActivity: logEntry.hasActivity,
+            };
+          }),
+        }));
 
         return (
           <details
@@ -109,8 +144,14 @@ export default async function DashboardPage() {
                   name: project.name,
                   location: project.location,
                   status: project.status,
-                  sections: project.sections,
+                  sections,
                 }}
+                assignedWorkers={project.projectWorkers.map((p) => ({
+                  id: p.id,
+                  userId: p.userId,
+                  name: p.user.name,
+                }))}
+                allActiveWorkers={allActiveWorkers}
                 projectWorkerId={pwId}
                 isAdmin={user.role === "ADMIN"}
               />

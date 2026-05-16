@@ -23,7 +23,10 @@ type Table = {
   rows: number;
   cols: number;
   skipped: number;
-  activityLogs: ActivityLog[];
+  totalTied: number;
+  totalConnected: number;
+  myLogs: ActivityLog[];
+  hasMyActivity: boolean;
   claims: Claim[];
 };
 
@@ -35,6 +38,8 @@ type Section = {
 
 export async function ProjectLogView({
   project,
+  assignedWorkers,
+  allActiveWorkers,
   projectWorkerId,
   isAdmin,
 }: {
@@ -45,6 +50,8 @@ export async function ProjectLogView({
     status: "ACTIVE" | "CLOSED";
     sections: Section[];
   };
+  assignedWorkers: { id: string; userId: string; name: string }[];
+  allActiveWorkers: { id: string; name: string }[];
   projectWorkerId: string | null;
   isAdmin: boolean;
 }) {
@@ -69,38 +76,35 @@ export async function ProjectLogView({
                 cols: tbl.cols,
                 skipped: tbl.skipped,
               });
-              const tied = tbl.activityLogs
-                .filter((l) => l.action === "TIE")
-                .reduce((a, b) => a + b.count, 0);
-              const connected = tbl.activityLogs
-                .filter((l) => l.action === "CONNECT")
-                .reduce((a, b) => a + b.count, 0);
+              const tied = tbl.totalTied;
+              const connected = tbl.totalConnected;
 
               const myClaim = projectWorkerId
                 ? tbl.claims.find((c) => c.projectWorkerId === projectWorkerId) ?? null
                 : null;
-              const hasMyActivity = projectWorkerId
-                ? tbl.activityLogs.some((l) => l.projectWorkerId === projectWorkerId)
-                : false;
+              const hasMyActivity = tbl.hasMyActivity;
+
+              const claimedUserIds = new Set(tbl.claims.map((c) => c.projectWorker.userId));
+              const assignedUserIds = new Set(assignedWorkers.map((w) => w.userId));
+              const selectableWorkers = allActiveWorkers
+                .filter((u) => !claimedUserIds.has(u.id))
+                .map((u) => ({
+                  userId: u.id,
+                  name: u.name,
+                  inProject: assignedUserIds.has(u.id),
+                }));
 
               return (
                 <TableLogger
                   key={tbl.id}
                   table={{ id: tbl.id, name: tbl.name, total, tied, connected }}
-                  myLogs={
-                    projectWorkerId
-                      ? tbl.activityLogs
-                          .filter((l) => l.projectWorkerId === projectWorkerId)
-                          .slice(0, 5)
-                          .map((l) => ({
-                            id: l.id,
-                            action: l.action,
-                            count: l.count,
-                            workDate: l.workDate.toISOString().slice(0, 10),
-                            createdAt: l.createdAt.toISOString(),
-                          }))
-                      : []
-                  }
+                  myLogs={tbl.myLogs.map((l) => ({
+                    id: l.id,
+                    action: l.action,
+                    count: l.count,
+                    workDate: l.workDate.toISOString().slice(0, 10),
+                    createdAt: l.createdAt.toISOString(),
+                  }))}
                   claims={tbl.claims.map((c) => ({
                     id: c.id,
                     userId: c.projectWorker.userId,
@@ -111,6 +115,7 @@ export async function ProjectLogView({
                   isClosed={isClosed}
                   isAdmin={isAdmin}
                   isAssigned={Boolean(projectWorkerId)}
+                  selectableWorkers={selectableWorkers}
                   labels={{
                     iTied: t("iTied"),
                     iConnected: t("iConnected"),
@@ -129,6 +134,11 @@ export async function ProjectLogView({
                     notAssigned: t("notAssigned"),
                     claimToLog: t("claimToLog"),
                     cannotRelease: t("cannotRelease"),
+                    addClaimFor: t("addClaimFor"),
+                    selectWorker: t("selectWorker"),
+                    add: t("add"),
+                    noWorkersToClaim: t("noWorkersToClaim"),
+                    notInProject: t("notInProject"),
                   }}
                 />
               );
