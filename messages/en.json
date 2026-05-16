@@ -147,5 +147,10 @@
     "unauthorized": "You don't have permission to do that.",
     "notFound": "Not found.",
     "unknown": "Something went wrong."
+  },
+  "error": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try again or contact support if the problem persists.",
+    "retry": "Try again"
   }
 }

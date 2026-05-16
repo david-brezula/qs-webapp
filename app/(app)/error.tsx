@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 
 export default function PortalError({
@@ -10,18 +11,18 @@ export default function PortalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations("error");
+
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 text-center px-6">
-      <h2 className="text-xl font-semibold text-navy">Something went wrong</h2>
-      <p className="text-sm text-muted max-w-sm">
-        An unexpected error occurred. Please try again or contact support if the problem persists.
-      </p>
+      <h2 className="text-xl font-semibold text-navy">{t("title")}</h2>
+      <p className="text-sm text-muted max-w-sm">{t("message")}</p>
       <Button variant="primary" onClick={reset}>
-        Try again
+        {t("retry")}
       </Button>
     </div>
   );

@@ -147,5 +147,10 @@
     "unauthorized": "Nemáte oprávnenie.",
     "notFound": "Nenájdené.",
     "unknown": "Niečo sa pokazilo."
+  },
+  "error": {
+    "title": "Niečo sa pokazilo",
+    "message": "Vyskytla sa neočakávaná chyba. Skúste to znova alebo kontaktujte podporu.",
+    "retry": "Skúsiť znova"
   }
 }
