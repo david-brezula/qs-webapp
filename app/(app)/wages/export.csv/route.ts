@@ -24,7 +24,13 @@ export async function GET(req: Request) {
       where: { workDate: { gte: from, lte: to } },
       include: { projectWorker: true, table: { include: { section: true } } },
     }),
-    prisma.accommodation.findMany({ include: { workers: true } }),
+    prisma.accommodation.findMany({
+      where: {
+        startDate: { lte: to },
+        endDate: { gte: from },
+      },
+      include: { workers: true },
+    }),
   ]);
 
   const result = computeWages({

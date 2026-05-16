@@ -27,6 +27,10 @@ export default async function WagesPage({
       include: { projectWorker: true, table: { include: { section: true } } },
     }),
     prisma.accommodation.findMany({
+      where: {
+        startDate: { lte: to },
+        endDate: { gte: from },
+      },
       include: { workers: true },
     }),
     prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
