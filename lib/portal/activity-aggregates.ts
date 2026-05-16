@@ -41,10 +41,29 @@ export async function getMyLogs(
     take: tableIds.length * 10,
   });
 
+  // Tables with rows in the fetched batch
+  const coveredTableIds = new Set(logs.map((l) => l.tableId));
+
+  // For tables NOT covered by the take limit, check existence separately
+  const uncoveredTableIds = tableIds.filter((id) => !coveredTableIds.has(id));
+  let extraActivitySet = new Set<string>();
+  if (uncoveredTableIds.length > 0) {
+    const extras = await prisma.activityLog.findMany({
+      where: {
+        tableId: { in: uncoveredTableIds },
+        projectWorkerId: { in: projectWorkerIds },
+      },
+      select: { tableId: true },
+      distinct: ["tableId"],
+    });
+    extraActivitySet = new Set(extras.map((r) => r.tableId));
+  }
+
   const map = new Map<string, { logs: typeof logs; hasActivity: boolean }>();
   for (const tableId of tableIds) {
     const tableLogs = logs.filter((l) => l.tableId === tableId).slice(0, 5);
-    map.set(tableId, { logs: tableLogs, hasActivity: tableLogs.length > 0 });
+    const hasActivity = tableLogs.length > 0 || extraActivitySet.has(tableId);
+    map.set(tableId, { logs: tableLogs, hasActivity });
   }
   return map;
 }
