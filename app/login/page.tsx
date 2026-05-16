@@ -25,7 +25,8 @@ export default function LoginPage() {
     start(async () => {
       const r = await loginAction(fd);
       if (r.ok) {
-        router.push(params.get("from") ?? "/dashboard");
+        const from = params.get("from");
+        router.push(from?.startsWith("/") ? from : "/dashboard");
         router.refresh();
       } else if (r.error === "validation") {
         setErrors(r.fieldErrors ?? {});
