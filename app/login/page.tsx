@@ -26,7 +26,16 @@ export default function LoginPage() {
       const r = await loginAction(fd);
       if (r.ok) {
         const from = params.get("from");
-        router.push(from?.startsWith("/") ? from : "/dashboard");
+        const safeFrom = (() => {
+          if (!from) return null;
+          try {
+            const url = new URL(from, window.location.origin);
+            return url.origin === window.location.origin ? from : null;
+          } catch {
+            return null;
+          }
+        })();
+        router.push(safeFrom ?? "/dashboard");
         router.refresh();
       } else if (r.error === "validation") {
         setErrors(r.fieldErrors ?? {});
