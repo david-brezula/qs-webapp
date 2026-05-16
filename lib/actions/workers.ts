@@ -1,5 +1,6 @@
 "use server";
 
+import { randomBytes } from "crypto";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
@@ -127,7 +128,7 @@ export async function resetPasswordAction(fd: FormData): Promise<ActionResult<{ 
   await requireAdmin();
   const userId = String(fd.get("userId") ?? "");
   if (!userId) return { ok: false, error: "validation" };
-  const tempPassword = `qs-${Math.random().toString(36).slice(2, 10)}`;
+  const tempPassword = `qs-${randomBytes(8).toString("hex")}`;
   const passwordHash = await bcrypt.hash(tempPassword, 10);
   await prisma.user.update({
     where: { id: userId },
