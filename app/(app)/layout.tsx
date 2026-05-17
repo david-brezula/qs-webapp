@@ -40,6 +40,7 @@ export default async function PortalLayout({
             name={fresh.name}
             email={user.username}
             language={(user.language?.toLowerCase() ?? "en") as "en" | "sk"}
+            role={user.role}
             signOutAction={doSignOut}
           />
           <main className="flex-1 p-6 md:p-10">{children}</main>
