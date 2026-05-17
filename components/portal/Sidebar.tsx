@@ -1,21 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getPortalNavItems } from "@/lib/portal-nav";
 
 export function Sidebar({ role }: { role: "ADMIN" | "WORKER" }) {
   const t = useTranslations("nav");
-
-  const items =
-    role === "ADMIN"
-      ? [
-          { href: "/dashboard", label: t("dashboard") },
-          { href: "/projects", label: t("projects") },
-          { href: "/workers", label: t("workers") },
-          { href: "/accommodations", label: t("accommodations") },
-          { href: "/wages", label: t("wages") },
-        ]
-      : [{ href: "/dashboard", label: t("dashboard") }];
+  const pathname = usePathname();
+  const items = getPortalNavItems(role);
 
   return (
     <aside className="hidden md:flex flex-col w-60 shrink-0 border-r border-border-soft bg-surface min-h-screen">
@@ -35,15 +28,23 @@ export function Sidebar({ role }: { role: "ADMIN" | "WORKER" }) {
         </div>
       </div>
       <nav className="flex flex-col p-2 gap-1">
-        {items.map((i) => (
-          <Link
-            key={i.href}
-            href={i.href}
-            className="px-3 py-2 text-sm rounded-md text-slate-ink hover:bg-bg hover:text-navy"
-          >
-            {i.label}
-          </Link>
-        ))}
+        {items.map((i) => {
+          const active =
+            pathname === i.href || pathname.startsWith(i.href + "/");
+          return (
+            <Link
+              key={i.href}
+              href={i.href}
+              className={`px-3 py-2 text-sm rounded-md ${
+                active
+                  ? "bg-bg text-navy font-medium"
+                  : "text-slate-ink hover:bg-bg hover:text-navy"
+              }`}
+            >
+              {t(i.labelKey)}
+            </Link>
+          );
+        })}
       </nav>
     </aside>
   );
