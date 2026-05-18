@@ -26,7 +26,7 @@ export function Stats() {
               >
                 <div className="flex items-baseline gap-2">
                   <span
-                    className="numeral text-[3.5rem] md:text-[4.5rem] leading-none tracking-[-0.04em] text-[var(--color-ink)]"
+                    className="numeral text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] leading-none tracking-[-0.04em] text-[var(--color-ink)]"
                     style={{ fontWeight: 500 }}
                   >
                     {s.value}

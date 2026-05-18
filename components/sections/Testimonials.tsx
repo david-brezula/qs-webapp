@@ -18,7 +18,7 @@ export function Testimonials() {
 
             <blockquote>
               <span
-                className="font-display text-[2.5rem] md:text-[3.25rem] leading-[1.08] tracking-[-0.025em] text-[var(--color-ink)] block"
+                className="font-display text-[1.875rem] sm:text-[2.5rem] md:text-[3.25rem] leading-[1.08] tracking-[-0.025em] text-[var(--color-ink)] block"
                 style={{ fontWeight: 350 }}
               >
                 <span

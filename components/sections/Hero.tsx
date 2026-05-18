@@ -129,7 +129,7 @@ export function Hero() {
           <Reveal>
             {/* Drop-cap headline */}
             <h1
-              className="font-display text-[2.75rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-[var(--color-ink)]"
+              className="font-display text-[2.25rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-[var(--color-ink)]"
               style={{
                 fontWeight: 350,
                 fontVariationSettings: "'SOFT' 30, 'opsz' 144",
@@ -166,7 +166,7 @@ export function Hero() {
             </div>
 
             {/* Tiny credential row */}
-            <div className="mt-14 grid grid-cols-3 gap-6 max-w-md">
+            <div className="mt-14 grid grid-cols-3 gap-x-3 gap-y-5 sm:gap-6 max-w-md">
               {[
                 { k: "ISO 9001 · 14001 · 45001", v: "Quality, environment, safety" },
                 { k: "DGUV qualified", v: "On every site" },

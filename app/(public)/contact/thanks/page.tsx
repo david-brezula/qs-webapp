@@ -15,7 +15,7 @@ export default function ThanksPage() {
             <CheckCircle2 size={28} strokeWidth={1.5} />
           </div>
           <h1
-            className="font-display text-[2.5rem] md:text-[4rem] tracking-[-0.03em] text-[var(--color-ink)] leading-[1.02]"
+            className="font-display text-[1.875rem] sm:text-[2.5rem] md:text-[4rem] tracking-[-0.03em] text-[var(--color-ink)] leading-[1.02]"
             style={{ fontWeight: 350 }}
           >
             Got it — thanks.

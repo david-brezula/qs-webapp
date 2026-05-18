@@ -11,7 +11,7 @@ export function ContactCTA() {
       <svg
         aria-hidden
         viewBox="0 0 800 600"
-        className="absolute -right-40 -bottom-40 w-[700px] h-[700px] opacity-25 pointer-events-none"
+        className="absolute -right-40 -bottom-40 w-[700px] h-[700px] opacity-25 pointer-events-none hidden sm:block"
       >
         <defs>
           <radialGradient id="cta-ring" cx="400" cy="600" r="600" gradientUnits="userSpaceOnUse">
@@ -45,7 +45,7 @@ export function ContactCTA() {
                 </span>
               </div>
               <h2
-                className="font-display text-[3rem] md:text-[5rem] lg:text-[6rem] leading-[0.96] tracking-[-0.035em]"
+                className="font-display text-[2.25rem] sm:text-[3rem] md:text-[5rem] lg:text-[6rem] leading-[0.96] tracking-[-0.035em]"
                 style={{ fontWeight: 320 }}
               >
                 {CONTACT_CTA.headline}
