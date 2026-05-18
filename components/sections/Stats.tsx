@@ -8,9 +8,9 @@ export function Stats() {
       <Container>
         <Reveal>
           <div className="flex items-baseline justify-between mb-10 pb-3 border-b border-[var(--color-rule)]">
-            <span className="eyebrow text-[var(--color-ink)]">Specimen · operating record</span>
-            <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--color-mist)]">
-              YoY through Q1 2026
+            <span className="eyebrow text-[var(--color-ink)]">Operating record</span>
+            <span className="text-[0.8125rem] text-[var(--color-mist)]">
+              Year on year, through Q1 2026
             </span>
           </div>
         </Reveal>
@@ -27,7 +27,7 @@ export function Stats() {
                 <div className="flex items-baseline gap-2">
                   <span
                     className="numeral text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] leading-none tracking-[-0.04em] text-[var(--color-ink)]"
-                    style={{ fontWeight: 500 }}
+                    style={{ fontWeight: 600 }}
                   >
                     {s.value}
                   </span>

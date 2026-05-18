@@ -23,7 +23,7 @@ export function Footer() {
               </svg>
               <span
                 className="font-display text-[1.05rem] tracking-[-0.01em] text-[var(--color-ink)]"
-                style={{ fontWeight: 450 }}
+                style={{ fontWeight: 600 }}
               >
                 Quantum Sphere
               </span>

@@ -27,15 +27,11 @@ export function Capabilities() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="§ 01"
             eyebrow="Capabilities"
             title={
               <>
                 Scope your crew can sign for,
-                <span
-                  className="italic text-[var(--color-fjord)] block"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
+                <span className="text-[var(--color-fjord)] block">
                   end to end.
                 </span>
               </>
@@ -62,7 +58,7 @@ export function Capabilities() {
 
                   <h3
                     className="font-display text-[1.5rem] tracking-[-0.02em] text-[var(--color-ink)] leading-tight"
-                    style={{ fontWeight: 400 }}
+                    style={{ fontWeight: 600 }}
                   >
                     {c.title}
                   </h3>

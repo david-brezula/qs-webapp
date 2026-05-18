@@ -19,19 +19,15 @@ export function Testimonials() {
             <blockquote>
               <span
                 className="font-display text-[1.875rem] sm:text-[2.5rem] md:text-[3.25rem] leading-[1.08] tracking-[-0.025em] text-[var(--color-ink)] block"
-                style={{ fontWeight: 350 }}
+                style={{ fontWeight: 600 }}
               >
                 <span
-                  className="text-[var(--color-ember)] mr-1"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
+                  className="text-[var(--color-ember)] mr-1"                >
                   &ldquo;
                 </span>
                 {TESTIMONIAL.quote}
                 <span
-                  className="text-[var(--color-ember)] ml-1"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
+                  className="text-[var(--color-ember)] ml-1"                >
                   &rdquo;
                 </span>
               </span>

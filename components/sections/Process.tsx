@@ -12,17 +12,11 @@ export function Process() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="§ 02"
             eyebrow="Method"
             title={
               <>
                 How a Quantum Sphere subcontract{" "}
-                <span
-                  className="italic"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
-                  actually
-                </span>{" "}
+                <span className="text-[var(--color-fjord)]">actually</span>{" "}
                 runs.
               </>
             }
@@ -45,7 +39,7 @@ export function Process() {
                 </div>
                 <h3
                   className="font-display text-[1.75rem] md:text-[2.25rem] tracking-[-0.025em] leading-none text-[var(--color-ink)]"
-                  style={{ fontWeight: 400 }}
+                  style={{ fontWeight: 600 }}
                 >
                   {step.title}
                 </h3>

@@ -27,7 +27,7 @@ function Logo() {
         <line x1="2" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="0.6" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[1rem] tracking-[-0.01em] text-[var(--color-ink)]" style={{ fontWeight: 450 }}>
+        <span className="font-display text-[1rem] tracking-[-0.01em] text-[var(--color-ink)]" style={{ fontWeight: 600 }}>
           Quantum Sphere
         </span>
         <span className="font-mono text-[0.625rem] uppercase tracking-[0.22em] text-[var(--color-mist)] mt-0.5">

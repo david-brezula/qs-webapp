@@ -12,15 +12,11 @@ export function Certifications() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="§ 04"
             eyebrow="Standards · safety · insurance"
             title={
               <>
                 The procurement checklist,
-                <span
-                  className="italic block text-[var(--color-fjord)]"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
+                <span className="block text-[var(--color-fjord)]">
                   already answered.
                 </span>
               </>
