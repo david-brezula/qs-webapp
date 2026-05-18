@@ -64,7 +64,7 @@ export function WorkersPanel({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-md border border-border-soft bg-surface">
+      <div className="overflow-x-auto rounded-md border border-border-soft bg-surface">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wide text-navy/60">

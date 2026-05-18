@@ -79,29 +79,31 @@ export function SectionsEditor({
             </button>
           </div>
 
-          <table className="w-full text-sm mb-4">
-            <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-navy/60">
-                <th className="py-2">{labels.table}</th>
-                <th className="py-2">{labels.rows}</th>
-                <th className="py-2">{labels.cols}</th>
-                <th className="py-2">{labels.skipped}</th>
-                <th className="py-2">{labels.modules}</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {s.tables.map((t) => (
-                <EditableTableRow
-                  key={t.id}
-                  table={t}
-                  projectId={projectId}
-                  pending={pending}
-                  startTransition={start}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto mb-4">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs uppercase tracking-wide text-navy/60">
+                  <th className="py-2">{labels.table}</th>
+                  <th className="py-2">{labels.rows}</th>
+                  <th className="py-2">{labels.cols}</th>
+                  <th className="py-2">{labels.skipped}</th>
+                  <th className="py-2">{labels.modules}</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {s.tables.map((t) => (
+                  <EditableTableRow
+                    key={t.id}
+                    table={t}
+                    projectId={projectId}
+                    pending={pending}
+                    startTransition={start}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <NewTableRow projectId={projectId} sectionId={s.id} labels={labels} pending={pending} startTransition={start} />
 
