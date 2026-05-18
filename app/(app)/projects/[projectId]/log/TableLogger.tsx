@@ -13,6 +13,7 @@ import {
   deleteLogAction,
 } from "@/lib/actions/activity";
 import { isTableFinished } from "@/lib/portal/table-status";
+import { ProgressGraph } from "@/components/portal/ProgressGraph";
 
 type Claim = { id: string; userId: string; name: string };
 type SelectableWorker = { userId: string; name: string; inProject: boolean };
@@ -262,7 +263,7 @@ export function TableLogger({
             size={14}
             className={`transition-transform ${expanded ? "rotate-90" : ""}`}
           />
-          {labels.progress}
+          {labels.recent}
         </button>
 
         <div className="flex flex-wrap items-center gap-1 text-xs">
@@ -332,6 +333,20 @@ export function TableLogger({
           )}
           {isClosed && <span className="text-xs text-muted">Project is closed.</span>}
         </div>
+      </div>
+
+      <div className="mt-3">
+        <ProgressGraph
+          variant="table"
+          tied={table.tied}
+          connected={table.connected}
+          total={table.total}
+          done={isFinished}
+          labels={{
+            tied: labels.progressTied,
+            connected: labels.progressConnected,
+          }}
+        />
       </div>
 
       {error && <p className="mt-2 text-xs text-red-600" role="alert">{error}</p>}
