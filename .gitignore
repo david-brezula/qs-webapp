@@ -43,3 +43,6 @@ dev-output.log
 next-env.d.ts
 
 /lib/generated/prisma
+
+# Superpowers brainstorm scratch
+.superpowers/
