@@ -111,7 +111,7 @@ export function Projects() {
             <Reveal key={`${p.location}-${i}`} delay={i * 0.04}>
               <article className="group bg-[var(--color-canvas)] overflow-hidden h-full flex flex-col">
                 <ProjectArt seed={i + 1} scope={p.scope} />
-                <div className="p-7 md:p-8 flex-1 flex flex-col">
+                <div className="p-5 md:p-8 flex-1 flex flex-col">
                   <div className="flex items-baseline justify-between mb-4">
                     <span
                       className="numeral text-[1.5rem] md:text-[1.75rem] tracking-[-0.02em] text-[var(--color-ink)] leading-none"

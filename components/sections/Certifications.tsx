@@ -33,7 +33,7 @@ export function Certifications() {
           {CERTIFICATIONS.map((c, i) => (
             <Reveal key={c.label} delay={i * 0.04}>
               <div
-                className={`grid grid-cols-1 md:grid-cols-[280px_1fr_60px] gap-3 md:gap-12 py-6 md:py-7 items-baseline ${
+                className={`grid grid-cols-1 md:grid-cols-[200px_1fr_60px] lg:grid-cols-[280px_1fr_60px] gap-3 md:gap-12 py-6 md:py-7 items-baseline ${
                   i === 0 ? "border-t border-[var(--color-rule)]" : ""
                 } border-b border-[var(--color-rule)]`}
               >

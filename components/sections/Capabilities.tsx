@@ -52,7 +52,7 @@ export function Capabilities() {
               <Reveal key={c.title} delay={i * 0.04}>
                 <article className="relative group bg-[var(--color-paper)] hover:bg-[var(--color-canvas)] transition-colors duration-500 p-8 md:p-10 h-full flex flex-col">
                   <div className="flex items-start justify-between mb-8">
-                    <div className="h-11 w-11 rounded-full border border-[var(--color-ink)] flex items-center justify-center text-[var(--color-ink)] transition-colors group-hover:bg-[var(--color-ink)] group-hover:text-[var(--color-paper)]">
+                    <div className="h-9 w-9 md:h-11 md:w-11 rounded-full border border-[var(--color-ink)] flex items-center justify-center text-[var(--color-ink)] transition-colors group-hover:bg-[var(--color-ink)] group-hover:text-[var(--color-paper)]">
                       <Icon size={18} strokeWidth={1.5} />
                     </div>
                     <span className="numeral text-[0.75rem] uppercase tracking-[0.18em] text-[var(--color-mist)]">
