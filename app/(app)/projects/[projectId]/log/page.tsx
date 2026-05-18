@@ -91,7 +91,6 @@ export default async function LogPage({
         allActiveWorkers={allActiveWorkers}
         projectWorkerId={projectWorkerId}
         isAdmin={user.role === "ADMIN"}
-        showProgress
       />
     </div>
   );
