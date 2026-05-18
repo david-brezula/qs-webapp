@@ -16,7 +16,11 @@ export interface Progress {
   connectedPct: number;
 }
 
-function pct(value: number, total: number): number {
+/**
+ * Convert a value/total pair to a whole-number percentage, clamped to 0-100.
+ * A zero or negative total yields 0 (no divide-by-zero).
+ */
+export function toPercent(value: number, total: number): number {
   if (total <= 0) return 0;
   return Math.min(100, Math.max(0, Math.round((value / total) * 100)));
 }
@@ -40,7 +44,7 @@ export function computeProgress(tables: ProgressInput[]): Progress {
     total,
     tied,
     connected,
-    tiedPct: pct(tied, total),
-    connectedPct: pct(connected, total),
+    tiedPct: toPercent(tied, total),
+    connectedPct: toPercent(connected, total),
   };
 }
