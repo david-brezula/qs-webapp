@@ -60,7 +60,7 @@ export function Nav() {
       <Container className="flex items-center justify-between py-5">
         <Logo />
 
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="hidden lg:flex items-center gap-9">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
@@ -72,7 +72,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-5">
           <Link
             href="/login"
             className="inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] transition-colors"
@@ -88,7 +88,7 @@ export function Nav() {
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="md:hidden p-2 text-[var(--color-ink)]"
+          className="lg:hidden p-2 text-[var(--color-ink)]"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -96,7 +96,7 @@ export function Nav() {
       </Container>
 
       {open && (
-        <div className="md:hidden border-t border-[var(--color-rule)] bg-[var(--color-paper)]">
+        <div className="lg:hidden border-t border-[var(--color-rule)] bg-[var(--color-paper)]">
           <Container className="py-6 flex flex-col gap-5">
             {NAV_LINKS.map((l) => (
               <a
