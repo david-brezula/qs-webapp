@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeProgress, type ProgressInput } from "./progress";
+import { computeProgress, toPercent, type ProgressInput } from "./progress";
 
 const table = (over: Partial<ProgressInput> = {}): ProgressInput => ({
   rows: 10,
@@ -54,5 +54,21 @@ describe("computeProgress", () => {
     ]);
     expect(result.tiedPct).toBe(100);
     expect(result.connectedPct).toBe(100);
+  });
+});
+
+describe("toPercent", () => {
+  it("rounds value / total to a whole percentage", () => {
+    expect(toPercent(54, 100)).toBe(54);
+    expect(toPercent(1, 3)).toBe(33);
+  });
+
+  it("returns 0 when total is zero or negative", () => {
+    expect(toPercent(0, 0)).toBe(0);
+    expect(toPercent(5, 0)).toBe(0);
+  });
+
+  it("clamps to 100 when value exceeds total", () => {
+    expect(toPercent(130, 100)).toBe(100);
   });
 });

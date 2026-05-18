@@ -44,7 +44,6 @@ export async function ProjectLogView({
   allActiveWorkers,
   projectWorkerId,
   isAdmin,
-  showProgress = false,
 }: {
   project: {
     id: string;
@@ -57,49 +56,46 @@ export async function ProjectLogView({
   allActiveWorkers: { id: string; name: string }[];
   projectWorkerId: string | null;
   isAdmin: boolean;
-  showProgress?: boolean;
 }) {
   const t = await getTranslations("log");
   const tProj = await getTranslations("projects");
   const isClosed = project.status === "CLOSED";
-  const projectProgress = showProgress
-    ? computeProgress(project.sections.flatMap((s) => s.tables))
-    : null;
+  const projectProgress = computeProgress(
+    project.sections.flatMap((s) => s.tables),
+  );
 
   return (
     <>
-      {projectProgress && (
-        <ProgressGraph
-          variant="project"
-          tiedPct={projectProgress.tiedPct}
-          connectedPct={projectProgress.connectedPct}
-          labels={{
-            heading: t("progressHeading"),
-            tied: t("progressTied"),
-            connected: t("progressConnected"),
-          }}
-        />
-      )}
+      <ProgressGraph
+        variant="project"
+        tied={projectProgress.tied}
+        connected={projectProgress.connected}
+        total={projectProgress.total}
+        labels={{
+          heading: t("progressHeading"),
+          tied: t("progressTied"),
+          connected: t("progressConnected"),
+        }}
+      />
       {project.sections.length === 0 && (
         <p className="text-sm text-muted">No sections yet.</p>
       )}
       {project.sections.map((s) => {
-        const sectionProgress = showProgress ? computeProgress(s.tables) : null;
+        const sectionProgress = computeProgress(s.tables);
         return (
           <section key={s.id} className="mb-6">
             <div className="mb-3 flex items-center gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-navy/60">
                 {s.name}
               </h3>
-              {showProgress && sectionProgress && (
-                <div className="w-full max-w-[16rem]">
-                  <ProgressGraph
-                    variant="section"
-                    tiedPct={sectionProgress.tiedPct}
-                    connectedPct={sectionProgress.connectedPct}
-                  />
-                </div>
-              )}
+              <div className="w-full max-w-[16rem]">
+                <ProgressGraph
+                  variant="section"
+                  tied={sectionProgress.tied}
+                  connected={sectionProgress.connected}
+                  total={sectionProgress.total}
+                />
+              </div>
             </div>
             <div className="space-y-3">
               {s.tables.map((tbl) => {
@@ -153,7 +149,8 @@ export async function ProjectLogView({
                       iConnected: t("iConnected"),
                       workDate: t("workDate"),
                       submit: t("submit"),
-                      progress: t("tableProgress", { tied, connected, total }),
+                      progressTied: t("progressTied"),
+                      progressConnected: t("progressConnected"),
                       recent: t("recentEntries"),
                       noEntries: t("noEntriesYet"),
                       locked: t("editWindowOver"),

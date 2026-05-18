@@ -124,7 +124,6 @@
     "iTied": "Dnes som uviazal",
     "iConnected": "Dnes som zapojil",
     "workDate": "Dátum práce",
-    "tableProgress": "{tied}/{total} uviazaných · {connected}/{total} zapojených",
     "submit": "Pridať záznam",
     "recentEntries": "Posledné záznamy",
     "noEntriesYet": "Zatiaľ žiadne záznamy.",
