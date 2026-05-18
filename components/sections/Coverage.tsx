@@ -5,7 +5,7 @@ import { Reveal } from "@/components/sections/Reveal";
 
 /**
  * Approximate offset of each operating country from Bratislava (SK).
- * Negative x = west, negative y = north. Scaled for the radial display.
+ * Negative x = west, negative y = north. Scaled for the connector map.
  */
 const COORDS: Record<string, { dx: number; dy: number }> = {
   SK: { dx: 0, dy: 0 },
@@ -41,7 +41,7 @@ export function Coverage() {
         </Reveal>
 
         <div className="mt-16 md:mt-20 grid gap-14 md:grid-cols-[1.1fr_1fr] md:items-center">
-          {/* Radial map */}
+          {/* Connector map */}
           <Reveal>
             <div className="relative bg-[var(--color-canvas)] border border-[var(--color-rule)] rounded-[var(--radius-card)] p-6 md:p-10 aspect-[5/4]">
               <svg viewBox="-220 -340 440 440" className="w-full h-full">
