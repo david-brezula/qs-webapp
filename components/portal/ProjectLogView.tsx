@@ -84,14 +84,14 @@ export async function ProjectLogView({
         <p className="text-sm text-muted">No sections yet.</p>
       )}
       {project.sections.map((s) => {
-        const sectionProgress = computeProgress(s.tables);
+        const sectionProgress = showProgress ? computeProgress(s.tables) : null;
         return (
           <section key={s.id} className="mb-6">
             <div className="mb-3 flex items-center gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-navy/60">
                 {s.name}
               </h3>
-              {showProgress && (
+              {showProgress && sectionProgress && (
                 <div className="w-full max-w-[16rem]">
                   <ProgressGraph
                     variant="section"
