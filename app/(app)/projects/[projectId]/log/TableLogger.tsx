@@ -90,7 +90,7 @@ function Counter({
         type="button"
         onClick={onSubmit}
         disabled={pending || !value}
-        className="px-2.5 py-1 rounded-md bg-accent text-navy text-xs font-semibold hover:bg-[#FFC526] disabled:opacity-50"
+        className="px-2.5 py-1 rounded-md bg-accent text-accent-ink text-xs font-semibold hover:bg-[var(--color-fjord-2)] disabled:opacity-50"
       >
         +
       </button>
