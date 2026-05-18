@@ -127,6 +127,7 @@
     "tableProgress": "{tied}/{total} uviazaných · {connected}/{total} zapojených",
     "submit": "Pridať záznam",
     "recentEntries": "Posledné záznamy",
+    "noEntriesYet": "Zatiaľ žiadne záznamy.",
     "editWindowOver": "Záznam uzamknutý (starší ako 24h)",
     "overCap": "Nemôžete prekročiť {remaining} zostávajúcich pre túto akciu.",
     "claim": "Prevziať tabuľku",

@@ -28,6 +28,8 @@ export async function claimTableAction(fd: FormData): Promise<LogResult> {
   if (!session?.user) return { ok: false, error: "validation" };
   const tableId = String(fd.get("tableId") ?? "");
   if (!tableId) return { ok: false, error: "validation" };
+  const onBehalfOfPwId = String(fd.get("projectWorkerId") ?? "");
+  const onBehalfOfUserId = String(fd.get("userId") ?? "");
 
   const table = await prisma.table.findUnique({
     where: { id: tableId },
@@ -35,25 +37,42 @@ export async function claimTableAction(fd: FormData): Promise<LogResult> {
   });
   if (!table) return { ok: false, error: "validation" };
   if (table.section.project.status === "CLOSED") return { ok: false, error: "closed" };
+  const projectId = table.section.projectId;
 
-  const pw = await prisma.projectWorker.findUnique({
-    where: {
-      projectId_userId: {
-        projectId: table.section.projectId,
-        userId: session.user.id,
-      },
-    },
-  });
-  if (!pw) return { ok: false, error: "not-assigned" };
+  let targetPwId: string;
+  if (onBehalfOfPwId || onBehalfOfUserId) {
+    if (session.user.role !== "ADMIN") return { ok: false, error: "validation" };
+    if (onBehalfOfPwId) {
+      const target = await prisma.projectWorker.findUnique({ where: { id: onBehalfOfPwId } });
+      if (!target || target.projectId !== projectId) return { ok: false, error: "validation" };
+      targetPwId = target.id;
+    } else {
+      const targetUser = await prisma.user.findUnique({ where: { id: onBehalfOfUserId } });
+      if (!targetUser || !targetUser.active) return { ok: false, error: "validation" };
+      const pw = await prisma.projectWorker.upsert({
+        where: { projectId_userId: { projectId, userId: onBehalfOfUserId } },
+        update: {},
+        create: { projectId, userId: onBehalfOfUserId, priceTie: 0, priceConnect: 0 },
+      });
+      targetPwId = pw.id;
+    }
+  } else {
+    const pw = await prisma.projectWorker.findUnique({
+      where: { projectId_userId: { projectId, userId: session.user.id } },
+    });
+    if (!pw) return { ok: false, error: "not-assigned" };
+    targetPwId = pw.id;
+  }
 
   await prisma.tableClaim.upsert({
-    where: { tableId_projectWorkerId: { tableId, projectWorkerId: pw.id } },
+    where: { tableId_projectWorkerId: { tableId, projectWorkerId: targetPwId } },
     update: {},
-    create: { tableId, projectWorkerId: pw.id },
+    create: { tableId, projectWorkerId: targetPwId },
   });
 
-  revalidatePath(`/projects/${table.section.projectId}/log`);
-  revalidatePath(`/projects/${table.section.projectId}`);
+  revalidatePath(`/projects/${projectId}/log`);
+  revalidatePath(`/projects/${projectId}`);
+  revalidatePath(`/dashboard`);
   return { ok: true };
 }
 

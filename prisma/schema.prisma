@@ -145,7 +145,7 @@ model Accommodation {
   startDate DateTime @db.Date
   endDate   DateTime @db.Date
   totalCost Decimal  @db.Decimal(10, 2)
-  currency  Currency @default(USD)
+  currency  Currency @default(EUR)
   notes     String?
   createdAt DateTime @default(now())
 
@@ -165,4 +165,20 @@ model AccommodationWorker {
 
   @@unique([accommodationId, userId])
   @@index([userId])
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  company     String
+  name        String
+  email       String
+  projectType String
+  sizeMW      Float
+  country     String
+  startDate   String
+  scope       String[]
+  notes       String?
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
 }

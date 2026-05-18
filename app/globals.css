@@ -1,39 +1,95 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0B1F3A;
-  --color-navy-700: #16315E;
-  --color-slate-ink: #475569;
-  --color-bg: #FAFAF7;
-  --color-surface: #FFFFFF;
-  --color-border-soft: #E5E7EB;
-  --color-accent: #F5B400;
-  --color-accent-ink: #0B1F3A;
-  --color-muted: #94A3B8;
+  /* Scandinavian palette — warm paper, deep ink, fjord blue, terracotta ember */
+  --color-paper: #F4EFE6;
+  --color-paper-2: #ECE5D7;
+  --color-canvas: #FBF8F2;
+  --color-ink: #161B22;
+  --color-ink-2: #2A2F38;
+  --color-slate: #5B6470;
+  --color-mist: #8A8F97;
+  --color-rule: #D8D1C2;
+  --color-rule-soft: #E6DFD0;
+  --color-fjord: #2E5E6E;
+  --color-fjord-2: #1F4453;
+  --color-ember: #B45A3C;
+  --color-ember-2: #92482F;
+  --color-moss: #5A6647;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Legacy aliases (used by internal /app/* and /portal/* pages) */
+  --color-bg: #F4EFE6;
+  --color-surface: #FBF8F2;
+  --color-navy: #161B22;
+  --color-navy-700: #2A2F38;
+  --color-slate-ink: #5B6470;
+  --color-border-soft: #D8D1C2;
+  --color-accent: #2E5E6E;
+  --color-accent-ink: #F4EFE6;
+  --color-muted: #8A8F97;
 
-  --radius-card: 0.75rem;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), ui-serif, Georgia, serif;
+  --font-mono-sans: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-card: 2px;
+  --radius-pill: 999px;
 }
 
 html, body {
-  background-color: var(--color-bg);
-  color: var(--color-slate-ink);
-  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper grain */
+body {
+  background-image:
+    radial-gradient(rgba(22,27,34,0.025) 1px, transparent 1px),
+    radial-gradient(rgba(22,27,34,0.018) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-navy);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 }
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+
+.rule-hair { background: var(--color-rule); height: 1px; width: 100%; }
+
+.numeral {
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+  font-feature-settings: "tnum";
+}
+
+.lift {
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+              border-color 0.3s ease,
+              box-shadow 0.4s ease;
+}
+.lift:hover { transform: translateY(-2px); }

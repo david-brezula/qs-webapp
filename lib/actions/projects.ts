@@ -135,6 +135,77 @@ export async function createTableAction(fd: FormData) {
   return { ok: true as const };
 }
 
+const bulkTablesSchema = z.object({
+  sectionId: z.string().min(1),
+  projectId: z.string().min(1),
+  namePrefix: z.string().default(""),
+  startIndex: z.coerce.number().int().min(0).default(1),
+  count: z.coerce.number().int().min(1).max(100),
+  rows: z.coerce.number().int().min(0).default(0),
+  cols: z.coerce.number().int().min(0).default(0),
+  skipped: z.coerce.number().int().min(0).default(0),
+});
+
+export async function createTablesAction(fd: FormData) {
+  await requireAdmin();
+  const parsed = bulkTablesSchema.safeParse({
+    sectionId: fd.get("sectionId"),
+    projectId: fd.get("projectId"),
+    namePrefix: fd.get("namePrefix") ?? "",
+    startIndex: fd.get("startIndex") || 1,
+    count: fd.get("count"),
+    rows: fd.get("rows") || 0,
+    cols: fd.get("cols") || 0,
+    skipped: fd.get("skipped") || 0,
+  });
+  if (!parsed.success) return { ok: false as const, error: "validation" };
+
+  const existing = await prisma.table.count({ where: { sectionId: parsed.data.sectionId } });
+  const data = Array.from({ length: parsed.data.count }, (_, i) => ({
+    sectionId: parsed.data.sectionId,
+    name: `${parsed.data.namePrefix}${parsed.data.startIndex + i}`,
+    rows: parsed.data.rows,
+    cols: parsed.data.cols,
+    skipped: parsed.data.skipped,
+    orderIndex: existing + i,
+  }));
+
+  await prisma.table.createMany({ data });
+  revalidatePath(`/projects/${parsed.data.projectId}/edit`);
+  return { ok: true as const, created: data.length };
+}
+
+const updateTableSchema = z.object({
+  tableId: z.string().min(1),
+  projectId: z.string().min(1),
+  rows: z.coerce.number().int().min(0),
+  cols: z.coerce.number().int().min(0),
+  skipped: z.coerce.number().int().min(0),
+});
+
+export async function updateTableAction(fd: FormData) {
+  await requireAdmin();
+  const parsed = updateTableSchema.safeParse({
+    tableId: fd.get("tableId"),
+    projectId: fd.get("projectId"),
+    rows: fd.get("rows") || 0,
+    cols: fd.get("cols") || 0,
+    skipped: fd.get("skipped") || 0,
+  });
+  if (!parsed.success) return { ok: false as const, error: "validation" };
+  await prisma.table.update({
+    where: { id: parsed.data.tableId },
+    data: {
+      rows: parsed.data.rows,
+      cols: parsed.data.cols,
+      skipped: parsed.data.skipped,
+    },
+  });
+  revalidatePath(`/projects/${parsed.data.projectId}/edit`);
+  revalidatePath(`/projects/${parsed.data.projectId}`);
+  return { ok: true as const };
+}
+
 export async function deleteTableAction(fd: FormData) {
   await requireAdmin();
   const id = String(fd.get("tableId") ?? "");

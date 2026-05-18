@@ -2,12 +2,12 @@ import { describe, it, expect } from "vitest";
 import { contactSchema } from "./contact-schema";
 
 const valid = {
-  company: "Helios EPC",
+  company: "Helios Energie",
   name: "Dana Park",
   email: "dana@example.com",
   projectType: "Ground-mount",
   sizeMW: 12.5,
-  state: "TX",
+  country: "Germany",
   startDate: "2026-08-15",
   scope: ["Racking & structural", "Electrical & BOS"],
   notes: "AC interconnect ready",
@@ -44,14 +44,13 @@ describe("contactSchema", () => {
     expect(r.success).toBe(false);
   });
 
-  it("rejects unknown US state", () => {
-    const r = contactSchema.safeParse({ ...valid, state: "ZZ" });
+  it("rejects unknown country", () => {
+    const r = contactSchema.safeParse({ ...valid, country: "Atlantis" });
     expect(r.success).toBe(false);
   });
 
   it("accepts payload without notes (optional)", () => {
-    const withoutNotes: Partial<typeof valid> = { ...valid };
-    delete withoutNotes.notes;
+    const { notes: _notes, ...withoutNotes } = valid;
     const r = contactSchema.safeParse(withoutNotes);
     expect(r.success).toBe(true);
   });

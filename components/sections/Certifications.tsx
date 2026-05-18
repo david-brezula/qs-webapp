@@ -5,26 +5,49 @@ import { Reveal } from "@/components/sections/Reveal";
 
 export function Certifications() {
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-surface scroll-mt-20">
+    <section
+      id="certifications"
+      className="py-28 md:py-36 bg-[var(--color-paper-2)] border-y border-[var(--color-rule)] scroll-mt-20"
+    >
       <Container>
         <Reveal>
           <SectionHeading
-            eyebrow="Certifications & safety"
-            title="The procurement checklist, already answered."
+            index="§ 04"
+            eyebrow="Standards · safety · insurance"
+            title={
+              <>
+                The procurement checklist,
+                <span
+                  className="italic block text-[var(--color-fjord)]"
+                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
+                >
+                  already answered.
+                </span>
+              </>
+            }
+            lede="Audited annually. Documentation packs available under NDA for tender review."
           />
         </Reveal>
 
-        <div className="mt-12 divide-y divide-border-soft border-y border-border-soft">
-          {CERTIFICATIONS.map((c) => (
-            <div
-              key={c.label}
-              className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-2 md:gap-8 py-5"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
-                {c.label}
+        <div className="mt-14 md:mt-16">
+          {CERTIFICATIONS.map((c, i) => (
+            <Reveal key={c.label} delay={i * 0.04}>
+              <div
+                className={`grid grid-cols-1 md:grid-cols-[280px_1fr_60px] gap-3 md:gap-12 py-6 md:py-7 items-baseline ${
+                  i === 0 ? "border-t border-[var(--color-rule)]" : ""
+                } border-b border-[var(--color-rule)]`}
+              >
+                <div className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+                  {c.label}
+                </div>
+                <div className="text-[1rem] md:text-[1.0625rem] text-[var(--color-ink)] leading-[1.55]">
+                  {c.value}
+                </div>
+                <div className="hidden md:block numeral text-[0.75rem] text-[var(--color-mist)] text-right">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
               </div>
-              <div className="text-sm md:text-base text-slate-ink">{c.value}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Container>

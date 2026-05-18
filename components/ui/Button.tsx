@@ -1,19 +1,21 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "ember";
 
 const STYLES: Record<Variant, string> = {
   primary:
-    "bg-accent text-navy hover:bg-[#FFC526] focus-visible:ring-accent",
+    "bg-[var(--color-ink)] text-[var(--color-paper)] border border-[var(--color-ink)] hover:bg-[var(--color-fjord)] hover:border-[var(--color-fjord)] focus-visible:ring-[var(--color-ink)]",
   secondary:
-    "bg-transparent text-navy border border-navy hover:bg-navy hover:text-bg focus-visible:ring-navy",
+    "bg-transparent text-[var(--color-ink)] border border-[var(--color-ink)]/30 hover:border-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] focus-visible:ring-[var(--color-ink)]",
   ghost:
-    "bg-transparent text-bg border border-bg/40 hover:bg-bg hover:text-navy focus-visible:ring-bg",
+    "bg-transparent text-[var(--color-paper)] border border-[var(--color-paper)]/40 hover:bg-[var(--color-paper)] hover:text-[var(--color-ink)] focus-visible:ring-[var(--color-paper)]",
+  ember:
+    "bg-[var(--color-ember)] text-[var(--color-paper)] border border-[var(--color-ember)] hover:bg-[var(--color-ember-2)] hover:border-[var(--color-ember-2)] focus-visible:ring-[var(--color-ember)]",
 };
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-60";
+  "group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[0.8125rem] font-medium tracking-wide rounded-[var(--radius-pill)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-paper)] disabled:cursor-not-allowed disabled:opacity-60";
 
 export function Button({
   href,

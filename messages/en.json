@@ -127,6 +127,7 @@
     "tableProgress": "{tied}/{total} tied · {connected}/{total} connected",
     "submit": "Add entry",
     "recentEntries": "Recent entries",
+    "noEntriesYet": "No entries yet.",
     "editWindowOver": "Entry locked (over 24h old)",
     "overCap": "Cannot exceed {remaining} remaining for this action.",
     "claim": "Claim this table",

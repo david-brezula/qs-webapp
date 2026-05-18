@@ -11,28 +11,33 @@ export default function ThanksPage() {
       <Nav />
       <main className="py-24 md:py-32">
         <Container className="max-w-2xl text-center">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent mb-6">
-            <CheckCircle2 size={28} strokeWidth={1.75} />
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-[var(--color-ember)] text-[var(--color-ember)] mb-7">
+            <CheckCircle2 size={28} strokeWidth={1.5} />
           </div>
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-navy">
+          <h1
+            className="font-display text-[2.5rem] md:text-[4rem] tracking-[-0.03em] text-[var(--color-ink)] leading-[1.02]"
+            style={{ fontWeight: 350 }}
+          >
             Got it — thanks.
           </h1>
-          <p className="mt-4 text-base md:text-lg text-slate-ink leading-relaxed">
+          <p className="mt-5 text-base md:text-[1.0625rem] text-[var(--color-slate)] leading-[1.65]">
             Your project hit our queue. Someone from the Quantum Sphere team
-            will reply within one business day with crew availability and a
-            working estimate.
+            will reply within one business day with crew availability and an
+            indicative estimate.
           </p>
           <div className="mt-10">
             <Button href="/" variant="secondary">
               Back to home
             </Button>
           </div>
-          <p className="mt-8 text-xs text-muted">
+          <p className="mt-8 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[var(--color-mist)]">
             If your timeline is urgent, call{" "}
-            <Link href="tel:+13035550188" className="underline hover:text-navy">
-              (303) 555-0188
+            <Link
+              href="tel:+421255560188"
+              className="text-[var(--color-ink)] hover:text-[var(--color-fjord)]"
+            >
+              +421 2 5556 0188
             </Link>
-            .
           </p>
         </Container>
       </main>

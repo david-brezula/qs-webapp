@@ -8,7 +8,9 @@ import {
   createSectionAction,
   deleteSectionAction,
   createTableAction,
+  createTablesAction,
   deleteTableAction,
+  updateTableAction,
 } from "@/lib/actions/projects";
 
 type Table = { id: string; name: string; rows: number; cols: number; skipped: number; modules: number };
@@ -90,35 +92,25 @@ export function SectionsEditor({
             </thead>
             <tbody>
               {s.tables.map((t) => (
-                <tr key={t.id} className="border-t border-border-soft">
-                  <td className="py-2">{t.name}</td>
-                  <td className="py-2">{t.rows}</td>
-                  <td className="py-2">{t.cols}</td>
-                  <td className="py-2">{t.skipped}</td>
-                  <td className="py-2">{t.modules}</td>
-                  <td className="py-2 text-right">
-                    <button
-                      onClick={() => {
-                        const fd = new FormData();
-                        fd.set("tableId", t.id);
-                        fd.set("projectId", projectId);
-                        start(async () => {
-                          await deleteTableAction(fd);
-                          router.refresh();
-                        });
-                      }}
-                      disabled={pending}
-                      className="text-xs text-red-600 hover:underline"
-                    >
-                      {tCommon("delete")}
-                    </button>
-                  </td>
-                </tr>
+                <EditableTableRow
+                  key={t.id}
+                  table={t}
+                  projectId={projectId}
+                  pending={pending}
+                  startTransition={start}
+                />
               ))}
             </tbody>
           </table>
 
           <NewTableRow projectId={projectId} sectionId={s.id} labels={labels} pending={pending} startTransition={start} />
+
+          <div className="mt-6 pt-4 border-t border-border-soft">
+            <div className="text-xs font-semibold uppercase tracking-[0.15em] text-navy/60 mb-3">
+              {labels.bulkAdd}
+            </div>
+            <BulkTableRow projectId={projectId} sectionId={s.id} labels={labels} pending={pending} startTransition={start} />
+          </div>
         </div>
       ))}
     </div>
@@ -178,5 +170,183 @@ function NewTableRow({
         {labels.newTable}
       </Button>
     </div>
+  );
+}
+
+function BulkTableRow({
+  projectId,
+  sectionId,
+  labels,
+  pending,
+  startTransition,
+}: {
+  projectId: string;
+  sectionId: string;
+  labels: Record<string, string>;
+  pending: boolean;
+  startTransition: (cb: () => void) => void;
+}) {
+  const router = useRouter();
+  const [count, setCount] = useState("");
+  const [namePrefix, setNamePrefix] = useState("T");
+  const [startNumber, setStartNumber] = useState("1");
+
+  const countNum = Number(count);
+  const valid =
+    countNum >= 1 && countNum <= 100 && Number(startNumber) >= 0;
+
+  function add() {
+    if (!valid) return;
+    const fd = new FormData();
+    fd.set("sectionId", sectionId);
+    fd.set("projectId", projectId);
+    fd.set("namePrefix", namePrefix);
+    fd.set("startIndex", startNumber || "1");
+    fd.set("count", count);
+    startTransition(async () => {
+      const r = await createTablesAction(fd);
+      if (r.ok) {
+        setCount("");
+        router.refresh();
+      }
+    });
+  }
+
+  const buttonLabel = labels.addQuantityTpl.replace(
+    "{count}",
+    count && countNum >= 1 ? String(countNum) : "N",
+  );
+
+  return (
+    <div className="grid grid-cols-3 gap-2 items-center max-w-2xl">
+      <input
+        value={count}
+        onChange={(e) => setCount(e.target.value)}
+        type="number"
+        min="1"
+        max="100"
+        placeholder={labels.quantity}
+        className="rounded-md border border-border-soft bg-bg px-3 py-2 text-sm"
+      />
+      <div className="flex gap-1">
+        <input
+          value={namePrefix}
+          onChange={(e) => setNamePrefix(e.target.value)}
+          placeholder={labels.namePrefix}
+          className="w-2/3 rounded-md border border-border-soft bg-bg px-3 py-2 text-sm"
+        />
+        <input
+          value={startNumber}
+          onChange={(e) => setStartNumber(e.target.value)}
+          type="number"
+          min="0"
+          placeholder={labels.startNumber}
+          title={labels.startNumber}
+          className="w-1/3 rounded-md border border-border-soft bg-bg px-2 py-2 text-sm"
+        />
+      </div>
+      <Button onClick={add} variant="primary" disabled={pending || !valid}>
+        {buttonLabel}
+      </Button>
+    </div>
+  );
+}
+
+function EditableTableRow({
+  table,
+  projectId,
+  pending,
+  startTransition,
+}: {
+  table: Table;
+  projectId: string;
+  pending: boolean;
+  startTransition: (cb: () => void) => void;
+}) {
+  const router = useRouter();
+  const tCommon = useTranslations("common");
+  const [rows, setRows] = useState(String(table.rows));
+  const [cols, setCols] = useState(String(table.cols));
+  const [skipped, setSkipped] = useState(String(table.skipped));
+
+  const rowsNum = Number(rows) || 0;
+  const colsNum = Number(cols) || 0;
+  const skippedNum = Number(skipped) || 0;
+  const modules = Math.max(0, rowsNum * colsNum - skippedNum);
+
+  function persist() {
+    if (
+      rowsNum === table.rows &&
+      colsNum === table.cols &&
+      skippedNum === table.skipped
+    ) {
+      return;
+    }
+    const fd = new FormData();
+    fd.set("tableId", table.id);
+    fd.set("projectId", projectId);
+    fd.set("rows", String(rowsNum));
+    fd.set("cols", String(colsNum));
+    fd.set("skipped", String(skippedNum));
+    startTransition(async () => {
+      await updateTableAction(fd);
+      router.refresh();
+    });
+  }
+
+  function remove() {
+    const fd = new FormData();
+    fd.set("tableId", table.id);
+    fd.set("projectId", projectId);
+    startTransition(async () => {
+      await deleteTableAction(fd);
+      router.refresh();
+    });
+  }
+
+  return (
+    <tr className="border-t border-border-soft">
+      <td className="py-2">{table.name}</td>
+      <td className="py-2">
+        <input
+          value={rows}
+          onChange={(e) => setRows(e.target.value)}
+          onBlur={persist}
+          type="number"
+          min="0"
+          className="w-20 rounded-md border border-border-soft bg-bg px-2 py-1 text-sm"
+        />
+      </td>
+      <td className="py-2">
+        <input
+          value={cols}
+          onChange={(e) => setCols(e.target.value)}
+          onBlur={persist}
+          type="number"
+          min="0"
+          className="w-20 rounded-md border border-border-soft bg-bg px-2 py-1 text-sm"
+        />
+      </td>
+      <td className="py-2">
+        <input
+          value={skipped}
+          onChange={(e) => setSkipped(e.target.value)}
+          onBlur={persist}
+          type="number"
+          min="0"
+          className="w-20 rounded-md border border-border-soft bg-bg px-2 py-1 text-sm"
+        />
+      </td>
+      <td className="py-2">{modules}</td>
+      <td className="py-2 text-right">
+        <button
+          onClick={remove}
+          disabled={pending}
+          className="text-xs text-red-600 hover:underline"
+        >
+          {tCommon("delete")}
+        </button>
+      </td>
+    </tr>
   );
 }

@@ -1,120 +1,219 @@
 export const NAV_LINKS = [
   { label: "Capabilities", href: "#capabilities" },
-  { label: "Process", href: "#process" },
+  { label: "Method", href: "#process" },
   { label: "Projects", href: "#projects" },
   { label: "Coverage", href: "#coverage" },
-  { label: "Certifications", href: "#certifications" },
+  { label: "Standards", href: "#certifications" },
 ] as const;
 
 export const HERO = {
-  eyebrow: "Solar construction subcontractor",
-  headline: "Solar subcontracting at utility scale.",
-  sub: "Quantum Sphere mobilizes experienced crews for general contractors and EPCs building utility, commercial, and industrial solar across the United States.",
-  primaryCta: { label: "Request capacity", href: "/contact" },
-  secondaryCta: { label: "Download capabilities deck", href: "#" },
+  eyebrow: "Solar EPC subcontractor · est. Slovakia",
+  headline: "Quiet, exact solar construction — from the Alps to the Arctic.",
+  sub: "Quantum Sphere mobilises trained European crews for general contractors and EPCs across Germany, Austria, Switzerland and the Nordics. Rooftop, ground‑mount, racking, BOS and commissioning.",
+  primaryCta: { label: "Request crew capacity", href: "/contact" },
+  secondaryCta: { label: "Download capability dossier", href: "#capabilities" },
 };
 
 export const STATS = [
-  { value: "420+", label: "MW installed" },
-  { value: "180+", label: "Projects completed" },
-  { value: "12", label: "Field crews available" },
-  { value: "0.78", label: "EMR (3-yr avg)" },
+  { value: "612", unit: "MWp", label: "Installed since 2017" },
+  { value: "240", unit: "sites", label: "Projects delivered" },
+  { value: "14", unit: "crews", label: "Across DACH · Nordics" },
+  { value: "0.0", unit: "LTIFR", label: "Last 24 months" },
 ];
 
 export const CAPABILITIES = [
   {
     icon: "Sun",
-    title: "Rooftop solar",
-    body: "Ballasted and penetration-mount systems on commercial and industrial roofs, from 100 kW to 5 MW.",
+    title: "Rooftop systems",
+    body:
+      "Ballasted and penetrative mounts on industrial, logistics and commercial roofs — from 250 kWp to 8 MWp, with snow‑load engineering for alpine and Nordic regions.",
   },
   {
     icon: "LandPlot",
-    title: "Ground-mount",
-    body: "Pile-driven and concrete-foundation arrays for utility-scale and community solar.",
+    title: "Ground‑mount fields",
+    body:
+      "Pile‑driven and screw‑foundation arrays for utility and community solar. Single‑axis tracker installation a recurring scope across DACH.",
   },
   {
     icon: "Layers",
     title: "Racking & structural",
-    body: "Tracker installs, fixed-tilt racking, canopy structures, and steel erection.",
+    body:
+      "Schüco, K2 and Schletter racking experience. Carport canopies, agri‑PV substructures, steel and aluminium erection.",
   },
   {
     icon: "Zap",
     title: "Electrical & BOS",
-    body: "DC field wiring, combiner boxes, inverter sets, MV/HV interconnect support.",
+    body:
+      "DC string and combiner work, central and string inverter sets, MV transformer support. Crews familiar with VDE 0126, EN 50549 and OVE compliance.",
   },
   {
     icon: "CircuitBoard",
     title: "Commissioning",
-    body: "Megger and IV-curve testing, performance verification, punch-list closeout.",
+    body:
+      "Insulation, IV‑curve and EL testing, thermography, performance verification, punch‑list closeout to client and grid‑operator standards.",
   },
   {
     icon: "Wrench",
-    title: "O&M and rework",
-    body: "Module swaps, repower, post-storm response, vegetation and washing.",
+    title: "Service & repower",
+    body:
+      "Module exchange, post‑hail response, repowering legacy fields, vegetation control and module cleaning under SLA.",
   },
 ] as const;
 
 export const PROCESS_STEPS = [
-  { n: "01", title: "Scope", body: "Review drawings, BOM, schedule. Hard quote with assumptions called out." },
-  { n: "02", title: "Mobilize", body: "Crew assignment, equipment staging, site-specific safety plan." },
-  { n: "03", title: "Install", body: "Daily production reporting, QA holds, drone progress for the GC." },
-  { n: "04", title: "Commission", body: "Test plan execution, defect logging, performance sign-off." },
-  { n: "05", title: "Handoff", body: "As-builts, warranty package, O&M binder, post-energization support." },
+  {
+    n: "01",
+    title: "Scope",
+    body: "We review the layout, BOM and schedule. A fixed quote arrives with assumptions and risks written down.",
+  },
+  {
+    n: "02",
+    title: "Mobilise",
+    body: "Crews assigned with named foremen, logistics staged, site‑specific safety and DGUV briefing prepared.",
+  },
+  {
+    n: "03",
+    title: "Install",
+    body: "Daily production reports, photo logs and QA holds. Drone overflights for the GC on weekly intervals.",
+  },
+  {
+    n: "04",
+    title: "Commission",
+    body: "Witness testing with the EPC. Defect tracking in our portal. Performance sign‑off to grid operator.",
+  },
+  {
+    n: "05",
+    title: "Handover",
+    body: "As‑builts, warranty package, O&M binder. We stay on call for the first 90 days after energisation.",
+  },
 ];
 
 export const PROJECTS = [
-  { size: "12.4 MWac", location: "West Texas, TX", scope: "Ground-mount", role: "Full EPC subcontract" },
-  { size: "3.2 MWdc", location: "Fresno County, CA", scope: "Rooftop", role: "Mechanical + electrical" },
-  { size: "48 MWdc", location: "Maricopa County, AZ", scope: "Tracker install", role: "Mechanical scope" },
-  { size: "1.8 MWdc", location: "Hudson Valley, NY", scope: "Community solar", role: "Full EPC subcontract" },
-  { size: "6.5 MWdc", location: "Polk County, IA", scope: "Ground-mount", role: "Racking + electrical" },
-  { size: "950 kWdc", location: "Lehigh Valley, PA", scope: "Carport canopy", role: "Mechanical scope" },
+  {
+    size: "18.4 MWp",
+    location: "Brandenburg, Germany",
+    scope: "Ground‑mount",
+    role: "Mechanical + DC scope",
+  },
+  {
+    size: "4.2 MWp",
+    location: "Styria, Austria",
+    scope: "Industrial rooftop",
+    role: "Full EPC subcontract",
+  },
+  {
+    size: "26.0 MWp",
+    location: "Skåne, Sweden",
+    scope: "Tracker field",
+    role: "Mechanical scope",
+  },
+  {
+    size: "1.9 MWp",
+    location: "Zürich Oberland, Switzerland",
+    scope: "Carport canopy",
+    role: "Structural + electrical",
+  },
+  {
+    size: "8.7 MWp",
+    location: "Jutland, Denmark",
+    scope: "Ground‑mount",
+    role: "Racking + BOS",
+  },
+  {
+    size: "3.4 MWp",
+    location: "Bratislava region, Slovakia",
+    scope: "Logistics rooftop",
+    role: "Full EPC subcontract",
+  },
 ];
 
 export const CERTIFICATIONS = [
-  { label: "NABCEP", value: "PV Installation Professional on every crew" },
-  { label: "Safety", value: "OSHA-30 site supervision; OSHA-10 all field staff" },
-  { label: "Licensing", value: "Electrical contractor licensed in 12 states" },
-  { label: "EMR", value: "0.78 three-year average" },
-  { label: "Insurance", value: "$10M general liability, $5M umbrella" },
+  { label: "Quality", value: "ISO 9001:2015 certified — audited by TÜV SÜD" },
+  { label: "Environment", value: "ISO 14001:2015 — carbon accounting on every site" },
+  { label: "Safety", value: "ISO 45001 · DGUV qualified site supervisors on every crew" },
+  { label: "Trade licence", value: "Electrical contractor in SK, CZ, DE, AT; reciprocity in CH, DK, SE, FI, NO" },
+  { label: "Workers", value: "All field staff with Working at Heights and PV‑specific safety modules" },
+  { label: "Insurance", value: "€10 M general liability · €5 M professional indemnity" },
 ];
 
-export const COVERAGE_STATES = [
-  "TX", "CA", "AZ", "NV", "NM", "CO", "IA", "IL", "NY", "NJ", "PA", "MA",
-];
+export const COVERAGE_COUNTRIES = [
+  { code: "SK", name: "Slovakia", note: "Headquarters · Bratislava" },
+  { code: "DE", name: "Germany", note: "Continuous operations" },
+  { code: "AT", name: "Austria", note: "Continuous operations" },
+  { code: "CH", name: "Switzerland", note: "Continuous operations" },
+  { code: "CZ", name: "Czechia", note: "Continuous operations" },
+  { code: "SE", name: "Sweden", note: "Crews on rotation" },
+  { code: "NO", name: "Norway", note: "Crews on rotation" },
+  { code: "DK", name: "Denmark", note: "Crews on rotation" },
+  { code: "FI", name: "Finland", note: "Project basis" },
+] as const;
 
 export const TESTIMONIAL = {
   quote:
-    "Quantum Sphere has been our go-to subcontractor for the last four utility projects. They show up with the crews they promised and hit every commissioning milestone we set.",
-  attribution: "VP of Construction, Tier-1 Solar EPC",
+    "Quantum Sphere arrived with the foremen they promised, kept clean tool‑boxes, and finished the commissioning a week ahead of plan. We hand them our next two German fields without rebidding.",
+  attribution: "Construction Director · European EPC, 1 GW pipeline",
 };
 
 export const PARTNERS = [
-  "Helios EPC", "Northwind Energy", "Ridgeline Power", "Solis Group", "Bright Acre", "Vector Renewables",
+  "Helios Energie",
+  "Nordwind Power",
+  "Alpenkamm EPC",
+  "Solis Group",
+  "Brightacre",
+  "Vector Renewables",
 ];
 
 export const CONTACT_CTA = {
-  headline: "Subcontract with us.",
-  sub: "Send us a project. We'll respond within one business day with crew availability and a working estimate.",
-  cta: { label: "Start an RFP", href: "/contact" },
+  headline: "Send us a project.",
+  sub: "Tender documents, a single‑line, even a rough scope — we reply within one business day with crew availability and an indicative price.",
+  cta: { label: "Open a request", href: "/contact" },
 };
 
 export const FOOTER = {
-  address: "1450 Industry Way, Suite 200 · Denver, CO 80202",
-  phone: "(303) 555-0188",
-  email: "rfp@quantumsphere.example",
-  tagline: "Built for solar EPCs and general contractors.",
+  address: "Mlynské Nivy 5 · 821 09 Bratislava · Slovak Republic",
+  phone: "+421 2 5556 0188",
+  email: "rfp@quantumsphere.eu",
+  tagline:
+    "Solar construction subcontractor headquartered in Bratislava. Building for European EPCs since 2017.",
+  vat: "VAT SK2120988117 · IBAN SK 48 1100 0000 0029 4502 1733",
 };
 
 export const CONTACT_SCOPE_OPTIONS = [
   "Rooftop",
-  "Ground-mount",
+  "Ground‑mount",
   "Racking & structural",
   "Electrical & BOS",
   "Commissioning",
-  "O&M",
+  "Service & repower",
 ] as const;
 
-export const US_STATES = [
-  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+export const EU_COUNTRIES = [
+  "Slovakia",
+  "Czechia",
+  "Germany",
+  "Austria",
+  "Switzerland",
+  "Poland",
+  "Hungary",
+  "Slovenia",
+  "Croatia",
+  "Italy",
+  "France",
+  "Netherlands",
+  "Belgium",
+  "Luxembourg",
+  "Denmark",
+  "Sweden",
+  "Norway",
+  "Finland",
+  "Estonia",
+  "Latvia",
+  "Lithuania",
+  "Ireland",
+  "United Kingdom",
+  "Spain",
+  "Portugal",
+  "Romania",
+  "Bulgaria",
 ] as const;
+

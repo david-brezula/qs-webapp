@@ -1,7 +1,13 @@
 import { z } from "zod";
-import { CONTACT_SCOPE_OPTIONS, US_STATES } from "./content";
+import { CONTACT_SCOPE_OPTIONS, EU_COUNTRIES } from "./content";
 
-export const PROJECT_TYPES = ["Rooftop", "Ground-mount", "Other"] as const;
+export const PROJECT_TYPES = [
+  "Rooftop",
+  "Ground-mount",
+  "Carport / canopy",
+  "Repower / service",
+  "Other",
+] as const;
 
 export const contactSchema = z.object({
   company: z.string().trim().min(1, "Company is required"),
@@ -13,7 +19,7 @@ export const contactSchema = z.object({
   sizeMW: z.coerce
     .number({ message: "Enter a number" })
     .positive("Size must be greater than 0"),
-  state: z.enum(US_STATES, { message: "Choose a state" }),
+  country: z.enum(EU_COUNTRIES, { message: "Choose a country" }),
   startDate: z
     .string()
     .min(1, "Target start date is required")

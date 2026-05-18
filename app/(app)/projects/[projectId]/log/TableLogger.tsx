@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import {
@@ -13,6 +14,89 @@ import {
 } from "@/lib/actions/activity";
 
 type Claim = { id: string; userId: string; name: string };
+type SelectableWorker = { userId: string; name: string; inProject: boolean };
+
+const FRACTIONS = [1, 2, 3, 4, 5, 6] as const;
+const fractionCount = (total: number, n: number) =>
+  n === 6 ? total : Math.round((total * n) / 6);
+
+function Counter({
+  label,
+  total,
+  value,
+  setValue,
+  onSubmit,
+  pending,
+  open,
+  onOpenChange,
+}: {
+  label: string;
+  total: number;
+  value: string;
+  setValue: (s: string) => void;
+  onSubmit: () => void;
+  pending: boolean;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <div className="flex items-center gap-1">
+      <span className="text-muted whitespace-nowrap">{label}</span>
+      <div
+        className="relative"
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+            onOpenChange(false);
+          }
+        }}
+      >
+        <input
+          type="number"
+          min="1"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onFocus={() => onOpenChange(true)}
+          onClick={() => onOpenChange(true)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") onOpenChange(false);
+          }}
+          className="w-16 rounded-md border border-border-soft bg-bg px-2 py-1 text-xs"
+        />
+        {open && total > 0 && (
+          <div className="absolute left-0 top-full z-10 mt-1 grid grid-cols-[auto_auto_auto] gap-1 rounded-md border border-border-soft bg-[var(--color-canvas)] p-1.5 shadow-md">
+            {FRACTIONS.map((n) => {
+              const v = fractionCount(total, n);
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    setValue(String(v));
+                    onOpenChange(false);
+                  }}
+                  disabled={pending}
+                  title={String(v)}
+                  className="px-1.5 py-0.5 rounded border border-border-soft text-slate-ink hover:bg-bg disabled:opacity-50 leading-none"
+                >
+                  {n}/6
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={onSubmit}
+        disabled={pending || !value}
+        className="px-2.5 py-1 rounded-md bg-accent text-navy text-xs font-semibold hover:bg-[#FFC526] disabled:opacity-50"
+      >
+        +
+      </button>
+    </div>
+  );
+}
 
 export function TableLogger({
   table,
@@ -23,6 +107,7 @@ export function TableLogger({
   isClosed,
   isAdmin,
   isAssigned,
+  selectableWorkers,
   labels,
 }: {
   table: { id: string; name: string; total: number; tied: number; connected: number };
@@ -33,15 +118,19 @@ export function TableLogger({
   isClosed: boolean;
   isAdmin: boolean;
   isAssigned: boolean;
+  selectableWorkers: SelectableWorker[];
   labels: Record<string, string>;
 }) {
   const router = useRouter();
   const tCommon = useTranslations("common");
   const [pending, start] = useTransition();
+  const [expanded, setExpanded] = useState(false);
   const [tieCount, setTieCount] = useState("");
   const [connectCount, setConnectCount] = useState("");
   const [workDate, setWorkDate] = useState(new Date().toISOString().slice(0, 10));
   const [error, setError] = useState<string | null>(null);
+  const [adminClaimUserId, setAdminClaimUserId] = useState("");
+  const [openFraction, setOpenFraction] = useState<"TIE" | "CONNECT" | null>(null);
 
   const canSubmit = Boolean(myClaim) && !isClosed;
   const canClaim = !myClaim && isAssigned && !isClosed;
@@ -58,6 +147,24 @@ export function TableLogger({
         else setError(tCommon("save"));
         return;
       }
+      router.refresh();
+    });
+  }
+
+  function adminClaim() {
+    if (!adminClaimUserId) return;
+    const fd = new FormData();
+    fd.set("tableId", table.id);
+    fd.set("userId", adminClaimUserId);
+    setError(null);
+    start(async () => {
+      const r = await claimTableAction(fd);
+      if (!r.ok) {
+        if (r.error === "closed") setError("Project is closed.");
+        else setError(tCommon("save"));
+        return;
+      }
+      setAdminClaimUserId("");
       router.refresh();
     });
   }
@@ -123,135 +230,169 @@ export function TableLogger({
     });
   }
 
+  const compactBtn =
+    "!px-3 !py-1.5 !text-xs";
+  const iconBtn =
+    "!px-2.5 !py-1.5 !text-xs";
+
   return (
-    <Card className="p-5">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-base font-semibold text-navy">{table.name}</h3>
-        <div className="text-xs text-muted">{labels.progress}</div>
-      </div>
+    <Card className={`p-3 ${openFraction ? "z-20" : ""}`}>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <h3 className="text-sm font-semibold text-navy">{table.name}</h3>
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          aria-controls={`table-detail-${table.id}`}
+          className="inline-flex items-center gap-1 text-xs text-muted hover:text-navy"
+        >
+          <ChevronRight
+            size={14}
+            className={`transition-transform ${expanded ? "rotate-90" : ""}`}
+          />
+          {labels.progress}
+        </button>
 
-      {/* Claim state header */}
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-xs">
-        <span className="text-navy/60 uppercase tracking-[0.15em]">{labels.claimedBy}:</span>
-        {claims.length === 0 ? (
-          <span className="text-muted">{labels.noClaims}</span>
-        ) : (
-          claims.map((c) => {
-            const mine = myClaim && c.id === myClaim.id;
-            const canRelease = mine ? !hasMyActivity || isAdmin : isAdmin;
-            return (
-              <span
-                key={c.id}
-                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md ${
-                  mine ? "bg-accent/15 text-navy" : "bg-bg text-slate-ink"
-                }`}
-              >
-                {c.name}{mine && " (you)"}
-                {canRelease && (
-                  <button
-                    onClick={() => (mine ? releaseMyClaim() : releaseClaim(c.id))}
-                    disabled={pending}
-                    className="text-xs text-red-600 hover:underline ml-1"
-                    aria-label={labels.release}
-                  >
-                    ×
-                  </button>
-                )}
-              </span>
-            );
-          })
-        )}
-      </div>
-
-      {/* Claim action or counters */}
-      {canClaim && (
-        <div className="mb-3">
-          <Button onClick={claim} variant="primary" disabled={pending}>
-            {labels.claim}
-          </Button>
+        <div className="flex flex-wrap items-center gap-1 text-xs">
+          {claims.length === 0 ? (
+            <span className="text-muted italic">{labels.noClaims}</span>
+          ) : (
+            claims.map((c) => {
+              const mine = myClaim && c.id === myClaim.id;
+              const canRelease = mine ? !hasMyActivity || isAdmin : isAdmin;
+              return (
+                <span
+                  key={c.id}
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${
+                    mine ? "bg-accent/15 text-navy" : "bg-bg text-slate-ink"
+                  }`}
+                >
+                  {c.name}{mine && " (you)"}
+                  {canRelease && (
+                    <button
+                      onClick={() => (mine ? releaseMyClaim() : releaseClaim(c.id))}
+                      disabled={pending}
+                      className="text-red-600 hover:underline leading-none"
+                      aria-label={labels.release}
+                    >
+                      ×
+                    </button>
+                  )}
+                </span>
+              );
+            })
+          )}
         </div>
-      )}
 
-      {!isAssigned && !isAdmin && (
-        <p className="text-xs text-muted mb-2">{labels.notAssigned}</p>
-      )}
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {!isAssigned && !isAdmin && (
+            <span className="text-xs text-muted">{labels.notAssigned}</span>
+          )}
+          {canClaim && (
+            <Button onClick={claim} variant="primary" disabled={pending} className={compactBtn}>
+              {labels.claim}
+            </Button>
+          )}
+          {isAdmin && !isClosed && selectableWorkers.length > 0 && (
+            <div className="flex items-center gap-1">
+              <select
+                value={adminClaimUserId}
+                onChange={(e) => setAdminClaimUserId(e.target.value)}
+                disabled={pending}
+                className="rounded-md border border-border-soft bg-bg px-2 py-1 text-xs max-w-[14rem]"
+              >
+                <option value="">+ {labels.selectWorker}</option>
+                {selectableWorkers.map((w) => (
+                  <option key={w.userId} value={w.userId}>
+                    {w.name}{!w.inProject ? ` · ${labels.notInProject}` : ""}
+                  </option>
+                ))}
+              </select>
+              <Button
+                onClick={adminClaim}
+                variant="secondary"
+                disabled={pending || !adminClaimUserId}
+                className={iconBtn}
+              >
+                {labels.add}
+              </Button>
+            </div>
+          )}
+          {isClosed && <span className="text-xs text-muted">Project is closed.</span>}
+        </div>
+      </div>
+
+      {error && <p className="mt-2 text-xs text-red-600" role="alert">{error}</p>}
 
       {canSubmit && (
-        <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto] mb-3">
-          <div>
-            <label className="text-xs text-muted block mb-1">{labels.iTied}</label>
-            <div className="flex gap-2">
-              <input
-                type="number"
-                min="1"
-                value={tieCount}
-                onChange={(e) => setTieCount(e.target.value)}
-                className="w-full rounded-md border border-border-soft bg-bg px-3 py-2 text-sm"
-              />
-              <Button onClick={() => submit("TIE")} variant="primary" disabled={pending || !tieCount}>
-                +
-              </Button>
-            </div>
-          </div>
-          <div>
-            <label className="text-xs text-muted block mb-1">{labels.iConnected}</label>
-            <div className="flex gap-2">
-              <input
-                type="number"
-                min="1"
-                value={connectCount}
-                onChange={(e) => setConnectCount(e.target.value)}
-                className="w-full rounded-md border border-border-soft bg-bg px-3 py-2 text-sm"
-              />
-              <Button onClick={() => submit("CONNECT")} variant="primary" disabled={pending || !connectCount}>
-                +
-              </Button>
-            </div>
-          </div>
-          <div>
-            <label className="text-xs text-muted block mb-1">{labels.workDate}</label>
+        <div className="mt-3 flex flex-wrap items-end gap-x-4 gap-y-2 text-xs">
+          <Counter
+            label={labels.iTied}
+            total={table.total}
+            value={tieCount}
+            setValue={setTieCount}
+            onSubmit={() => submit("TIE")}
+            pending={pending}
+            open={openFraction === "TIE"}
+            onOpenChange={(o) => setOpenFraction(o ? "TIE" : null)}
+          />
+          <Counter
+            label={labels.iConnected}
+            total={table.total}
+            value={connectCount}
+            setValue={setConnectCount}
+            onSubmit={() => submit("CONNECT")}
+            pending={pending}
+            open={openFraction === "CONNECT"}
+            onOpenChange={(o) => setOpenFraction(o ? "CONNECT" : null)}
+          />
+          <label className="flex items-center gap-1">
+            <span className="text-muted">{labels.workDate}</span>
             <input
               type="date"
               value={workDate}
               onChange={(e) => setWorkDate(e.target.value)}
-              className="rounded-md border border-border-soft bg-bg px-3 py-2 text-sm"
+              className="rounded-md border border-border-soft bg-bg px-2 py-1 text-xs"
             />
-          </div>
+          </label>
         </div>
       )}
 
-      {isClosed && <p className="text-xs text-muted mb-2">Project is closed.</p>}
-
-      {error && <p className="text-xs text-red-600 mb-2" role="alert">{error}</p>}
-
-      {myLogs.length > 0 && (
-        <div className="mt-3 pt-3 border-t border-border-soft">
-          <div className="text-xs uppercase tracking-wide text-navy/60 mb-2">{labels.recent}</div>
-          <ul className="text-sm space-y-1">
-            {myLogs.map((l) => {
-              const ageMs = Date.now() - new Date(l.createdAt).getTime();
-              const locked = !isAdmin && ageMs >= 24 * 60 * 60 * 1000;
-              return (
-                <li key={l.id} className="flex items-center justify-between text-slate-ink">
-                  <span>
-                    <span className="font-semibold text-navy">{l.count}</span>{" "}
-                    {l.action === "TIE" ? labels.tied : labels.connected}{" "}
+      {expanded && (
+        <div
+          id={`table-detail-${table.id}`}
+          className="mt-3 pt-2 border-t border-border-soft"
+        >
+          {myLogs.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <span className="text-navy/60 uppercase tracking-wide">{labels.recent}:</span>
+              {myLogs.map((l) => {
+                const ageMs = Date.now() - new Date(l.createdAt).getTime();
+                const locked = !isAdmin && ageMs >= 24 * 60 * 60 * 1000;
+                return (
+                  <span key={l.id} className="inline-flex items-center gap-1 text-slate-ink">
+                    <span className="font-semibold text-navy">{l.count}</span>
+                    {l.action === "TIE" ? labels.tied : labels.connected}
                     <span className="text-muted">· {l.workDate}</span>
+                    {!locked ? (
+                      <button
+                        onClick={() => remove(l.id)}
+                        disabled={pending}
+                        className="text-red-600 hover:underline leading-none"
+                        aria-label={tCommon("delete")}
+                      >
+                        ×
+                      </button>
+                    ) : (
+                      <span className="text-muted" title={labels.locked}>—</span>
+                    )}
                   </span>
-                  {!locked && (
-                    <button
-                      onClick={() => remove(l.id)}
-                      disabled={pending}
-                      className="text-xs text-red-600 hover:underline"
-                    >
-                      {tCommon("delete")}
-                    </button>
-                  )}
-                  {locked && <span className="text-xs text-muted">{labels.locked}</span>}
-                </li>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="text-xs text-muted">{labels.noEntries}</p>
+          )}
         </div>
       )}
     </Card>

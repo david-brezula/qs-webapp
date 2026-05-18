@@ -1,4 +1,3 @@
-// Loads environment variables from .env.local for Prisma CLI commands.
 import { config as loadEnv } from "dotenv";
 import { defineConfig } from "prisma/config";
 
@@ -11,6 +10,9 @@ export default defineConfig({
     seed: "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // DIRECT_URL = the non-pooled Supabase connection (port 5432).
+    // Required for migrations; Prisma 7 does not support pgbouncer for DDL.
+    // DATABASE_URL (pooler, port 6543) is used at runtime via lib/prisma.ts.
+    url: process.env["DIRECT_URL"] ?? process.env["DATABASE_URL"],
   },
 });

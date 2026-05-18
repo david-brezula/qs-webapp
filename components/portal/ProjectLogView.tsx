@@ -123,6 +123,7 @@ export async function ProjectLogView({
                     submit: t("submit"),
                     progress: t("tableProgress", { tied, connected, total }),
                     recent: t("recentEntries"),
+                    noEntries: t("noEntriesYet"),
                     locked: t("editWindowOver"),
                     overCap: t("overCap", { remaining: "{r}" }),
                     tied: tProj("tied"),

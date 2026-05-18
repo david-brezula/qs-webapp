@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import {
   CONTACT_SCOPE_OPTIONS,
-  US_STATES,
+  EU_COUNTRIES,
 } from "@/lib/content";
 import {
   contactSchema,
@@ -39,7 +39,7 @@ export default function ContactPage() {
       email: String(fd.get("email") ?? ""),
       projectType: String(fd.get("projectType") ?? ""),
       sizeMW: String(fd.get("sizeMW") ?? ""),
-      state: String(fd.get("state") ?? ""),
+      country: String(fd.get("country") ?? ""),
       startDate: String(fd.get("startDate") ?? ""),
       scope: fd.getAll("scope").map(String),
       notes: String(fd.get("notes") ?? ""),
@@ -82,27 +82,35 @@ export default function ContactPage() {
         <Container className="max-w-3xl">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-ink hover:text-navy mb-8"
+            className="inline-flex items-center gap-2 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] mb-10 transition-colors"
           >
-            <ArrowLeft size={14} />
+            <ArrowLeft size={14} strokeWidth={1.5} />
             Back to home
           </Link>
 
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/60 mb-3">
-            Request capacity
+          <div className="flex items-center gap-3 mb-5">
+            <span className="h-px w-10 bg-[var(--color-rule)]" />
+            <span className="eyebrow text-[var(--color-ink)]">
+              Request crew capacity
+            </span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-navy">
+
+          <h1
+            className="font-display text-[2.5rem] md:text-[4rem] leading-[1.02] tracking-[-0.03em] text-[var(--color-ink)]"
+            style={{ fontWeight: 350 }}
+          >
             Send us a project.
           </h1>
-          <p className="mt-4 text-base md:text-lg text-slate-ink max-w-2xl leading-relaxed">
-            Share the basics and we&apos;ll come back with crew availability and
-            a working estimate within one business day.
+          <p className="mt-5 text-[1rem] md:text-[1.0625rem] text-[var(--color-slate)] max-w-2xl leading-[1.65]">
+            Share the basics — tender pack, single‑line or rough scope. We come
+            back within one business day with crew availability and an
+            indicative price.
           </p>
 
           <form
             onSubmit={onSubmit}
             noValidate
-            className="mt-12 grid gap-6 md:grid-cols-2"
+            className="mt-14 grid gap-6 md:grid-cols-2"
             aria-describedby={errors._form ? "form-error" : undefined}
           >
             <Field label="Company" name="company" error={errors.company} />
@@ -120,17 +128,17 @@ export default function ContactPage() {
               error={errors.projectType}
             />
             <Field
-              label="System size (MW)"
+              label="System size (MWp)"
               name="sizeMW"
               type="number"
               step="0.01"
               error={errors.sizeMW}
             />
             <Select
-              label="Project state"
-              name="state"
-              options={US_STATES}
-              error={errors.state}
+              label="Project country"
+              name="country"
+              options={EU_COUNTRIES}
+              error={errors.country}
             />
             <Field
               label="Target start date"
@@ -139,44 +147,44 @@ export default function ContactPage() {
               error={errors.startDate}
             />
 
-            <fieldset className="md:col-span-2">
-              <legend className="text-sm font-semibold text-navy mb-3">
+            <fieldset className="md:col-span-2 mt-2">
+              <legend className="eyebrow text-[var(--color-ink)] mb-4">
                 Scope needed
               </legend>
               <div className="grid gap-2 sm:grid-cols-2">
                 {CONTACT_SCOPE_OPTIONS.map((opt) => (
                   <label
                     key={opt}
-                    className="flex items-center gap-2 text-sm text-slate-ink border border-border-soft rounded-md px-3 py-2 bg-surface cursor-pointer hover:border-navy/40"
+                    className="flex items-center gap-3 text-[0.875rem] text-[var(--color-ink)] border border-[var(--color-rule)] rounded-[var(--radius-card)] px-4 py-3 bg-[var(--color-canvas)] cursor-pointer hover:border-[var(--color-ink)]/40 transition-colors"
                   >
                     <input
                       type="checkbox"
                       name="scope"
                       value={opt}
-                      className="accent-[var(--color-accent)]"
+                      className="accent-[var(--color-ember)]"
                     />
                     {opt}
                   </label>
                 ))}
               </div>
               {errors.scope && (
-                <p className="mt-2 text-xs text-red-600" role="alert">
+                <p className="mt-2 text-xs text-[var(--color-ember-2)]" role="alert">
                   {errors.scope}
                 </p>
               )}
             </fieldset>
 
             <div className="md:col-span-2">
-              <label className="text-sm font-semibold text-navy block mb-2">
-                Notes <span className="text-muted font-normal">(optional)</span>
+              <label className="eyebrow text-[var(--color-ink)] block mb-3">
+                Notes <span className="text-[var(--color-mist)] font-normal normal-case tracking-normal">(optional)</span>
               </label>
               <textarea
                 name="notes"
                 rows={5}
-                className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm text-slate-ink focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
+                className="w-full rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-canvas)] px-4 py-3 text-[0.9375rem] text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] focus:ring-1 focus:ring-[var(--color-ink)]/30"
               />
               {errors.notes && (
-                <p className="mt-2 text-xs text-red-600" role="alert">
+                <p className="mt-2 text-xs text-[var(--color-ember-2)]" role="alert">
                   {errors.notes}
                 </p>
               )}
@@ -187,15 +195,16 @@ export default function ContactPage() {
                 id="form-error"
                 role="alert"
                 aria-live="polite"
-                className="md:col-span-2 text-sm text-red-600"
+                className="md:col-span-2 text-sm text-[var(--color-ember-2)]"
               >
                 {errors._form}
               </p>
             )}
 
-            <div className="md:col-span-2 pt-2">
+            <div className="md:col-span-2 pt-4">
               <Button type="submit" variant="primary" disabled={submitting}>
-                {submitting ? "Sending..." : "Send RFP"}
+                {submitting ? "Sending…" : "Send request"}
+                <ArrowRight size={15} strokeWidth={1.5} />
               </Button>
             </div>
           </form>
@@ -221,7 +230,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-semibold text-navy block mb-2">
+      <label htmlFor={name} className="eyebrow text-[var(--color-ink)] block mb-3">
         {label}
       </label>
       <input
@@ -231,10 +240,10 @@ function Field({
         step={step}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm text-slate-ink focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
+        className="w-full rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-canvas)] px-4 py-3 text-[0.9375rem] text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] focus:ring-1 focus:ring-[var(--color-ink)]/30"
       />
       {error && (
-        <p id={`${name}-error`} className="mt-1 text-xs text-red-600" role="alert">
+        <p id={`${name}-error`} className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">
           {error}
         </p>
       )}
@@ -255,7 +264,7 @@ function Select({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-semibold text-navy block mb-2">
+      <label htmlFor={name} className="eyebrow text-[var(--color-ink)] block mb-3">
         {label}
       </label>
       <select
@@ -264,10 +273,10 @@ function Select({
         defaultValue=""
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm text-slate-ink focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
+        className="w-full rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-canvas)] px-4 py-3 text-[0.9375rem] text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] focus:ring-1 focus:ring-[var(--color-ink)]/30"
       >
         <option value="" disabled>
-          Select...
+          Select…
         </option>
         {options.map((o) => (
           <option key={o} value={o}>
@@ -276,7 +285,7 @@ function Select({
         ))}
       </select>
       {error && (
-        <p id={`${name}-error`} className="mt-1 text-xs text-red-600" role="alert">
+        <p id={`${name}-error`} className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">
           {error}
         </p>
       )}

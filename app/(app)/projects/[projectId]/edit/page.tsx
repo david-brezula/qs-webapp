@@ -53,6 +53,11 @@ export default async function ProjectEditorPage({
           cols: t("cols"),
           skipped: t("skipped"),
           modules: t("modules"),
+          bulkAdd: t("bulkAdd"),
+          namePrefix: t("namePrefix"),
+          startNumber: t("startNumber"),
+          quantity: t("quantity"),
+          addQuantityTpl: t("addQuantity", { count: "{count}" }),
         }}
       />
 
