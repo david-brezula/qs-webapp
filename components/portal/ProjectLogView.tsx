@@ -86,99 +86,99 @@ export async function ProjectLogView({
       {project.sections.map((s) => {
         const sectionProgress = computeProgress(s.tables);
         return (
-        <section key={s.id} className="mb-6">
-          <div className="mb-3 flex items-center gap-3">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-navy/60">
-              {s.name}
-            </h3>
-            {showProgress && (
-              <div className="w-full max-w-[16rem]">
-                <ProgressGraph
-                  variant="section"
-                  tiedPct={sectionProgress.tiedPct}
-                  connectedPct={sectionProgress.connectedPct}
-                />
-              </div>
-            )}
-          </div>
-          <div className="space-y-3">
-            {s.tables.map((tbl) => {
-              const total = computeModules({
-                rows: tbl.rows,
-                cols: tbl.cols,
-                skipped: tbl.skipped,
-              });
-              const tied = tbl.totalTied;
-              const connected = tbl.totalConnected;
+          <section key={s.id} className="mb-6">
+            <div className="mb-3 flex items-center gap-3">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-navy/60">
+                {s.name}
+              </h3>
+              {showProgress && (
+                <div className="w-full max-w-[16rem]">
+                  <ProgressGraph
+                    variant="section"
+                    tiedPct={sectionProgress.tiedPct}
+                    connectedPct={sectionProgress.connectedPct}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="space-y-3">
+              {s.tables.map((tbl) => {
+                const total = computeModules({
+                  rows: tbl.rows,
+                  cols: tbl.cols,
+                  skipped: tbl.skipped,
+                });
+                const tied = tbl.totalTied;
+                const connected = tbl.totalConnected;
 
-              const myClaim = projectWorkerId
-                ? tbl.claims.find((c) => c.projectWorkerId === projectWorkerId) ?? null
-                : null;
-              const hasMyActivity = tbl.hasMyActivity;
+                const myClaim = projectWorkerId
+                  ? tbl.claims.find((c) => c.projectWorkerId === projectWorkerId) ?? null
+                  : null;
+                const hasMyActivity = tbl.hasMyActivity;
 
-              const claimedUserIds = new Set(tbl.claims.map((c) => c.projectWorker.userId));
-              const assignedUserIds = new Set(assignedWorkers.map((w) => w.userId));
-              const selectableWorkers = allActiveWorkers
-                .filter((u) => !claimedUserIds.has(u.id))
-                .map((u) => ({
-                  userId: u.id,
-                  name: u.name,
-                  inProject: assignedUserIds.has(u.id),
-                }));
+                const claimedUserIds = new Set(tbl.claims.map((c) => c.projectWorker.userId));
+                const assignedUserIds = new Set(assignedWorkers.map((w) => w.userId));
+                const selectableWorkers = allActiveWorkers
+                  .filter((u) => !claimedUserIds.has(u.id))
+                  .map((u) => ({
+                    userId: u.id,
+                    name: u.name,
+                    inProject: assignedUserIds.has(u.id),
+                  }));
 
-              return (
-                <TableLogger
-                  key={tbl.id}
-                  table={{ id: tbl.id, name: tbl.name, total, tied, connected }}
-                  myLogs={tbl.myLogs.map((l) => ({
-                    id: l.id,
-                    action: l.action,
-                    count: l.count,
-                    workDate: l.workDate.toISOString().slice(0, 10),
-                    createdAt: l.createdAt.toISOString(),
-                  }))}
-                  claims={tbl.claims.map((c) => ({
-                    id: c.id,
-                    userId: c.projectWorker.userId,
-                    name: c.projectWorker.user.name,
-                  }))}
-                  myClaim={myClaim ? { id: myClaim.id } : null}
-                  hasMyActivity={hasMyActivity}
-                  isClosed={isClosed}
-                  isAdmin={isAdmin}
-                  isAssigned={Boolean(projectWorkerId)}
-                  selectableWorkers={selectableWorkers}
-                  labels={{
-                    iTied: t("iTied"),
-                    iConnected: t("iConnected"),
-                    workDate: t("workDate"),
-                    submit: t("submit"),
-                    progress: t("tableProgress", { tied, connected, total }),
-                    recent: t("recentEntries"),
-                    noEntries: t("noEntriesYet"),
-                    locked: t("editWindowOver"),
-                    overCap: t("overCap", { remaining: "{r}" }),
-                    tied: tProj("tied"),
-                    connected: tProj("connected"),
-                    claim: t("claim"),
-                    release: t("release"),
-                    claimedBy: t("claimedBy"),
-                    noClaims: t("noClaims"),
-                    notAssigned: t("notAssigned"),
-                    claimToLog: t("claimToLog"),
-                    cannotRelease: t("cannotRelease"),
-                    addClaimFor: t("addClaimFor"),
-                    selectWorker: t("selectWorker"),
-                    add: t("add"),
-                    noWorkersToClaim: t("noWorkersToClaim"),
-                    notInProject: t("notInProject"),
-                    done: t("done"),
-                  }}
-                />
-              );
-            })}
-          </div>
-        </section>
+                return (
+                  <TableLogger
+                    key={tbl.id}
+                    table={{ id: tbl.id, name: tbl.name, total, tied, connected }}
+                    myLogs={tbl.myLogs.map((l) => ({
+                      id: l.id,
+                      action: l.action,
+                      count: l.count,
+                      workDate: l.workDate.toISOString().slice(0, 10),
+                      createdAt: l.createdAt.toISOString(),
+                    }))}
+                    claims={tbl.claims.map((c) => ({
+                      id: c.id,
+                      userId: c.projectWorker.userId,
+                      name: c.projectWorker.user.name,
+                    }))}
+                    myClaim={myClaim ? { id: myClaim.id } : null}
+                    hasMyActivity={hasMyActivity}
+                    isClosed={isClosed}
+                    isAdmin={isAdmin}
+                    isAssigned={Boolean(projectWorkerId)}
+                    selectableWorkers={selectableWorkers}
+                    labels={{
+                      iTied: t("iTied"),
+                      iConnected: t("iConnected"),
+                      workDate: t("workDate"),
+                      submit: t("submit"),
+                      progress: t("tableProgress", { tied, connected, total }),
+                      recent: t("recentEntries"),
+                      noEntries: t("noEntriesYet"),
+                      locked: t("editWindowOver"),
+                      overCap: t("overCap", { remaining: "{r}" }),
+                      tied: tProj("tied"),
+                      connected: tProj("connected"),
+                      claim: t("claim"),
+                      release: t("release"),
+                      claimedBy: t("claimedBy"),
+                      noClaims: t("noClaims"),
+                      notAssigned: t("notAssigned"),
+                      claimToLog: t("claimToLog"),
+                      cannotRelease: t("cannotRelease"),
+                      addClaimFor: t("addClaimFor"),
+                      selectWorker: t("selectWorker"),
+                      add: t("add"),
+                      noWorkersToClaim: t("noWorkersToClaim"),
+                      notInProject: t("notInProject"),
+                      done: t("done"),
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </section>
         );
       })}
     </>
