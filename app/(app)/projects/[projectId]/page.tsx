@@ -60,9 +60,11 @@ export default async function ProjectOverviewPage({
     return { id: s.id, name: s.name, tied: p.tied, connected: p.connected, total: p.total };
   });
 
-  const projectProgress = computeProgress(
-    project.sections.flatMap((s) => s.tables).map(toProgressInput),
-  );
+  const projectProgress = {
+    tied: sections.reduce((sum, s) => sum + s.tied, 0),
+    connected: sections.reduce((sum, s) => sum + s.connected, 0),
+    total: sections.reduce((sum, s) => sum + s.total, 0),
+  };
 
   return (
     <div>
