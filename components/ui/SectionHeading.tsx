@@ -6,14 +6,12 @@ export function SectionHeading({
   lede,
   align = "left",
   invert = false,
-  index,
 }: {
   eyebrow?: string;
   title: ReactNode;
   lede?: ReactNode;
   align?: "left" | "center";
   invert?: boolean;
-  index?: string;
 }) {
   const alignCls = align === "center" ? "text-center mx-auto" : "";
   const titleColor = invert ? "text-[var(--color-paper)]" : "text-[var(--color-ink)]";
@@ -23,41 +21,19 @@ export function SectionHeading({
   const eyebrowColor = invert
     ? "text-[var(--color-paper)]/70"
     : "text-[var(--color-slate)]";
-  const ruleColor = invert
-    ? "bg-[var(--color-paper)]/25"
-    : "bg-[var(--color-rule)]";
 
   return (
     <div className={`max-w-2xl ${alignCls}`}>
-      {(eyebrow || index) && (
-        <div
-          className={`mb-6 flex items-center gap-4 ${
-            align === "center" ? "justify-center" : ""
-          }`}
-        >
-          {index && (
-            <span
-              className={`numeral text-xs ${eyebrowColor} tracking-[0.15em]`}
-            >
-              {index}
-            </span>
-          )}
-          {eyebrow && (
-            <>
-              <span className={`h-px w-8 ${ruleColor}`} aria-hidden />
-              <span
-                className={`eyebrow ${eyebrowColor}`}
-                style={{ color: "inherit" }}
-              >
-                {eyebrow}
-              </span>
-            </>
-          )}
+      {eyebrow && (
+        <div className={`mb-4 ${align === "center" ? "flex justify-center" : ""}`}>
+          <span className={`eyebrow ${eyebrowColor}`} style={{ color: "inherit" }}>
+            {eyebrow}
+          </span>
         </div>
       )}
       <h2
-        className={`font-display text-[2.25rem] md:text-[3.25rem] leading-[1.02] tracking-[-0.025em] ${titleColor}`}
-        style={{ fontWeight: 350, fontVariationSettings: "'SOFT' 30, 'opsz' 144" }}
+        className={`font-display text-[2.25rem] md:text-[3.25rem] leading-[1.05] tracking-[-0.025em] ${titleColor}`}
+        style={{ fontWeight: 700 }}
       >
         {title}
       </h2>
