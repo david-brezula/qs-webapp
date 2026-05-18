@@ -22,12 +22,14 @@ export function Testimonials() {
                 style={{ fontWeight: 600 }}
               >
                 <span
-                  className="text-[var(--color-ember)] mr-1"                >
+                  className="text-[var(--color-ember)] mr-1"
+                >
                   &ldquo;
                 </span>
                 {TESTIMONIAL.quote}
                 <span
-                  className="text-[var(--color-ember)] ml-1"                >
+                  className="text-[var(--color-ember)] ml-1"
+                >
                   &rdquo;
                 </span>
               </span>
