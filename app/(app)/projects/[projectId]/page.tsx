@@ -3,8 +3,10 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/portal/session";
 import { Button } from "@/components/ui/Button";
-import { ProjectLogView } from "@/components/portal/ProjectLogView";
-import { getTableAggregates, getMyLogs } from "@/lib/portal/activity-aggregates";
+import { ProgressGraph } from "@/components/portal/ProgressGraph";
+import { SectionList } from "@/components/portal/SectionList";
+import { computeProgress } from "@/lib/portal/progress";
+import { getTableAggregates } from "@/lib/portal/activity-aggregates";
 
 export default async function ProjectOverviewPage({
   params,
@@ -13,66 +15,54 @@ export default async function ProjectOverviewPage({
 }) {
   const user = await requireUser();
   const { projectId } = await params;
+  const t = await getTranslations("log");
   const tCommon = await getTranslations("common");
 
-  const [project, allActiveWorkers] = await Promise.all([
-    prisma.project.findUnique({
-      where: { id: projectId },
-      include: {
-        sections: {
-          orderBy: { orderIndex: "asc" },
-          include: {
-            tables: {
-              orderBy: { orderIndex: "asc" },
-              include: {
-                claims: { include: { projectWorker: { include: { user: true } } } },
-              },
-            },
-          },
-        },
-        projectWorkers: {
-          include: { user: true },
-          orderBy: { createdAt: "asc" },
-        },
+  const project = await prisma.project.findUnique({
+    where: { id: projectId },
+    include: {
+      sections: {
+        orderBy: { orderIndex: "asc" },
+        include: { tables: { orderBy: { orderIndex: "asc" } } },
       },
-    }),
-    prisma.user.findMany({
-      where: { active: true },
-      orderBy: { name: "asc" },
-      select: { id: true, name: true },
-    }),
-  ]);
+      projectWorkers: { select: { userId: true } },
+    },
+  });
   if (!project) notFound();
 
-  const myPw = project.projectWorkers.find((pw) => pw.userId === user.id) ?? null;
-
   // Workers can only view projects they're assigned to
-  if (user.role !== "ADMIN" && !myPw) {
+  const isAssigned = project.projectWorkers.some((pw) => pw.userId === user.id);
+  if (user.role !== "ADMIN" && !isAssigned) {
     notFound();
   }
 
-  const tableIds = project.sections.flatMap((s) => s.tables.map((t) => t.id));
-  const myPwIds = myPw ? [myPw.id] : [];
+  const tableIds = project.sections.flatMap((s) => s.tables.map((tbl) => tbl.id));
+  const aggregates = await getTableAggregates(tableIds);
 
-  const [aggregates, myLogsMap] = await Promise.all([
-    getTableAggregates(tableIds),
-    getMyLogs(tableIds, myPwIds),
-  ]);
+  const toProgressInput = (tbl: {
+    rows: number;
+    cols: number;
+    skipped: number;
+    id: string;
+  }) => {
+    const agg = aggregates.get(tbl.id) ?? { totalTied: 0, totalConnected: 0 };
+    return {
+      rows: tbl.rows,
+      cols: tbl.cols,
+      skipped: tbl.skipped,
+      totalTied: agg.totalTied,
+      totalConnected: agg.totalConnected,
+    };
+  };
 
-  const sections = project.sections.map((s) => ({
-    ...s,
-    tables: s.tables.map((tbl) => {
-      const agg = aggregates.get(tbl.id) ?? { totalTied: 0, totalConnected: 0 };
-      const logEntry = myLogsMap.get(tbl.id) ?? { logs: [], hasActivity: false };
-      return {
-        ...tbl,
-        totalTied: agg.totalTied,
-        totalConnected: agg.totalConnected,
-        myLogs: logEntry.logs,
-        hasMyActivity: logEntry.hasActivity,
-      };
-    }),
-  }));
+  const sections = project.sections.map((s) => {
+    const p = computeProgress(s.tables.map(toProgressInput));
+    return { id: s.id, name: s.name, tied: p.tied, connected: p.connected, total: p.total };
+  });
+
+  const projectProgress = computeProgress(
+    project.sections.flatMap((s) => s.tables).map(toProgressInput),
+  );
 
   return (
     <div>
@@ -88,23 +78,23 @@ export default async function ProjectOverviewPage({
         </div>
       </div>
 
-      <ProjectLogView
-        project={{
-          id: project.id,
-          name: project.name,
-          location: project.location,
-          status: project.status,
-          sections,
+      <ProgressGraph
+        variant="project"
+        tied={projectProgress.tied}
+        connected={projectProgress.connected}
+        total={projectProgress.total}
+        labels={{
+          heading: t("progressHeading"),
+          tied: t("progressTied"),
+          connected: t("progressConnected"),
         }}
-        assignedWorkers={project.projectWorkers.map((p) => ({
-          id: p.id,
-          userId: p.userId,
-          name: p.user.name,
-        }))}
-        allActiveWorkers={allActiveWorkers}
-        projectWorkerId={myPw?.id ?? null}
-        isAdmin={user.role === "ADMIN"}
       />
+
+      {sections.length === 0 ? (
+        <p className="text-sm text-muted">No sections yet.</p>
+      ) : (
+        <SectionList projectId={project.id} sections={sections} />
+      )}
     </div>
   );
 }
