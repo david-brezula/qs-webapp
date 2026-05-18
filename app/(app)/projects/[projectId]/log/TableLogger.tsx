@@ -247,7 +247,7 @@ export function TableLogger({
         <h3 className="text-sm font-semibold text-navy">{table.name}</h3>
         {isFinished && (
           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white">
-            <CheckCircle2 size={12} />
+            <CheckCircle2 size={12} aria-hidden="true" />
             {labels.done}
           </span>
         )}
