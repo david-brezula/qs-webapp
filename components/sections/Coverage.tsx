@@ -25,15 +25,11 @@ export function Coverage() {
       <Container>
         <Reveal>
           <SectionHeading
-            index="§ 05"
             eyebrow="Coverage"
             title={
               <>
                 Crews where the
-                <span
-                  className="italic"
-                  style={{ fontVariationSettings: "'SOFT' 100, 'opsz' 144" }}
-                >
+                <span className="text-[var(--color-fjord)]">
                   {" "}
                   sun{" "}
                 </span>
@@ -49,36 +45,7 @@ export function Coverage() {
           <Reveal>
             <div className="relative bg-[var(--color-canvas)] border border-[var(--color-rule)] rounded-[var(--radius-card)] p-6 md:p-10 aspect-[5/4]">
               <svg viewBox="-220 -340 440 440" className="w-full h-full">
-                <defs>
-                  <radialGradient id="map-vignette" cx="0" cy="0" r="320" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#FBF8F2" />
-                    <stop offset="100%" stopColor="#ECE5D7" />
-                  </radialGradient>
-                </defs>
-
-                {/* Background */}
-                <rect x="-220" y="-340" width="440" height="440" fill="url(#map-vignette)" />
-
-                {/* Concentric range rings */}
-                {[80, 160, 240, 320].map((r) => (
-                  <circle
-                    key={r}
-                    cx="0"
-                    cy="0"
-                    r={r}
-                    fill="none"
-                    stroke="#161B22"
-                    strokeOpacity="0.13"
-                    strokeWidth="0.6"
-                    strokeDasharray={r === 320 ? "0" : "3 4"}
-                  />
-                ))}
-
-                {/* Crosshair */}
-                <line x1="-220" y1="0" x2="220" y2="0" stroke="#161B22" strokeOpacity="0.15" strokeWidth="0.5" />
-                <line x1="0" y1="-340" x2="0" y2="100" stroke="#161B22" strokeOpacity="0.15" strokeWidth="0.5" />
-
-                {/* Connection lines from HQ */}
+                <rect x="-220" y="-340" width="440" height="440" fill="#F7F8FA" />
                 {COVERAGE_COUNTRIES.filter((c) => c.code !== "SK").map((c) => {
                   const co = COORDS[c.code];
                   if (!co) return null;
@@ -89,68 +56,25 @@ export function Coverage() {
                       y1="0"
                       x2={co.dx}
                       y2={co.dy}
-                      stroke="#161B22"
-                      strokeOpacity="0.22"
-                      strokeWidth="0.6"
-                      strokeDasharray="2 3"
+                      stroke="#94A3B8"
+                      strokeWidth="1"
                     />
                   );
                 })}
-
-                {/* Country markers */}
                 {COVERAGE_COUNTRIES.map((c) => {
                   const co = COORDS[c.code];
                   if (!co) return null;
                   const isHQ = c.code === "SK";
                   return (
-                    <g key={c.code} transform={`translate(${co.dx},${co.dy})`}>
-                      {isHQ ? (
-                        <>
-                          <circle r="9" fill="#B45A3C" />
-                          <circle r="16" fill="none" stroke="#B45A3C" strokeOpacity="0.5" strokeWidth="1" />
-                          <circle r="24" fill="none" stroke="#B45A3C" strokeOpacity="0.25" strokeWidth="0.8" />
-                        </>
-                      ) : (
-                        <circle r="5" fill="#161B22" />
-                      )}
-                      <text
-                        x={isHQ ? 14 : 9}
-                        y={isHQ ? 4 : 3}
-                        fontFamily="JetBrains Mono, ui-monospace"
-                        fontSize="10"
-                        fill="#161B22"
-                        letterSpacing="1.5"
-                      >
-                        {c.code}
-                      </text>
-                    </g>
+                    <circle
+                      key={c.code}
+                      cx={co.dx}
+                      cy={co.dy}
+                      r={isHQ ? 11 : 5.5}
+                      fill={isHQ ? "#2563EB" : "#0F172A"}
+                    />
                   );
                 })}
-
-                {/* Labels */}
-                <text
-                  x="-210"
-                  y="-330"
-                  fontFamily="JetBrains Mono, ui-monospace"
-                  fontSize="9"
-                  fill="#161B22"
-                  opacity="0.55"
-                  letterSpacing="1.5"
-                >
-                  COVERAGE · 2026
-                </text>
-                <text
-                  x="210"
-                  y="90"
-                  fontFamily="JetBrains Mono, ui-monospace"
-                  fontSize="9"
-                  fill="#161B22"
-                  opacity="0.55"
-                  letterSpacing="1.5"
-                  textAnchor="end"
-                >
-                  HQ · BRATISLAVA SK
-                </text>
               </svg>
             </div>
           </Reveal>
