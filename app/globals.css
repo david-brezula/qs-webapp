@@ -1,38 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  /* Scandinavian palette — warm paper, deep ink, fjord blue, terracotta ember */
-  --color-paper: #F4EFE6;
-  --color-paper-2: #ECE5D7;
-  --color-canvas: #FBF8F2;
-  --color-ink: #161B22;
-  --color-ink-2: #2A2F38;
-  --color-slate: #5B6470;
-  --color-mist: #8A8F97;
-  --color-rule: #D8D1C2;
-  --color-rule-soft: #E6DFD0;
-  --color-fjord: #2E5E6E;
-  --color-fjord-2: #1F4453;
-  --color-ember: #B45A3C;
-  --color-ember-2: #92482F;
-  --color-moss: #5A6647;
+  /* Clean modern palette — white surfaces, neutral grays, single blue accent */
+  --color-paper: #FFFFFF;
+  --color-paper-2: #F1F3F5;
+  --color-canvas: #F7F8FA;
+  --color-ink: #0F172A;
+  --color-ink-2: #1E293B;
+  --color-slate: #475569;
+  --color-mist: #94A3B8;
+  --color-rule: #E2E8F0;
+  --color-rule-soft: #EEF1F4;
+  --color-fjord: #2563EB;
+  --color-fjord-2: #1D4ED8;
+  --color-ember: #2563EB;
+  --color-ember-2: #1D4ED8;
+  --color-moss: #2563EB;
 
   /* Legacy aliases (used by internal /app/* and /portal/* pages) */
-  --color-bg: #F4EFE6;
-  --color-surface: #FBF8F2;
-  --color-navy: #161B22;
-  --color-navy-700: #2A2F38;
-  --color-slate-ink: #5B6470;
-  --color-border-soft: #D8D1C2;
-  --color-accent: #2E5E6E;
-  --color-accent-ink: #F4EFE6;
-  --color-muted: #8A8F97;
+  --color-bg: #FFFFFF;
+  --color-surface: #F7F8FA;
+  --color-navy: #0F172A;
+  --color-navy-700: #1E293B;
+  --color-slate-ink: #475569;
+  --color-border-soft: #E2E8F0;
+  --color-accent: #2563EB;
+  --color-accent-ink: #FFFFFF;
+  --color-muted: #94A3B8;
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-display), ui-serif, Georgia, serif;
-  --font-mono-sans: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 2px;
+  --radius-card: 8px;
   --radius-pill: 999px;
 }
 
@@ -40,18 +40,8 @@ html, body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-/* Subtle paper grain */
-body {
-  background-image:
-    radial-gradient(rgba(22,27,34,0.025) 1px, transparent 1px),
-    radial-gradient(rgba(22,27,34,0.018) 1px, transparent 1px);
-  background-size: 3px 3px, 7px 7px;
-  background-position: 0 0, 1px 2px;
 }
 
 ::selection {
@@ -65,17 +55,17 @@ html { scroll-behavior: smooth; }
 }
 
 .font-display {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
-  font-optical-sizing: auto;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
 .eyebrow {
-  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-slate);
 }
@@ -83,7 +73,7 @@ html { scroll-behavior: smooth; }
 .rule-hair { background: var(--color-rule); height: 1px; width: 100%; }
 
 .numeral {
-  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "tnum";
 }
 
