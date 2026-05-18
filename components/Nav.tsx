@@ -60,6 +60,7 @@ export function Nav() {
       <Container className="flex items-center justify-between py-5">
         <Logo />
 
+        {/* lg (not md): the full desktop bar overflows at ~768px, so tablets keep the hamburger. */}
         <nav className="hidden lg:flex items-center gap-9">
           {NAV_LINKS.map((l) => (
             <a
