@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import {
@@ -12,6 +12,7 @@ import {
   logActivityAction,
   deleteLogAction,
 } from "@/lib/actions/activity";
+import { isTableFinished } from "@/lib/portal/table-status";
 
 type Claim = { id: string; userId: string; name: string };
 type SelectableWorker = { userId: string; name: string; inProject: boolean };
@@ -134,6 +135,11 @@ export function TableLogger({
 
   const canSubmit = Boolean(myClaim) && !isClosed;
   const canClaim = !myClaim && isAssigned && !isClosed;
+  const isFinished = isTableFinished({
+    total: table.total,
+    tied: table.tied,
+    connected: table.connected,
+  });
 
   function claim() {
     const fd = new FormData();
@@ -236,9 +242,15 @@ export function TableLogger({
     "!px-2.5 !py-1.5 !text-xs";
 
   return (
-    <Card className={`p-3 ${openFraction ? "z-20" : ""}`}>
+    <Card tone={isFinished ? "success" : "default"} className={`p-3 ${openFraction ? "z-20" : ""}`}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <h3 className="text-sm font-semibold text-navy">{table.name}</h3>
+        {isFinished && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white">
+            <CheckCircle2 size={12} />
+            {labels.done}
+          </span>
+        )}
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}

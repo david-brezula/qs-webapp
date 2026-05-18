@@ -141,7 +141,8 @@
     "selectWorker": "Select a worker",
     "add": "Add",
     "noWorkersToClaim": "All active workers already claimed this table.",
-    "notInProject": "not in project"
+    "notInProject": "not in project",
+    "done": "Done"
   },
   "errors": {
     "validation": "Please check the form.",
