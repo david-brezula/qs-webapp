@@ -142,7 +142,10 @@
     "add": "Add",
     "noWorkersToClaim": "All active workers already claimed this table.",
     "notInProject": "not in project",
-    "done": "Done"
+    "done": "Done",
+    "progressHeading": "Project progress",
+    "progressTied": "Tied",
+    "progressConnected": "Connected"
   },
   "errors": {
     "validation": "Please check the form.",

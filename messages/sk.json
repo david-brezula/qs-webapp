@@ -142,7 +142,10 @@
     "add": "Pridať",
     "noWorkersToClaim": "Všetci aktívni pracovníci už tabuľku prevzali.",
     "notInProject": "nie je v projekte",
-    "done": "Hotovo"
+    "done": "Hotovo",
+    "progressHeading": "Priebeh projektu",
+    "progressTied": "Uviazané",
+    "progressConnected": "Zapojené"
   },
   "errors": {
     "validation": "Skontrolujte formulár.",
