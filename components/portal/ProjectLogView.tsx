@@ -140,6 +140,7 @@ export async function ProjectLogView({
                     add: t("add"),
                     noWorkersToClaim: t("noWorkersToClaim"),
                     notInProject: t("notInProject"),
+                    done: t("done"),
                   }}
                 />
               );

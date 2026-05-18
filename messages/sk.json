@@ -141,7 +141,8 @@
     "selectWorker": "Vyberte pracovníka",
     "add": "Pridať",
     "noWorkersToClaim": "Všetci aktívni pracovníci už tabuľku prevzali.",
-    "notInProject": "nie je v projekte"
+    "notInProject": "nie je v projekte",
+    "done": "Hotovo"
   },
   "errors": {
     "validation": "Skontrolujte formulár.",
