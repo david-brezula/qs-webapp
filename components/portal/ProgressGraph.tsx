@@ -11,16 +11,20 @@ function ProgressBar({
   pct,
   readout,
   fillClass,
+  trackClass,
 }: {
   label?: string;
   pct: number;
   readout: string;
   fillClass: string;
+  trackClass: string;
 }) {
   return (
     <div className="flex items-center gap-3 text-xs">
       <span className="w-20 shrink-0 text-slate-ink">{label}</span>
-      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-border-soft">
+      <div
+        className={`h-2.5 ${trackClass} overflow-hidden rounded-full bg-border-soft`}
+      >
         <div
           className={`h-full rounded-full ${fillClass}`}
           style={{ width: `${pct}%` }}
@@ -93,12 +97,14 @@ export function ProgressGraph({
           pct={tiedPct}
           readout={`${tied} / ${total}`}
           fillClass={tiedFill}
+          trackClass="w-40"
         />
         <ProgressBar
           label={labels?.connected}
           pct={connectedPct}
           readout={`${connected} / ${total}`}
           fillClass={connectedFill}
+          trackClass="w-40"
         />
       </div>
     );
@@ -116,12 +122,14 @@ export function ProgressGraph({
           pct={tiedPct}
           readout={`${tiedPct}%`}
           fillClass="bg-accent"
+          trackClass="flex-1"
         />
         <ProgressBar
           label={labels?.connected}
           pct={connectedPct}
           readout={`${connectedPct}%`}
           fillClass="bg-blue-900"
+          trackClass="flex-1"
         />
       </div>
     </div>
