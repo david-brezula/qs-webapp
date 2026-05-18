@@ -54,12 +54,12 @@ export function SectionsEditor({
 
   return (
     <div className="space-y-8">
-      <div className="flex gap-2 max-w-md">
+      <div className="flex flex-col sm:flex-row gap-2 max-w-md">
         <input
           value={newSectionName}
           onChange={(e) => setNewSectionName(e.target.value)}
           placeholder={labels.section}
-          className="flex-1 rounded-md border border-border-soft bg-surface px-3 py-2 text-sm"
+          className="w-full sm:flex-1 rounded-md border border-border-soft bg-surface px-3 py-2 text-sm"
         />
         <Button onClick={addSection} variant="primary" disabled={pending}>
           {labels.newSection}

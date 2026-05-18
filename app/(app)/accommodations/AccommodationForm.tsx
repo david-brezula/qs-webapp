@@ -85,11 +85,11 @@ export function AccommodationForm({
         defaultValue={initial?.projectId ?? ""}
         options={[{ value: "", label: "— none —" }, ...projects.map((p) => ({ value: p.id, label: p.name }))]}
       />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label={t("startDate")} name="startDate" type="date" defaultValue={initial?.startDate} required />
         <FormField label={t("endDate")} name="endDate" type="date" defaultValue={initial?.endDate} required />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label={t("totalCost")} name="totalCost" type="number" step="0.01" defaultValue={initial?.totalCost} required />
         <FormSelect
           label={tCommon("currency")}

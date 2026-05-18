@@ -112,14 +112,14 @@ export default async function DashboardPage() {
             open
             className="mb-8 group rounded-lg border border-border-soft bg-surface"
           >
-            <summary className="cursor-pointer list-none flex items-center justify-between p-5 border-b border-border-soft group-open:border-border-soft">
+            <summary className="cursor-pointer list-none flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-5 border-b border-border-soft group-open:border-border-soft">
               <div>
                 <h2 className="text-lg font-semibold text-navy">{project.name}</h2>
                 {project.location && (
                   <p className="text-xs text-muted mt-0.5">{project.location}</p>
                 )}
               </div>
-              <div className="flex items-center gap-4 text-xs text-slate-ink">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-ink">
                 <span>
                   <span className="font-semibold text-navy">{tied}</span>/{totalModules} tied
                 </span>

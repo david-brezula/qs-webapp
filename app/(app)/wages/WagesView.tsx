@@ -55,24 +55,24 @@ export function WagesView({
 
   return (
     <>
-      <div className="flex flex-wrap gap-3 items-end mb-6">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:items-end mb-6">
+        <div className="w-full sm:w-auto">
           <label className="text-xs text-muted block mb-1">{t("from")}</label>
-          <input type="date" value={f} onChange={(e) => setF(e.target.value)} className="rounded-md border border-border-soft bg-surface px-3 py-2 text-sm" />
+          <input type="date" value={f} onChange={(e) => setF(e.target.value)} className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm" />
         </div>
-        <div>
+        <div className="w-full sm:w-auto">
           <label className="text-xs text-muted block mb-1">{t("to")}</label>
-          <input type="date" value={tt} onChange={(e) => setTt(e.target.value)} className="rounded-md border border-border-soft bg-surface px-3 py-2 text-sm" />
+          <input type="date" value={tt} onChange={(e) => setTt(e.target.value)} className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm" />
         </div>
-        <div>
+        <div className="w-full sm:w-auto">
           <label className="text-xs text-muted block mb-1">{t("projectFilter")}</label>
-          <select value={pid} onChange={(e) => setPid(e.target.value)} className="rounded-md border border-border-soft bg-surface px-3 py-2 text-sm min-w-[200px]">
+          <select value={pid} onChange={(e) => setPid(e.target.value)} className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm sm:min-w-[200px]">
             <option value="">{t("all")}</option>
             {projects.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
         </div>
-        <Button onClick={apply} variant="primary">{t("calculate")}</Button>
-        <Button onClick={exportCsv} variant="secondary">{t("exportCsv")}</Button>
+        <Button onClick={apply} variant="primary" className="w-full sm:w-auto">{t("calculate")}</Button>
+        <Button onClick={exportCsv} variant="secondary" className="w-full sm:w-auto">{t("exportCsv")}</Button>
       </div>
 
       {result.mixedCurrencies && (
