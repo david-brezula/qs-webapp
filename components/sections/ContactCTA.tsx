@@ -7,30 +7,26 @@ import { ArrowRight } from "lucide-react";
 export function ContactCTA() {
   return (
     <section className="relative overflow-hidden bg-[var(--color-ink)] text-[var(--color-paper)] py-28 md:py-40">
-      {/* Decorative concentric arcs */}
       <svg
         aria-hidden
-        viewBox="0 0 800 600"
-        className="absolute -right-40 -bottom-40 w-[700px] h-[700px] opacity-25 pointer-events-none hidden sm:block"
+        viewBox="0 0 320 320"
+        className="absolute -right-10 -bottom-10 w-80 h-80 pointer-events-none hidden sm:block"
       >
-        <defs>
-          <radialGradient id="cta-ring" cx="400" cy="600" r="600" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#B45A3C" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#B45A3C" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx="400" cy="600" r="500" fill="url(#cta-ring)" />
-        {[120, 200, 280, 360, 440, 520].map((r) => (
-          <circle
-            key={r}
-            cx="400"
-            cy="600"
-            r={r}
-            fill="none"
-            stroke="#F4EFE6"
-            strokeOpacity="0.25"
-            strokeWidth="0.6"
-          />
+        {[0, 1, 2, 3].map((r) => (
+          <g key={r}>
+            {[0, 1, 2, 3].map((c) => (
+              <rect
+                key={c}
+                x={c * 76}
+                y={r * 76}
+                width="60"
+                height="60"
+                rx="8"
+                fill="#FFFFFF"
+                fillOpacity={0.04 + ((r + c) % 3) * 0.03}
+              />
+            ))}
+          </g>
         ))}
       </svg>
 
@@ -45,8 +41,8 @@ export function ContactCTA() {
                 </span>
               </div>
               <h2
-                className="font-display text-[2.25rem] sm:text-[3rem] md:text-[5rem] lg:text-[6rem] leading-[0.96] tracking-[-0.035em]"
-                style={{ fontWeight: 320 }}
+                className="font-display text-[2.25rem] sm:text-[3rem] md:text-[5rem] lg:text-[6rem] leading-[0.98] tracking-[-0.035em]"
+                style={{ fontWeight: 700 }}
               >
                 {CONTACT_CTA.headline}
               </h2>
