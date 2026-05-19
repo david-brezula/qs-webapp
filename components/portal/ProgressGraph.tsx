@@ -66,7 +66,7 @@ export function ProgressGraph({
   if (variant === "section") {
     return (
       <div className="flex items-center gap-2">
-        <div className="flex flex-1 flex-col gap-1">
+        <div className="flex w-40 flex-col gap-1">
           <div className="h-1.5 overflow-hidden rounded-full bg-border-soft">
             <div
               className="h-full rounded-full bg-accent"
@@ -122,14 +122,14 @@ export function ProgressGraph({
           pct={tiedPct}
           readout={`${tiedPct}%`}
           fillClass="bg-accent"
-          trackClass="flex-1"
+          trackClass="w-40"
         />
         <ProgressBar
           label={labels?.connected}
           pct={connectedPct}
           readout={`${connectedPct}%`}
           fillClass="bg-blue-900"
-          trackClass="flex-1"
+          trackClass="w-40"
         />
       </div>
     </div>
