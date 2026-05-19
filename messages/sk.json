@@ -83,7 +83,9 @@
     "admin": "Administrátor",
     "worker": "Pracovník",
     "tempPassword": "Dočasné heslo: {password}",
-    "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky."
+    "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky.",
+    "defaultPriceTie": "Predvolená cena za uviazanie",
+    "defaultPriceConnect": "Predvolená cena za zapojenie"
   },
   "changePassword": {
     "title": "Zmena hesla",

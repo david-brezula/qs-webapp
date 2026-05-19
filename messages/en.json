@@ -83,7 +83,9 @@
     "admin": "Admin",
     "worker": "Worker",
     "tempPassword": "Temporary password: {password}",
-    "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars."
+    "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars.",
+    "defaultPriceTie": "Default tie rate",
+    "defaultPriceConnect": "Default connect rate"
   },
   "changePassword": {
     "title": "Change password",
