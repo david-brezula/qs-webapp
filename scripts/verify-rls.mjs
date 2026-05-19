@@ -12,15 +12,19 @@ if (!ownerUrl || !workerUrl) {
 
 // As the owner, pick the worker with the most ProjectWorker rows.
 const owner = new pg.Client({ connectionString: ownerUrl });
-await owner.connect();
-const sample = await owner.query(
-  `SELECT "userId", count(*)::int AS pw_rows
-   FROM "ProjectWorker"
-   GROUP BY "userId"
-   ORDER BY pw_rows DESC
-   LIMIT 1`,
-);
-await owner.end();
+let sample;
+try {
+  await owner.connect();
+  sample = await owner.query(
+    `SELECT "userId", count(*)::int AS pw_rows
+     FROM "ProjectWorker"
+     GROUP BY "userId"
+     ORDER BY pw_rows DESC
+     LIMIT 1`,
+  );
+} finally {
+  await owner.end();
+}
 
 if (sample.rows.length === 0) {
   console.error("No ProjectWorker rows exist -- seed data first.");
@@ -30,19 +34,26 @@ const { userId, pw_rows: expected } = sample.rows[0];
 
 // As qs_worker, query with and without the RLS context set.
 const worker = new pg.Client({ connectionString: workerUrl });
-await worker.connect();
-
-await worker.query("BEGIN");
-await worker.query("SELECT set_config('app.user_id', $1, true)", [userId]);
-const scoped = await worker.query('SELECT count(*)::int AS n FROM "ProjectWorker"');
-const foreign = await worker.query(
-  'SELECT count(*)::int AS n FROM "ProjectWorker" WHERE "userId" <> $1',
-  [userId],
-);
-await worker.query("COMMIT");
-
-const noContext = await worker.query('SELECT count(*)::int AS n FROM "ProjectWorker"');
-await worker.end();
+let scoped, foreign, noContext;
+try {
+  await worker.connect();
+  try {
+    await worker.query("BEGIN");
+    await worker.query("SELECT set_config('app.user_id', $1, true)", [userId]);
+    scoped = await worker.query('SELECT count(*)::int AS n FROM "ProjectWorker"');
+    foreign = await worker.query(
+      'SELECT count(*)::int AS n FROM "ProjectWorker" WHERE "userId" <> $1',
+      [userId],
+    );
+    await worker.query("COMMIT");
+  } catch (e) {
+    await worker.query("ROLLBACK").catch(() => {});
+    throw e;
+  }
+  noContext = await worker.query('SELECT count(*)::int AS n FROM "ProjectWorker"');
+} finally {
+  await worker.end();
+}
 
 let ok = true;
 if (scoped.rows[0].n !== expected) {
