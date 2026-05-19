@@ -243,7 +243,7 @@ export function TableLogger({
     "!px-2.5 !py-1.5 !text-xs";
 
   return (
-    <Card tone={isFinished ? "success" : "default"} className={`p-3 ${openFraction ? "z-20" : ""}`}>
+    <Card tone={isFinished ? "success" : "default"} className={`max-w-3xl p-3 ${openFraction ? "z-20" : ""}`}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <h3 className="text-sm font-semibold text-navy">{table.name}</h3>
         {isFinished && (
