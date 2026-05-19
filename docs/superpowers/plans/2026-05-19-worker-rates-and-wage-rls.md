@@ -37,7 +37,7 @@
 - `lib/portal-nav.ts` — `wages` entry for the `WORKER` role.
 - `proxy.ts` — let workers reach exactly `/wages`.
 - `messages/en.json`, `messages/sk.json` — new i18n keys.
-- `.env.example` — `DATABASE_URL_WORKER`.
+- `.env.local.example` — `DATABASE_URL_WORKER`.
 
 ---
 
@@ -51,7 +51,7 @@ This is a **gate**. The whole RLS design assumes the app's runtime connection (`
 
 Run:
 ```bash
-node --env-file=.env -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT current_user, (SELECT rolbypassrls FROM pg_roles WHERE rolname = current_user) AS bypassrls, EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'ProjectWorker' AND tableowner = current_user) AS owns_tables\"); console.log(r.rows[0]); await c.end(); });"
+node --env-file=.env.local -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT current_user, (SELECT rolbypassrls FROM pg_roles WHERE rolname = current_user) AS bypassrls, EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'ProjectWorker' AND tableowner = current_user) AS owns_tables\"); console.log(r.rows[0]); await c.end(); });"
 ```
 
 Expected: a single row where **either** `owns_tables` is `true` **or** `bypassrls` is `true`.
@@ -98,7 +98,7 @@ Expected: a new folder `prisma/migrations/<timestamp>_add_worker_default_rates/`
 
 Run:
 ```bash
-node --env-file=.env -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT column_name FROM information_schema.columns WHERE table_name = 'User' AND column_name IN ('defaultPriceTie','defaultPriceConnect') ORDER BY column_name\"); console.log(r.rows); await c.end(); });"
+node --env-file=.env.local -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT column_name FROM information_schema.columns WHERE table_name = 'User' AND column_name IN ('defaultPriceTie','defaultPriceConnect') ORDER BY column_name\"); console.log(r.rows); await c.end(); });"
 ```
 Expected: two rows — `defaultPriceConnect` and `defaultPriceTie`.
 
@@ -715,7 +715,7 @@ Expected: Prisma detects the new `enable_wage_rls` migration as pending, applies
 
 Run:
 ```bash
-node --env-file=.env -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const t = await c.query(\"SELECT count(*)::int AS n FROM pg_tables WHERE schemaname='public' AND rowsecurity AND tablename IN ('User','Project','Section','Table','ProjectWorker','ActivityLog','Accommodation','AccommodationWorker')\"); const p = await c.query(\"SELECT count(*)::int AS n FROM pg_policies WHERE schemaname='public'\"); console.log({ rls_tables: t.rows[0].n, policies: p.rows[0].n }); await c.end(); });"
+node --env-file=.env.local -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const t = await c.query(\"SELECT count(*)::int AS n FROM pg_tables WHERE schemaname='public' AND rowsecurity AND tablename IN ('User','Project','Section','Table','ProjectWorker','ActivityLog','Accommodation','AccommodationWorker')\"); const p = await c.query(\"SELECT count(*)::int AS n FROM pg_policies WHERE schemaname='public'\"); console.log({ rls_tables: t.rows[0].n, policies: p.rows[0].n }); await c.end(); });"
 ```
 Expected: `rls_tables: 8` and `policies: 8`.
 
@@ -784,7 +784,7 @@ GRANT EXECUTE ON FUNCTION app_worker_accommodation_ids() TO qs_worker;
 
 Choose a strong password and run (replace `<STRONG_PW>`):
 ```bash
-psql "$(node --env-file=.env -e "process.stdout.write(process.env.DATABASE_URL)")" -v worker_password=<STRONG_PW> -f scripts/setup-rls-role.sql
+psql "$(node --env-file=.env.local -e "process.stdout.write(process.env.DATABASE_URL)")" -v worker_password=<STRONG_PW> -f scripts/setup-rls-role.sql
 ```
 Expected: `CREATE ROLE` (or no error if it already exists), `ALTER ROLE`, two `GRANT` lines, `GRANT`.
 
@@ -794,7 +794,7 @@ If `psql` is not installed locally, run the same statements through any SQL clie
 
 Run:
 ```bash
-node --env-file=.env -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT rolcanlogin, rolsuper, rolbypassrls FROM pg_roles WHERE rolname='qs_worker'\"); console.log(r.rows[0]); await c.end(); });"
+node --env-file=.env.local -e "import('pg').then(async ({default: pg}) => { const c = new pg.Client({ connectionString: process.env.DATABASE_URL }); await c.connect(); const r = await c.query(\"SELECT rolcanlogin, rolsuper, rolbypassrls FROM pg_roles WHERE rolname='qs_worker'\"); console.log(r.rows[0]); await c.end(); });"
 ```
 Expected: `{ rolcanlogin: true, rolsuper: false, rolbypassrls: false }`.
 
@@ -816,20 +816,20 @@ A second Prisma client connecting as `qs_worker`, plus a helper that runs querie
 - Modify: `.env.example`
 - Manual: add `DATABASE_URL_WORKER` to the local `.env`
 
-- [ ] **Step 1: Add `DATABASE_URL_WORKER` to `.env.example`**
+- [ ] **Step 1: Add `DATABASE_URL_WORKER` to `.env.local.example`**
 
-In `.env.example`, append after the `DIRECT_URL` block (before the Auth section):
+In `.env.local.example`, append after the `DATABASE_URL` line:
 ```
-# Restricted, RLS-enforced role for the worker-facing wages page. Same host as
-# DATABASE_URL but authenticating as the `qs_worker` role created by
-# scripts/setup-rls-role.sql. On Supabase the pooled username is
+# Restricted, RLS-enforced role for the worker-facing wages page. Same
+# database as DATABASE_URL, authenticating as the `qs_worker` role created by
+# scripts/setup-rls-role.sql. In production (Supabase) the pooled username is
 # `qs_worker.[project-ref]`.
-DATABASE_URL_WORKER="postgresql://qs_worker.[project-ref]:[qs_worker-password]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?pgbouncer=true&connection_limit=1"
+DATABASE_URL_WORKER=postgresql://qs_worker:CHANGE_ME@localhost:5432/qs_web?schema=public
 ```
 
-- [ ] **Step 2: Add the real value to the local `.env`**
+- [ ] **Step 2: Add the real value to `.env.local`**
 
-Add a `DATABASE_URL_WORKER` line to the local `.env`, using the `qs_worker` password set in Task 8. This must be present before Task 12's build, because `lib/prisma-worker.ts` reads it at module load (mirroring `lib/prisma.ts`).
+Add a `DATABASE_URL_WORKER` line to `.env.local`, using the `qs_worker` password set in Task 8. It must be present before Task 12's build, because `lib/prisma-worker.ts` reads it at module load (mirroring `lib/prisma.ts`).
 
 - [ ] **Step 3: Create `lib/prisma-worker.ts`**
 
@@ -891,7 +891,7 @@ Expected: both succeed. (`prisma-worker.ts` is not imported anywhere yet, so the
 - [ ] **Step 5: Commit**
 
 ```bash
-git add lib/prisma-worker.ts .env.example
+git add lib/prisma-worker.ts .env.local.example
 git commit -m "feat: add RLS-scoped worker Prisma client and withWorkerScope"
 ```
 
@@ -909,7 +909,7 @@ A runnable script proving the policies isolate one worker: it picks a real worke
 ```js
 // Verifies the worker wage RLS policies isolate one worker's data.
 // Run after scripts/setup-rls-role.sql, with seed data present:
-//   node --env-file=.env scripts/verify-rls.mjs
+//   node --env-file=.env.local scripts/verify-rls.mjs
 import pg from "pg";
 
 const ownerUrl = process.env.DATABASE_URL;
@@ -978,7 +978,7 @@ process.exit(1);
 
 Run:
 ```bash
-node --env-file=.env scripts/verify-rls.mjs
+node --env-file=.env.local scripts/verify-rls.mjs
 ```
 Expected: `PASS: RLS isolates worker <id> — N own rows, 0 leaked, 0 without context.` and exit code 0.
 
@@ -1370,7 +1370,7 @@ Expected: both succeed.
 
 - [ ] **Re-run the RLS isolation check**
 
-Run: `node --env-file=.env scripts/verify-rls.mjs`
+Run: `node --env-file=.env.local scripts/verify-rls.mjs`
 Expected: `PASS`.
 
 - [ ] **Confirm spec coverage**
@@ -1388,4 +1388,4 @@ When this branch is deployed to any environment (staging, production), in order:
 1. Apply migrations: `prisma migrate deploy` (creates the columns, enables RLS, creates policies).
 2. Run `scripts/setup-rls-role.sql` as the database owner, supplying a strong `worker_password`.
 3. Set `DATABASE_URL_WORKER` in that environment's configuration, authenticating as `qs_worker`.
-4. Run `node --env-file=.env scripts/verify-rls.mjs` against that environment to confirm isolation before announcing the feature.
+4. Run `node --env-file=.env.local scripts/verify-rls.mjs` against that environment to confirm isolation before announcing the feature.
