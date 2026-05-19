@@ -119,7 +119,10 @@
     "wage": "Wage",
     "missingPrice": "Set prices for this worker on the project to compute wages.",
     "mixedCurrencies": "Mixed currencies in this range; figures are nominal.",
-    "noData": "No activity in this range."
+    "noData": "No activity in this range.",
+    "project": "Project",
+    "tie": "Tie",
+    "connect": "Connect"
   },
   "log": {
     "title": "Log work",
