@@ -14,7 +14,7 @@ export function WorkersPanel({
 }: {
   projectId: string;
   assigned: { userId: string; name: string; email: string; priceTie: number; priceConnect: number }[];
-  available: { id: string; name: string; email: string }[];
+  available: { id: string; name: string; email: string; defaultPriceTie: number; defaultPriceConnect: number }[];
   labels: Record<string, string>;
 }) {
   const router = useRouter();
@@ -86,7 +86,13 @@ export function WorkersPanel({
         <div className="grid grid-cols-4 gap-2 items-end max-w-3xl">
           <select
             value={selected}
-            onChange={(e) => setSelected(e.target.value)}
+            onChange={(e) => {
+              const id = e.target.value;
+              setSelected(id);
+              const worker = available.find((u) => u.id === id);
+              setPriceTie(worker ? String(worker.defaultPriceTie) : "");
+              setPriceConnect(worker ? String(worker.defaultPriceConnect) : "");
+            }}
             className="rounded-md border border-border-soft bg-surface px-3 py-2 text-sm"
           >
             <option value="">— {labels.assignWorker} —</option>
