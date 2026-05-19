@@ -112,3 +112,57 @@ export function computeWages(input: WageInput): WageResult {
 
   return { rows, mixedCurrencies };
 }
+
+export interface ProjectWageBreakdown {
+  projectId: string;
+  projectName: string;
+  earnings: number;
+  accommodation: number;
+  wage: number;
+  breakdown: { tie: number; connect: number };
+}
+
+export interface WageByProjectResult {
+  total: WageRow;
+  byProject: ProjectWageBreakdown[];
+  mixedCurrencies: boolean;
+}
+
+/**
+ * For a single worker, computes overall wage totals plus one breakdown row per
+ * project they had activity on within the range. Reuses `computeWages` — once
+ * for the totals, once per project — so the wage rules stay in one place.
+ *
+ * `input.workers` is expected to contain exactly the one worker being viewed.
+ */
+export function computeWagesByProject(
+  input: WageInput & { projects: { id: string; name: string }[] },
+): WageByProjectResult {
+  const overall = computeWages({ ...input, projectId: null });
+  const total: WageRow = overall.rows[0] ?? {
+    userId: "",
+    name: "",
+    earnings: 0,
+    accommodation: 0,
+    wage: 0,
+    breakdown: { tie: 0, connect: 0 },
+    warnings: [],
+  };
+
+  const byProject: ProjectWageBreakdown[] = [];
+  for (const project of input.projects) {
+    const row = computeWages({ ...input, projectId: project.id }).rows[0];
+    if (!row) continue;
+    if (row.earnings === 0 && row.accommodation === 0) continue;
+    byProject.push({
+      projectId: project.id,
+      projectName: project.name,
+      earnings: row.earnings,
+      accommodation: row.accommodation,
+      wage: row.wage,
+      breakdown: row.breakdown,
+    });
+  }
+
+  return { total, byProject, mixedCurrencies: overall.mixedCurrencies };
+}
