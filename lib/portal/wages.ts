@@ -130,8 +130,9 @@ export interface WageByProjectResult {
 
 /**
  * For a single worker, computes overall wage totals plus one breakdown row per
- * project they had activity on within the range. Reuses `computeWages` — once
- * for the totals, once per project — so the wage rules stay in one place.
+ * project where the worker had earnings or an accommodation cost within the
+ * range. Reuses `computeWages` — once for the totals, once per project — so the
+ * wage rules stay in one place.
  *
  * `input.workers` is expected to contain exactly the one worker being viewed.
  */
@@ -139,6 +140,7 @@ export function computeWagesByProject(
   input: WageInput & { projects: { id: string; name: string }[] },
 ): WageByProjectResult {
   const overall = computeWages({ ...input, projectId: null });
+  // workers is non-empty by contract; the fallback only satisfies the type checker
   const total: WageRow = overall.rows[0] ?? {
     userId: "",
     name: "",
