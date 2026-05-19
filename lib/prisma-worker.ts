@@ -22,6 +22,10 @@ function createWorkerClient(): PrismaClient {
  * Prisma client connecting as the restricted `qs_worker` role. Every query it
  * issues is subject to the worker wage RLS policies. Use only through
  * `withWorkerScope`.
+ *
+ * If queries are issued without a surrounding `withWorkerScope` call (i.e.
+ * `app.user_id` is not set), all RLS policies evaluate to false and every
+ * table returns zero rows — the connection fails closed, not open.
  */
 export const prismaWorker =
   globalForPrismaWorker.prismaWorker ?? createWorkerClient();
