@@ -56,6 +56,7 @@ export function MyWagesView({
     try {
       const qs = new URLSearchParams({ from, to });
       const res = await fetch(`/api/wages/projects/${projectId}/sections?${qs}`);
+      if (!res.ok) throw new Error(`sections fetch failed: ${res.status}`);
       const data: { sections: SectionWageRow[] } = await res.json();
       setSectionCache((prev) => new Map(prev).set(projectId, data.sections));
       setExpandedProjects((prev) => new Set(prev).add(projectId));
@@ -130,7 +131,7 @@ export function MyWagesView({
                 <Fragment key={p.projectId}>
                   <tr
                     className="hover:bg-bg/50 cursor-pointer"
-                    onClick={() => handleToggle(p.projectId)}
+                    onClick={() => { void handleToggle(p.projectId); }}
                   >
                     <td className="px-4 py-3 text-muted align-middle">
                       {loadingSections.has(p.projectId) ? (

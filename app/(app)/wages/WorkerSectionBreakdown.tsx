@@ -1,12 +1,17 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import type { SectionWageRow } from "@/lib/portal/wages";
 
 export function WorkerSectionBreakdown({ sections }: { sections: SectionWageRow[] }) {
+  const t = useTranslations("wages");
+
   if (sections.length === 0) {
     return (
       <tr>
         <td />
         <td colSpan={6} className="px-4 py-2 pl-10 text-sm text-muted italic">
-          No activity in this range.
+          {t("noData")}
         </td>
       </tr>
     );
