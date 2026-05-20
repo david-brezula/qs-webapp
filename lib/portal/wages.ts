@@ -209,6 +209,37 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
   return totals;
 }
 
+export interface SectionWageRow {
+  sectionId: string;
+  sectionName: string;
+  tie: number;
+  connect: number;
+  earnings: number;
+}
+
+/**
+ * For a single worker, returns one earnings row per section that had activity
+ * within the range. Sections with zero earnings are omitted.
+ * Accommodation is not included — it is a project-level deduction.
+ */
+export function computeWagesBySection(
+  input: WageInput & { sections: { id: string; name: string }[] },
+): SectionWageRow[] {
+  const results: SectionWageRow[] = [];
+  for (const section of input.sections) {
+    const row = computeWages({ ...input, sectionId: section.id, accommodations: [] }).rows[0];
+    if (!row || row.earnings === 0) continue;
+    results.push({
+      sectionId: section.id,
+      sectionName: section.name,
+      tie: row.breakdown.tie,
+      connect: row.breakdown.connect,
+      earnings: row.earnings,
+    });
+  }
+  return results;
+}
+
 /** Wide date range that effectively means "all time" — used by admin wage
  *  pages that want both an all-time total and a user-selected range total. */
 export const ALL_TIME_FROM = new Date(0);

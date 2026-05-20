@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, sumWageRows, type WageInput, type WageRow } from "./wages";
+import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -238,5 +238,60 @@ describe("sumWageRows", () => {
         breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
     ];
     expect(sumWageRows(rows).warnings).toEqual(["missing-price"]);
+  });
+});
+
+const sectionBreakdownInput: WageInput & { sections: { id: string; name: string }[] } = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  projectId: "p1",
+  workers: [{ id: "w1", name: "Alice" }],
+  sections: [
+    { id: "s1", name: "North" },
+    { id: "s2", name: "South" },
+    { id: "s3", name: "East" },
+  ],
+  prices: [{ projectId: "p1", userId: "w1", priceTie: 1.0, priceConnect: 2.0 }],
+  activity: [
+    { userId: "w1", projectId: "p1", sectionId: "s1", action: "TIE",     count: 10, workDate: new Date("2026-05-10") },
+    { userId: "w1", projectId: "p1", sectionId: "s2", action: "CONNECT", count: 5,  workDate: new Date("2026-05-11") },
+    // s3 has no activity
+  ],
+  accommodations: [],
+};
+
+describe("computeWagesBySection", () => {
+  it("returns one row per section that has activity", () => {
+    const rows = computeWagesBySection(sectionBreakdownInput);
+    expect(rows.map((r) => r.sectionId).sort()).toEqual(["s1", "s2"]);
+  });
+
+  it("omits sections with zero earnings", () => {
+    const rows = computeWagesBySection(sectionBreakdownInput);
+    expect(rows.find((r) => r.sectionId === "s3")).toBeUndefined();
+  });
+
+  it("computes tie earnings correctly for a section", () => {
+    const rows = computeWagesBySection(sectionBreakdownInput);
+    const s1 = rows.find((r) => r.sectionId === "s1")!;
+    expect(s1.sectionName).toBe("North");
+    expect(s1.tie).toBe(10);       // 10 * 1.0
+    expect(s1.connect).toBe(0);
+    expect(s1.earnings).toBe(10);
+  });
+
+  it("computes connect earnings correctly for a section", () => {
+    const rows = computeWagesBySection(sectionBreakdownInput);
+    const s2 = rows.find((r) => r.sectionId === "s2")!;
+    expect(s2.sectionName).toBe("South");
+    expect(s2.tie).toBe(0);
+    expect(s2.connect).toBe(10);   // 5 * 2.0
+    expect(s2.earnings).toBe(10);
+  });
+
+  it("preserves section order from input", () => {
+    const rows = computeWagesBySection(sectionBreakdownInput);
+    expect(rows[0].sectionId).toBe("s1");
+    expect(rows[1].sectionId).toBe("s2");
   });
 });
