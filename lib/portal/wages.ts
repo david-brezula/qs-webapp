@@ -4,6 +4,7 @@ export interface WageInput {
   from: Date;
   to: Date;
   projectId?: string | null;
+  sectionId?: string | null;
   workers: { id: string; name: string }[];
   prices: {
     projectId: string;
@@ -14,6 +15,7 @@ export interface WageInput {
   activity: {
     userId: string;
     projectId: string;
+    sectionId?: string;
     action: "TIE" | "CONNECT";
     count: number;
     workDate: Date;
@@ -51,6 +53,7 @@ function overlaps(a: { start: Date; end: Date }, b: { start: Date; end: Date }) 
 export function computeWages(input: WageInput): WageResult {
   const range = { start: input.from, end: input.to };
   const projectFilter = input.projectId ?? null;
+  const sectionFilter = input.sectionId ?? null;
 
   const priceLookup = new Map<string, { tie: number; connect: number }>();
   for (const p of input.prices) {
@@ -75,6 +78,7 @@ export function computeWages(input: WageInput): WageResult {
   // Earnings
   for (const a of input.activity) {
     if (projectFilter && a.projectId !== projectFilter) continue;
+    if (sectionFilter && a.sectionId !== sectionFilter) continue;
     if (a.workDate < range.start || a.workDate > range.end) continue;
     const row = rowById.get(a.userId);
     if (!row) continue;
