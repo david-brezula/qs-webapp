@@ -18,11 +18,15 @@ export async function GET(
   const from = new Date(url.searchParams.get("from") ?? today);
   const to = new Date(url.searchParams.get("to") ?? today);
 
+  if (isNaN(from.getTime()) || isNaN(to.getTime())) {
+    return new NextResponse("Invalid date parameters", { status: 400 });
+  }
+
   const userId = session.user.id as string;
 
   const data = await withWorkerScope(userId, async (tx) => {
     const [prices, activity, sections] = await Promise.all([
-      tx.projectWorker.findMany({ where: { projectId } }),
+      tx.projectWorker.findMany({ where: { projectId, userId } }),
       tx.activityLog.findMany({
         where: {
           table: { section: { projectId } },
