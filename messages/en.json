@@ -122,7 +122,8 @@
     "noData": "No activity in this range.",
     "project": "Project",
     "tie": "Tie",
-    "connect": "Connect"
+    "connect": "Connect",
+    "allTimeHelper": "All-time figures are primary. The range total is shown below in muted text."
   },
   "log": {
     "title": "Log work",

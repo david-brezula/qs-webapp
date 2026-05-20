@@ -122,7 +122,8 @@
     "noData": "Žiadna aktivita v tomto rozsahu.",
     "project": "Projekt",
     "tie": "Uviazanie",
-    "connect": "Zapojenie"
+    "connect": "Zapojenie",
+    "allTimeHelper": "Hlavná hodnota je celková za celé obdobie. Pod ňou je menšia hodnota za vybraný rozsah dátumov."
   },
   "log": {
     "title": "Zapísať prácu",
