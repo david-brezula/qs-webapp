@@ -2,11 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
-import { computeWages } from "@/lib/portal/wages";
+import { ALL_TIME_FROM, ALL_TIME_TO, computeWages } from "@/lib/portal/wages";
 import { AdminSectionWageView } from "../../../../AdminSectionWageView";
-
-const ALL_TIME_FROM = new Date(0);
-const ALL_TIME_TO = new Date(9999, 0, 1);
 
 export default async function AdminSectionWagePage({
   params,
@@ -37,7 +34,7 @@ export default async function AdminSectionWagePage({
     prisma.projectWorker.findMany({ where: { projectId } }),
     prisma.activityLog.findMany({
       where: { table: { sectionId } },
-      include: { projectWorker: true, table: { include: { section: true } } },
+      include: { projectWorker: true },
     }),
   ]);
 
@@ -54,8 +51,8 @@ export default async function AdminSectionWagePage({
     })),
     activity: activity.map((a) => ({
       userId: a.projectWorker.userId,
-      projectId: a.table.section.projectId,
-      sectionId: a.table.section.id,
+      projectId,
+      sectionId,
       action: a.action,
       count: a.count,
       workDate: a.workDate,

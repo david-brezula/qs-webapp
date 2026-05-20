@@ -208,3 +208,8 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
   }
   return totals;
 }
+
+/** Wide date range that effectively means "all time" — used by admin wage
+ *  pages that want both an all-time total and a user-selected range total. */
+export const ALL_TIME_FROM = new Date(0);
+export const ALL_TIME_TO = new Date(9999, 0, 1);
