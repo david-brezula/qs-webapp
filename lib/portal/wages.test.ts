@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, type WageInput } from "./wages";
+import { computeWages, computeWagesByProject, sumWageRows, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -165,5 +165,78 @@ describe("computeWagesByProject", () => {
       ],
     });
     expect(r.mixedCurrencies).toBe(true);
+  });
+});
+
+const sectionedInput: WageInput = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  workers: [{ id: "w1", name: "Alice" }],
+  prices: [{ projectId: "p1", userId: "w1", priceTie: 1.0, priceConnect: 2.0 }],
+  activity: [
+    { userId: "w1", projectId: "p1", sectionId: "s1", action: "TIE", count: 10, workDate: new Date("2026-05-10") },
+    { userId: "w1", projectId: "p1", sectionId: "s2", action: "CONNECT", count: 5, workDate: new Date("2026-05-11") },
+  ],
+  accommodations: [],
+};
+
+describe("computeWages sectionId filter", () => {
+  it("counts only activity in the filtered section", () => {
+    // s1 has only the TIE 10 entry: 10 * 1.0 = 10
+    const r = computeWages({ ...sectionedInput, sectionId: "s1" });
+    expect(r.rows[0].earnings).toBe(10);
+    expect(r.rows[0].breakdown.tie).toBe(10);
+    expect(r.rows[0].breakdown.connect).toBe(0);
+  });
+
+  it("returns zero earnings when sectionId matches no activity", () => {
+    const r = computeWages({ ...sectionedInput, sectionId: "s-none" });
+    expect(r.rows[0].earnings).toBe(0);
+  });
+
+  it("ignores sectionId when omitted (counts every section)", () => {
+    // 10*1.0 + 5*2.0 = 20
+    const r = computeWages(sectionedInput);
+    expect(r.rows[0].earnings).toBe(20);
+  });
+
+  it("applies sectionId together with projectId", () => {
+    const r = computeWages({ ...sectionedInput, projectId: "p1", sectionId: "s2" });
+    expect(r.rows[0].earnings).toBe(10); // 5 * 2.0
+    expect(r.rows[0].breakdown.connect).toBe(10);
+  });
+});
+
+describe("sumWageRows", () => {
+  it("sums tie / connect / earnings / accommodation / wage across rows", () => {
+    const rows: WageRow[] = [
+      { userId: "w1", name: "A", earnings: 10, accommodation: 2, wage: 8,
+        breakdown: { tie: 6, connect: 4 }, warnings: [] },
+      { userId: "w2", name: "B", earnings: 20, accommodation: 5, wage: 15,
+        breakdown: { tie: 12, connect: 8 }, warnings: ["missing-price"] },
+    ];
+    const t = sumWageRows(rows);
+    expect(t.tie).toBe(18);
+    expect(t.connect).toBe(12);
+    expect(t.earnings).toBe(30);
+    expect(t.accommodation).toBe(7);
+    expect(t.wage).toBe(23);
+    expect(t.warnings).toEqual(["missing-price"]);
+  });
+
+  it("returns zeros for empty input", () => {
+    expect(sumWageRows([])).toEqual({
+      tie: 0, connect: 0, earnings: 0, accommodation: 0, wage: 0, warnings: [],
+    });
+  });
+
+  it("deduplicates warnings across rows", () => {
+    const rows: WageRow[] = [
+      { userId: "w1", name: "A", earnings: 0, accommodation: 0, wage: 0,
+        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+      { userId: "w2", name: "B", earnings: 0, accommodation: 0, wage: 0,
+        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+    ];
+    expect(sumWageRows(rows).warnings).toEqual(["missing-price"]);
   });
 });

@@ -1,10 +1,16 @@
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/portal/session";
 import { getTranslations } from "next-intl/server";
-import { computeWages, computeWagesByProject } from "@/lib/portal/wages";
+import {
+  ALL_TIME_FROM,
+  ALL_TIME_TO,
+  computeWages,
+  computeWagesByProject,
+  sumWageRows,
+} from "@/lib/portal/wages";
 import { withWorkerScope } from "@/lib/prisma-worker";
-import { WagesView } from "./WagesView";
 import { MyWagesView } from "./MyWagesView";
+import { AdminProjectList } from "./AdminProjectList";
 
 export default async function WagesPage({
   searchParams,
@@ -76,27 +82,19 @@ export default async function WagesPage({
     );
   }
 
-  // Admin: all workers, read through the owner connection.
-  const projectId = sp.projectId || undefined;
-
-  const [workers, prices, activity, accommodations, projects] = await Promise.all([
+  // Admin: project drill-down. Fetch all data once, compute per-project
+  // all-time and ranged totals from the same input.
+  const [projects, workers, prices, activity, accommodations] = await Promise.all([
+    prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
     prisma.projectWorker.findMany({}),
     prisma.activityLog.findMany({
-      where: { workDate: { gte: from, lte: to } },
       include: { projectWorker: true, table: { include: { section: true } } },
     }),
-    prisma.accommodation.findMany({
-      where: { startDate: { lte: to }, endDate: { gte: from } },
-      include: { workers: true },
-    }),
-    prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
+    prisma.accommodation.findMany({ include: { workers: true } }),
   ]);
 
-  const result = computeWages({
-    from,
-    to,
-    projectId: projectId ?? null,
+  const baseInput = {
     workers: workers.map((w) => ({ id: w.id, name: w.name })),
     prices: prices.map((p) => ({
       projectId: p.projectId,
@@ -107,6 +105,7 @@ export default async function WagesPage({
     activity: activity.map((a) => ({
       userId: a.projectWorker.userId,
       projectId: a.table.section.projectId,
+      sectionId: a.table.section.id,
       action: a.action,
       count: a.count,
       workDate: a.workDate,
@@ -120,17 +119,48 @@ export default async function WagesPage({
       workerIds: acc.workers.map((w) => w.userId),
       projectId: acc.projectId,
     })),
+  };
+
+  const projectComputations = projects.map((p) => {
+    const at = computeWages({ ...baseInput, projectId: p.id, from: ALL_TIME_FROM, to: ALL_TIME_TO });
+    const rg = computeWages({ ...baseInput, projectId: p.id, from, to });
+    return { p, at, rg };
+  });
+  const anyMixed = projectComputations.some(({ at, rg }) => at.mixedCurrencies || rg.mixedCurrencies);
+  const projectRows = projectComputations.map(({ p, at, rg }) => {
+    const atT = sumWageRows(at.rows);
+    const rgT = sumWageRows(rg.rows);
+    return {
+      id: p.id,
+      name: p.name,
+      location: p.location,
+      status: p.status,
+      allTime: {
+        tie: atT.tie,
+        connect: atT.connect,
+        earnings: atT.earnings,
+        accommodation: atT.accommodation,
+        wage: atT.wage,
+        warnings: atT.warnings,
+      },
+      range: {
+        tie: rgT.tie,
+        connect: rgT.connect,
+        earnings: rgT.earnings,
+        accommodation: rgT.accommodation,
+        wage: rgT.wage,
+      },
+    };
   });
 
   return (
     <div>
       <h1 className="text-2xl font-semibold text-navy mb-8">{t("title")}</h1>
-      <WagesView
+      <AdminProjectList
         from={fromStr}
         to={toStr}
-        projectId={projectId ?? ""}
-        projects={projects.map((p) => ({ id: p.id, name: p.name }))}
-        result={result}
+        projects={projectRows}
+        mixedCurrencies={anyMixed}
       />
     </div>
   );

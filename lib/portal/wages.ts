@@ -4,6 +4,7 @@ export interface WageInput {
   from: Date;
   to: Date;
   projectId?: string | null;
+  sectionId?: string | null;
   workers: { id: string; name: string }[];
   prices: {
     projectId: string;
@@ -14,6 +15,7 @@ export interface WageInput {
   activity: {
     userId: string;
     projectId: string;
+    sectionId?: string;
     action: "TIE" | "CONNECT";
     count: number;
     workDate: Date;
@@ -51,6 +53,7 @@ function overlaps(a: { start: Date; end: Date }, b: { start: Date; end: Date }) 
 export function computeWages(input: WageInput): WageResult {
   const range = { start: input.from, end: input.to };
   const projectFilter = input.projectId ?? null;
+  const sectionFilter = input.sectionId ?? null;
 
   const priceLookup = new Map<string, { tie: number; connect: number }>();
   for (const p of input.prices) {
@@ -75,6 +78,7 @@ export function computeWages(input: WageInput): WageResult {
   // Earnings
   for (const a of input.activity) {
     if (projectFilter && a.projectId !== projectFilter) continue;
+    if (sectionFilter && a.sectionId !== sectionFilter) continue;
     if (a.workDate < range.start || a.workDate > range.end) continue;
     const row = rowById.get(a.userId);
     if (!row) continue;
@@ -168,3 +172,44 @@ export function computeWagesByProject(
 
   return { total, byProject, mixedCurrencies: overall.mixedCurrencies };
 }
+
+export interface WageTotals {
+  tie: number;
+  connect: number;
+  earnings: number;
+  accommodation: number;
+  wage: number;
+  warnings: string[];
+}
+
+/**
+ * Sums a list of WageRow into one combined total. Used by admin wage views
+ * that aggregate across all workers for a project or section. Warnings are
+ * deduplicated.
+ */
+export function sumWageRows(rows: WageRow[]): WageTotals {
+  const totals: WageTotals = {
+    tie: 0,
+    connect: 0,
+    earnings: 0,
+    accommodation: 0,
+    wage: 0,
+    warnings: [],
+  };
+  for (const r of rows) {
+    totals.tie += r.breakdown.tie;
+    totals.connect += r.breakdown.connect;
+    totals.earnings += r.earnings;
+    totals.accommodation += r.accommodation;
+    totals.wage += r.wage;
+    for (const w of r.warnings) {
+      if (!totals.warnings.includes(w)) totals.warnings.push(w);
+    }
+  }
+  return totals;
+}
+
+/** Wide date range that effectively means "all time" — used by admin wage
+ *  pages that want both an all-time total and a user-selected range total. */
+export const ALL_TIME_FROM = new Date(0);
+export const ALL_TIME_TO = new Date(9999, 0, 1);
