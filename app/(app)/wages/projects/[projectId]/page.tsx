@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
 import { ALL_TIME_FROM, ALL_TIME_TO, computeWages, sumWageRows } from "@/lib/portal/wages";
@@ -14,6 +15,7 @@ export default async function AdminProjectWagePage({
 }) {
   await requireAdmin();
   const { projectId } = await params;
+  const t = await getTranslations("wages");
   const sp = await searchParams;
   const today = new Date().toISOString().slice(0, 10);
   const fromStr = sp.from ?? today;
@@ -32,7 +34,7 @@ export default async function AdminProjectWagePage({
     prisma.projectWorker.findMany({ where: { projectId } }),
     prisma.activityLog.findMany({
       where: { table: { section: { projectId } } },
-      include: { projectWorker: true, table: { include: { section: true } } },
+      include: { projectWorker: true, table: true },
     }),
     prisma.accommodation.findMany({
       where: { projectId },
@@ -52,8 +54,8 @@ export default async function AdminProjectWagePage({
     })),
     activity: activity.map((a) => ({
       userId: a.projectWorker.userId,
-      projectId: a.table.section.projectId,
-      sectionId: a.table.section.id,
+      projectId,
+      sectionId: a.table.sectionId,
       action: a.action,
       count: a.count,
       workDate: a.workDate,
@@ -102,7 +104,9 @@ export default async function AdminProjectWagePage({
     })
     .filter((r) => r.allTime.earnings !== 0 || r.allTime.accommodation !== 0);
 
-  // Per-section totals (sum across all workers, no accommodation).
+  // Per-section totals (sum across all workers, no accommodation). Each
+  // section runs two full scans of the activity array (all-time + range);
+  // acceptable at current scale, pre-group by sectionId if sections grow.
   const sectionRows = project.sections.map((section) => {
     const at = sumWageRows(
       computeWages({ ...baseInput, sectionId: section.id, from: ALL_TIME_FROM, to: ALL_TIME_TO }).rows,
@@ -124,7 +128,7 @@ export default async function AdminProjectWagePage({
         href={`/wages?from=${fromStr}&to=${toStr}`}
         className="text-sm text-accent hover:underline"
       >
-        ‹ Wages
+        ‹ {t("title")}
       </Link>
       <h1 className="mt-2 text-2xl font-semibold text-navy">{project.name}</h1>
       {project.location && (
