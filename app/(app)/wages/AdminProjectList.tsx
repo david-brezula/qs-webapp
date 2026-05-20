@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/portal/DataTable";
 import { Button } from "@/components/ui/Button";
@@ -36,17 +35,19 @@ export function AdminProjectList({
   projects: ProjectRow[];
   mixedCurrencies: boolean;
 }) {
-  const sp = useSearchParams();
   const t = useTranslations("wages");
   const tProjects = useTranslations("projects");
   const tCommon = useTranslations("common");
 
+  // Uses the from/to that the page was rendered with — i.e. the last range
+  // the user clicked "Calculate" on. Dates typed into the filter inputs but
+  // not yet committed via Calculate are not reflected in the export. This
+  // matches the "date range = supplementary info" framing of the page; the
+  // primary numbers are all-time and the export is the date-range CSV.
   function exportCsv() {
     const params = new URLSearchParams();
     params.set("from", from);
     params.set("to", to);
-    const projectId = sp.get("projectId");
-    if (projectId) params.set("projectId", projectId);
     window.location.href = `/wages/export.csv?${params.toString()}`;
   }
 
