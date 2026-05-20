@@ -35,6 +35,8 @@ export default async function EditWorkerPage({
           role: user.role,
           language: user.language,
           active: user.active,
+          defaultPriceTie: Number(user.defaultPriceTie),
+          defaultPriceConnect: Number(user.defaultPriceConnect),
         }}
       />
     </div>

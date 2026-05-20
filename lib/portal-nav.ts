@@ -17,5 +17,8 @@ export function getPortalNavItems(role: "ADMIN" | "WORKER"): PortalNavItem[] {
       { href: "/wages", labelKey: "wages" },
     ];
   }
-  return [{ href: "/dashboard", labelKey: "dashboard" }];
+  return [
+    { href: "/dashboard", labelKey: "dashboard" },
+    { href: "/wages", labelKey: "wages" },
+  ];
 }

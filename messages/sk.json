@@ -83,7 +83,9 @@
     "admin": "Administrátor",
     "worker": "Pracovník",
     "tempPassword": "Dočasné heslo: {password}",
-    "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky."
+    "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky.",
+    "defaultPriceTie": "Predvolená cena za uviazanie",
+    "defaultPriceConnect": "Predvolená cena za zapojenie"
   },
   "changePassword": {
     "title": "Zmena hesla",
@@ -117,7 +119,10 @@
     "wage": "Mzda",
     "missingPrice": "Nastavte ceny pre tohto pracovníka na projekte.",
     "mixedCurrencies": "Rôzne meny v tomto rozsahu; čísla sú orientačné.",
-    "noData": "Žiadna aktivita v tomto rozsahu."
+    "noData": "Žiadna aktivita v tomto rozsahu.",
+    "project": "Projekt",
+    "tie": "Uviazanie",
+    "connect": "Zapojenie"
   },
   "log": {
     "title": "Zapísať prácu",

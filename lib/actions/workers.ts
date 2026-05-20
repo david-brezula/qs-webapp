@@ -94,6 +94,8 @@ const updateSchema = z.object({
   role: z.enum(["ADMIN", "WORKER"]),
   language: z.enum(["EN", "SK"]),
   active: z.coerce.boolean(),
+  defaultPriceTie: z.coerce.number().nonnegative(),
+  defaultPriceConnect: z.coerce.number().nonnegative(),
 });
 
 export async function updateWorkerAction(fd: FormData): Promise<ActionResult> {
@@ -105,6 +107,8 @@ export async function updateWorkerAction(fd: FormData): Promise<ActionResult> {
     role: fd.get("role"),
     language: fd.get("language"),
     active: fd.get("active") === "on" || fd.get("active") === "true",
+    defaultPriceTie: fd.get("defaultPriceTie"),
+    defaultPriceConnect: fd.get("defaultPriceConnect"),
   });
   if (!parsed.success) {
     return { ok: false, error: "validation", fieldErrors: zErrors(parsed.error.issues) };
@@ -117,6 +121,8 @@ export async function updateWorkerAction(fd: FormData): Promise<ActionResult> {
       role: parsed.data.role as Role,
       language: parsed.data.language as Locale,
       active: parsed.data.active,
+      defaultPriceTie: parsed.data.defaultPriceTie,
+      defaultPriceConnect: parsed.data.defaultPriceConnect,
     },
   });
   revalidatePath("/workers");

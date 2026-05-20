@@ -83,7 +83,9 @@
     "admin": "Admin",
     "worker": "Worker",
     "tempPassword": "Temporary password: {password}",
-    "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars."
+    "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars.",
+    "defaultPriceTie": "Default tie rate",
+    "defaultPriceConnect": "Default connect rate"
   },
   "changePassword": {
     "title": "Change password",
@@ -117,7 +119,10 @@
     "wage": "Wage",
     "missingPrice": "Set prices for this worker on the project to compute wages.",
     "mixedCurrencies": "Mixed currencies in this range; figures are nominal.",
-    "noData": "No activity in this range."
+    "noData": "No activity in this range.",
+    "project": "Project",
+    "tie": "Tie",
+    "connect": "Connect"
   },
   "log": {
     "title": "Log work",

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, type WageInput } from "./wages";
+import { computeWages, computeWagesByProject, type WageInput } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -108,6 +108,60 @@ describe("computeWages", () => {
           workerIds: ["w1"],
           projectId: "p1",
         },
+      ],
+    });
+    expect(r.mixedCurrencies).toBe(true);
+  });
+});
+
+const soloInput: WageInput & { projects: { id: string; name: string }[] } = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  workers: [{ id: "w1", name: "Alice" }],
+  projects: [
+    { id: "p1", name: "Alpha" },
+    { id: "p2", name: "Beta" },
+    { id: "p3", name: "Gamma" },
+  ],
+  prices: [
+    { projectId: "p1", userId: "w1", priceTie: 1.5, priceConnect: 2.0 },
+    { projectId: "p2", userId: "w1", priceTie: 1.0, priceConnect: 1.0 },
+    { projectId: "p3", userId: "w1", priceTie: 1.0, priceConnect: 1.0 },
+  ],
+  activity: [
+    { userId: "w1", projectId: "p1", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+    { userId: "w1", projectId: "p2", action: "CONNECT", count: 40, workDate: new Date("2026-05-11") },
+  ],
+  accommodations: [],
+};
+
+describe("computeWagesByProject", () => {
+  it("totals earnings across every project", () => {
+    const r = computeWagesByProject(soloInput);
+    // p1: 100*1.5 = 150 ; p2: 40*1.0 = 40
+    expect(r.total.earnings).toBe(190);
+  });
+
+  it("returns one breakdown row per project with activity", () => {
+    const r = computeWagesByProject(soloInput);
+    expect(r.byProject.map((p) => p.projectId).sort()).toEqual(["p1", "p2"]);
+    const p1 = r.byProject.find((p) => p.projectId === "p1")!;
+    expect(p1.projectName).toBe("Alpha");
+    expect(p1.earnings).toBe(150);
+    expect(p1.breakdown.tie).toBe(150);
+  });
+
+  it("excludes projects the worker had no activity on in the range", () => {
+    const r = computeWagesByProject(soloInput);
+    expect(r.byProject.find((p) => p.projectId === "p3")).toBeUndefined();
+  });
+
+  it("passes through the mixed-currency flag", () => {
+    const r = computeWagesByProject({
+      ...soloInput,
+      accommodations: [
+        { id: "a1", totalCost: 100, currency: "USD", startDate: new Date("2026-05-05"), endDate: new Date("2026-05-06"), workerIds: ["w1"], projectId: "p1" },
+        { id: "a2", totalCost: 100, currency: "EUR", startDate: new Date("2026-05-07"), endDate: new Date("2026-05-08"), workerIds: ["w1"], projectId: "p2" },
       ],
     });
     expect(r.mixedCurrencies).toBe(true);

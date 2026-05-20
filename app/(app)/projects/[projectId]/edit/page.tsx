@@ -74,7 +74,13 @@ export default async function ProjectEditorPage({
           }))}
           available={allWorkers
             .filter((u) => !project.projectWorkers.find((pw) => pw.userId === u.id))
-            .map((u) => ({ id: u.id, name: u.name, email: u.email ?? u.username }))}
+            .map((u) => ({
+              id: u.id,
+              name: u.name,
+              email: u.email ?? u.username,
+              defaultPriceTie: Number(u.defaultPriceTie),
+              defaultPriceConnect: Number(u.defaultPriceConnect),
+            }))}
           labels={{
             assignWorker: t("assignWorker"),
             priceTie: t("priceTie"),

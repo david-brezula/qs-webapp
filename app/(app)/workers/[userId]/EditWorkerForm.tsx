@@ -18,6 +18,8 @@ export function EditWorkerForm({
     role: "ADMIN" | "WORKER";
     language: "EN" | "SK";
     active: boolean;
+    defaultPriceTie: number;
+    defaultPriceConnect: number;
   };
 }) {
   const t = useTranslations("workers");
@@ -74,6 +76,22 @@ export function EditWorkerForm({
             { value: "SK", label: "Slovenčina" },
           ]}
           error={errors.language}
+        />
+        <FormField
+          label={t("defaultPriceTie")}
+          name="defaultPriceTie"
+          type="number"
+          step="0.01"
+          defaultValue={user.defaultPriceTie}
+          error={errors.defaultPriceTie}
+        />
+        <FormField
+          label={t("defaultPriceConnect")}
+          name="defaultPriceConnect"
+          type="number"
+          step="0.01"
+          defaultValue={user.defaultPriceConnect}
+          error={errors.defaultPriceConnect}
         />
         <label className="flex items-center gap-2 text-sm text-slate-ink">
           <input type="checkbox" name="active" defaultChecked={user.active} />
