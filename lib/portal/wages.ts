@@ -172,3 +172,39 @@ export function computeWagesByProject(
 
   return { total, byProject, mixedCurrencies: overall.mixedCurrencies };
 }
+
+export interface WageTotals {
+  tie: number;
+  connect: number;
+  earnings: number;
+  accommodation: number;
+  wage: number;
+  warnings: string[];
+}
+
+/**
+ * Sums a list of WageRow into one combined total. Used by admin wage views
+ * that aggregate across all workers for a project or section. Warnings are
+ * deduplicated.
+ */
+export function sumWageRows(rows: WageRow[]): WageTotals {
+  const totals: WageTotals = {
+    tie: 0,
+    connect: 0,
+    earnings: 0,
+    accommodation: 0,
+    wage: 0,
+    warnings: [],
+  };
+  for (const r of rows) {
+    totals.tie += r.breakdown.tie;
+    totals.connect += r.breakdown.connect;
+    totals.earnings += r.earnings;
+    totals.accommodation += r.accommodation;
+    totals.wage += r.wage;
+    for (const w of r.warnings) {
+      if (!totals.warnings.includes(w)) totals.warnings.push(w);
+    }
+  }
+  return totals;
+}

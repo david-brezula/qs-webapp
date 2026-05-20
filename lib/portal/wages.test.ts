@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, type WageInput } from "./wages";
+import { computeWages, computeWagesByProject, sumWageRows, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -204,5 +204,39 @@ describe("computeWages sectionId filter", () => {
     const r = computeWages({ ...sectionedInput, projectId: "p1", sectionId: "s2" });
     expect(r.rows[0].earnings).toBe(10); // 5 * 2.0
     expect(r.rows[0].breakdown.connect).toBe(10);
+  });
+});
+
+describe("sumWageRows", () => {
+  it("sums tie / connect / earnings / accommodation / wage across rows", () => {
+    const rows: WageRow[] = [
+      { userId: "w1", name: "A", earnings: 10, accommodation: 2, wage: 8,
+        breakdown: { tie: 6, connect: 4 }, warnings: [] },
+      { userId: "w2", name: "B", earnings: 20, accommodation: 5, wage: 15,
+        breakdown: { tie: 12, connect: 8 }, warnings: ["missing-price"] },
+    ];
+    const t = sumWageRows(rows);
+    expect(t.tie).toBe(18);
+    expect(t.connect).toBe(12);
+    expect(t.earnings).toBe(30);
+    expect(t.accommodation).toBe(7);
+    expect(t.wage).toBe(23);
+    expect(t.warnings).toEqual(["missing-price"]);
+  });
+
+  it("returns zeros for empty input", () => {
+    expect(sumWageRows([])).toEqual({
+      tie: 0, connect: 0, earnings: 0, accommodation: 0, wage: 0, warnings: [],
+    });
+  });
+
+  it("deduplicates warnings across rows", () => {
+    const rows: WageRow[] = [
+      { userId: "w1", name: "A", earnings: 0, accommodation: 0, wage: 0,
+        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+      { userId: "w2", name: "B", earnings: 0, accommodation: 0, wage: 0,
+        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+    ];
+    expect(sumWageRows(rows).warnings).toEqual(["missing-price"]);
   });
 });
