@@ -120,6 +120,7 @@
     "missingPrice": "Set prices for this worker on the project to compute wages.",
     "mixedCurrencies": "Mixed currencies in this range; figures are nominal.",
     "noData": "No activity in this range.",
+    "noActivityYet": "No activity yet.",
     "project": "Project",
     "tie": "Tie",
     "connect": "Connect",
