@@ -1,7 +1,9 @@
 import { config as loadEnv } from "dotenv";
 import { defineConfig } from "prisma/config";
 
-loadEnv({ path: ".env.local", override: true });
+// override:false — explicit env (e.g. .env.production loaded by the caller,
+// or vars set in PowerShell/CI) wins over .env.local.
+loadEnv({ path: ".env.local", override: false });
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
