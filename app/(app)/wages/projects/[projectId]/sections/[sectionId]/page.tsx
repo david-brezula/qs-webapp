@@ -7,19 +7,11 @@ import { AdminSectionWageView } from "../../../../AdminSectionWageView";
 
 export default async function AdminSectionWagePage({
   params,
-  searchParams,
 }: {
   params: Promise<{ projectId: string; sectionId: string }>;
-  searchParams: Promise<{ from?: string; to?: string }>;
 }) {
   await requireAdmin();
   const { projectId, sectionId } = await params;
-  const sp = await searchParams;
-  const today = new Date().toISOString().slice(0, 10);
-  const fromStr = sp.from ?? today;
-  const toStr = sp.to ?? today;
-  const from = new Date(fromStr);
-  const to = new Date(toStr);
 
   const [section, project, workers, prices, activity] = await Promise.all([
     prisma.section.findUnique({
@@ -41,7 +33,11 @@ export default async function AdminSectionWagePage({
   if (!section || !project) notFound();
   if (section.projectId !== projectId) notFound();
 
-  const baseInput = {
+  const result = computeWages({
+    from: ALL_TIME_FROM,
+    to: ALL_TIME_TO,
+    projectId,
+    sectionId,
     workers: workers.map((w) => ({ id: w.id, name: w.name })),
     prices: prices.map((p) => ({
       projectId: p.projectId,
@@ -58,48 +54,29 @@ export default async function AdminSectionWagePage({
       workDate: a.workDate,
     })),
     accommodations: [],
-    projectId,
-    sectionId,
-  };
+  });
 
-  const allTime = computeWages({ ...baseInput, from: ALL_TIME_FROM, to: ALL_TIME_TO });
-  const ranged = computeWages({ ...baseInput, from, to });
-
-  const allTimeById = new Map(allTime.rows.map((r) => [r.userId, r] as const));
-  const rangedById = new Map(ranged.rows.map((r) => [r.userId, r] as const));
-
-  const workerRows = workers
-    .map((w) => {
-      const at = allTimeById.get(w.id);
-      const rg = rangedById.get(w.id);
-      return {
-        userId: w.id,
-        name: w.name,
-        allTime: {
-          tie: at?.breakdown.tie ?? 0,
-          connect: at?.breakdown.connect ?? 0,
-          earnings: at?.earnings ?? 0,
-          warnings: at?.warnings ?? [],
-        },
-        range: {
-          tie: rg?.breakdown.tie ?? 0,
-          connect: rg?.breakdown.connect ?? 0,
-          earnings: rg?.earnings ?? 0,
-        },
-      };
-    })
-    .filter((r) => r.allTime.earnings !== 0);
+  const workerRows = result.rows
+    .map((r) => ({
+      userId: r.userId,
+      name: r.name,
+      tie: r.breakdown.tie,
+      connect: r.breakdown.connect,
+      earnings: r.earnings,
+      warnings: r.warnings,
+    }))
+    .filter((r) => r.earnings !== 0);
 
   return (
     <div>
       <Link
-        href={`/wages/projects/${project.id}?from=${fromStr}&to=${toStr}`}
+        href={`/wages/projects/${project.id}`}
         className="text-sm text-accent hover:underline"
       >
         ‹ {project.name}
       </Link>
       <h1 className="mt-2 mb-8 text-2xl font-semibold text-navy">{section.name}</h1>
-      <AdminSectionWageView from={fromStr} to={toStr} workers={workerRows} />
+      <AdminSectionWageView workers={workerRows} />
     </div>
   );
 }

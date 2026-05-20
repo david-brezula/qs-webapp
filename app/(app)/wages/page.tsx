@@ -19,15 +19,16 @@ export default async function WagesPage({
 }) {
   const user = await requireUser();
   const sp = await searchParams;
-  const today = new Date().toISOString().slice(0, 10);
-  const fromStr = sp.from ?? today;
-  const toStr = sp.to ?? today;
-  const from = new Date(fromStr);
-  const to = new Date(toStr);
   const t = await getTranslations("wages");
 
   // Worker: only their own wages, read through the RLS-enforced connection.
   if (user.role !== "ADMIN") {
+    const today = new Date().toISOString().slice(0, 10);
+    const fromStr = sp.from ?? today;
+    const toStr = sp.to ?? today;
+    const from = new Date(fromStr);
+    const to = new Date(toStr);
+
     const data = await withWorkerScope(user.id, async (tx) => {
       const [prices, activity, accommodations, projects] = await Promise.all([
         tx.projectWorker.findMany(),
@@ -82,8 +83,7 @@ export default async function WagesPage({
     );
   }
 
-  // Admin: project drill-down. Fetch all data once, compute per-project
-  // all-time and ranged totals from the same input.
+  // Admin: project drill-down (all-time only).
   const [projects, workers, prices, activity, accommodations] = await Promise.all([
     prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
@@ -95,6 +95,8 @@ export default async function WagesPage({
   ]);
 
   const baseInput = {
+    from: ALL_TIME_FROM,
+    to: ALL_TIME_TO,
     workers: workers.map((w) => ({ id: w.id, name: w.name })),
     prices: prices.map((p) => ({
       projectId: p.projectId,
@@ -121,47 +123,32 @@ export default async function WagesPage({
     })),
   };
 
-  const projectComputations = projects.map((p) => {
-    const at = computeWages({ ...baseInput, projectId: p.id, from: ALL_TIME_FROM, to: ALL_TIME_TO });
-    const rg = computeWages({ ...baseInput, projectId: p.id, from, to });
-    return { p, at, rg };
-  });
-  const anyMixed = projectComputations.some(({ at, rg }) => at.mixedCurrencies || rg.mixedCurrencies);
-  const projectRows = projectComputations.map(({ p, at, rg }) => {
-    const atT = sumWageRows(at.rows);
-    const rgT = sumWageRows(rg.rows);
+  const projectComputations = projects.map((p) => ({
+    project: p,
+    result: computeWages({ ...baseInput, projectId: p.id }),
+  }));
+
+  const anyMixed = projectComputations.some(({ result }) => result.mixedCurrencies);
+
+  const projectRows = projectComputations.map(({ project, result }) => {
+    const totals = sumWageRows(result.rows);
     return {
-      id: p.id,
-      name: p.name,
-      location: p.location,
-      status: p.status,
-      allTime: {
-        tie: atT.tie,
-        connect: atT.connect,
-        earnings: atT.earnings,
-        accommodation: atT.accommodation,
-        wage: atT.wage,
-        warnings: atT.warnings,
-      },
-      range: {
-        tie: rgT.tie,
-        connect: rgT.connect,
-        earnings: rgT.earnings,
-        accommodation: rgT.accommodation,
-        wage: rgT.wage,
-      },
+      id: project.id,
+      name: project.name,
+      location: project.location,
+      status: project.status,
+      tie: totals.tie,
+      connect: totals.connect,
+      accommodation: totals.accommodation,
+      wage: totals.wage,
+      warnings: totals.warnings,
     };
   });
 
   return (
     <div>
       <h1 className="text-2xl font-semibold text-navy mb-8">{t("title")}</h1>
-      <AdminProjectList
-        from={fromStr}
-        to={toStr}
-        projects={projectRows}
-        mixedCurrencies={anyMixed}
-      />
+      <AdminProjectList projects={projectRows} mixedCurrencies={anyMixed} />
     </div>
   );
 }

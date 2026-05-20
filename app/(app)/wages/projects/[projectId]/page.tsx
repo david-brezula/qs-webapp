@@ -8,20 +8,12 @@ import { AdminProjectWageView } from "../../AdminProjectWageView";
 
 export default async function AdminProjectWagePage({
   params,
-  searchParams,
 }: {
   params: Promise<{ projectId: string }>;
-  searchParams: Promise<{ from?: string; to?: string }>;
 }) {
   await requireAdmin();
   const { projectId } = await params;
   const t = await getTranslations("wages");
-  const sp = await searchParams;
-  const today = new Date().toISOString().slice(0, 10);
-  const fromStr = sp.from ?? today;
-  const toStr = sp.to ?? today;
-  const from = new Date(fromStr);
-  const to = new Date(toStr);
 
   const [project, workers, prices, activity, accommodations] = await Promise.all([
     prisma.project.findUnique({
@@ -45,6 +37,8 @@ export default async function AdminProjectWagePage({
   if (!project) notFound();
 
   const baseInput = {
+    from: ALL_TIME_FROM,
+    to: ALL_TIME_TO,
     workers: workers.map((w) => ({ id: w.id, name: w.name })),
     prices: prices.map((p) => ({
       projectId: p.projectId,
@@ -73,61 +67,43 @@ export default async function AdminProjectWagePage({
   };
 
   // Per-worker summary for the project (no section filter; accommodation in).
-  const projectAllTime = computeWages({ ...baseInput, from: ALL_TIME_FROM, to: ALL_TIME_TO });
-  const projectRanged = computeWages({ ...baseInput, from, to });
+  const projectResult = computeWages(baseInput);
 
-  const allTimeById = new Map(projectAllTime.rows.map((r) => [r.userId, r] as const));
-  const rangedById = new Map(projectRanged.rows.map((r) => [r.userId, r] as const));
-  const workerRows = workers
-    .map((w) => {
-      const at = allTimeById.get(w.id);
-      const rg = rangedById.get(w.id);
-      return {
-        userId: w.id,
-        name: w.name,
-        allTime: {
-          tie: at?.breakdown.tie ?? 0,
-          connect: at?.breakdown.connect ?? 0,
-          earnings: at?.earnings ?? 0,
-          accommodation: at?.accommodation ?? 0,
-          wage: at?.wage ?? 0,
-          warnings: at?.warnings ?? [],
-        },
-        range: {
-          tie: rg?.breakdown.tie ?? 0,
-          connect: rg?.breakdown.connect ?? 0,
-          earnings: rg?.earnings ?? 0,
-          accommodation: rg?.accommodation ?? 0,
-          wage: rg?.wage ?? 0,
-        },
-      };
-    })
-    .filter((r) => r.allTime.earnings !== 0 || r.allTime.accommodation !== 0);
+  const workerRows = projectResult.rows
+    .map((r) => ({
+      userId: r.userId,
+      name: r.name,
+      tie: r.breakdown.tie,
+      connect: r.breakdown.connect,
+      earnings: r.earnings,
+      accommodation: r.accommodation,
+      wage: r.wage,
+      warnings: r.warnings,
+    }))
+    .filter((r) => r.earnings !== 0 || r.accommodation !== 0);
 
   // Per-section totals (sum across all workers, no accommodation). Each
-  // section runs two full scans of the activity array (all-time + range);
-  // acceptable at current scale, pre-group by sectionId if sections grow.
+  // section runs one full scan of the activity array; acceptable at current
+  // scale, pre-group by sectionId if sections grow.
   const sectionRows = project.sections.map((section) => {
-    const at = sumWageRows(
-      computeWages({ ...baseInput, sectionId: section.id, from: ALL_TIME_FROM, to: ALL_TIME_TO }).rows,
-    );
-    const rg = sumWageRows(
-      computeWages({ ...baseInput, sectionId: section.id, from, to }).rows,
+    // accommodations: [] — section rows don't surface accommodation; this
+    // matches the section page's contract and skips per-section accommodation
+    // work that would otherwise be computed and discarded.
+    const totals = sumWageRows(
+      computeWages({ ...baseInput, sectionId: section.id, accommodations: [] }).rows,
     );
     return {
       id: section.id,
       name: section.name,
-      allTime: { tie: at.tie, connect: at.connect, earnings: at.earnings },
-      range: { tie: rg.tie, connect: rg.connect, earnings: rg.earnings },
+      tie: totals.tie,
+      connect: totals.connect,
+      earnings: totals.earnings,
     };
   });
 
   return (
     <div>
-      <Link
-        href={`/wages?from=${fromStr}&to=${toStr}`}
-        className="text-sm text-accent hover:underline"
-      >
+      <Link href="/wages" className="text-sm text-accent hover:underline">
         ‹ {t("title")}
       </Link>
       <h1 className="mt-2 text-2xl font-semibold text-navy">{project.name}</h1>
@@ -137,11 +113,9 @@ export default async function AdminProjectWagePage({
       {!project.location && <div className="mb-8" />}
       <AdminProjectWageView
         projectId={project.id}
-        from={fromStr}
-        to={toStr}
         sections={sectionRows}
         workers={workerRows}
-        mixedCurrencies={projectAllTime.mixedCurrencies}
+        mixedCurrencies={projectResult.mixedCurrencies}
       />
     </div>
   );
