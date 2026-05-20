@@ -123,7 +123,9 @@
     "project": "Projekt",
     "tie": "Uviazanie",
     "connect": "Zapojenie",
-    "allTimeHelper": "Hlavná hodnota je celková za celé obdobie. Pod ňou je menšia hodnota za vybraný rozsah dátumov."
+    "allTimeHelper": "Hlavná hodnota je celková za celé obdobie. Pod ňou je menšia hodnota za vybraný rozsah dátumov.",
+    "sections": "Sekcie",
+    "workersSummary": "Súhrn po pracovníkoch"
   },
   "log": {
     "title": "Zapísať prácu",

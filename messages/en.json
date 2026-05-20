@@ -123,7 +123,9 @@
     "project": "Project",
     "tie": "Tie",
     "connect": "Connect",
-    "allTimeHelper": "All-time figures are primary. The range total is shown below in muted text."
+    "allTimeHelper": "All-time figures are primary. The range total is shown below in muted text.",
+    "sections": "Sections",
+    "workersSummary": "Per-worker summary"
   },
   "log": {
     "title": "Log work",
