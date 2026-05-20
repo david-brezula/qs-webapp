@@ -13,6 +13,9 @@ export async function GET(
   }
 
   const { projectId } = await params;
+  if (!projectId) {
+    return new NextResponse("Bad Request", { status: 400 });
+  }
   const url = new URL(req.url);
   const today = new Date().toISOString().slice(0, 10);
   const from = new Date(url.searchParams.get("from") ?? today);

@@ -27,12 +27,14 @@ export function MyWagesView({
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set());
   const [sectionCache, setSectionCache] = useState<Map<string, SectionWageRow[]>>(new Map());
   const [loadingSections, setLoadingSections] = useState<Set<string>>(new Set());
+  const [sectionErrors, setSectionErrors] = useState<Set<string>>(new Set());
 
   // When the server returns a new result (date range changed), discard cached sections.
   useEffect(() => {
     setExpandedProjects(new Set());
     setSectionCache(new Map());
     setLoadingSections(new Set());
+    setSectionErrors(new Set());
   }, [from, to]);
 
   function apply() {
@@ -52,6 +54,7 @@ export function MyWagesView({
       });
       return;
     }
+    setSectionErrors((prev) => { const next = new Set(prev); next.delete(projectId); return next; });
     setLoadingSections((prev) => new Set(prev).add(projectId));
     try {
       const qs = new URLSearchParams({ from, to });
@@ -60,6 +63,8 @@ export function MyWagesView({
       const data: { sections: SectionWageRow[] } = await res.json();
       setSectionCache((prev) => new Map(prev).set(projectId, data.sections));
       setExpandedProjects((prev) => new Set(prev).add(projectId));
+    } catch {
+      setSectionErrors((prev) => new Set(prev).add(projectId));
     } finally {
       setLoadingSections((prev) => {
         const next = new Set(prev);
@@ -149,6 +154,14 @@ export function MyWagesView({
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.accommodation.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.wage.toFixed(2)}</td>
                   </tr>
+                  {sectionErrors.has(p.projectId) && (
+                    <tr>
+                      <td />
+                      <td colSpan={6} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
+                        {t("loadError")}
+                      </td>
+                    </tr>
+                  )}
                   {expandedProjects.has(p.projectId) && (
                     <WorkerSectionBreakdown sections={sectionCache.get(p.projectId) ?? []} />
                   )}

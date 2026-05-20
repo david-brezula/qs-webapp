@@ -125,7 +125,8 @@
     "connect": "Zapojenie",
     "sections": "Sekcie",
     "workersSummary": "Súhrn po pracovníkoch",
-    "noSections": "Zatiaľ žiadne sekcie."
+    "noSections": "Zatiaľ žiadne sekcie.",
+    "loadError": "Nepodarilo sa načítať sekcie. Kliknite pre zopakovanie."
   },
   "log": {
     "title": "Zapísať prácu",

@@ -125,7 +125,8 @@
     "connect": "Connect",
     "sections": "Sections",
     "workersSummary": "Per-worker summary",
-    "noSections": "No sections yet."
+    "noSections": "No sections yet.",
+    "loadError": "Failed to load sections. Click to retry."
   },
   "log": {
     "title": "Log work",
