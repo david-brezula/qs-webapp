@@ -113,7 +113,6 @@
     "projectFilter": "Projekt (voliteľné)",
     "all": "Všetky projekty",
     "calculate": "Vypočítať",
-    "exportCsv": "Exportovať CSV",
     "earnings": "Zárobok",
     "accommodation": "Ubytovanie",
     "wage": "Mzda",
@@ -124,7 +123,6 @@
     "project": "Projekt",
     "tie": "Uviazanie",
     "connect": "Zapojenie",
-    "allTimeHelper": "Hlavná hodnota je celková za celé obdobie. Pod ňou je menšia hodnota za vybraný rozsah dátumov.",
     "sections": "Sekcie",
     "workersSummary": "Súhrn po pracovníkoch",
     "noSections": "Zatiaľ žiadne sekcie."

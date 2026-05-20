@@ -113,7 +113,6 @@
     "projectFilter": "Project (optional)",
     "all": "All projects",
     "calculate": "Calculate",
-    "exportCsv": "Export CSV",
     "earnings": "Earnings",
     "accommodation": "Accommodation",
     "wage": "Wage",
@@ -124,7 +123,6 @@
     "project": "Project",
     "tie": "Tie",
     "connect": "Connect",
-    "allTimeHelper": "All-time figures are primary. The range total is shown below in muted text.",
     "sections": "Sections",
     "workersSummary": "Per-worker summary",
     "noSections": "No sections yet."
