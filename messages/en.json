@@ -125,7 +125,8 @@
     "connect": "Connect",
     "allTimeHelper": "All-time figures are primary. The range total is shown below in muted text.",
     "sections": "Sections",
-    "workersSummary": "Per-worker summary"
+    "workersSummary": "Per-worker summary",
+    "noSections": "No sections yet."
   },
   "log": {
     "title": "Log work",

@@ -68,7 +68,7 @@ export function AdminProjectWageView({
       <h2 className="text-lg font-semibold text-navy mt-6 mb-3">{t("sections")}</h2>
       <DataTable
         headers={[tProjects("section"), t("tie"), t("connect"), t("earnings")]}
-        empty={tProjects("noProjects")}
+        empty={t("noSections")}
         rows={sections.map((s) => [
           <Link
             key={s.id}
