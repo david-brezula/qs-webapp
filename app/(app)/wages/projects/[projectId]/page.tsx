@@ -86,7 +86,12 @@ export default async function AdminProjectWagePage({
   // section runs one full scan of the activity array; acceptable at current
   // scale, pre-group by sectionId if sections grow.
   const sectionRows = project.sections.map((section) => {
-    const totals = sumWageRows(computeWages({ ...baseInput, sectionId: section.id }).rows);
+    // accommodations: [] — section rows don't surface accommodation; this
+    // matches the section page's contract and skips per-section accommodation
+    // work that would otherwise be computed and discarded.
+    const totals = sumWageRows(
+      computeWages({ ...baseInput, sectionId: section.id, accommodations: [] }).rows,
+    );
     return {
       id: section.id,
       name: section.name,
