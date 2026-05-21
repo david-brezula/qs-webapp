@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { LocaleToggle } from "@/components/portal/LocaleToggle";
 import { ChangePasswordForm } from "./ChangePasswordForm";
@@ -18,7 +18,7 @@ export default async function ChangePasswordPage() {
 
   const t = await getTranslations("changePassword");
   const tCommon = await getTranslations("common");
-  const cookieLocale = (user.language.toLowerCase() ?? "en") as "en" | "sk";
+  const locale = (await getLocale()) as "en" | "sk";
 
   async function doSignOut() {
     "use server";
@@ -42,7 +42,7 @@ export default async function ChangePasswordPage() {
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <LocaleToggle current={cookieLocale} />
+          <LocaleToggle current={locale} />
           <form action={doSignOut}>
             <button className="text-sm text-slate-ink hover:text-navy" type="submit">
               {tCommon("cancel")}

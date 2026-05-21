@@ -39,7 +39,7 @@ export default async function PortalLayout({
           <TopBar
             name={fresh.name}
             email={user.username}
-            language={(user.language?.toLowerCase() ?? "en") as "en" | "sk"}
+            language={locale as "en" | "sk"}
             role={user.role}
             signOutAction={doSignOut}
           />
