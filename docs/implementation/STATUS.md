@@ -286,3 +286,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - **Dependency:** full DB persistence + DB-based login redirect activate once `add_user_locale` is applied (DEPLOYMENT.md step 0 / Task 06). Until then it degrades gracefully to URL/cookie locale.
 
 ---
+
+### Task 21: localized 404 + analytics — ✅ Done (2026-05-22)
+- Branch: `feat/21-not-found`
+- Files: new `app/[locale]/not-found.tsx`, new `app/[locale]/[...rest]/page.tsx`, `messages/sk.json` (notFound)
+- Build: ✅ (one transient `next/font` Google-Fonts fetch failure on a retry — re-ran clean) / Lint: ✅ (no new) / Runtime: ✅
+- Notes:
+  - `[locale]/not-found.tsx` renders a localized 404 (`notFound.*`). Added `[locale]/[...rest]/page.tsx` catch-all that `setRequestLocale` + `notFound()` so unmatched paths render the 404 **within** the locale provider context (next-intl gotcha — without it translations don't resolve). Verified: `/sk/does-not-exist` → 404 "Stránka sa nenašla"; `/de/nope` → "Seite nicht gefunden". Valid pages unaffected (/sk, /sk/solarne-elektrarne → 200).
+  - Filled SK `notFound` (en/de/fr/sv already done in Tasks 15/16).
+  - **Analytics intentionally skipped** — no `posthog-js` (or any analytics) in `package.json`. Per plan, left as a follow-up rather than wiring a new dependency.
+- Follow-up (David): add analytics (e.g. PostHog/Plausible/Vercel Analytics) if desired — page views with `locale`, service CTA clicks, contact submit.
+
+---

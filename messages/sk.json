@@ -552,9 +552,9 @@
     }
   },
   "notFound": {
-    "title": "...",
-    "description": "...",
-    "backHome": "..."
+    "title": "Stránka sa nenašla",
+    "description": "Stránka, ktorú hľadáte, neexistuje alebo bola premenovaná.",
+    "backHome": "Späť na hlavnú"
   },
   "footer": {
     "tagline": "Stavebná spoločnosť so sídlom na Slovensku - päť remeselných odborov pod jednou strechou.",
