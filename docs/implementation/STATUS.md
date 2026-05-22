@@ -103,3 +103,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: none. Localized marketing slugs are now active site-wide.
 
 ---
+
+### Task 06: Prisma User.locale — ⚠️ Partial (2026-05-22)
+- Branch: `feat/06-user-locale`
+- Files changed: 2 (`prisma/schema.prisma`, `prisma/migrations/20260522120000_add_user_locale/migration.sql`)
+- Build: ✅ (regenerated client) / Lint: ✅ (no new problems) / `prisma generate`: ✅
+- Notes:
+  - Added `locale String @default("sk")` to `User` (plan's approach). Lowercase, matches `routing.locales`. Kept the existing `language Locale (EN|SK)` enum (deeply wired across ~32 files: auth, session, worker forms, TopBar) — did not touch it.
+  - Migration SQL written **manually** (not via `migrate dev`) and **NOT applied** — the DB is Postgres with RLS (Supabase); applying autonomously is unsafe (Rule 6). Migration backfills `locale = lower(language)` for existing users.
+- **Why Partial / David follow-up:** run `npx prisma migrate deploy` (or `migrate dev` locally) against the database to apply `20260522120000_add_user_locale`. Documented in DEPLOYMENT.md (Task 17).
+- **Design follow-up:** `language` (enum, account language, drives portal i18n + session) and `locale` (string, URL-locale preference, Task 20) now overlap. Consider consolidating to a single field later.
+
+---
