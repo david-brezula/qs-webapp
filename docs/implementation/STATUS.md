@@ -193,3 +193,16 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: en/de/fr/sv meta titles/descriptions fill in Tasks 15/16.
 
 ---
+
+### Task 13: sitemap.ts + robots.ts — ✅ Done (2026-05-22)
+- Branch: `feat/13-sitemap-robots`
+- Files: new `app/sitemap.ts`, `app/robots.ts`; edited `proxy.ts` (matcher)
+- Build: ✅ / Lint: ✅ (no new) / Runtime verify: ✅
+- Notes:
+  - `sitemap.xml` lists all 8 marketing paths × 5 locales = **40 localized URLs** (verified, 200 application/xml).
+  - `robots.txt` (verified, 200) allows all, disallows `/api/` + portal areas (`/*/dashboard`, `/projects`, `/workers`, `/accommodations`, `/wages`, `/login`, `/change-password`), references the sitemap.
+  - **Proxy matcher updated** to exclude `sitemap.xml` and `robots.txt` (otherwise the intl middleware would locale-redirect them).
+  - URLs use `NEXT_PUBLIC_SITE_URL ?? https://quantum-sphere.eu`.
+- Follow-up: none.
+
+---
