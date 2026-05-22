@@ -178,90 +178,377 @@
     "retry": "Skúsiť znova"
   },
   "home": {
-    "meta": { "title": "...", "description": "..." },
-    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
-    "services": { "title": "...", "subtitle": "..." },
-    "about": { "title": "...", "body": "..." },
-    "featuredProjects": { "title": "...", "subtitle": "..." }
+    "meta": {
+      "title": "Quantum Sphere — Stavebné práce na kľúč | Slovensko",
+      "description": "Komplexné stavebné služby v 5 remeselných odboroch: solárne elektrárne, elektroinštalácie, sadrokartón, murárske práce a montáž striech."
+    },
+    "hero": {
+      "kicker": "Stavebná spoločnosť",
+      "title": "Komplexné stavebné riešenia pod jednou strechou",
+      "subtitle": "Pokrývame celý rozsah remeselných prác od solárnych elektrární po strechy. Jedna firma, päť odborov, jeden zodpovedný partner.",
+      "ctaPrimary": "Získať cenovú ponuku",
+      "ctaSecondary": "O firme"
+    },
+    "services": {
+      "title": "Naše služby",
+      "subtitle": "Päť remeselných odborov, jeden spoľahlivý partner"
+    },
+    "about": {
+      "title": "O Quantum Sphere",
+      "body": "Sme stavebná spoločnosť so sídlom na Slovensku. Špecializujeme sa na komplexné dodávky v piatich remeselných odboroch. Pracujeme pre firemných aj individuálnych klientov a vďaka vlastným tímom v každom odbore vieme realizovať väčšinu projektov bez subdodávateľov."
+    },
+    "featuredProjects": {
+      "title": "Vybrané realizácie",
+      "subtitle": "Ukážka projektov z posledných rokov"
+    }
   },
   "services": {
     "solar": {
       "name": "Solárne elektrárne",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "tagline": "Návrh a inštalácia FVE na kľúč",
+      "meta": {
+        "title": "Solárne elektrárne na kľúč | Quantum Sphere",
+        "description": "Návrh, dodávka a montáž fotovoltických systémov. Strešné aj pozemné inštalácie pre firmy, obce a domácnosti."
+      },
+      "hero": {
+        "title": "Fotovoltické systémy pre firmy aj domácnosti",
+        "subtitle": "Od návrhu a projektovej dokumentácie cez montáž panelov, meničov a batérií až po pripojenie do distribučnej sústavy."
+      },
+      "description": "Dodávame fotovoltické elektrárne pre strechy budov, pozemné inštalácie aj agro-PV. Pracujeme s overenými komponentmi a celý proces zastrešujeme vlastným tímom — od obhliadky až po prevádzkový dohľad.",
+      "deliverables": {
+        "title": "Čo poskytujeme",
+        "items": [
+          "Obhliadka, návrh a optimalizácia systému",
+          "Projektová dokumentácia a vybavenie povolení",
+          "Dodávka FV panelov, meničov a montážnych konštrukcií",
+          "Inštalácia DC aj AC strany",
+          "Pripojenie do distribučnej sústavy",
+          "Nastavenie monitoringu a odovzdanie klientovi",
+          "Pozáručný servis a údržba"
+        ]
+      },
+      "process": {
+        "title": "Ako prebieha realizácia",
+        "steps": [
+          {
+            "title": "Bezplatná obhliadka",
+            "body": "Posúdime statiku strechy, orientáciu a tieň. Zmeriame spotrebu a navrhneme optimálny výkon."
+          },
+          {
+            "title": "Cenová ponuka a zmluva",
+            "body": "Predložíme transparentnú kalkuláciu vrátane dotácií a financovania. Po schválení uzavrieme zmluvu o dielo."
+          },
+          {
+            "title": "Projektová dokumentácia",
+            "body": "Vypracujeme realizačný projekt a vybavíme všetky potrebné súhlasy distribučnej spoločnosti."
+          },
+          {
+            "title": "Montáž a pripojenie",
+            "body": "Realizácia zvyčajne trvá 2 – 5 dní podľa veľkosti. Inštaláciu, zapojenie aj revíziu zabezpečuje náš tím."
+          },
+          {
+            "title": "Odovzdanie a servis",
+            "body": "Po pripojení do siete a nastavení monitoringu odovzdáme dielo s dokumentáciou. Poskytujeme záruku a pozáručný servis."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Certifikáty a oprávnenia"
+      },
+      "faq": {
+        "title": "Často kladené otázky",
+        "items": [
+          {
+            "q": "Za ako dlho sa investícia do FVE vráti?",
+            "a": "Pri aktuálnych cenách elektriny a vhodnom dimenzovaní je návratnosť na Slovensku najčastejšie 6 – 9 rokov. Konkrétny výpočet pripravíme po obhliadke."
+          },
+          {
+            "q": "Potrebujem batériové úložisko?",
+            "a": "Pri rodinných domoch sa batérie vyplatia, ak v lete vyrábate viac, než spotrebujete a chcete prebytok využiť večer. Pre firmy s dennou spotrebou je často efektívnejší samotný FV systém bez batérií."
+          },
+          {
+            "q": "Vybavíte aj dotácie?",
+            "a": "Áno. Vieme vás previesť žiadosťou o aktuálne dostupné dotácie (Zelená domácnostiam, Obnov dom, fondy EÚ pre firmy). Podklady vám pripravíme a komunikáciu s úradmi vieme zastrešiť."
+          }
+        ]
+      }
     },
     "electrical": {
       "name": "Elektroinštalácie",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "tagline": "Silnoprúdové a slaboprúdové rozvody",
+      "meta": {
+        "title": "Elektroinštalácie pre firmy a stavby | Quantum Sphere",
+        "description": "Kompletné silnoprúdové aj slaboprúdové elektroinštalácie pre novostavby, rekonštrukcie a priemyselné objekty."
+      },
+      "hero": {
+        "title": "Elektroinštalácie podľa noriem",
+        "subtitle": "Realizujeme silno- aj slaboprúdové rozvody, rozvádzače a inteligentné riadenie pre firemné aj rezidenčné projekty."
+      },
+      "description": "Pokrývame celú elektroinštalačnú časť stavebného projektu — od položenia káblov v štádiu hrubej stavby cez osadenie rozvádzačov až po revízie a odovzdanie. Pracujeme s revíznym technikom a všetky inštalácie sú v súlade s platnými STN normami.",
+      "deliverables": {
+        "title": "Čo poskytujeme",
+        "items": [
+          "Silnoprúdové rozvody (NN)",
+          "Slaboprúdové rozvody (dáta, EZS, EPS, CCTV)",
+          "Rozvádzače a ich osadenie",
+          "Bleskozvody a uzemnenie",
+          "LED osvetlenie a riadenie",
+          "Smart home a KNX riešenia",
+          "Východisková a periodická revízia"
+        ]
+      },
+      "process": {
+        "title": "Postup realizácie",
+        "steps": [
+          {
+            "title": "Konzultácia a obhliadka",
+            "body": "Prejdeme s vami stavebné výkresy, identifikujeme potreby a navrhneme optimálne rozmiestnenie."
+          },
+          {
+            "title": "Cenová ponuka",
+            "body": "Pripravíme detailný položkový rozpočet s jasnou špecifikáciou materiálu."
+          },
+          {
+            "title": "Hrubá inštalácia",
+            "body": "Položenie káblov, krabíc a chráničiek pred omietkami. Koordinácia s ostatnými remeslami."
+          },
+          {
+            "title": "Finálna montáž",
+            "body": "Osadenie zásuviek, vypínačov, svietidiel, rozvádzačov a koncových prvkov."
+          },
+          {
+            "title": "Revízia a odovzdanie",
+            "body": "Východisková odborná prehliadka a skúška, vyhotovenie revíznej správy a odovzdanie diela."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Oprávnenia"
+      },
+      "faq": {
+        "title": "Často kladené otázky",
+        "items": [
+          {
+            "q": "Robíte aj revízie bez realizácie inštalácie?",
+            "a": "Áno, zabezpečujeme východiskové aj periodické odborné prehliadky a skúšky pre objekty, ktoré sme nestavali."
+          },
+          {
+            "q": "Aký je rozdiel medzi silnoprúdom a slaboprúdom?",
+            "a": "Silnoprúd sú bežné 230/400 V rozvody pre spotrebiče a osvetlenie. Slaboprúd zahŕňa dátové, telefónne, kamerové, zabezpečovacie a požiarne systémy s napätím do 50 V."
+          }
+        ]
+      }
     },
     "drywall": {
       "name": "Sadrokartón",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "tagline": "Priečky, stropy a akustické riešenia",
+      "meta": {
+        "title": "Sadrokartónové práce | Quantum Sphere",
+        "description": "Sadrokartónové priečky, podhľady, akustické a protipožiarne systémy pre kancelárie, byty a komerčné priestory."
+      },
+      "hero": {
+        "title": "Sadrokartón pre kancelárie, byty aj priemysel",
+        "subtitle": "Priečky, podhľady, predsadené steny a špeciálne konštrukcie — s dôrazom na akustiku, protipožiarnu odolnosť a kvalitu detailov."
+      },
+      "description": "Realizujeme sadrokartónové konštrukcie všetkých typov — od jednoduchých priečok po viacvrstvové akustické a protipožiarne systémy. Pracujeme so systémami Knauf a Rigips podľa systémových predpisov výrobcu.",
+      "deliverables": {
+        "title": "Čo poskytujeme",
+        "items": [
+          "Sadrokartónové priečky (jedno- aj viacvrstvové)",
+          "Podhľady a kazetové stropy",
+          "Predsadené steny a obklady",
+          "Akustické riešenia s minerálnou izoláciou",
+          "Protipožiarne konštrukcie EI 30 – EI 90",
+          "Špeciálne tvary a oblúky",
+          "Príprava podkladu pre maľbu"
+        ]
+      },
+      "process": {
+        "title": "Postup realizácie",
+        "steps": [
+          {
+            "title": "Zameranie",
+            "body": "Presné zameranie priestoru a definovanie technických parametrov (akustika, požiar)."
+          },
+          {
+            "title": "Konštrukcia",
+            "body": "Montáž oceľovej podkonštrukcie podľa systémových predpisov."
+          },
+          {
+            "title": "Opláštenie",
+            "body": "Inštalácia sadrokartónových dosiek vrátane izolácií a inštalačnej výplne."
+          },
+          {
+            "title": "Tmelenie a brúsenie",
+            "body": "Stmelenie spojov a vrutových hlavičiek, prebrúsenie do hladka pre maľbu."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systémové certifikácie"
+      },
+      "faq": {
+        "title": "Často kladené otázky",
+        "items": [
+          {
+            "q": "Aká je požiarna odolnosť sadrokartónových priečok?",
+            "a": "Podľa konkrétnej skladby od EI 15 po EI 90. Konkrétnu skladbu navrhneme podľa požiadaviek projektu."
+          }
+        ]
+      }
     },
     "masonry": {
       "name": "Murárske práce",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "tagline": "Kompletné murárske remeslo",
+      "meta": {
+        "title": "Murárske práce | Quantum Sphere",
+        "description": "Hrubé aj dokončovacie murárske práce pre novostavby a rekonštrukcie. Murovanie, omietky, betonáže, obklady a dlažby."
+      },
+      "hero": {
+        "title": "Murárske práce pre stavbu aj rekonštrukciu",
+        "subtitle": "Pokrývame celý rozsah murárskeho remesla od základov po finálne omietky a obklady."
+      },
+      "description": "Realizujeme murárske práce v kvalite zodpovedajúcej moderným stavebným nárokom. Spolupracujeme s renomovanými dodávateľmi stavebných materiálov a všetky práce realizuje vlastný stabilný tím.",
+      "deliverables": {
+        "title": "Čo poskytujeme",
+        "items": [
+          "Murovanie obvodových aj vnútorných stien",
+          "Betonáže (základy, dosky, schody)",
+          "Vnútorné a vonkajšie omietky",
+          "Obklady a dlažby",
+          "Sanácia vlhkého muriva",
+          "Rekonštrukcie bytových jadier",
+          "Búracie práce a likvidácia sute"
+        ]
+      },
+      "process": {
+        "title": "Postup",
+        "steps": [
+          {
+            "title": "Obhliadka a kalkulácia",
+            "body": "Posúdime rozsah, navrhneme postup a vypracujeme cenovú ponuku."
+          },
+          {
+            "title": "Príprava staveniska",
+            "body": "Zabezpečenie materiálu, ochrana susedných plôch."
+          },
+          {
+            "title": "Realizácia",
+            "body": "Práce v dohodnutom harmonograme s priebežnou kontrolou kvality."
+          },
+          {
+            "title": "Odovzdanie",
+            "body": "Vyčistenie staveniska, odovzdanie diela a fakturácia."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Skúsenosti"
+      },
+      "faq": {
+        "title": "Často kladené otázky",
+        "items": [
+          {
+            "q": "Robíte aj menšie rekonštrukcie?",
+            "a": "Áno. Realizujeme rekonštrukcie bytových jadier, kúpeľní aj menšie murárske úpravy."
+          }
+        ]
+      }
     },
     "roofing": {
       "name": "Montáž striech",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "tagline": "Šikmé aj ploché strešné systémy",
+      "meta": {
+        "title": "Montáž striech | Quantum Sphere",
+        "description": "Kompletné dodávky striech — šikmé strechy s pálenou aj plechovou krytinou, ploché strechy s fóliovou hydroizoláciou, klampiarske práce."
+      },
+      "hero": {
+        "title": "Strechy s dôrazom na detail",
+        "subtitle": "Šikmé strechy, ploché strechy, výmena krytiny aj klampiarske práce. Pracujeme so systémami Bramac, Tondach, Lindab a Sarnafil."
+      },
+      "description": "Realizujeme strechy nových objektov aj rekonštrukcie. Pri každej streche dbáme na správnu skladbu, odvetranie a kvalitné klampiarske detaily, ktoré rozhodujú o životnosti diela.",
+      "deliverables": {
+        "title": "Čo poskytujeme",
+        "items": [
+          "Šikmé strechy s pálenou alebo betónovou krytinou",
+          "Plechové strešné krytiny",
+          "Ploché strechy s fóliovou hydroizoláciou",
+          "Výmena starej krytiny",
+          "Klampiarske práce (žľaby, oplechovania)",
+          "Strešné okná Velux a Fakro",
+          "Tepelná izolácia podkrovia"
+        ]
+      },
+      "process": {
+        "title": "Postup",
+        "steps": [
+          {
+            "title": "Obhliadka strechy",
+            "body": "Posúdime stav konštrukcie a krytiny, navrhneme optimálne riešenie."
+          },
+          {
+            "title": "Projekt a cenová ponuka",
+            "body": "Detailný rozpočet s konkrétnou skladbou strechy."
+          },
+          {
+            "title": "Demontáž starej krytiny",
+            "body": "Pri rekonštrukciách bezpečné odstránenie a likvidácia starej krytiny."
+          },
+          {
+            "title": "Položenie novej skladby",
+            "body": "Paropriepustná fólia, kontralaty, latovanie, krytina, klampiarske detaily."
+          },
+          {
+            "title": "Záruka",
+            "body": "Záruka na práce 5 rokov, na materiály podľa výrobcu."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systémové školenia"
+      },
+      "faq": {
+        "title": "Často kladené otázky",
+        "items": [
+          {
+            "q": "Aká je životnosť pálenej krytiny?",
+            "a": "Pri kvalitnej montáži a údržbe 60 – 100 rokov. Klampiarske prvky majú kratšiu životnosť (20 – 40 rokov), preto ich rátame samostatne."
+          },
+          {
+            "q": "Kedy je vhodnejšia plochá strecha?",
+            "a": "Ploché strechy sa hodia pre kancelárske a priemyselné budovy, kde sa využíva strecha napríklad pre fotovoltiku. Pri rodinnom dome záleží na architektonickej koncepcii."
+          }
+        ]
+      }
     }
   },
   "about": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "body": "..."
+    "meta": {
+      "title": "O nás | Quantum Sphere",
+      "description": "Quantum Sphere je stavebná spoločnosť so sídlom na Slovensku. Päť remeselných odborov, jeden zodpovedný partner."
+    },
+    "title": "O Quantum Sphere",
+    "body": "Sme stavebná spoločnosť so sídlom na Slovensku, ktorá pokrýva päť kľúčových remeselných odborov pod jednou strechou. Vďaka vlastným tímom v každom odbore vieme realizovať väčšinu stavebných projektov bez subdodávateľov — to znamená rýchlejšiu komunikáciu, lepšiu koordináciu remesiel a jeden zodpovedný kontakt pre celý projekt.\n\nPracujeme pre firemných aj individuálnych klientov. Naším cieľom je byť dlhodobý partner, ktorého si zákazník zavolá na ďalšiu zákazku.\n\nPôsobíme po celom Slovensku a vybrané väčšie projekty realizujeme aj v susedných krajinách."
   },
   "contact": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "subtitle": "...",
+    "meta": {
+      "title": "Kontakt | Quantum Sphere",
+      "description": "Žiadosť o cenovú ponuku a kontaktné informácie."
+    },
+    "title": "Kontakt",
+    "subtitle": "Napíšte nám, čo plánujete. Ozveme sa do 24 hodín v pracovných dňoch.",
     "form": {
-      "name": "...",
-      "email": "...",
-      "phone": "...",
-      "company": "...",
-      "serviceType": "...",
+      "name": "Meno a priezvisko",
+      "email": "Email",
+      "phone": "Telefón",
+      "company": "Firma (voliteľné)",
+      "serviceType": "Aká služba vás zaujíma",
       "serviceSelect": "Vyberte službu",
       "serviceOther": "Iné / všeobecný dopyt",
-      "message": "...",
-      "submit": "...",
-      "success": "...",
-      "error": "..."
+      "message": "Popis projektu",
+      "submit": "Odoslať dopyt",
+      "success": "Ďakujeme, vaša správa bola odoslaná. Ozveme sa čo najskôr.",
+      "error": "Nepodarilo sa odoslať. Skúste to prosím znovu alebo nás kontaktujte e-mailom."
     }
   },
   "notFound": {
@@ -273,5 +560,6 @@
     "tagline": "Stavebná spoločnosť so sídlom na Slovensku - päť remeselných odborov pod jednou strechou.",
     "company": "Spoločnosť",
     "rights": "Všetky práva vyhradené."
-  }
+  },
+  "_TODO": "Content drafted by AI — review with David before launch"
 }

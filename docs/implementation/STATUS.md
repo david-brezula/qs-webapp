@@ -168,3 +168,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: Task 11 fills SK home/services/about/contact copy; visual screenshot review best done after Task 11.
 
 ---
+
+### Task 11: Slovak content (messages/sk.json) — ✅ Done (2026-05-22)
+- Branch: `feat/11-sk-content`
+- Files: `messages/sk.json`
+- Build: ✅ / Lint: ✅ (no new) / JSON valid (all 5) / Visual QA: ✅ (screenshotted /sk + /sk/solarne-elektrarne)
+- Notes:
+  - Filled SK `home`, `services.*` (tagline/meta/hero/description/deliverables/process/certifications/faq), `about`, `contact` from the plan's content via **deep-merge** (temp file) — preserved existing `common`/`nav`/`footer`/portal namespaces + `services.*.name` + `serviceSelect`/`serviceOther`. Added root `_TODO` (native review marker, Rule 4).
+  - sk.json reformatted to 2-space indent by the merge (cosmetic; en/de/fr/sv reformat similarly when filled in 15/16).
+  - **Visual QA confirmed** the rebrand renders cleanly: homepage (hero, 5-card services grid, about teaser, footer) and the solar ServicePage (hero, deliverables, numbered process, FAQ, dark CTA band) look polished and on-brand.
+- Follow-up: native-speaker review of SK copy before launch; Tasks 15/16 fill en/de/fr/sv.
+
+---
