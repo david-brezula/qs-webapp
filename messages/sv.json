@@ -1,4 +1,6 @@
 {
+  "_TODO": "AI scaffold - SV marketing strings are placeholders (filled in Task 16); native review required before launch",
+  "_TODO_PORTAL_TRANSLATIONS": true,
   "common": {
     "appName": "Quantum Sphere Portal",
     "siteName": "Quantum Sphere",

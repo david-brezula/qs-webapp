@@ -1,11 +1,13 @@
 {
   "common": {
     "appName": "Quantum Sphere Portál",
+    "siteName": "Quantum Sphere",
     "save": "Uložiť",
     "cancel": "Zrušiť",
     "delete": "Vymazať",
     "edit": "Upraviť",
     "back": "Späť",
+    "next": "Ďalej",
     "create": "Vytvoriť",
     "submit": "Odoslať",
     "loading": "Načítava sa...",
@@ -28,7 +30,11 @@
     "active": "Aktívny",
     "closed": "Uzavretý",
     "saveError": "Uloženie zlyhalo. Skúste to znova.",
-    "deleteError": "Vymazanie zlyhalo. Skúste to znova."
+    "deleteError": "Vymazanie zlyhalo. Skúste to znova.",
+    "skipToContent": "Preskočiť na obsah",
+    "menu": "Menu",
+    "close": "Zavrieť",
+    "errorGeneric": "Nastala chyba, skúste to znovu."
   },
   "login": {
     "title": "Prihlásenie",
@@ -42,7 +48,12 @@
     "workers": "Pracovníci",
     "accommodations": "Ubytovanie",
     "wages": "Mzdy",
-    "signOut": "Odhlásiť sa"
+    "signOut": "Odhlásiť sa",
+    "home": "Domov",
+    "services": "Služby",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "portal": "Prihlásiť sa"
   },
   "projects": {
     "list": "Projekty",
@@ -165,5 +176,95 @@
     "title": "Niečo sa pokazilo",
     "message": "Vyskytla sa neočakávaná chyba. Skúste to znova alebo kontaktujte podporu.",
     "retry": "Skúsiť znova"
+  },
+  "home": {
+    "meta": { "title": "...", "description": "..." },
+    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
+    "services": { "title": "...", "subtitle": "..." },
+    "about": { "title": "...", "body": "..." },
+    "featuredProjects": { "title": "...", "subtitle": "..." }
+  },
+  "services": {
+    "solar": {
+      "name": "Solárne elektrárne",
+      "tagline": "...",
+      "meta": { "title": "...", "description": "..." },
+      "hero": { "title": "...", "subtitle": "..." },
+      "description": "...",
+      "deliverables": { "title": "...", "items": [] },
+      "process": { "title": "...", "steps": [] },
+      "certifications": { "title": "..." },
+      "faq": { "title": "...", "items": [] }
+    },
+    "electrical": {
+      "name": "Elektroinštalácie",
+      "tagline": "...",
+      "meta": { "title": "...", "description": "..." },
+      "hero": { "title": "...", "subtitle": "..." },
+      "description": "...",
+      "deliverables": { "title": "...", "items": [] },
+      "process": { "title": "...", "steps": [] },
+      "certifications": { "title": "..." },
+      "faq": { "title": "...", "items": [] }
+    },
+    "drywall": {
+      "name": "Sadrokartón",
+      "tagline": "...",
+      "meta": { "title": "...", "description": "..." },
+      "hero": { "title": "...", "subtitle": "..." },
+      "description": "...",
+      "deliverables": { "title": "...", "items": [] },
+      "process": { "title": "...", "steps": [] },
+      "certifications": { "title": "..." },
+      "faq": { "title": "...", "items": [] }
+    },
+    "masonry": {
+      "name": "Murárske práce",
+      "tagline": "...",
+      "meta": { "title": "...", "description": "..." },
+      "hero": { "title": "...", "subtitle": "..." },
+      "description": "...",
+      "deliverables": { "title": "...", "items": [] },
+      "process": { "title": "...", "steps": [] },
+      "certifications": { "title": "..." },
+      "faq": { "title": "...", "items": [] }
+    },
+    "roofing": {
+      "name": "Montáž striech",
+      "tagline": "...",
+      "meta": { "title": "...", "description": "..." },
+      "hero": { "title": "...", "subtitle": "..." },
+      "description": "...",
+      "deliverables": { "title": "...", "items": [] },
+      "process": { "title": "...", "steps": [] },
+      "certifications": { "title": "..." },
+      "faq": { "title": "...", "items": [] }
+    }
+  },
+  "about": {
+    "meta": { "title": "...", "description": "..." },
+    "title": "...",
+    "body": "..."
+  },
+  "contact": {
+    "meta": { "title": "...", "description": "..." },
+    "title": "...",
+    "subtitle": "...",
+    "form": {
+      "name": "...",
+      "email": "...",
+      "phone": "...",
+      "company": "...",
+      "serviceType": "...",
+      "message": "...",
+      "submit": "...",
+      "success": "...",
+      "error": "..."
+    }
+  },
+  "notFound": {
+    "title": "...",
+    "description": "...",
+    "backHome": "..."
   }
 }

@@ -49,3 +49,17 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
   - `config.ts` still defaults to `en` while `routing.ts` defaults to `sk` — reconcile in Task 20.
 
 ---
+
+### Task 02: messages skeleton (5 locales) — ✅ Done (2026-05-22)
+- Branch: `feat/02-messages`
+- Files changed: 5 (`messages/{sk,en,de,fr,sv}.json`)
+- Build: ✅ / Lint: ✅ (no new problems) / JSON valid: ✅ / Schema: 259 identical key paths across all 5 locales
+- Notes (deviation from plan's Task 02 schema, per Rule 1):
+  - **Preserved** existing top-level PORTAL namespaces (`common, login, nav, projects, workers, changePassword, accommodations, wages, log, errors, error`) instead of nesting portal under `portal.*`. The portal was already fully i18n'd — so the plan's Task 19 ("wrap hardcoded portal strings") is largely pre-done; it becomes "ensure 5 locales".
+  - **Added** marketing namespaces: `home, services, about, contact, notFound`. Extended shared `nav` (added home/services/about/contact/portal) and `common` (added siteName/skipToContent/menu/close/errorGeneric/next) — no key-name collisions with portal keys.
+  - SK: real Slovak for portal + marketing `nav`/`common` additions + `services.*.name`. Marketing bodies = `"..."` (Task 11).
+  - EN: real English portal; marketing translatable = `"..."` (Task 15).
+  - DE/FR/SV: portal namespaces seeded with **English** (working fallback — avoids broken portal UI, since next-intl does not auto-fallback to default locale and `User.language` is only EN/SK). Marketing = `"..."` (Task 16). Tagged `_TODO` + `_TODO_PORTAL_TRANSLATIONS`.
+- Follow-up: Task 11/15/16 fill `"..."` placeholders. Portal DE/FR/SV stays English until a future portal-translation pass (was plan Task 19 follow-up).
+
+---
