@@ -91,3 +91,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: Task 05 (proxy), Task 07/09/10 (marketing link conversion), domain confirmation.
 
 ---
+
+### Task 05: rewrite proxy.ts (locale + auth) — ✅ Done (2026-05-22)
+- Branch: `feat/05-proxy`
+- Files changed: 1 (`proxy.ts`)
+- Build: ✅ / Lint: ✅ (no new problems) / Runtime smoke test: ✅
+- Notes:
+  - Combined next-intl `createMiddleware(routing)` (default export, verified in `node_modules/next-intl/dist/types/middleware/middleware.d.ts`) with the existing auth gate (`getToken`, admin-only prefixes, worker exceptions for `/projects/[id]/log` and `/wages`).
+  - Adapted plan: import from `./lib/i18n/routing`; added `/change-password` to protected `PORTAL_PATHS`.
+  - Runtime smoke test (prod server) all pass: `/`→307 `/sk`; `/sk`→200; `/sk/login`→200; `/sk/dashboard` (no auth)→307 `/sk/login?from=…`; `/sk/solarne-elektrarne`→200 (localized SK slug live); `/en/solar-power-plants`→200; `/sk/solar`→307→`/sk/solarne-elektrarne` (canonicalizes to localized slug).
+- Follow-up: none. Localized marketing slugs are now active site-wide.
+
+---
