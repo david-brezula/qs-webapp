@@ -155,3 +155,16 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Minor follow-up: Zod validation messages are still English (server-side); could be localized later.
 
 ---
+
+### Task 10: marketing homepage + solar cleanup — ✅ Done (2026-05-22)
+- Branch: `feat/10-homepage`
+- Files: new `components/marketing/{MainHero,ServicesGrid,ServiceCard,AboutTeaser}.tsx`, rewrote `app/[locale]/(marketing)/page.tsx`; **deleted** `components/Nav.tsx`, `components/Footer.tsx`, `components/sections/*` (10 files); trimmed `lib/content.ts` to just `FOOTER`.
+- Build: ✅ / Lint: ✅ (4 problems = baseline, no new) / SSR check: ✅ (/sk 200, all 5 service cards render, no errors)
+- Notes:
+  - Homepage = `MainHero` (kicker/title/subtitle + 2 CTAs, blueprint-grid backdrop) + `ServicesGrid` (5 `ServiceCard`s from `lib/services.ts`, uses `SectionHeading`) + `AboutTeaser`. All locale-aware.
+  - **Cleanup:** removed the orphaned solar marketing code (only referenced by itself after the homepage rebrand). `lib/content.ts` trimmed to company contact details used by `MarketingFooter`.
+  - Skipped `home.featuredProjects` section — no real project data (Rule 3, don't invent). Keys remain in messages, unused for now.
+  - Content placeholders: SK home copy (`home.*`) still `"..."` until Task 11; en/de/fr/sv until 15/16.
+- Follow-up: Task 11 fills SK home/services/about/contact copy; visual screenshot review best done after Task 11.
+
+---
