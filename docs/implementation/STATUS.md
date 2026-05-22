@@ -180,3 +180,16 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: native-speaker review of SK copy before launch; Tasks 15/16 fill en/de/fr/sv.
 
 ---
+
+### Task 12: SEO metadata + hreflang — ✅ Done (2026-05-22)
+- Branch: `feat/12-seo`
+- Files: new `lib/seo.ts`, `generateMetadata` on home + 5 service pages + about; contact split into server `page.tsx` (metadata) + client `ContactForm.tsx`
+- Build: ✅ / Lint: ✅ (no new) / Runtime verify: ✅
+- Notes:
+  - `lib/seo.ts` `alternatesForPathname()` builds the hreflang `languages` map + `canonical` from `routing.pathnames` (localized slugs).
+  - Each marketing page's `generateMetadata` uses `getTranslations({locale, namespace})` + `title:{absolute:…}` (meta titles already include the brand, so absolute avoids double-branding) + description + alternates.
+  - **Contact refactor:** client form moved to `ContactForm.tsx`; `page.tsx` is now a server component (required to export `generateMetadata`).
+  - Verified rendered `<head>` for `/sk/solarne-elektrarne`: branded `<title>`, description, `<link rel=canonical href=https://quantum-sphere.eu/sk/solarne-elektrarne>`, and 5 `rel="alternate"` hreflang links.
+- Follow-up: en/de/fr/sv meta titles/descriptions fill in Tasks 15/16.
+
+---

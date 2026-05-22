@@ -1,5 +1,20 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ServicePage } from "@/components/marketing/ServicePage";
+import { alternatesForPathname } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "services.solar.meta" });
+  return {
+    title: { absolute: t("title") },
+    description: t("description"),
+    alternates: alternatesForPathname("/solar"),
+  };
+}
 
 export default async function SolarLanding({
   params,
