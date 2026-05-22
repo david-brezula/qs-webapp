@@ -219,3 +219,14 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: none (about/contact reuse the homepage OG via the layout default).
 
 ---
+
+### Task 15: English translation (messages/en.json) — ✅ Done (2026-05-22)
+- Branch: `feat/15-en-content`
+- Files: `messages/en.json`
+- Build: ✅ / Lint: ✅ (no new) / JSON valid / 0 remaining `"..."`
+- Notes:
+  - Translated all marketing copy SK→EN (British English, B2B construction tone): home, services ×5 (incl. names, taglines, deliverables/process/faq arrays), about, contact, plus nav/common marketing keys, footer, and notFound. Deep-merged (preserved EN portal namespaces). Root `_TODO` native-review marker.
+  - Kept parallel to SK; did not invent market-specific facts (Rule 4).
+- Follow-up: native-speaker review before launch. Task 16 translates EN→DE/FR/SV.
+
+---

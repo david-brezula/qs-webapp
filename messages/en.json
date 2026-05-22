@@ -7,7 +7,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "back": "Back",
-    "next": "...",
+    "next": "Next",
     "create": "Create",
     "submit": "Submit",
     "loading": "Loading...",
@@ -31,10 +31,10 @@
     "closed": "Closed",
     "saveError": "Failed to save. Please try again.",
     "deleteError": "Failed to delete. Please try again.",
-    "skipToContent": "...",
-    "menu": "...",
-    "close": "...",
-    "errorGeneric": "..."
+    "skipToContent": "Skip to content",
+    "menu": "Menu",
+    "close": "Close",
+    "errorGeneric": "Something went wrong, please try again."
   },
   "login": {
     "title": "Sign in",
@@ -49,11 +49,11 @@
     "accommodations": "Accommodations",
     "wages": "Wages",
     "signOut": "Sign out",
-    "home": "...",
-    "services": "...",
-    "about": "...",
-    "contact": "...",
-    "portal": "..."
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "portal": "Sign in"
   },
   "projects": {
     "list": "Projects",
@@ -178,100 +178,388 @@
     "retry": "Try again"
   },
   "home": {
-    "meta": { "title": "...", "description": "..." },
-    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
-    "services": { "title": "...", "subtitle": "..." },
-    "about": { "title": "...", "body": "..." },
-    "featuredProjects": { "title": "...", "subtitle": "..." }
+    "meta": {
+      "title": "Quantum Sphere — Turnkey construction works | Slovakia",
+      "description": "Comprehensive construction services across five trades: solar power plants, electrical installations, drywall, masonry and roof installation."
+    },
+    "hero": {
+      "kicker": "Construction company",
+      "title": "Complete construction solutions under one roof",
+      "subtitle": "We cover the full range of trades, from solar power plants to roofing. One company, five trades, one accountable partner.",
+      "ctaPrimary": "Get a quote",
+      "ctaSecondary": "About us"
+    },
+    "services": {
+      "title": "Our services",
+      "subtitle": "Five trades, one reliable partner"
+    },
+    "about": {
+      "title": "About Quantum Sphere",
+      "body": "We are a construction company based in Slovakia. We specialise in comprehensive delivery across five trades. We work for both business and private clients, and thanks to our own teams in every trade we can carry out most projects without subcontractors."
+    },
+    "featuredProjects": {
+      "title": "Selected projects",
+      "subtitle": "A sample of projects from recent years"
+    }
   },
   "services": {
     "solar": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Solar power plants",
+      "tagline": "Turnkey design and installation of PV systems",
+      "meta": {
+        "title": "Turnkey solar power plants | Quantum Sphere",
+        "description": "Design, supply and installation of photovoltaic systems. Rooftop and ground-mount installations for businesses, municipalities and homes."
+      },
+      "hero": {
+        "title": "Photovoltaic systems for businesses and homes",
+        "subtitle": "From design and project documentation through mounting panels, inverters and batteries to connection to the distribution grid."
+      },
+      "description": "We deliver photovoltaic power plants for building roofs, ground-mount installations and agri-PV. We work with proven components and manage the whole process with our own team — from the site survey to operational monitoring.",
+      "deliverables": {
+        "title": "What we provide",
+        "items": [
+          "Site survey, system design and optimisation",
+          "Project documentation and permitting",
+          "Supply of PV panels, inverters and mounting structures",
+          "DC and AC side installation",
+          "Connection to the distribution grid",
+          "Monitoring setup and handover to the client",
+          "Post-warranty service and maintenance"
+        ]
+      },
+      "process": {
+        "title": "How a project runs",
+        "steps": [
+          {
+            "title": "Free site survey",
+            "body": "We assess the roof structure, orientation and shading. We measure consumption and propose the optimal capacity."
+          },
+          {
+            "title": "Quote and contract",
+            "body": "We present a transparent calculation including subsidies and financing. Once approved, we sign a works contract."
+          },
+          {
+            "title": "Project documentation",
+            "body": "We prepare the implementation project and arrange all the necessary approvals from the distribution company."
+          },
+          {
+            "title": "Installation and connection",
+            "body": "Installation usually takes 2–5 days depending on size. Our team handles the installation, wiring and inspection."
+          },
+          {
+            "title": "Handover and service",
+            "body": "After grid connection and monitoring setup we hand over the work with documentation. We provide a warranty and post-warranty service."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Certificates and qualifications"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "How long until a solar investment pays back?",
+            "a": "At current electricity prices and with appropriate sizing, payback in Slovakia is most often 6–9 years. We prepare a specific calculation after the site survey."
+          },
+          {
+            "q": "Do I need battery storage?",
+            "a": "For family homes, batteries pay off if you generate more than you consume in summer and want to use the surplus in the evening. For businesses with daytime consumption, a PV system without batteries is often more efficient."
+          },
+          {
+            "q": "Do you also arrange subsidies?",
+            "a": "Yes. We can guide you through applying for the currently available subsidies. We prepare the documents and can handle communication with the authorities."
+          }
+        ]
+      }
     },
     "electrical": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Electrical installations",
+      "tagline": "High- and low-voltage wiring",
+      "meta": {
+        "title": "Electrical installations for businesses and sites | Quantum Sphere",
+        "description": "Complete high- and low-voltage electrical installations for new builds, renovations and industrial buildings."
+      },
+      "hero": {
+        "title": "Electrical installations to standard",
+        "subtitle": "We deliver high- and low-voltage wiring, distribution boards and intelligent controls for commercial and residential projects."
+      },
+      "description": "We cover the entire electrical part of a construction project — from laying cables during the shell stage through fitting distribution boards to inspections and handover. We work with a certified inspection technician and all installations comply with the applicable standards.",
+      "deliverables": {
+        "title": "What we provide",
+        "items": [
+          "High-voltage wiring (LV)",
+          "Low-voltage systems (data, intruder alarm, fire alarm, CCTV)",
+          "Distribution boards and their installation",
+          "Lightning protection and earthing",
+          "LED lighting and controls",
+          "Smart home and KNX solutions",
+          "Initial and periodic inspection"
+        ]
+      },
+      "process": {
+        "title": "Project sequence",
+        "steps": [
+          {
+            "title": "Consultation and survey",
+            "body": "We go through the construction drawings with you, identify needs and propose the optimal layout."
+          },
+          {
+            "title": "Quote",
+            "body": "We prepare a detailed itemised budget with a clear material specification."
+          },
+          {
+            "title": "First-fix installation",
+            "body": "Laying cables, boxes and conduits before plastering. Coordination with the other trades."
+          },
+          {
+            "title": "Final installation",
+            "body": "Fitting sockets, switches, light fittings, distribution boards and end devices."
+          },
+          {
+            "title": "Inspection and handover",
+            "body": "Initial professional inspection and test, issuing the inspection report and handing over the work."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Qualifications"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "Do you carry out inspections without doing the installation?",
+            "a": "Yes, we provide initial and periodic professional inspections and tests for buildings we did not construct."
+          },
+          {
+            "q": "What is the difference between high and low voltage?",
+            "a": "High voltage is the usual 230/400 V wiring for appliances and lighting. Low voltage covers data, telephone, camera, security and fire systems with voltages up to 50 V."
+          }
+        ]
+      }
     },
     "drywall": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Drywall",
+      "tagline": "Partitions, ceilings and acoustic solutions",
+      "meta": {
+        "title": "Drywall works | Quantum Sphere",
+        "description": "Drywall partitions, suspended ceilings, acoustic and fire-rated systems for offices, flats and commercial spaces."
+      },
+      "hero": {
+        "title": "Drywall for offices, flats and industry",
+        "subtitle": "Partitions, ceilings, lining walls and special structures — with attention to acoustics, fire resistance and the quality of the details."
+      },
+      "description": "We build drywall structures of all kinds — from simple partitions to multi-layer acoustic and fire-rated systems. We work with Knauf and Rigips systems according to the manufacturer's system rules.",
+      "deliverables": {
+        "title": "What we provide",
+        "items": [
+          "Drywall partitions (single and multi-layer)",
+          "Suspended and cassette ceilings",
+          "Lining walls and claddings",
+          "Acoustic solutions with mineral insulation",
+          "Fire-rated structures EI 30 – EI 90",
+          "Special shapes and curves",
+          "Surface preparation for painting"
+        ]
+      },
+      "process": {
+        "title": "Project sequence",
+        "steps": [
+          {
+            "title": "Measuring",
+            "body": "Precise measuring of the space and defining the technical parameters (acoustics, fire)."
+          },
+          {
+            "title": "Framework",
+            "body": "Installing the steel substructure according to the system rules."
+          },
+          {
+            "title": "Boarding",
+            "body": "Installing the plasterboard, including insulation and service cavities."
+          },
+          {
+            "title": "Jointing and sanding",
+            "body": "Filling the joints and screw heads, sanding smooth ready for painting."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "System certifications"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "What is the fire resistance of drywall partitions?",
+            "a": "Depending on the specific build-up, from EI 15 to EI 90. We design the specific build-up to the requirements of the project."
+          }
+        ]
+      }
     },
     "masonry": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Masonry",
+      "tagline": "Complete masonry trade",
+      "meta": {
+        "title": "Masonry works | Quantum Sphere",
+        "description": "Structural and finishing masonry for new builds and renovations. Bricklaying, plastering, concreting, tiling and paving."
+      },
+      "hero": {
+        "title": "Masonry for new builds and renovations",
+        "subtitle": "We cover the full range of the masonry trade, from foundations to final plaster and tiling."
+      },
+      "description": "We carry out masonry work to a quality that matches modern building demands. We work with reputable suppliers of building materials and all work is done by our own stable team.",
+      "deliverables": {
+        "title": "What we provide",
+        "items": [
+          "Bricklaying of external and internal walls",
+          "Concreting (foundations, slabs, stairs)",
+          "Internal and external plaster",
+          "Tiling and paving",
+          "Remediation of damp masonry",
+          "Renovation of bathroom cores",
+          "Demolition and waste removal"
+        ]
+      },
+      "process": {
+        "title": "Sequence",
+        "steps": [
+          {
+            "title": "Survey and costing",
+            "body": "We assess the scope, propose the approach and prepare a quote."
+          },
+          {
+            "title": "Site preparation",
+            "body": "Securing materials and protecting adjacent surfaces."
+          },
+          {
+            "title": "Execution",
+            "body": "Work to the agreed schedule with ongoing quality control."
+          },
+          {
+            "title": "Handover",
+            "body": "Cleaning the site, handing over the work and invoicing."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Experience"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "Do you also do smaller renovations?",
+            "a": "Yes. We carry out renovations of bathroom cores, bathrooms and smaller masonry alterations."
+          }
+        ]
+      }
     },
     "roofing": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Roof installation",
+      "tagline": "Pitched and flat roof systems",
+      "meta": {
+        "title": "Roof installation | Quantum Sphere",
+        "description": "Complete roof deliveries — pitched roofs with clay or metal tiles, flat roofs with membrane waterproofing, sheet-metal work."
+      },
+      "hero": {
+        "title": "Roofs with attention to detail",
+        "subtitle": "Pitched roofs, flat roofs, re-covering and sheet-metal work. We work with Bramac, Tondach, Lindab and Sarnafil systems."
+      },
+      "description": "We build roofs for new buildings and renovations. On every roof we focus on the correct build-up, ventilation and quality sheet-metal details, which determine the lifespan of the work.",
+      "deliverables": {
+        "title": "What we provide",
+        "items": [
+          "Pitched roofs with clay or concrete tiles",
+          "Metal roof coverings",
+          "Flat roofs with membrane waterproofing",
+          "Replacement of old coverings",
+          "Sheet-metal work (gutters, flashings)",
+          "Velux and Fakro roof windows",
+          "Loft thermal insulation"
+        ]
+      },
+      "process": {
+        "title": "Sequence",
+        "steps": [
+          {
+            "title": "Roof survey",
+            "body": "We assess the condition of the structure and covering and propose the optimal solution."
+          },
+          {
+            "title": "Design and quote",
+            "body": "A detailed budget with the specific roof build-up."
+          },
+          {
+            "title": "Stripping the old covering",
+            "body": "For renovations, safe removal and disposal of the old covering."
+          },
+          {
+            "title": "Laying the new build-up",
+            "body": "Breathable membrane, counter-battens, battens, covering and sheet-metal details."
+          },
+          {
+            "title": "Warranty",
+            "body": "A 5-year warranty on the work; on materials according to the manufacturer."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "System training"
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "What is the lifespan of clay tiles?",
+            "a": "With quality installation and maintenance, 60–100 years. Sheet-metal elements have a shorter lifespan (20–40 years), so we account for them separately."
+          },
+          {
+            "q": "When is a flat roof more suitable?",
+            "a": "Flat roofs suit office and industrial buildings where the roof is used, for example for photovoltaics. For a family home it depends on the architectural concept."
+          }
+        ]
+      }
     }
   },
   "about": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "body": "..."
+    "meta": {
+      "title": "About us | Quantum Sphere",
+      "description": "Quantum Sphere is a construction company based in Slovakia. Five trades, one accountable partner."
+    },
+    "title": "About Quantum Sphere",
+    "body": "We are a construction company based in Slovakia covering five key trades under one roof. Thanks to our own teams in every trade we can carry out most construction projects without subcontractors — which means faster communication, better coordination of the trades and one accountable contact for the whole project.\n\nWe work for both business and private clients. Our goal is to be a long-term partner the client calls back for the next job.\n\nWe operate across Slovakia and carry out selected larger projects in neighbouring countries too."
   },
   "contact": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "subtitle": "...",
+    "meta": {
+      "title": "Contact | Quantum Sphere",
+      "description": "Request a quote and contact details."
+    },
+    "title": "Contact",
+    "subtitle": "Tell us what you are planning. We will get back to you within 24 hours on working days.",
     "form": {
-      "name": "...",
-      "email": "...",
-      "phone": "...",
-      "company": "...",
-      "serviceType": "...",
-      "serviceSelect": "...",
-      "serviceOther": "...",
-      "message": "...",
-      "submit": "...",
-      "success": "...",
-      "error": "..."
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company (optional)",
+      "serviceType": "Which service are you interested in",
+      "serviceSelect": "Select a service",
+      "serviceOther": "Other / general enquiry",
+      "message": "Project description",
+      "submit": "Send enquiry",
+      "success": "Thank you, your message has been sent. We will be in touch as soon as possible.",
+      "error": "Could not send. Please try again or contact us by email."
     }
   },
   "notFound": {
-    "title": "...",
-    "description": "...",
-    "backHome": "..."
+    "title": "Page not found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
   },
   "footer": {
-    "tagline": "...",
-    "company": "...",
-    "rights": "..."
-  }
+    "tagline": "A construction company based in Slovakia — five trades under one roof.",
+    "company": "Company",
+    "rights": "All rights reserved."
+  },
+  "_TODO": "AI-generated — review with a native speaker before launch"
 }
