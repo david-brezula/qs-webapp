@@ -89,7 +89,7 @@ export function MarketingFooter() {
         </div>
       </Container>
 
-      <Container className="py-6 border-t border-[var(--color-rule)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--color-mist)] font-mono">
+      <Container className="py-6 border-t border-[var(--color-rule)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-mono">
         <div>
           © {year} Quantum Sphere s.r.o. — {tf("rights")}
         </div>

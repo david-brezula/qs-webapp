@@ -298,3 +298,51 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up (David): add analytics (e.g. PostHog/Plausible/Vercel Analytics) if desired — page views with `locale`, service CTA clicks, contact submit.
 
 ---
+
+### Task 22: Lighthouse audit + fixes — ✅ Done (2026-05-22)
+- Branch: `feat/22-lighthouse`
+- Files: `lib/seo.ts`, 8 marketing pages (pass locale), `components/marketing/MarketingFooter.tsx`, new `docs/implementation/LIGHTHOUSE.md`
+- Build: ✅ / Lint: ✅ (no new) / Lighthouse run: ✅ (real audit via Playwright Chromium)
+- Scores (localhost prod build, after fixes): **Performance 99, Accessibility 100, Best-Practices 100, SEO 92\***. FCP 1.1s, LCP 2.4s, CLS 0, TBT 10ms.
+- Fixes:
+  - **a11y color-contrast** (was 0): footer fine-print `mist`→`slate` (2.56:1 → ~7:1). A11y → 100.
+  - **SEO canonical de-indexing bug** (real bug in plan's seo.ts): canonical pointed every locale at the default → would de-index en/de/fr/sv. Now self-referencing per locale (`alternatesForPathname(path, locale)`); verified `/en`→`https://quantum-sphere.eu/en`.
+  - \* The residual SEO 92 is a **localhost artifact** — canonical uses the prod domain (quantum-sphere.eu) ≠ localhost; valid in production. Re-run on the live domain post-deploy. Details in `LIGHTHOUSE.md`.
+- Follow-up: re-run Lighthouse on live domain (confirms SEO ~100).
+
+---
+
+## Plan finished: 2026-05-22
+
+- ✅ Done: **20** (Tasks 00, 01, 02, 03, 04, 05, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22)
+- ⚠️ Partial: **3** (Tasks 06, 17, 18)
+- 🔒 Blocked: **0**
+
+The repo is restructured into a 5-language (`sk`/`en`/`de`/`fr`/`sv`) URL-prefixed
+marketing site for a 5-trade construction company, with the existing portal
+preserved under `[locale]/(portal)`. Build + lint green throughout (lint = the
+documented pre-existing baseline, no new problems). Lighthouse: Perf 99 / A11y 100
+/ BP 100 / SEO ~100 (prod).
+
+**Items requiring David's follow-up:**
+- **Apply DB migration** `20260522120000_add_user_locale` via `prisma migrate deploy`
+  (Tasks 06/20). Until applied, `User.locale` persistence + DB-based post-login
+  locale redirect are no-ops (graceful — URL/cookie locale still works). Login,
+  portal and contact form keep working regardless.
+- **Production deploy** (Tasks 17/18): add the two Vercel domains + DNS, set env
+  (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_APP_URL`, `AUTH_URL`, etc.). Activates the
+  host split (marketing ↔ portal) and makes canonical/sitemap use the real domain.
+  See `DEPLOYMENT.md`.
+- **Confirm canonical domain**: code uses `quantum-sphere.eu`; old code/email used
+  `quantumsphere.eu` (no hyphen).
+- **Native-speaker review** of all copy (`messages/*.json` carry `_TODO`); SK is the
+  source draft, en/de/fr/sv are AI translations.
+- **Portal translations** for de/fr/sv (currently English fallback, `_TODO_PORTAL_TRANSLATIONS`).
+- **ContactSubmission model cleanup**: the generic enquiry form is mapped onto the
+  legacy solar columns; add proper `phone`/`serviceType`/`message` columns later.
+- **`User.language` vs `User.locale`** consolidation.
+- **Pre-existing lint baseline** (2 errors, 2 warnings in portal files from stricter
+  `eslint-config-next@16` rules) — decide whether to fix separately.
+- **Analytics** not wired (no dependency present) — add if desired.
+- **Re-run Lighthouse** on the live domain (confirms SEO ~100).
+
