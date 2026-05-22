@@ -1,4 +1,12 @@
-// Stub — real content lands in Task 09.
-export default function RoofingPage() {
-  return <div>Roofing — placeholder</div>;
+import { setRequestLocale } from "next-intl/server";
+import { ServicePage } from "@/components/marketing/ServicePage";
+
+export default async function RoofingLanding({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return <ServicePage slug="roofing" />;
 }

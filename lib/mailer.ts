@@ -1,15 +1,12 @@
 import nodemailer from "nodemailer";
 
 export async function sendContactNotification(data: {
-  company: string;
   name: string;
   email: string;
-  projectType: string;
-  sizeMW?: number | null;
-  country: string;
-  startDate?: string | null;
-  scope: string | string[];
-  notes?: string | null;
+  phone?: string | null;
+  company?: string | null;
+  serviceType: string;
+  message: string;
 }) {
   const to = process.env.CONTACT_NOTIFY_EMAIL;
   if (!to || !process.env.SMTP_HOST) return; // skip if not configured
@@ -24,23 +21,21 @@ export async function sendContactNotification(data: {
     },
   });
 
-  const scopeText = Array.isArray(data.scope) ? data.scope.join(", ") : data.scope;
-
   await transporter.sendMail({
     from: process.env.SMTP_FROM ?? process.env.SMTP_USER,
     to,
-    subject: `New contact enquiry — ${data.company}`,
+    replyTo: data.email,
+    subject: `New enquiry — ${data.serviceType}${data.company ? ` · ${data.company}` : ""}`,
     text: [
-      `Company: ${data.company}`,
-      `Contact: ${data.name} <${data.email}>`,
-      `Project type: ${data.projectType}`,
-      data.sizeMW != null ? `Size: ${data.sizeMW} MW` : null,
-      `Country: ${data.country}`,
-      data.startDate ? `Start: ${data.startDate}` : null,
-      `Scope: ${scopeText}`,
-      data.notes ? `Notes: ${data.notes}` : null,
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      data.phone ? `Phone: ${data.phone}` : null,
+      data.company ? `Company: ${data.company}` : null,
+      `Service: ${data.serviceType}`,
+      "",
+      data.message,
     ]
-      .filter(Boolean)
+      .filter((line) => line !== null)
       .join("\n"),
   });
 }

@@ -256,6 +256,8 @@
       "phone": "...",
       "company": "...",
       "serviceType": "...",
+      "serviceSelect": "Vyberte službu",
+      "serviceOther": "Iné / všeobecný dopyt",
       "message": "...",
       "submit": "...",
       "success": "...",

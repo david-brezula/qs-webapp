@@ -141,3 +141,17 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: Task 09 wires the 5 trade pages to render `<ServicePage slug=…/>`; Task 11/15/16 fill copy.
 
 ---
+
+### Task 09: trade pages + about + contact rework — ✅ Done (2026-05-22)
+- Branch: `feat/09-marketing-pages`
+- Files: 5 trade pages → `<ServicePage>`, about page (real), contact page (reworked), `lib/contact-schema.ts` + test, `lib/mailer.ts`, `app/api/contact/route.ts`, deleted `contact/thanks/`, `messages/*.json` (contact.form serviceSelect/serviceOther ×5)
+- Build: ✅ / contact-schema test: ✅ (6/6) / Lint: ✅ (4 problems = baseline−1; my test rewrite removed the old `_notes` warning; no new problems) / SSR check: ✅ (/sk/kontakt + service pages 200)
+- Notes:
+  - 5 trade pages call `setRequestLocale` + render `<ServicePage slug=…/>`. About page renders `about.title` + `about.body` (whitespace-pre-line).
+  - **Contact reworked from solar → generic construction inquiry**: fields name/email/phone/company/serviceType(5 trades + other)/message, i18n labels, inline success state (dropped separate `/thanks` route).
+  - New generic `contactSchema`; `/api/contact` **maps onto the legacy ContactSubmission columns** (projectType←serviceType, notes←message+phone, dummy sizeMW=0/country=""/scope=[]) so **no DB migration needed and the live form keeps working**. `mailer` updated to generic fields.
+  - Content placeholders: SK contact/about/service copy still `"..."` until Task 11; en/de/fr/sv until 15/16.
+- **Design follow-up (David):** clean up `ContactSubmission` model — add real `phone`/`serviceType`/`message` columns, drop solar-only ones. Left `lib/content.ts` solar constants (CONTACT_SCOPE_OPTIONS, EU_COUNTRIES) unused; removed when home sections go (Task 10).
+- Minor follow-up: Zod validation messages are still English (server-side); could be localized later.
+
+---

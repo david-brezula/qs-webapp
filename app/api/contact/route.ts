@@ -14,10 +14,7 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json(
-      { ok: false, error: "Invalid JSON" },
-      { status: 400 },
-    );
+    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
   const parsed = contactSchema.safeParse(body);
@@ -28,23 +25,34 @@ export async function POST(req: Request) {
     );
   }
 
+  const { name, email, phone, company, serviceType, message } = parsed.data;
+
+  // NOTE: the generic construction enquiry is mapped onto the legacy
+  // (solar-era) ContactSubmission columns so no DB migration is needed and the
+  // form keeps working. `projectType` holds the trade; `notes` holds the message
+  // (+ phone). Cleaning up the model (add phone/serviceType/message columns,
+  // drop the solar-only ones) is a documented follow-up.
   await prisma.contactSubmission.create({
     data: {
-      company: parsed.data.company,
-      name: parsed.data.name,
-      email: parsed.data.email,
-      projectType: parsed.data.projectType,
-      sizeMW: parsed.data.sizeMW,
-      country: parsed.data.country,
-      startDate: parsed.data.startDate,
-      scope: parsed.data.scope,
-      notes: parsed.data.notes ?? null,
+      company: company?.trim() || "—",
+      name,
+      email,
+      projectType: serviceType,
+      sizeMW: 0,
+      country: "",
+      startDate: "",
+      scope: [],
+      notes: [message, phone ? `Phone: ${phone}` : null]
+        .filter(Boolean)
+        .join("\n\n"),
     },
   });
 
-  await sendContactNotification(parsed.data).catch((err) => {
-    console.error("Contact email notification failed:", err);
-  });
+  await sendContactNotification({ name, email, phone, company, serviceType, message }).catch(
+    (err) => {
+      console.error("Contact email notification failed:", err);
+    },
+  );
 
   return NextResponse.json({ ok: true });
 }

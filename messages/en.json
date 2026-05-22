@@ -256,6 +256,8 @@
       "phone": "...",
       "company": "...",
       "serviceType": "...",
+      "serviceSelect": "...",
+      "serviceOther": "...",
       "message": "...",
       "submit": "...",
       "success": "...",

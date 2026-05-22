@@ -2,15 +2,12 @@ import { describe, it, expect } from "vitest";
 import { contactSchema } from "./contact-schema";
 
 const valid = {
-  company: "Helios Energie",
   name: "Dana Park",
   email: "dana@example.com",
-  projectType: "Ground-mount",
-  sizeMW: 12.5,
-  country: "Germany",
-  startDate: "2026-08-15",
-  scope: ["Racking & structural", "Electrical & BOS"],
-  notes: "AC interconnect ready",
+  phone: "+421 900 000 000",
+  company: "Acme s.r.o.",
+  serviceType: "roofing",
+  message: "We need a new roof on a 200 m² warehouse.",
 } as const;
 
 describe("contactSchema", () => {
@@ -19,8 +16,18 @@ describe("contactSchema", () => {
     expect(r.success).toBe(true);
   });
 
-  it("rejects when required fields are missing", () => {
-    const r = contactSchema.safeParse({ ...valid, company: "" });
+  it("accepts a payload without optional phone/company", () => {
+    const r = contactSchema.safeParse({
+      name: valid.name,
+      email: valid.email,
+      serviceType: valid.serviceType,
+      message: valid.message,
+    });
+    expect(r.success).toBe(true);
+  });
+
+  it("rejects when name is missing", () => {
+    const r = contactSchema.safeParse({ ...valid, name: "" });
     expect(r.success).toBe(false);
   });
 
@@ -29,29 +36,13 @@ describe("contactSchema", () => {
     expect(r.success).toBe(false);
   });
 
-  it("rejects sizeMW <= 0", () => {
-    const r = contactSchema.safeParse({ ...valid, sizeMW: 0 });
+  it("rejects an unknown serviceType", () => {
+    const r = contactSchema.safeParse({ ...valid, serviceType: "plumbing" });
     expect(r.success).toBe(false);
   });
 
-  it("rejects unknown projectType", () => {
-    const r = contactSchema.safeParse({ ...valid, projectType: "Wind" });
+  it("rejects an empty message", () => {
+    const r = contactSchema.safeParse({ ...valid, message: "" });
     expect(r.success).toBe(false);
-  });
-
-  it("rejects empty scope array", () => {
-    const r = contactSchema.safeParse({ ...valid, scope: [] });
-    expect(r.success).toBe(false);
-  });
-
-  it("rejects unknown country", () => {
-    const r = contactSchema.safeParse({ ...valid, country: "Atlantis" });
-    expect(r.success).toBe(false);
-  });
-
-  it("accepts payload without notes (optional)", () => {
-    const { notes: _notes, ...withoutNotes } = valid;
-    const r = contactSchema.safeParse(withoutNotes);
-    expect(r.success).toBe(true);
   });
 });
