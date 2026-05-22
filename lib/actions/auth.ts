@@ -17,7 +17,7 @@ const loginSchema = z.object({
 });
 
 export type LoginResult =
-  | { ok: true }
+  | { ok: true; locale?: string }
   | { ok: false; error: string; fieldErrors?: Record<string, string> };
 
 export async function loginAction(formData: FormData): Promise<LoginResult> {
@@ -40,7 +40,21 @@ export async function loginAction(formData: FormData): Promise<LoginResult> {
       password: parsed.data.password,
       redirect: false,
     });
-    return { ok: true };
+
+    // Best-effort: read the user's preferred locale so the client can land them
+    // on it. Swallows errors if the `locale` column isn't migrated yet.
+    let locale: string | undefined;
+    try {
+      const u = await prisma.user.findUnique({
+        where: { username: parsed.data.username },
+        select: { locale: true },
+      });
+      locale = u?.locale ?? undefined;
+    } catch {
+      // locale column not migrated — fall back to cookie/default locale.
+    }
+
+    return { ok: true, locale };
   } catch {
     return { ok: false, error: "invalid" };
   }

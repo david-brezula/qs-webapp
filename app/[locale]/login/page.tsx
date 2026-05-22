@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { LocaleToggle } from "@/components/portal/LocaleToggle";
+import { PortalLanguageSwitcher } from "@/components/portal/PortalLanguageSwitcher";
 import { loginAction } from "@/lib/actions/auth";
 
 export default function LoginPage() {
@@ -35,7 +35,7 @@ export default function LoginPage() {
             return null;
           }
         })();
-        router.push(safeFrom ?? "/dashboard");
+        router.push(safeFrom ?? (r.locale ? `/${r.locale}/dashboard` : "/dashboard"));
         router.refresh();
       } else if (r.error === "validation") {
         setErrors(r.fieldErrors ?? {});
@@ -45,13 +45,6 @@ export default function LoginPage() {
     });
   }
 
-  const cookieLocale =
-    typeof document !== "undefined"
-      ? (document.cookie.match(/(?:^|; )locale=([^;]+)/)?.[1] as
-          | "en"
-          | "sk"
-          | undefined) ?? "en"
-      : "en";
 
   return (
     <div className="min-h-screen bg-bg flex flex-col">
@@ -69,7 +62,7 @@ export default function LoginPage() {
             QUANTUM SPHERE
           </span>
         </div>
-        <LocaleToggle current={cookieLocale} />
+        <PortalLanguageSwitcher />
       </Container>
 
       <main className="flex-1 grid place-items-center px-6">

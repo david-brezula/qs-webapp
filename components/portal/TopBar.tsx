@@ -1,19 +1,17 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { LocaleToggle } from "@/components/portal/LocaleToggle";
+import { PortalLanguageSwitcher } from "@/components/portal/PortalLanguageSwitcher";
 import { MobileNav } from "@/components/portal/MobileNav";
 
 export function TopBar({
   name,
   email,
-  language,
   role,
   signOutAction,
 }: {
   name: string;
   email: string;
-  language: "en" | "sk";
   role: "ADMIN" | "WORKER";
   signOutAction: () => Promise<void>;
 }) {
@@ -29,7 +27,7 @@ export function TopBar({
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-3 md:gap-4">
-        <LocaleToggle current={language} />
+        <PortalLanguageSwitcher />
         <form action={signOutAction}>
           <button
             type="submit"

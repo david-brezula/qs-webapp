@@ -274,3 +274,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: proper de/fr/sv portal translations (post-launch, flagged). The cookie-based `LocaleToggle` is superseded by Task 20's portal switcher.
 
 ---
+
+### Task 20: user locale flow — ✅ Done (DB persistence pending migration) (2026-05-22)
+- Branch: `feat/20-user-locale`
+- Files: new `lib/actions/locale.ts`, new `components/portal/PortalLanguageSwitcher.tsx`; edited `lib/actions/auth.ts`, `components/portal/TopBar.tsx`, `(portal)/layout.tsx`, `login/page.tsx`, `change-password/page.tsx`; deleted `components/portal/LocaleToggle.tsx`
+- Build: ✅ / Lint: ✅ (no new) / Runtime: ✅ (/sk/login, /de/login 200)
+- Notes:
+  - `PortalLanguageSwitcher` (5-locale dropdown) replaces the old EN/SK `LocaleToggle` in the TopBar, login and change-password pages. It swaps the leading locale segment of the current path (works on any portal route incl. dynamic) and persists to `User.locale` via the `updateUserLocale` server action.
+  - **All DB reads/writes of `locale` are best-effort (try/catch)** so they never break login/portal before the migration is applied: `updateUserLocale` swallows failures; `loginAction` reads `user.locale` in a nested try/catch and the client redirects to `/{locale}/dashboard` (falls back to cookie/default when unavailable).
+  - Cross-session locale persistence already works via next-intl's `NEXT_LOCALE` cookie (set on navigation); the DB field adds cross-device persistence once migrated.
+- **Dependency:** full DB persistence + DB-based login redirect activate once `add_user_locale` is applied (DEPLOYMENT.md step 0 / Task 06). Until then it degrades gracefully to URL/cookie locale.
+
+---
