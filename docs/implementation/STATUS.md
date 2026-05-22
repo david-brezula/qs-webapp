@@ -230,3 +230,16 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: native-speaker review before launch. Task 16 translates EN→DE/FR/SV.
 
 ---
+
+### Task 16: German, French, Swedish translations — ✅ Done (2026-05-22)
+- Branch: `feat/16-translations`
+- Files: `messages/de.json`, `messages/fr.json`, `messages/sv.json`
+- Build: ✅ / Lint: ✅ (no new) / JSON valid / **0 remaining `"..."`, 0 missing keys vs en, 0 schema drift** (all 3)
+- Notes:
+  - Used **3 parallel subagents** (dispatching-parallel-agents skill) — one per language — to translate EN→DE/FR/SV marketing namespaces into temp files; then deep-merged each (preserving the English portal fallback namespaces). Each tagged with `_TODO` native-review marker.
+  - Language guidance applied: DE formal "Sie" + compound nouns; FR "vous" formal; SV natural register.
+  - Verified each merge: complete key parity with en, no placeholders. Visual QA of `/de` homepage — layout handles German compound words; trade names correct (Solarkraftwerke, Trockenbau, Dachmontage…). Spot-checked nav/hero/service names across all 3: natural and correct.
+  - Portal namespaces in de/fr/sv remain English (Task 19 follow-up, unchanged).
+- Follow-up: native-speaker review of all three before marketing launch in those markets.
+
+---

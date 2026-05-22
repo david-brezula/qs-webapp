@@ -1,5 +1,5 @@
 {
-  "_TODO": "AI scaffold - DE marketing strings are placeholders (filled in Task 16); native review required before launch",
+  "_TODO": "AI-generated DE translation — native review required before launch",
   "_TODO_PORTAL_TRANSLATIONS": true,
   "common": {
     "appName": "Quantum Sphere Portal",
@@ -9,7 +9,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "back": "Back",
-    "next": "...",
+    "next": "Weiter",
     "create": "Create",
     "submit": "Submit",
     "loading": "Loading...",
@@ -33,10 +33,10 @@
     "closed": "Closed",
     "saveError": "Failed to save. Please try again.",
     "deleteError": "Failed to delete. Please try again.",
-    "skipToContent": "...",
-    "menu": "...",
-    "close": "...",
-    "errorGeneric": "..."
+    "skipToContent": "Zum Inhalt springen",
+    "menu": "Menü",
+    "close": "Schließen",
+    "errorGeneric": "Etwas ist schiefgelaufen, bitte versuchen Sie es erneut."
   },
   "login": {
     "title": "Sign in",
@@ -51,11 +51,11 @@
     "accommodations": "Accommodations",
     "wages": "Wages",
     "signOut": "Sign out",
-    "home": "...",
-    "services": "...",
-    "about": "...",
-    "contact": "...",
-    "portal": "..."
+    "home": "Startseite",
+    "services": "Leistungen",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "portal": "Anmelden"
   },
   "projects": {
     "list": "Projects",
@@ -180,100 +180,387 @@
     "retry": "Try again"
   },
   "home": {
-    "meta": { "title": "...", "description": "..." },
-    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
-    "services": { "title": "...", "subtitle": "..." },
-    "about": { "title": "...", "body": "..." },
-    "featuredProjects": { "title": "...", "subtitle": "..." }
+    "meta": {
+      "title": "Quantum Sphere — Schlüsselfertige Bauleistungen | Slowakei",
+      "description": "Umfassende Bauleistungen in fünf Gewerken: Solarkraftwerke, Elektroinstallationen, Trockenbau, Maurerarbeiten und Dachmontage."
+    },
+    "hero": {
+      "kicker": "Bauunternehmen",
+      "title": "Komplette Baulösungen aus einer Hand",
+      "subtitle": "Wir decken das gesamte Spektrum der Gewerke ab, von Solarkraftwerken bis zur Dacheindeckung. Ein Unternehmen, fünf Gewerke, ein verantwortlicher Partner.",
+      "ctaPrimary": "Angebot anfordern",
+      "ctaSecondary": "Über uns"
+    },
+    "services": {
+      "title": "Unsere Leistungen",
+      "subtitle": "Fünf Gewerke, ein zuverlässiger Partner"
+    },
+    "about": {
+      "title": "Über Quantum Sphere",
+      "body": "Wir sind ein Bauunternehmen mit Sitz in der Slowakei. Wir sind auf die umfassende Ausführung in fünf Gewerken spezialisiert. Wir arbeiten sowohl für gewerbliche als auch für private Kunden und können dank eigener Teams in jedem Gewerk die meisten Projekte ohne Subunternehmer ausführen."
+    },
+    "featuredProjects": {
+      "title": "Ausgewählte Projekte",
+      "subtitle": "Eine Auswahl von Projekten der letzten Jahre"
+    }
   },
   "services": {
     "solar": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Solarkraftwerke",
+      "tagline": "Schlüsselfertige Planung und Installation von PV-Anlagen",
+      "meta": {
+        "title": "Schlüsselfertige Solarkraftwerke | Quantum Sphere",
+        "description": "Planung, Lieferung und Installation von Photovoltaikanlagen. Dach- und Freiflächenanlagen für Unternehmen, Gemeinden und Privathaushalte."
+      },
+      "hero": {
+        "title": "Photovoltaikanlagen für Unternehmen und Privathaushalte",
+        "subtitle": "Von der Planung und Projektdokumentation über die Montage von Modulen, Wechselrichtern und Speichern bis zum Anschluss an das Verteilnetz."
+      },
+      "description": "Wir liefern Photovoltaikkraftwerke für Gebäudedächer, Freiflächenanlagen und Agri-PV. Wir arbeiten mit bewährten Komponenten und steuern den gesamten Prozess mit unserem eigenen Team — von der Standortbegehung bis zur Betriebsüberwachung.",
+      "deliverables": {
+        "title": "Was wir bieten",
+        "items": [
+          "Standortbegehung, Anlagenplanung und Optimierung",
+          "Projektdokumentation und Genehmigungen",
+          "Lieferung von PV-Modulen, Wechselrichtern und Montagesystemen",
+          "Installation der DC- und AC-Seite",
+          "Anschluss an das Verteilnetz",
+          "Einrichtung der Überwachung und Übergabe an den Kunden",
+          "Service und Wartung nach Ablauf der Garantie"
+        ]
+      },
+      "process": {
+        "title": "Ablauf eines Projekts",
+        "steps": [
+          {
+            "title": "Kostenlose Standortbegehung",
+            "body": "Wir beurteilen die Dachkonstruktion, die Ausrichtung und die Verschattung. Wir erfassen den Verbrauch und schlagen die optimale Leistung vor."
+          },
+          {
+            "title": "Angebot und Vertrag",
+            "body": "Wir präsentieren eine transparente Kalkulation einschließlich Fördermitteln und Finanzierung. Nach Zustimmung schließen wir einen Werkvertrag ab."
+          },
+          {
+            "title": "Projektdokumentation",
+            "body": "Wir erstellen das Ausführungsprojekt und veranlassen alle erforderlichen Genehmigungen des Verteilnetzbetreibers."
+          },
+          {
+            "title": "Installation und Anschluss",
+            "body": "Die Installation dauert je nach Größe in der Regel 2–5 Tage. Unser Team übernimmt die Montage, die Verkabelung und die Prüfung."
+          },
+          {
+            "title": "Übergabe und Service",
+            "body": "Nach dem Netzanschluss und der Einrichtung der Überwachung übergeben wir das Werk samt Dokumentation. Wir bieten Garantie- und Nachgarantieservice."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Zertifikate und Qualifikationen"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Wie lange dauert es, bis sich eine Solarinvestition amortisiert?",
+            "a": "Bei aktuellen Strompreisen und einer geeigneten Auslegung liegt die Amortisationszeit in der Slowakei meist bei 6–9 Jahren. Eine konkrete Berechnung erstellen wir nach der Standortbegehung."
+          },
+          {
+            "q": "Benötige ich einen Batteriespeicher?",
+            "a": "Bei Einfamilienhäusern lohnt sich ein Speicher, wenn Sie im Sommer mehr erzeugen als verbrauchen und den Überschuss am Abend nutzen möchten. Für Unternehmen mit tagsüber anfallendem Verbrauch ist eine PV-Anlage ohne Speicher oft effizienter."
+          },
+          {
+            "q": "Kümmern Sie sich auch um Fördermittel?",
+            "a": "Ja. Wir begleiten Sie bei der Beantragung der derzeit verfügbaren Fördermittel. Wir bereiten die Unterlagen vor und können die Kommunikation mit den Behörden übernehmen."
+          }
+        ]
+      }
     },
     "electrical": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Elektroinstallationen",
+      "tagline": "Stark- und Schwachstromverkabelung",
+      "meta": {
+        "title": "Elektroinstallationen für Unternehmen und Baustellen | Quantum Sphere",
+        "description": "Komplette Stark- und Schwachstrominstallationen für Neubauten, Sanierungen und Industriegebäude."
+      },
+      "hero": {
+        "title": "Normgerechte Elektroinstallationen",
+        "subtitle": "Wir liefern Stark- und Schwachstromverkabelung, Verteilerschränke und intelligente Steuerungen für Gewerbe- und Wohnprojekte."
+      },
+      "description": "Wir decken den gesamten elektrotechnischen Teil eines Bauprojekts ab — vom Verlegen der Kabel im Rohbau über den Einbau von Verteilerschränken bis zu Prüfungen und Übergabe. Wir arbeiten mit einem zertifizierten Prüftechniker zusammen, und alle Installationen entsprechen den geltenden Normen.",
+      "deliverables": {
+        "title": "Was wir bieten",
+        "items": [
+          "Starkstromverkabelung (NS)",
+          "Schwachstromsysteme (Daten, Einbruchmeldeanlage, Brandmeldeanlage, Videoüberwachung)",
+          "Verteilerschränke und deren Installation",
+          "Blitzschutz und Erdung",
+          "LED-Beleuchtung und Steuerungen",
+          "Smart-Home- und KNX-Lösungen",
+          "Erst- und wiederkehrende Prüfung"
+        ]
+      },
+      "process": {
+        "title": "Projektablauf",
+        "steps": [
+          {
+            "title": "Beratung und Begehung",
+            "body": "Wir gehen mit Ihnen die Baupläne durch, ermitteln den Bedarf und schlagen die optimale Anordnung vor."
+          },
+          {
+            "title": "Angebot",
+            "body": "Wir erstellen ein detailliertes, positionsweises Budget mit klarer Materialspezifikation."
+          },
+          {
+            "title": "Rohinstallation",
+            "body": "Verlegen von Kabeln, Dosen und Leerrohren vor dem Verputzen. Koordination mit den übrigen Gewerken."
+          },
+          {
+            "title": "Endmontage",
+            "body": "Einbau von Steckdosen, Schaltern, Leuchten, Verteilerschränken und Endgeräten."
+          },
+          {
+            "title": "Prüfung und Übergabe",
+            "body": "Fachgerechte Erstprüfung und Messung, Ausstellung des Prüfberichts und Übergabe des Werks."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Qualifikationen"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Führen Sie Prüfungen auch durch, ohne die Installation auszuführen?",
+            "a": "Ja, wir führen fachgerechte Erst- und wiederkehrende Prüfungen und Messungen auch für Gebäude durch, die wir nicht errichtet haben."
+          },
+          {
+            "q": "Was ist der Unterschied zwischen Stark- und Schwachstrom?",
+            "a": "Starkstrom ist die übliche 230/400-V-Verkabelung für Geräte und Beleuchtung. Schwachstrom umfasst Daten-, Telefon-, Kamera-, Sicherheits- und Brandmeldesysteme mit Spannungen bis 50 V."
+          }
+        ]
+      }
     },
     "drywall": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Trockenbau",
+      "tagline": "Trennwände, Decken und Akustiklösungen",
+      "meta": {
+        "title": "Trockenbauarbeiten | Quantum Sphere",
+        "description": "Trockenbau-Trennwände, abgehängte Decken, Akustik- und Brandschutzsysteme für Büros, Wohnungen und Gewerbeflächen."
+      },
+      "hero": {
+        "title": "Trockenbau für Büros, Wohnungen und Industrie",
+        "subtitle": "Trennwände, Decken, Vorsatzschalen und Sonderkonstruktionen — mit Augenmerk auf Akustik, Brandschutz und die Qualität der Details."
+      },
+      "description": "Wir errichten Trockenbaukonstruktionen aller Art — von einfachen Trennwänden bis zu mehrlagigen Akustik- und Brandschutzsystemen. Wir arbeiten mit Knauf- und Rigips-Systemen nach den Systemvorgaben des Herstellers.",
+      "deliverables": {
+        "title": "Was wir bieten",
+        "items": [
+          "Trockenbau-Trennwände (ein- und mehrlagig)",
+          "Abgehängte Decken und Kassettendecken",
+          "Vorsatzschalen und Bekleidungen",
+          "Akustiklösungen mit Mineralfaserdämmung",
+          "Brandschutzkonstruktionen EI 30 – EI 90",
+          "Sonderformen und Rundungen",
+          "Untergrundvorbereitung für den Anstrich"
+        ]
+      },
+      "process": {
+        "title": "Projektablauf",
+        "steps": [
+          {
+            "title": "Aufmaß",
+            "body": "Präzises Aufmaß des Raums und Festlegung der technischen Parameter (Akustik, Brandschutz)."
+          },
+          {
+            "title": "Unterkonstruktion",
+            "body": "Montage der Metallunterkonstruktion nach den Systemvorgaben."
+          },
+          {
+            "title": "Beplankung",
+            "body": "Montage der Gipsplatten einschließlich Dämmung und Installationshohlräumen."
+          },
+          {
+            "title": "Verspachteln und Schleifen",
+            "body": "Verspachteln der Fugen und Schraubenköpfe, glattes Schleifen, bereit für den Anstrich."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systemzertifizierungen"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Welchen Feuerwiderstand haben Trockenbau-Trennwände?",
+            "a": "Je nach konkretem Aufbau von EI 15 bis EI 90. Den konkreten Aufbau planen wir entsprechend den Anforderungen des Projekts."
+          }
+        ]
+      }
     },
     "masonry": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Maurerarbeiten",
+      "tagline": "Komplettes Maurerhandwerk",
+      "meta": {
+        "title": "Maurerarbeiten | Quantum Sphere",
+        "description": "Konstruktive und ausbauende Maurerarbeiten für Neubauten und Sanierungen. Mauern, Verputzen, Betonieren, Fliesen- und Pflasterarbeiten."
+      },
+      "hero": {
+        "title": "Maurerarbeiten für Neubauten und Sanierungen",
+        "subtitle": "Wir decken das gesamte Spektrum des Maurerhandwerks ab, vom Fundament bis zum Endputz und zur Verfliesung."
+      },
+      "description": "Wir führen Maurerarbeiten in einer Qualität aus, die den Anforderungen des modernen Bauens entspricht. Wir arbeiten mit renommierten Lieferanten von Baumaterialien zusammen, und alle Arbeiten werden von unserem eigenen, festen Team ausgeführt.",
+      "deliverables": {
+        "title": "Was wir bieten",
+        "items": [
+          "Mauern von Außen- und Innenwänden",
+          "Betonieren (Fundamente, Decken, Treppen)",
+          "Innen- und Außenputz",
+          "Fliesen- und Pflasterarbeiten",
+          "Sanierung von feuchtem Mauerwerk",
+          "Renovierung von Sanitärkernen",
+          "Abbruch und Abfallentsorgung"
+        ]
+      },
+      "process": {
+        "title": "Ablauf",
+        "steps": [
+          {
+            "title": "Begehung und Kalkulation",
+            "body": "Wir beurteilen den Umfang, schlagen das Vorgehen vor und erstellen ein Angebot."
+          },
+          {
+            "title": "Baustellenvorbereitung",
+            "body": "Sicherstellung der Materialien und Schutz der angrenzenden Flächen."
+          },
+          {
+            "title": "Ausführung",
+            "body": "Arbeiten nach dem vereinbarten Zeitplan mit laufender Qualitätskontrolle."
+          },
+          {
+            "title": "Übergabe",
+            "body": "Reinigung der Baustelle, Übergabe des Werks und Rechnungsstellung."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Erfahrung"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Führen Sie auch kleinere Renovierungen durch?",
+            "a": "Ja. Wir führen Renovierungen von Sanitärkernen, Badezimmern und kleinere Maurerumbauten durch."
+          }
+        ]
+      }
     },
     "roofing": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Dachmontage",
+      "tagline": "Steil- und Flachdachsysteme",
+      "meta": {
+        "title": "Dachmontage | Quantum Sphere",
+        "description": "Komplette Dachlieferungen — Steildächer mit Ton- oder Metalldachziegeln, Flachdächer mit Folienabdichtung, Spenglerarbeiten."
+      },
+      "hero": {
+        "title": "Dächer mit Liebe zum Detail",
+        "subtitle": "Steildächer, Flachdächer, Neueindeckung und Spenglerarbeiten. Wir arbeiten mit Systemen von Bramac, Tondach, Lindab und Sarnafil."
+      },
+      "description": "Wir errichten Dächer für Neubauten und Sanierungen. Bei jedem Dach legen wir Wert auf den korrekten Aufbau, die Belüftung und hochwertige Spenglerdetails, die über die Lebensdauer des Werks entscheiden.",
+      "deliverables": {
+        "title": "Was wir bieten",
+        "items": [
+          "Steildächer mit Ton- oder Betondachziegeln",
+          "Metalldacheindeckungen",
+          "Flachdächer mit Folienabdichtung",
+          "Austausch alter Eindeckungen",
+          "Spenglerarbeiten (Dachrinnen, Verblechungen)",
+          "Velux- und Fakro-Dachfenster",
+          "Wärmedämmung des Dachgeschosses"
+        ]
+      },
+      "process": {
+        "title": "Ablauf",
+        "steps": [
+          {
+            "title": "Dachbegehung",
+            "body": "Wir beurteilen den Zustand der Konstruktion und der Eindeckung und schlagen die optimale Lösung vor."
+          },
+          {
+            "title": "Planung und Angebot",
+            "body": "Ein detailliertes Budget mit dem konkreten Dachaufbau."
+          },
+          {
+            "title": "Abtragen der alten Eindeckung",
+            "body": "Bei Sanierungen sicheres Abtragen und Entsorgen der alten Eindeckung."
+          },
+          {
+            "title": "Verlegen des neuen Aufbaus",
+            "body": "Diffusionsoffene Unterspannbahn, Konterlattung, Lattung, Eindeckung und Spenglerdetails."
+          },
+          {
+            "title": "Garantie",
+            "body": "5 Jahre Garantie auf das Werk; auf Materialien gemäß Hersteller."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systemschulungen"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen",
+        "items": [
+          {
+            "q": "Wie hoch ist die Lebensdauer von Tondachziegeln?",
+            "a": "Bei fachgerechter Verlegung und Wartung 60–100 Jahre. Spenglerelemente haben eine kürzere Lebensdauer (20–40 Jahre), weshalb wir sie gesondert berücksichtigen."
+          },
+          {
+            "q": "Wann ist ein Flachdach besser geeignet?",
+            "a": "Flachdächer eignen sich für Büro- und Industriegebäude, bei denen das Dach genutzt wird, zum Beispiel für Photovoltaik. Bei einem Einfamilienhaus hängt es vom architektonischen Konzept ab."
+          }
+        ]
+      }
     }
   },
   "about": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "body": "..."
+    "meta": {
+      "title": "Über uns | Quantum Sphere",
+      "description": "Quantum Sphere ist ein Bauunternehmen mit Sitz in der Slowakei. Fünf Gewerke, ein verantwortlicher Partner."
+    },
+    "title": "Über Quantum Sphere",
+    "body": "Wir sind ein Bauunternehmen mit Sitz in der Slowakei, das fünf zentrale Gewerke unter einem Dach abdeckt. Dank eigener Teams in jedem Gewerk können wir die meisten Bauprojekte ohne Subunternehmer ausführen — das bedeutet schnellere Kommunikation, eine bessere Koordination der Gewerke und einen verantwortlichen Ansprechpartner für das gesamte Projekt.\n\nWir arbeiten sowohl für gewerbliche als auch für private Kunden. Unser Ziel ist es, ein langfristiger Partner zu sein, an den sich der Kunde für den nächsten Auftrag erneut wendet.\n\nWir sind in der gesamten Slowakei tätig und führen ausgewählte größere Projekte auch in den Nachbarländern aus."
   },
   "contact": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "subtitle": "...",
+    "meta": {
+      "title": "Kontakt | Quantum Sphere",
+      "description": "Angebot anfordern und Kontaktdaten."
+    },
+    "title": "Kontakt",
+    "subtitle": "Sagen Sie uns, was Sie planen. Wir melden uns an Werktagen innerhalb von 24 Stunden bei Ihnen.",
     "form": {
-      "name": "...",
-      "email": "...",
-      "phone": "...",
-      "company": "...",
-      "serviceType": "...",
-      "serviceSelect": "...",
-      "serviceOther": "...",
-      "message": "...",
-      "submit": "...",
-      "success": "...",
-      "error": "..."
+      "name": "Vollständiger Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "company": "Unternehmen (optional)",
+      "serviceType": "Für welche Leistung interessieren Sie sich",
+      "serviceSelect": "Leistung auswählen",
+      "serviceOther": "Sonstiges / allgemeine Anfrage",
+      "message": "Projektbeschreibung",
+      "submit": "Anfrage senden",
+      "success": "Vielen Dank, Ihre Nachricht wurde gesendet. Wir melden uns so bald wie möglich bei Ihnen.",
+      "error": "Senden nicht möglich. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail."
     }
   },
   "notFound": {
-    "title": "...",
-    "description": "...",
-    "backHome": "..."
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "backHome": "Zurück zur Startseite"
   },
   "footer": {
-    "tagline": "...",
-    "company": "...",
-    "rights": "..."
+    "tagline": "Ein Bauunternehmen mit Sitz in der Slowakei — fünf Gewerke unter einem Dach.",
+    "company": "Unternehmen",
+    "rights": "Alle Rechte vorbehalten."
   }
 }

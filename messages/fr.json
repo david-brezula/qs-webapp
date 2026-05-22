@@ -1,5 +1,5 @@
 {
-  "_TODO": "AI scaffold - FR marketing strings are placeholders (filled in Task 16); native review required before launch",
+  "_TODO": "AI-generated FR translation — native review required before launch",
   "_TODO_PORTAL_TRANSLATIONS": true,
   "common": {
     "appName": "Quantum Sphere Portal",
@@ -9,7 +9,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "back": "Back",
-    "next": "...",
+    "next": "Suivant",
     "create": "Create",
     "submit": "Submit",
     "loading": "Loading...",
@@ -33,10 +33,10 @@
     "closed": "Closed",
     "saveError": "Failed to save. Please try again.",
     "deleteError": "Failed to delete. Please try again.",
-    "skipToContent": "...",
-    "menu": "...",
-    "close": "...",
-    "errorGeneric": "..."
+    "skipToContent": "Aller au contenu",
+    "menu": "Menu",
+    "close": "Fermer",
+    "errorGeneric": "Une erreur s'est produite, veuillez réessayer."
   },
   "login": {
     "title": "Sign in",
@@ -51,11 +51,11 @@
     "accommodations": "Accommodations",
     "wages": "Wages",
     "signOut": "Sign out",
-    "home": "...",
-    "services": "...",
-    "about": "...",
-    "contact": "...",
-    "portal": "..."
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "portal": "Se connecter"
   },
   "projects": {
     "list": "Projects",
@@ -180,100 +180,387 @@
     "retry": "Try again"
   },
   "home": {
-    "meta": { "title": "...", "description": "..." },
-    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
-    "services": { "title": "...", "subtitle": "..." },
-    "about": { "title": "...", "body": "..." },
-    "featuredProjects": { "title": "...", "subtitle": "..." }
+    "meta": {
+      "title": "Quantum Sphere — Travaux de construction clés en main | Slovaquie",
+      "description": "Services de construction complets dans cinq corps de métier : centrales solaires, installations électriques, cloisons sèches, maçonnerie et installation de toitures."
+    },
+    "hero": {
+      "kicker": "Entreprise de construction",
+      "title": "Des solutions de construction complètes sous un même toit",
+      "subtitle": "Nous couvrons l'ensemble des corps de métier, des centrales solaires aux toitures. Une seule entreprise, cinq métiers, un partenaire responsable.",
+      "ctaPrimary": "Demander un devis",
+      "ctaSecondary": "À propos de nous"
+    },
+    "services": {
+      "title": "Nos services",
+      "subtitle": "Cinq métiers, un partenaire fiable"
+    },
+    "about": {
+      "title": "À propos de Quantum Sphere",
+      "body": "Nous sommes une entreprise de construction établie en Slovaquie. Nous sommes spécialisés dans la réalisation complète de cinq corps de métier. Nous travaillons aussi bien pour les clients professionnels que pour les particuliers et, grâce à nos propres équipes dans chaque métier, nous pouvons mener à bien la plupart des projets sans recourir à des sous-traitants."
+    },
+    "featuredProjects": {
+      "title": "Projets sélectionnés",
+      "subtitle": "Un aperçu de projets réalisés ces dernières années"
+    }
   },
   "services": {
     "solar": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Centrales solaires",
+      "tagline": "Conception et installation clés en main de systèmes photovoltaïques",
+      "meta": {
+        "title": "Centrales solaires clés en main | Quantum Sphere",
+        "description": "Conception, fourniture et installation de systèmes photovoltaïques. Installations en toiture et au sol pour les entreprises, les collectivités et les particuliers."
+      },
+      "hero": {
+        "title": "Systèmes photovoltaïques pour les entreprises et les particuliers",
+        "subtitle": "De la conception et de la documentation de projet au raccordement au réseau de distribution, en passant par la pose des panneaux, des onduleurs et des batteries."
+      },
+      "description": "Nous réalisons des centrales photovoltaïques sur toitures de bâtiments, des installations au sol et des installations agri-PV. Nous travaillons avec des composants éprouvés et gérons l'ensemble du processus avec notre propre équipe — de l'étude du site au suivi de l'exploitation.",
+      "deliverables": {
+        "title": "Ce que nous proposons",
+        "items": [
+          "Étude du site, conception et optimisation du système",
+          "Documentation de projet et obtention des autorisations",
+          "Fourniture des panneaux photovoltaïques, des onduleurs et des structures de montage",
+          "Installation côté courant continu (CC) et courant alternatif (CA)",
+          "Raccordement au réseau de distribution",
+          "Mise en place du suivi et remise au client",
+          "Service après-garantie et maintenance"
+        ]
+      },
+      "process": {
+        "title": "Comment se déroule un projet",
+        "steps": [
+          {
+            "title": "Étude gratuite du site",
+            "body": "Nous évaluons la structure de la toiture, son orientation et les ombrages. Nous mesurons la consommation et proposons la puissance optimale."
+          },
+          {
+            "title": "Devis et contrat",
+            "body": "Nous présentons un chiffrage transparent incluant les subventions et le financement. Une fois validé, nous signons un contrat de travaux."
+          },
+          {
+            "title": "Documentation de projet",
+            "body": "Nous préparons le projet d'exécution et organisons toutes les approbations nécessaires auprès du gestionnaire du réseau de distribution."
+          },
+          {
+            "title": "Installation et raccordement",
+            "body": "L'installation dure généralement de 2 à 5 jours selon la taille. Notre équipe se charge de la pose, du câblage et du contrôle."
+          },
+          {
+            "title": "Remise et service",
+            "body": "Après le raccordement au réseau et la mise en place du suivi, nous remettons les travaux avec la documentation. Nous assurons une garantie et un service après-garantie."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Certificats et qualifications"
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "q": "En combien de temps un investissement solaire est-il rentabilisé ?",
+            "a": "Aux prix actuels de l'électricité et avec un dimensionnement approprié, le retour sur investissement en Slovaquie se situe le plus souvent entre 6 et 9 ans. Nous établissons un calcul précis après l'étude du site."
+          },
+          {
+            "q": "Ai-je besoin d'un stockage par batteries ?",
+            "a": "Pour les maisons individuelles, les batteries sont rentables si vous produisez plus que vous ne consommez en été et que vous souhaitez utiliser le surplus le soir. Pour les entreprises dont la consommation est diurne, un système photovoltaïque sans batteries est souvent plus efficace."
+          },
+          {
+            "q": "Vous occupez-vous aussi des subventions ?",
+            "a": "Oui. Nous pouvons vous accompagner dans la demande des subventions actuellement disponibles. Nous préparons les documents et pouvons nous charger des échanges avec les autorités."
+          }
+        ]
+      }
     },
     "electrical": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Installations électriques",
+      "tagline": "Câblage courant fort et courant faible",
+      "meta": {
+        "title": "Installations électriques pour entreprises et chantiers | Quantum Sphere",
+        "description": "Installations électriques complètes courant fort et courant faible pour les constructions neuves, les rénovations et les bâtiments industriels."
+      },
+      "hero": {
+        "title": "Des installations électriques aux normes",
+        "subtitle": "Nous réalisons le câblage courant fort et courant faible, les tableaux de distribution et les commandes intelligentes pour les projets commerciaux et résidentiels."
+      },
+      "description": "Nous couvrons l'ensemble de la partie électrique d'un projet de construction — de la pose des câbles au stade du gros œuvre à l'installation des tableaux de distribution, jusqu'aux contrôles et à la remise. Nous travaillons avec un technicien de contrôle certifié et toutes les installations sont conformes aux normes en vigueur.",
+      "deliverables": {
+        "title": "Ce que nous proposons",
+        "items": [
+          "Câblage courant fort (basse tension)",
+          "Systèmes courant faible (données, alarme intrusion, alarme incendie, vidéosurveillance)",
+          "Tableaux de distribution et leur installation",
+          "Protection contre la foudre et mise à la terre",
+          "Éclairage LED et commandes",
+          "Solutions domotiques et KNX",
+          "Contrôle initial et périodique"
+        ]
+      },
+      "process": {
+        "title": "Déroulement du projet",
+        "steps": [
+          {
+            "title": "Consultation et étude",
+            "body": "Nous examinons les plans de construction avec vous, identifions les besoins et proposons l'agencement optimal."
+          },
+          {
+            "title": "Devis",
+            "body": "Nous établissons un budget détaillé et chiffré avec une spécification claire des matériaux."
+          },
+          {
+            "title": "Installation de premier œuvre",
+            "body": "Pose des câbles, boîtiers et gaines avant l'enduisage. Coordination avec les autres corps de métier."
+          },
+          {
+            "title": "Installation finale",
+            "body": "Pose des prises, interrupteurs, luminaires, tableaux de distribution et appareils terminaux."
+          },
+          {
+            "title": "Contrôle et remise",
+            "body": "Contrôle et essai professionnels initiaux, délivrance du rapport de contrôle et remise des travaux."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Qualifications"
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Réalisez-vous des contrôles sans effectuer l'installation ?",
+            "a": "Oui, nous réalisons des contrôles et essais professionnels initiaux et périodiques pour des bâtiments que nous n'avons pas construits."
+          },
+          {
+            "q": "Quelle est la différence entre courant fort et courant faible ?",
+            "a": "Le courant fort correspond au câblage habituel en 230/400 V pour les appareils et l'éclairage. Le courant faible couvre les systèmes de données, de téléphonie, de caméras, de sécurité et d'incendie, avec des tensions allant jusqu'à 50 V."
+          }
+        ]
+      }
     },
     "drywall": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Cloisons sèches",
+      "tagline": "Cloisons, plafonds et solutions acoustiques",
+      "meta": {
+        "title": "Travaux de cloisons sèches | Quantum Sphere",
+        "description": "Cloisons sèches, plafonds suspendus, systèmes acoustiques et coupe-feu pour bureaux, appartements et espaces commerciaux."
+      },
+      "hero": {
+        "title": "Cloisons sèches pour bureaux, appartements et industrie",
+        "subtitle": "Cloisons, plafonds, contre-cloisons et structures spéciales — avec une attention portée à l'acoustique, à la résistance au feu et à la qualité des détails."
+      },
+      "description": "Nous réalisons des structures en cloisons sèches de toutes sortes — des simples cloisons aux systèmes acoustiques et coupe-feu multicouches. Nous travaillons avec les systèmes Knauf et Rigips, dans le respect des règles de mise en œuvre du fabricant.",
+      "deliverables": {
+        "title": "Ce que nous proposons",
+        "items": [
+          "Cloisons sèches (simple et multicouche)",
+          "Plafonds suspendus et plafonds à cassettes",
+          "Contre-cloisons et habillages",
+          "Solutions acoustiques avec isolation minérale",
+          "Structures coupe-feu EI 30 – EI 90",
+          "Formes et courbes spéciales",
+          "Préparation des surfaces avant peinture"
+        ]
+      },
+      "process": {
+        "title": "Déroulement du projet",
+        "steps": [
+          {
+            "title": "Métré",
+            "body": "Métré précis de l'espace et définition des paramètres techniques (acoustique, feu)."
+          },
+          {
+            "title": "Ossature",
+            "body": "Pose de l'ossature métallique selon les règles du système."
+          },
+          {
+            "title": "Pose des plaques",
+            "body": "Pose des plaques de plâtre, y compris l'isolation et les vides techniques."
+          },
+          {
+            "title": "Jointoiement et ponçage",
+            "body": "Rebouchage des joints et des têtes de vis, ponçage lisse, prêt pour la peinture."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Certifications de système"
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Quelle est la résistance au feu des cloisons sèches ?",
+            "a": "Selon la composition spécifique, de EI 15 à EI 90. Nous concevons la composition adaptée aux exigences du projet."
+          }
+        ]
+      }
     },
     "masonry": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Maçonnerie",
+      "tagline": "Travaux de maçonnerie complets",
+      "meta": {
+        "title": "Travaux de maçonnerie | Quantum Sphere",
+        "description": "Maçonnerie de structure et de finition pour constructions neuves et rénovations. Pose de briques, enduits, bétonnage, carrelage et dallage."
+      },
+      "hero": {
+        "title": "Maçonnerie pour constructions neuves et rénovations",
+        "subtitle": "Nous couvrons l'ensemble des travaux de maçonnerie, des fondations à l'enduit final et au carrelage."
+      },
+      "description": "Nous réalisons des travaux de maçonnerie d'une qualité à la hauteur des exigences de la construction moderne. Nous travaillons avec des fournisseurs réputés de matériaux de construction et tous les travaux sont effectués par notre propre équipe stable.",
+      "deliverables": {
+        "title": "Ce que nous proposons",
+        "items": [
+          "Pose de briques pour murs extérieurs et intérieurs",
+          "Bétonnage (fondations, dalles, escaliers)",
+          "Enduits intérieurs et extérieurs",
+          "Carrelage et dallage",
+          "Traitement des maçonneries humides",
+          "Rénovation de noyaux de salles de bains",
+          "Démolition et évacuation des déchets"
+        ]
+      },
+      "process": {
+        "title": "Déroulement",
+        "steps": [
+          {
+            "title": "Étude et chiffrage",
+            "body": "Nous évaluons l'étendue des travaux, proposons une approche et préparons un devis."
+          },
+          {
+            "title": "Préparation du chantier",
+            "body": "Approvisionnement des matériaux et protection des surfaces adjacentes."
+          },
+          {
+            "title": "Exécution",
+            "body": "Travaux selon le planning convenu, avec un contrôle qualité continu."
+          },
+          {
+            "title": "Remise",
+            "body": "Nettoyage du chantier, remise des travaux et facturation."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Expérience"
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Réalisez-vous également de plus petites rénovations ?",
+            "a": "Oui. Nous réalisons des rénovations de noyaux de salles de bains, de salles de bains et de plus petites transformations de maçonnerie."
+          }
+        ]
+      }
     },
     "roofing": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Installation de toitures",
+      "tagline": "Systèmes de toitures inclinées et plates",
+      "meta": {
+        "title": "Installation de toitures | Quantum Sphere",
+        "description": "Réalisation complète de toitures — toitures inclinées en tuiles en terre cuite ou métalliques, toitures plates avec étanchéité par membrane, travaux de zinguerie."
+      },
+      "hero": {
+        "title": "Des toitures soignées dans le moindre détail",
+        "subtitle": "Toitures inclinées, toitures plates, réfection et travaux de zinguerie. Nous travaillons avec les systèmes Bramac, Tondach, Lindab et Sarnafil."
+      },
+      "description": "Nous réalisons des toitures pour les constructions neuves et les rénovations. Sur chaque toiture, nous accordons une attention particulière à la bonne composition, à la ventilation et à la qualité des détails de zinguerie, qui déterminent la durée de vie de l'ouvrage.",
+      "deliverables": {
+        "title": "Ce que nous proposons",
+        "items": [
+          "Toitures inclinées en tuiles en terre cuite ou en béton",
+          "Couvertures de toiture métalliques",
+          "Toitures plates avec étanchéité par membrane",
+          "Remplacement d'anciennes couvertures",
+          "Travaux de zinguerie (gouttières, solins)",
+          "Fenêtres de toit Velux et Fakro",
+          "Isolation thermique des combles"
+        ]
+      },
+      "process": {
+        "title": "Déroulement",
+        "steps": [
+          {
+            "title": "Étude de la toiture",
+            "body": "Nous évaluons l'état de la structure et de la couverture et proposons la solution optimale."
+          },
+          {
+            "title": "Conception et devis",
+            "body": "Un budget détaillé avec la composition spécifique de la toiture."
+          },
+          {
+            "title": "Dépose de l'ancienne couverture",
+            "body": "Pour les rénovations, dépose et évacuation en toute sécurité de l'ancienne couverture."
+          },
+          {
+            "title": "Pose de la nouvelle composition",
+            "body": "Écran de sous-toiture respirant, contre-lattes, liteaux, couverture et détails de zinguerie."
+          },
+          {
+            "title": "Garantie",
+            "body": "Une garantie de 5 ans sur les travaux ; sur les matériaux, selon le fabricant."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Formations système"
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "q": "Quelle est la durée de vie des tuiles en terre cuite ?",
+            "a": "Avec une pose et un entretien de qualité, de 60 à 100 ans. Les éléments de zinguerie ont une durée de vie plus courte (20 à 40 ans), aussi nous les prenons en compte séparément."
+          },
+          {
+            "q": "Quand une toiture plate est-elle plus adaptée ?",
+            "a": "Les toitures plates conviennent aux bâtiments de bureaux et industriels où la toiture est exploitée, par exemple pour le photovoltaïque. Pour une maison individuelle, cela dépend du concept architectural."
+          }
+        ]
+      }
     }
   },
   "about": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "body": "..."
+    "meta": {
+      "title": "À propos de nous | Quantum Sphere",
+      "description": "Quantum Sphere est une entreprise de construction établie en Slovaquie. Cinq métiers, un partenaire responsable."
+    },
+    "title": "À propos de Quantum Sphere",
+    "body": "Nous sommes une entreprise de construction établie en Slovaquie, couvrant cinq corps de métier essentiels sous un même toit. Grâce à nos propres équipes dans chaque métier, nous pouvons mener à bien la plupart des projets de construction sans sous-traitants — ce qui se traduit par une communication plus rapide, une meilleure coordination des corps de métier et un seul interlocuteur responsable pour l'ensemble du projet.\n\nNous travaillons aussi bien pour les clients professionnels que pour les particuliers. Notre objectif est d'être un partenaire de long terme que le client rappelle pour le chantier suivant.\n\nNous intervenons dans toute la Slovaquie et réalisons également certains projets de plus grande envergure dans les pays voisins."
   },
   "contact": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "subtitle": "...",
+    "meta": {
+      "title": "Contact | Quantum Sphere",
+      "description": "Demande de devis et coordonnées."
+    },
+    "title": "Contact",
+    "subtitle": "Dites-nous ce que vous projetez. Nous vous répondons sous 24 heures les jours ouvrés.",
     "form": {
-      "name": "...",
-      "email": "...",
-      "phone": "...",
-      "company": "...",
-      "serviceType": "...",
-      "serviceSelect": "...",
-      "serviceOther": "...",
-      "message": "...",
-      "submit": "...",
-      "success": "...",
-      "error": "..."
+      "name": "Nom complet",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "company": "Entreprise (facultatif)",
+      "serviceType": "Quel service vous intéresse",
+      "serviceSelect": "Sélectionnez un service",
+      "serviceOther": "Autre / demande générale",
+      "message": "Description du projet",
+      "submit": "Envoyer la demande",
+      "success": "Merci, votre message a été envoyé. Nous vous recontacterons dans les meilleurs délais.",
+      "error": "L'envoi a échoué. Veuillez réessayer ou nous contacter par e-mail."
     }
   },
   "notFound": {
-    "title": "...",
-    "description": "...",
-    "backHome": "..."
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
   },
   "footer": {
-    "tagline": "...",
-    "company": "...",
-    "rights": "..."
+    "tagline": "Une entreprise de construction établie en Slovaquie — cinq métiers sous un même toit.",
+    "company": "Entreprise",
+    "rights": "Tous droits réservés."
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_TODO": "AI scaffold - SV marketing strings are placeholders (filled in Task 16); native review required before launch",
+  "_TODO": "AI-generated SV translation — native review required before launch",
   "_TODO_PORTAL_TRANSLATIONS": true,
   "common": {
     "appName": "Quantum Sphere Portal",
@@ -9,7 +9,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "back": "Back",
-    "next": "...",
+    "next": "Nästa",
     "create": "Create",
     "submit": "Submit",
     "loading": "Loading...",
@@ -33,10 +33,10 @@
     "closed": "Closed",
     "saveError": "Failed to save. Please try again.",
     "deleteError": "Failed to delete. Please try again.",
-    "skipToContent": "...",
-    "menu": "...",
-    "close": "...",
-    "errorGeneric": "..."
+    "skipToContent": "Hoppa till innehåll",
+    "menu": "Meny",
+    "close": "Stäng",
+    "errorGeneric": "Något gick fel, försök igen."
   },
   "login": {
     "title": "Sign in",
@@ -51,11 +51,11 @@
     "accommodations": "Accommodations",
     "wages": "Wages",
     "signOut": "Sign out",
-    "home": "...",
-    "services": "...",
-    "about": "...",
-    "contact": "...",
-    "portal": "..."
+    "home": "Hem",
+    "services": "Tjänster",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "portal": "Logga in"
   },
   "projects": {
     "list": "Projects",
@@ -180,100 +180,387 @@
     "retry": "Try again"
   },
   "home": {
-    "meta": { "title": "...", "description": "..." },
-    "hero": { "kicker": "...", "title": "...", "subtitle": "...", "ctaPrimary": "...", "ctaSecondary": "..." },
-    "services": { "title": "...", "subtitle": "..." },
-    "about": { "title": "...", "body": "..." },
-    "featuredProjects": { "title": "...", "subtitle": "..." }
+    "meta": {
+      "title": "Quantum Sphere — Nyckelfärdiga byggarbeten | Slovakien",
+      "description": "Heltäckande byggtjänster inom fem yrkesområden: solcellsanläggningar, elinstallationer, gipsväggar, murningsarbeten och takmontering."
+    },
+    "hero": {
+      "kicker": "Byggföretag",
+      "title": "Kompletta bygglösningar under ett och samma tak",
+      "subtitle": "Vi täcker hela bredden av yrkesområden, från solcellsanläggningar till tak. Ett företag, fem yrkesområden, en ansvarstagande partner.",
+      "ctaPrimary": "Begär offert",
+      "ctaSecondary": "Om oss"
+    },
+    "services": {
+      "title": "Våra tjänster",
+      "subtitle": "Fem yrkesområden, en pålitlig partner"
+    },
+    "about": {
+      "title": "Om Quantum Sphere",
+      "body": "Vi är ett byggföretag baserat i Slovakien. Vi är specialiserade på heltäckande leveranser inom fem yrkesområden. Vi arbetar för både företagskunder och privatkunder, och tack vare egna team inom varje yrkesområde kan vi genomföra de flesta projekt utan underentreprenörer."
+    },
+    "featuredProjects": {
+      "title": "Utvalda projekt",
+      "subtitle": "Ett urval av projekt från de senaste åren"
+    }
   },
   "services": {
     "solar": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Solcellsanläggningar",
+      "tagline": "Nyckelfärdig projektering och installation av solcellssystem",
+      "meta": {
+        "title": "Nyckelfärdiga solcellsanläggningar | Quantum Sphere",
+        "description": "Projektering, leverans och installation av solcellssystem. Tak- och markmonterade anläggningar för företag, kommuner och hushåll."
+      },
+      "hero": {
+        "title": "Solcellssystem för företag och hushåll",
+        "subtitle": "Från projektering och projektdokumentation via montering av paneler, växelriktare och batterier till anslutning till elnätet."
+      },
+      "description": "Vi levererar solcellsanläggningar för byggnadstak, markmonterade installationer och agri-PV. Vi arbetar med beprövade komponenter och hanterar hela processen med vårt eget team — från platsbesök till driftsövervakning.",
+      "deliverables": {
+        "title": "Vad vi erbjuder",
+        "items": [
+          "Platsbesök, systemdesign och optimering",
+          "Projektdokumentation och tillståndshantering",
+          "Leverans av solcellspaneler, växelriktare och monteringsstrukturer",
+          "Installation på DC- och AC-sidan",
+          "Anslutning till elnätet",
+          "Inställning av övervakning och överlämning till kunden",
+          "Service och underhåll efter garantitiden"
+        ]
+      },
+      "process": {
+        "title": "Så genomförs ett projekt",
+        "steps": [
+          {
+            "title": "Kostnadsfritt platsbesök",
+            "body": "Vi bedömer takkonstruktion, orientering och skuggning. Vi mäter förbrukningen och föreslår optimal kapacitet."
+          },
+          {
+            "title": "Offert och avtal",
+            "body": "Vi presenterar en transparent kalkyl inklusive bidrag och finansiering. När den godkänts tecknar vi ett entreprenadavtal."
+          },
+          {
+            "title": "Projektdokumentation",
+            "body": "Vi tar fram genomförandeprojektet och ordnar alla nödvändiga godkännanden från elnätsbolaget."
+          },
+          {
+            "title": "Installation och anslutning",
+            "body": "Installationen tar vanligtvis 2–5 dagar beroende på storlek. Vårt team sköter installation, kabeldragning och kontroll."
+          },
+          {
+            "title": "Överlämning och service",
+            "body": "Efter nätanslutning och inställning av övervakning överlämnar vi arbetet med dokumentation. Vi erbjuder garanti och service efter garantitiden."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Certifikat och kvalifikationer"
+      },
+      "faq": {
+        "title": "Vanliga frågor",
+        "items": [
+          {
+            "q": "Hur lång är återbetalningstiden för en solcellsinvestering?",
+            "a": "Vid nuvarande elpriser och med rätt dimensionering är återbetalningstiden i Slovakien oftast 6–9 år. Vi tar fram en specifik kalkyl efter platsbesöket."
+          },
+          {
+            "q": "Behöver jag batterilagring?",
+            "a": "För villor lönar sig batterier om du producerar mer än du förbrukar på sommaren och vill använda överskottet på kvällen. För företag med dagsförbrukning är ett solcellssystem utan batterier ofta mer effektivt."
+          },
+          {
+            "q": "Ordnar ni även bidrag?",
+            "a": "Ja. Vi kan vägleda dig genom ansökan om de bidrag som för närvarande finns tillgängliga. Vi tar fram handlingarna och kan sköta kommunikationen med myndigheterna."
+          }
+        ]
+      }
     },
     "electrical": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Elinstallationer",
+      "tagline": "Stark- och svagströmsinstallationer",
+      "meta": {
+        "title": "Elinstallationer för företag och byggarbetsplatser | Quantum Sphere",
+        "description": "Kompletta stark- och svagströmsinstallationer för nybyggnad, renovering och industribyggnader."
+      },
+      "hero": {
+        "title": "Elinstallationer enligt gällande standard",
+        "subtitle": "Vi levererar stark- och svagströmsinstallationer, eldningscentraler och intelligenta styrsystem för kommersiella och bostadsrelaterade projekt."
+      },
+      "description": "Vi täcker hela elarbetet i ett byggprojekt — från kabeldragning under stommens uppförande via montering av eldningscentraler till kontroller och överlämning. Vi samarbetar med en certifierad besiktningstekniker och alla installationer uppfyller gällande standarder.",
+      "deliverables": {
+        "title": "Vad vi erbjuder",
+        "items": [
+          "Starkströmsinstallationer (LSP)",
+          "Svagströmssystem (data, inbrottslarm, brandlarm, kameraövervakning)",
+          "Eldningscentraler och installation av dessa",
+          "Åskskydd och jordning",
+          "LED-belysning och styrning",
+          "Smarta hem och KNX-lösningar",
+          "Första och återkommande besiktning"
+        ]
+      },
+      "process": {
+        "title": "Projektets faser",
+        "steps": [
+          {
+            "title": "Rådgivning och inventering",
+            "body": "Vi går igenom bygghandlingarna med dig, identifierar behoven och föreslår den optimala utformningen."
+          },
+          {
+            "title": "Offert",
+            "body": "Vi tar fram en detaljerad budget post för post med en tydlig materialspecifikation."
+          },
+          {
+            "title": "Grundinstallation",
+            "body": "Dragning av kablar, dosor och kanaler innan putsning. Samordning med övriga yrkesområden."
+          },
+          {
+            "title": "Slutmontering",
+            "body": "Montering av uttag, strömbrytare, armaturer, eldningscentraler och slutapparater."
+          },
+          {
+            "title": "Besiktning och överlämning",
+            "body": "Första fackmässiga besiktning och provning, utfärdande av besiktningsprotokoll och överlämning av arbetet."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Kvalifikationer"
+      },
+      "faq": {
+        "title": "Vanliga frågor",
+        "items": [
+          {
+            "q": "Utför ni besiktningar utan att göra installationen?",
+            "a": "Ja, vi utför första och återkommande fackmässiga besiktningar och provningar för byggnader som vi inte har uppfört."
+          },
+          {
+            "q": "Vad är skillnaden mellan stark- och svagström?",
+            "a": "Starkström är den vanliga 230/400 V-installationen för apparater och belysning. Svagström omfattar data-, telefon-, kamera-, säkerhets- och brandsystem med spänningar upp till 50 V."
+          }
+        ]
+      }
     },
     "drywall": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Gipsväggar",
+      "tagline": "Mellanväggar, undertak och akustiklösningar",
+      "meta": {
+        "title": "Gipsarbeten | Quantum Sphere",
+        "description": "Mellanväggar av gips, undertak, akustik- och brandklassade system för kontor, lägenheter och kommersiella lokaler."
+      },
+      "hero": {
+        "title": "Gipsväggar för kontor, lägenheter och industri",
+        "subtitle": "Mellanväggar, undertak, beklädnadsväggar och specialkonstruktioner — med fokus på akustik, brandmotstånd och kvaliteten i detaljerna."
+      },
+      "description": "Vi bygger gipskonstruktioner av alla slag — från enkla mellanväggar till flerlagers akustik- och brandklassade system. Vi arbetar med Knauf- och Rigips-system enligt tillverkarens systemregler.",
+      "deliverables": {
+        "title": "Vad vi erbjuder",
+        "items": [
+          "Mellanväggar av gips (enkel- och flerlagers)",
+          "Nedhängda undertak och kassettundertak",
+          "Beklädnadsväggar och inklädnader",
+          "Akustiklösningar med mineralisolering",
+          "Brandklassade konstruktioner EI 30 – EI 90",
+          "Specialformer och böjningar",
+          "Ytbehandling inför målning"
+        ]
+      },
+      "process": {
+        "title": "Projektets faser",
+        "steps": [
+          {
+            "title": "Uppmätning",
+            "body": "Noggrann uppmätning av utrymmet och fastställande av de tekniska parametrarna (akustik, brand)."
+          },
+          {
+            "title": "Stomme",
+            "body": "Montering av stålunderkonstruktionen enligt systemreglerna."
+          },
+          {
+            "title": "Beklädnad",
+            "body": "Montering av gipsskivorna, inklusive isolering och installationsutrymmen."
+          },
+          {
+            "title": "Spackling och slipning",
+            "body": "Spackling av skarvar och skruvhuvuden, slipning slät och klar för målning."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systemcertifieringar"
+      },
+      "faq": {
+        "title": "Vanliga frågor",
+        "items": [
+          {
+            "q": "Vilket brandmotstånd har mellanväggar av gips?",
+            "a": "Beroende på den specifika uppbyggnaden, från EI 15 till EI 90. Vi utformar den specifika uppbyggnaden efter projektets krav."
+          }
+        ]
+      }
     },
     "masonry": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Murningsarbeten",
+      "tagline": "Hela murarbranschen",
+      "meta": {
+        "title": "Murningsarbeten | Quantum Sphere",
+        "description": "Bärande och avslutande murningsarbeten för nybyggnad och renovering. Murning, putsning, betonggjutning, plattsättning och stenläggning."
+      },
+      "hero": {
+        "title": "Murningsarbeten för nybyggnad och renovering",
+        "subtitle": "Vi täcker hela bredden av murarbranschen, från grund till slutputs och plattsättning."
+      },
+      "description": "Vi utför murningsarbeten med en kvalitet som motsvarar moderna byggkrav. Vi arbetar med välrenommerade leverantörer av byggmaterial och allt arbete utförs av vårt eget stabila team.",
+      "deliverables": {
+        "title": "Vad vi erbjuder",
+        "items": [
+          "Murning av ytter- och innerväggar",
+          "Betonggjutning (grunder, plattor, trappor)",
+          "Inner- och ytterputs",
+          "Plattsättning och stenläggning",
+          "Sanering av fuktigt murverk",
+          "Renovering av badrumskärnor",
+          "Rivning och bortforsling av avfall"
+        ]
+      },
+      "process": {
+        "title": "Faser",
+        "steps": [
+          {
+            "title": "Inventering och kostnadsberäkning",
+            "body": "Vi bedömer omfattningen, föreslår tillvägagångssätt och tar fram en offert."
+          },
+          {
+            "title": "Förberedelse av arbetsplatsen",
+            "body": "Säkerställande av material och skydd av angränsande ytor."
+          },
+          {
+            "title": "Utförande",
+            "body": "Arbete enligt överenskommen tidsplan med löpande kvalitetskontroll."
+          },
+          {
+            "title": "Överlämning",
+            "body": "Städning av arbetsplatsen, överlämning av arbetet och fakturering."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Erfarenhet"
+      },
+      "faq": {
+        "title": "Vanliga frågor",
+        "items": [
+          {
+            "q": "Utför ni även mindre renoveringar?",
+            "a": "Ja. Vi utför renoveringar av badrumskärnor, badrum och mindre murningsändringar."
+          }
+        ]
+      }
     },
     "roofing": {
-      "name": "...",
-      "tagline": "...",
-      "meta": { "title": "...", "description": "..." },
-      "hero": { "title": "...", "subtitle": "..." },
-      "description": "...",
-      "deliverables": { "title": "...", "items": [] },
-      "process": { "title": "...", "steps": [] },
-      "certifications": { "title": "..." },
-      "faq": { "title": "...", "items": [] }
+      "name": "Takmontering",
+      "tagline": "System för lutande tak och platta tak",
+      "meta": {
+        "title": "Takmontering | Quantum Sphere",
+        "description": "Kompletta takleveranser — lutande tak med tegel- eller plåtpannor, platta tak med tätskiktsmembran, plåtslageriarbeten."
+      },
+      "hero": {
+        "title": "Tak med fokus på detaljerna",
+        "subtitle": "Lutande tak, platta tak, omläggning och plåtslageriarbeten. Vi arbetar med Bramac-, Tondach-, Lindab- och Sarnafil-system."
+      },
+      "description": "Vi bygger tak för nybyggnad och renovering. På varje tak fokuserar vi på korrekt uppbyggnad, ventilation och kvalitativa plåtdetaljer, som avgör arbetets livslängd.",
+      "deliverables": {
+        "title": "Vad vi erbjuder",
+        "items": [
+          "Lutande tak med tegel- eller betongpannor",
+          "Takbeläggningar i plåt",
+          "Platta tak med tätskiktsmembran",
+          "Byte av gamla takbeläggningar",
+          "Plåtslageriarbeten (hängrännor, beslag)",
+          "Takfönster från Velux och Fakro",
+          "Värmeisolering av vind"
+        ]
+      },
+      "process": {
+        "title": "Faser",
+        "steps": [
+          {
+            "title": "Takinventering",
+            "body": "Vi bedömer konstruktionens och takbeläggningens skick och föreslår den optimala lösningen."
+          },
+          {
+            "title": "Projektering och offert",
+            "body": "En detaljerad budget med den specifika takuppbyggnaden."
+          },
+          {
+            "title": "Borttagning av den gamla beläggningen",
+            "body": "Vid renovering, säker borttagning och bortforsling av den gamla beläggningen."
+          },
+          {
+            "title": "Läggning av den nya uppbyggnaden",
+            "body": "Diffusionsöppen underlagsduk, ströläkt, bärläkt, takbeläggning och plåtdetaljer."
+          },
+          {
+            "title": "Garanti",
+            "body": "5 års garanti på arbetet; på material enligt tillverkaren."
+          }
+        ]
+      },
+      "certifications": {
+        "title": "Systemutbildning"
+      },
+      "faq": {
+        "title": "Vanliga frågor",
+        "items": [
+          {
+            "q": "Vilken livslängd har tegelpannor?",
+            "a": "Med kvalitativ installation och underhåll, 60–100 år. Plåtdetaljer har kortare livslängd (20–40 år), så dem räknar vi med separat."
+          },
+          {
+            "q": "När är ett platt tak mer lämpligt?",
+            "a": "Platta tak passar kontors- och industribyggnader där taket används, till exempel för solceller. För en villa beror det på det arkitektoniska konceptet."
+          }
+        ]
+      }
     }
   },
   "about": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "body": "..."
+    "meta": {
+      "title": "Om oss | Quantum Sphere",
+      "description": "Quantum Sphere är ett byggföretag baserat i Slovakien. Fem yrkesområden, en ansvarstagande partner."
+    },
+    "title": "Om Quantum Sphere",
+    "body": "Vi är ett byggföretag baserat i Slovakien som täcker fem viktiga yrkesområden under ett och samma tak. Tack vare egna team inom varje yrkesområde kan vi genomföra de flesta byggprojekt utan underentreprenörer — vilket innebär snabbare kommunikation, bättre samordning mellan yrkesområdena och en ansvarstagande kontaktperson för hela projektet.\n\nVi arbetar för både företagskunder och privatkunder. Vårt mål är att vara en långsiktig partner som kunden ringer tillbaka till för nästa uppdrag.\n\nVi är verksamma i hela Slovakien och genomför även utvalda större projekt i grannländerna."
   },
   "contact": {
-    "meta": { "title": "...", "description": "..." },
-    "title": "...",
-    "subtitle": "...",
+    "meta": {
+      "title": "Kontakt | Quantum Sphere",
+      "description": "Begär offert och kontaktuppgifter."
+    },
+    "title": "Kontakt",
+    "subtitle": "Berätta vad du planerar. Vi återkommer till dig inom 24 timmar på vardagar.",
     "form": {
-      "name": "...",
-      "email": "...",
-      "phone": "...",
-      "company": "...",
-      "serviceType": "...",
-      "serviceSelect": "...",
-      "serviceOther": "...",
-      "message": "...",
-      "submit": "...",
-      "success": "...",
-      "error": "..."
+      "name": "Fullständigt namn",
+      "email": "E-post",
+      "phone": "Telefon",
+      "company": "Företag (valfritt)",
+      "serviceType": "Vilken tjänst är du intresserad av",
+      "serviceSelect": "Välj en tjänst",
+      "serviceOther": "Annat / allmän förfrågan",
+      "message": "Projektbeskrivning",
+      "submit": "Skicka förfrågan",
+      "success": "Tack, ditt meddelande har skickats. Vi hör av oss så snart som möjligt.",
+      "error": "Kunde inte skicka. Försök igen eller kontakta oss via e-post."
     }
   },
   "notFound": {
-    "title": "...",
-    "description": "...",
-    "backHome": "..."
+    "title": "Sidan hittades inte",
+    "description": "Sidan du letar efter finns inte eller har flyttats.",
+    "backHome": "Tillbaka till startsidan"
   },
   "footer": {
-    "tagline": "...",
-    "company": "...",
-    "rights": "..."
+    "tagline": "Ett byggföretag baserat i Slovakien — fem yrkesområden under ett och samma tak.",
+    "company": "Företag",
+    "rights": "Alla rättigheter förbehållna."
   }
 }
