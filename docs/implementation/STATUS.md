@@ -206,3 +206,16 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: none.
 
 ---
+
+### Task 14: OG images via next/og — ✅ Done (2026-05-22)
+- Branch: `feat/14-og-images`
+- Files: new `lib/og.tsx` + 6 `opengraph-image.tsx` (home + 5 services)
+- Build: ✅ / Lint: ✅ (no new) / Runtime verify: ✅ (OG route → 200 image/png, 49 KB)
+- Notes:
+  - Shared `renderOgImage({eyebrow,title})` (dark branded card + crosshair mark). Resilient font load: fetches Plus Jakarta Sans (700) for diacritics, **try/catch fallback** to built-in font so it never throws (Rule 2/3) — confirmed it still returns a valid PNG.
+  - Default (Node) runtime, not edge, for next-intl compatibility. `size`/`alt`/`contentType` inlined per file for static analysis. Content from `home.hero` / `services.<slug>` via `getTranslations`.
+  - Verified `og:image` meta points to the hashed route and the route serves `image/png`.
+  - Non-SK OG titles show `"..."` until Tasks 15/16 fill copy.
+- Follow-up: none (about/contact reuse the homepage OG via the layout default).
+
+---
