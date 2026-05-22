@@ -63,3 +63,31 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: Task 11/15/16 fill `"..."` placeholders. Portal DE/FR/SV stays English until a future portal-translation pass (was plan Task 19 follow-up).
 
 ---
+
+### Task 03: wire next-intl plugin — ✅ Done (pre-satisfied) (2026-05-22)
+- Branch / commit: none (no code change)
+- Notes: `next.config.ts` already calls `createNextIntlPlugin("./lib/i18n/request.ts")` (from prior work). Verified it points at the request config rewritten in Task 01. Nothing to change. Recorded here for completeness.
+- Follow-up: none
+
+---
+
+### Task 04: restructure app/ under [locale] — ✅ Done (2026-05-22)
+- Branch: `feat/04-locale-restructure`
+- Files changed: ~42 (git-tracked renames + new [locale]/layout.tsx + 6 marketing stubs + 1 import fix; deleted app/layout.tsx)
+- Build: ✅ (all routes under `/[locale]/…`; marketing SSG ×5 locales, portal dynamic) / Lint: ✅ (no new problems) / cache: cleared stale `.next/dev` types
+- Moves (via `git mv`, history preserved):
+  - `app/(public)/` → `app/[locale]/(marketing)/`
+  - `app/(app)/` → `app/[locale]/(portal)/`
+  - `app/login/` → `app/[locale]/login/` (NOT under (portal) — its layout calls `requireUser()` and would loop)
+  - `app/change-password/` → `app/[locale]/change-password/` (same reason)
+- New `app/[locale]/layout.tsx`: html/body + Plus Jakarta font + `NextIntlClientProvider` + `generateStaticParams` (locales) + `setRequestLocale`. Deleted old `app/layout.tsx` (root layout is now the `[locale]` layout — standard next-intl pattern, confirmed Next 16 requires html/body in root layout).
+- Fixed `components/portal/SectionTables.tsx` import of moved `TableLogger`.
+- Created stub pages: `(marketing)/{solar,electrical,drywall,masonry,roofing,about}/page.tsx` (real content Task 09). `contact` moved (existing).
+- **Deviations / deferrals (Rule 7, documented):**
+  - **Link conversion deferred.** Portal keeps `next/link` (English slugs resolve via the intl middleware's locale prefix — one redirect hop, acceptable for an internal tool). Marketing components (`Nav`/`Footer`/sections, contact) keep `next/link` for now and are rebuilt with next-intl `Link` in Tasks 07/09/10. So localized marketing slugs are not yet emitted by links.
+  - Redundant nested `NextIntlClientProvider` in (portal)/login/change-password layouts left in place (harmless; parent [locale] layout also provides). May simplify later.
+  - `metadataBase` uses `NEXT_PUBLIC_SITE_URL ?? https://quantum-sphere.eu`. **Domain discrepancy:** old code used `quantumsphere.eu` (no hyphen); plan uses `quantum-sphere.eu`. → **David follow-up:** confirm canonical domain.
+- **Transient state until Task 05:** `proxy.ts` is still auth-only (no locale handling), so `/` does not yet redirect to `/sk`, and localized slugs (`/sk/solarne-elektrarne`) are not yet active — only internal paths (`/sk/solar`). Resolves in Task 05.
+- Follow-up: Task 05 (proxy), Task 07/09/10 (marketing link conversion), domain confirmation.
+
+---

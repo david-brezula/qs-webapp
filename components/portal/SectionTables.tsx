@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { computeModules } from "@/lib/portal/modules";
-import { TableLogger } from "@/app/(app)/projects/[projectId]/log/TableLogger";
+import { TableLogger } from "@/app/[locale]/(portal)/projects/[projectId]/log/TableLogger";
 
 export type ActivityLog = {
   id: string;
