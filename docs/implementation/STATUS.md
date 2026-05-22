@@ -252,3 +252,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - **Why Partial / David follow-up:** all steps require human credentials/access. Documented; cannot be executed autonomously (Rule 6).
 
 ---
+
+### Task 18: host-aware proxy.ts — ⚠️ Partial (2026-05-22)
+- Branch: `feat/18-host-routing`
+- Files: `proxy.ts`, `components/marketing/MarketingHeader.tsx`
+- Build: ✅ / Lint: ✅ (no new) / Runtime verify (spoofed Host): ✅
+- Notes:
+  - Added a host split (runs only on real prod hosts; skipped for localhost/`*.vercel.app`): marketing host serving a portal path → redirect to `PORTAL_HOST`; portal host serving a marketing path → redirect to `MARKETING_HOST`. Hosts derived from `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_APP_URL` (fallback quantum-sphere.eu / app.quantum-sphere.eu). Clears port on redirect.
+  - Verified with spoofed `Host`: MKT+/sk/dashboard→307 app host; APP+/sk→307 mkt host; MKT+/sk→200; APP+/sk/dashboard→307 login (auth gate).
+  - `MarketingHeader` portal links now use a `PortalLink` helper: targets `NEXT_PUBLIC_APP_URL/{locale}/login` in production, same-host next-intl `Link` in dev/preview.
+- **Why Partial / David follow-up:** real cross-host behavior needs the two production domains + DNS live (see DEPLOYMENT.md). Logic verified locally.
+
+---

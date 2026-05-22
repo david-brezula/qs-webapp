@@ -5,10 +5,16 @@ import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./lib/i18n/routing";
 
 // Next.js 16 proxy convention (formerly middleware.ts): export a plain `proxy`
-// function. Locale handling runs first (next-intl), then the portal auth gate.
-// The session is read straight from the JWT cookie via getToken — the NextAuth
-// `auth()` wrapper is NOT a valid proxy module in Next 16.
+// function. Order: host split (prod) -> locale handling (next-intl) -> auth gate.
 const intlMiddleware = createIntlMiddleware(routing);
+
+const MARKETING_HOST = process.env.NEXT_PUBLIC_SITE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SITE_URL).host
+  : "quantum-sphere.eu";
+
+const PORTAL_HOST = process.env.NEXT_PUBLIC_APP_URL
+  ? new URL(process.env.NEXT_PUBLIC_APP_URL).host
+  : "app.quantum-sphere.eu";
 
 // Locale-stripped (internal) portal paths that require authentication.
 const PORTAL_PATHS = [
@@ -23,6 +29,14 @@ const PORTAL_PATHS = [
 
 const ADMIN_ONLY_PREFIXES = ["/projects", "/workers", "/accommodations", "/wages"];
 const ADMIN_ONLY_SUBPATHS = ["/edit", "/new"];
+
+function isLocalOrPreview(host: string): boolean {
+  return (
+    host.startsWith("localhost") ||
+    host.startsWith("127.0.0.1") ||
+    host.endsWith(".vercel.app")
+  );
+}
 
 function stripLocale(pathname: string): { locale: string | null; path: string } {
   const segments = pathname.split("/").filter(Boolean);
@@ -50,7 +64,29 @@ function isWorkerAllowedAdminPath(p: string): boolean {
 }
 
 export async function proxy(request: NextRequest) {
+  const host = request.headers.get("host") ?? "";
   const { pathname } = request.nextUrl;
+  const { locale, path: strippedPath } = stripLocale(pathname);
+
+  // 0) Host split — only on real production hosts (skip localhost / *.vercel.app).
+  if (!isLocalOrPreview(host)) {
+    // Marketing host serving a portal path -> portal host.
+    if (host === MARKETING_HOST && isPortalPath(strippedPath)) {
+      const url = request.nextUrl.clone();
+      url.host = PORTAL_HOST;
+      url.protocol = "https:";
+      url.port = "";
+      return NextResponse.redirect(url);
+    }
+    // Portal host serving a marketing path -> marketing host.
+    if (host === PORTAL_HOST && !isPortalPath(strippedPath)) {
+      const url = request.nextUrl.clone();
+      url.host = MARKETING_HOST;
+      url.protocol = "https:";
+      url.port = "";
+      return NextResponse.redirect(url);
+    }
+  }
 
   // 1) next-intl locale handling (redirects for missing/invalid locale, rewrites
   //    localized slugs, sets the locale cookie).
@@ -60,7 +96,6 @@ export async function proxy(request: NextRequest) {
   }
 
   // 2) auth gate for portal paths
-  const { locale, path: strippedPath } = stripLocale(pathname);
   if (!isPortalPath(strippedPath)) return intlResponse;
   if (strippedPath === "/login") return intlResponse;
 
