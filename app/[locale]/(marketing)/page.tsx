@@ -1,5 +1,3 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { Capabilities } from "@/components/sections/Capabilities";
@@ -10,22 +8,20 @@ import { Coverage } from "@/components/sections/Coverage";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
+// NOTE: still the original solar sections — replaced with the localized
+// construction homepage in Task 10. Marketing chrome now comes from the layout.
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main>
-        <Hero />
-        <Stats />
-        <Capabilities />
-        <Process />
-        <Projects />
-        <Certifications />
-        <Coverage />
-        <Testimonials />
-        <ContactCTA />
-      </main>
-      <Footer />
+      <Hero />
+      <Stats />
+      <Capabilities />
+      <Process />
+      <Projects />
+      <Certifications />
+      <Coverage />
+      <Testimonials />
+      <ContactCTA />
     </>
   );
 }

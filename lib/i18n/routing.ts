@@ -73,3 +73,12 @@ export const routing = defineRouting({
 
 export type Locale = (typeof routing.locales)[number];
 export type Pathname = keyof typeof routing.pathnames;
+
+// Native display labels for the language switcher.
+export const localeLabels: Record<Locale, string> = {
+  sk: "Slovenčina",
+  en: "English",
+  de: "Deutsch",
+  fr: "Français",
+  sv: "Svenska",
+};

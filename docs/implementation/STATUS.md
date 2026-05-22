@@ -115,3 +115,17 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - **Design follow-up:** `language` (enum, account language, drives portal i18n + session) and `locale` (string, URL-locale preference, Task 20) now overlap. Consider consolidating to a single field later.
 
 ---
+
+### Task 07: marketing shell components — ✅ Done (2026-05-22)
+- Branch: `feat/07-marketing-shell`
+- Files: new `components/marketing/{Logo,LanguageSwitcher,MarketingHeader,MarketingFooter}.tsx`, new `lib/services.ts`, edited `lib/i18n/routing.ts` (localeLabels), `components/ui/Button.tsx` (export `buttonClass`), `messages/*.json` (footer namespace ×5), `app/[locale]/(marketing)/layout.tsx`, home + contact pages (strip duplicate chrome).
+- Build: ✅ / Lint: ✅ (no new problems) / SSR check: ✅ (SK chrome renders: logo, nav, service names, footer)
+- Notes:
+  - `MarketingHeader` (client): scroll-aware sticky, services dropdown (5 trades w/ icons from `lib/services.ts`), `LanguageSwitcher`, portal link, mobile menu. `MarketingFooter` (server): brand+tagline, services, company, contact (real `lib/content` FOOTER details), bottom bar w/ switcher.
+  - `LanguageSwitcher` (client): custom dropdown, 5 native labels, `router.replace(pathname,{locale})` preserves path; `placement="top"` variant for footer.
+  - Pulled `lib/services.ts` forward from Task 08 (header needs it) — Task 08 now only adds the ServicePage template.
+  - Deviations (Rule 7): used existing `@/components/ui/Container` instead of a new `components/marketing/Container` (avoid duplication); added `footer` namespace (tagline/company/rights) to messages (SK real, others `"..."`).
+  - Removed the embedded solar `Nav`/`Footer` from home + contact pages; chrome now from the marketing layout. Home still shows the original solar sections (replaced Task 10); contact still the solar form (reworked Task 09) — transient.
+- Follow-up: Task 10 (home body), Task 09 (contact rework), translations for footer/nav/services in en/de/fr/sv (Tasks 15/16).
+
+---

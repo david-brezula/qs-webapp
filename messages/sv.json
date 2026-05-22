@@ -268,5 +268,10 @@
     "title": "...",
     "description": "...",
     "backHome": "..."
+  },
+  "footer": {
+    "tagline": "...",
+    "company": "...",
+    "rights": "..."
   }
 }

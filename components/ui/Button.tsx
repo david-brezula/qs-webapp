@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "ember";
+export type Variant = "primary" | "secondary" | "ghost" | "ember";
 
 const STYLES: Record<Variant, string> = {
   primary:
@@ -16,6 +16,11 @@ const STYLES: Record<Variant, string> = {
 
 const BASE =
   "group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-[0.8125rem] font-medium tracking-wide rounded-[var(--radius-pill)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-paper)] disabled:cursor-not-allowed disabled:opacity-60";
+
+// Shared so locale-aware marketing CTAs (next-intl Link) can match Button styling.
+export function buttonClass(variant: Variant = "primary", className = "") {
+  return `${BASE} ${STYLES[variant]} ${className}`;
+}
 
 export function Button({
   href,

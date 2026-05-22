@@ -4,8 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import {
@@ -76,10 +74,8 @@ export default function ContactPage() {
   }
 
   return (
-    <>
-      <Nav />
-      <main className="py-16 md:py-24">
-        <Container className="max-w-3xl">
+    <div className="py-16 md:py-24">
+      <Container className="max-w-3xl">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] mb-10 transition-colors"
@@ -209,9 +205,7 @@ export default function ContactPage() {
             </div>
           </form>
         </Container>
-      </main>
-      <Footer />
-    </>
+    </div>
   );
 }
 

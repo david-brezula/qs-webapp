@@ -266,5 +266,10 @@
     "title": "...",
     "description": "...",
     "backHome": "..."
+  },
+  "footer": {
+    "tagline": "Stavebná spoločnosť so sídlom na Slovensku - päť remeselných odborov pod jednou strechou.",
+    "company": "Spoločnosť",
+    "rights": "Všetky práva vyhradené."
   }
 }

@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
+import { MarketingHeader } from "@/components/marketing/MarketingHeader";
+import { MarketingFooter } from "@/components/marketing/MarketingFooter";
 
 export const metadata: Metadata = {
-  title: "Quantum Sphere — Solar EPC subcontracting across Europe",
+  title: { default: "Quantum Sphere", template: "%s | Quantum Sphere" },
   description:
-    "Slovak solar construction subcontractor for European EPCs and GCs. Rooftop, ground‑mount, racking, BOS, commissioning and service — across DACH and Scandinavia.",
-  openGraph: {
-    title: "Quantum Sphere",
-    description: "Solar EPC subcontracting across DACH and the Nordics.",
-    type: "website",
-  },
+    "Komplexné stavebné riešenia pod jednou strechou — solárne elektrárne, elektroinštalácie, sadrokartón, murárske práce a montáž striech.",
 };
 
-export default function PublicLayout({
+export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <MarketingHeader />
+      <main className="min-h-screen">{children}</main>
+      <MarketingFooter />
+    </>
+  );
 }
