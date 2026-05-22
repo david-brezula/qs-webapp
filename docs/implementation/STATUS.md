@@ -243,3 +243,12 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: native-speaker review of all three before marketing launch in those markets.
 
 ---
+
+### Task 17: DEPLOYMENT.md — ⚠️ Partial (2026-05-22)
+- Branch: `docs/17-deployment`
+- Files: new `DEPLOYMENT.md`
+- Build/Lint: n/a (docs)
+- Notes: Documented the manual deployment steps requiring David's credentials — apply DB migrations (`prisma migrate deploy` for `add_user_locale`), confirm canonical domain, Vercel domains (marketing + portal hosts), DNS, env vars (incl. `NEXT_PUBLIC_APP_URL`, `AUTH_URL`), post-DNS verification, and post-launch follow-ups (native review, portal de/fr/sv, ContactSubmission cleanup, language/locale consolidation).
+- **Why Partial / David follow-up:** all steps require human credentials/access. Documented; cannot be executed autonomously (Rule 6).
+
+---
