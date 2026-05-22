@@ -264,3 +264,13 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - **Why Partial / David follow-up:** real cross-host behavior needs the two production domains + DNS live (see DEPLOYMENT.md). Logic verified locally.
 
 ---
+
+### Task 19: Portal i18n — ✅ Done (pre-satisfied) (2026-05-22)
+- Branch: `docs/19-portal-i18n` (verification + STATUS only; no code change)
+- Notes:
+  - The portal was already built **i18n-first** (worker-portal plan): all user-facing strings use `useTranslations`/`getTranslations` with top-level namespaces (`common, login, nav, projects, workers, accommodations, wages, log, changePassword, errors, error`). Verified — portal files lacking a translations import are structural components that receive labels via props or compose i18n'd children (DataTable, FormField, SectionList, ProgressGraph, layout, leaf pages).
+  - Portal keys present in all 5 message files (SK + EN real; de/fr/sv English fallback with `_TODO_PORTAL_TRANSLATIONS`). EN omits the flag — its portal copy is complete English (not a fallback).
+  - So the plan's "wrap hardcoded strings" work was unnecessary; this task is verification.
+- Follow-up: proper de/fr/sv portal translations (post-launch, flagged). The cookie-based `LocaleToggle` is superseded by Task 20's portal switcher.
+
+---
