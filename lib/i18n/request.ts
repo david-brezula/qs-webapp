@@ -1,17 +1,16 @@
 import { getRequestConfig } from "next-intl/server";
-import { cookies } from "next/headers";
-import { auth } from "@/auth";
-import { resolveLocale } from "./config";
+import { routing } from "./routing";
 
-export default getRequestConfig(async () => {
-  const session = await auth();
-  const cookieStore = await cookies();
-  const cookieLocale = cookieStore.get("locale")?.value;
-
-  const locale = resolveLocale({
-    cookieLocale,
-    sessionLanguage: session?.user?.language,
-  });
+// URL-prefix routing: the active locale comes from the `[locale]` segment
+// (provided by next-intl's proxy middleware via `requestLocale`). The login
+// flow seeds the initial locale from the user's account language elsewhere
+// (see lib/i18n/config.ts + the login redirect).
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale =
+    requested && (routing.locales as readonly string[]).includes(requested)
+      ? requested
+      : routing.defaultLocale;
 
   return {
     locale,

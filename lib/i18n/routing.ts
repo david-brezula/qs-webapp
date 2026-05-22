@@ -1,0 +1,75 @@
+import { defineRouting } from "next-intl/routing";
+
+// Source of truth for marketing + portal locale routing.
+// Language codes, NOT country codes (e.g. `sv`, not `se`).
+export const routing = defineRouting({
+  locales: ["sk", "en", "de", "fr", "sv"],
+  defaultLocale: "sk",
+  localePrefix: "always",
+
+  pathnames: {
+    "/": "/",
+
+    "/solar": {
+      sk: "/solarne-elektrarne",
+      en: "/solar-power-plants",
+      de: "/solaranlagen",
+      fr: "/centrales-solaires",
+      sv: "/solcellsanlaggningar",
+    },
+    "/electrical": {
+      sk: "/elektroinstalacie",
+      en: "/electrical-installations",
+      de: "/elektroinstallationen",
+      fr: "/installations-electriques",
+      sv: "/elinstallationer",
+    },
+    "/drywall": {
+      sk: "/sadrokartonove-prace",
+      en: "/drywall-installation",
+      de: "/trockenbau",
+      fr: "/cloisons-seches",
+      sv: "/gipsvaggar",
+    },
+    "/masonry": {
+      sk: "/murarske-prace",
+      en: "/masonry-services",
+      de: "/maurerarbeiten",
+      fr: "/travaux-de-maconnerie",
+      sv: "/murningsarbeten",
+    },
+    "/roofing": {
+      sk: "/montaz-striech",
+      en: "/roof-installation",
+      de: "/dachmontage",
+      fr: "/installation-de-toitures",
+      sv: "/takmontering",
+    },
+    "/about": {
+      sk: "/o-nas",
+      en: "/about-us",
+      de: "/uber-uns",
+      fr: "/a-propos",
+      sv: "/om-oss",
+    },
+    "/contact": {
+      sk: "/kontakt",
+      en: "/contact",
+      de: "/kontakt",
+      fr: "/contact",
+      sv: "/kontakt",
+    },
+
+    // Portal — English slugs for every locale (not SEO-targeted).
+    "/login": "/login",
+    "/dashboard": "/dashboard",
+    "/projects": "/projects",
+    "/workers": "/workers",
+    "/accommodations": "/accommodations",
+    "/wages": "/wages",
+    "/change-password": "/change-password",
+  },
+});
+
+export type Locale = (typeof routing.locales)[number];
+export type Pathname = keyof typeof routing.pathnames;
