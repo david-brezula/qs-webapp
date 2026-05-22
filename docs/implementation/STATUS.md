@@ -129,3 +129,15 @@ Source plan: `CLAUDE_CODE_PROMPT.md` (autonomous restructure of qs-web).
 - Follow-up: Task 10 (home body), Task 09 (contact rework), translations for footer/nav/services in en/de/fr/sv (Tasks 15/16).
 
 ---
+
+### Task 08: lib/services.ts + ServicePage template — ✅ Done (2026-05-22)
+- Branch: `feat/08-servicepage`
+- Files: new `components/marketing/ServicePage.tsx` (`lib/services.ts` already created in Task 07)
+- Build: ✅ / Lint: ✅ (no new problems)
+- Notes:
+  - `ServicePage({ slug })` — server component (FAQ uses native `<details>`, no JS). Sections: hero (icon + name + title + subtitle + CTAs), description, deliverables, process (numbered), FAQ, contact CTA.
+  - Content from `services.<slug>` via `useTranslations` + `t.raw()` for arrays. Array sections (deliverables/process/faq) render only when non-empty, so the placeholder state stays clean until Task 11 fills SK content.
+  - CTA labels reuse already-translated `nav.contact`/`nav.about` (no new keys). Styled with existing design tokens + `buttonClass`.
+- Follow-up: Task 09 wires the 5 trade pages to render `<ServicePage slug=…/>`; Task 11/15/16 fill copy.
+
+---
