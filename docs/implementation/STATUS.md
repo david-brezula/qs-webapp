@@ -401,3 +401,8 @@ All four follow-ups David requested are done. **Build ✅ · lint clean (0 probl
 
 > Live now on `https://qs-webapp.vercel.app`. Custom domains go live once DNS propagates.
 
+### F7: PostHog analytics enabled + verified — ✅ Done (2026-05-23)
+- Key provided is a **US Cloud** project, but the code defaulted to the EU host → region mismatch (EU 404/401). **Fix:** set `NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com` in `.env.local` and Vercel (production + preview); redeployed prod.
+- Verified in a real browser (local **and** live `qs-webapp.vercel.app`): `$pageview` (with `locale`), autocapture, and `contact_submitted` all POST to `us.i.posthog.com/e/` → **200**. (Beacon `ERR_ABORTED` on nav are normal pageleave events, retried.)
+- **Note:** if a PostHog project in EU is ever used instead, drop the `NEXT_PUBLIC_POSTHOG_HOST` override (EU is the code default).
+
