@@ -380,8 +380,14 @@ David confirmed: canonical domain = **quantum-sphere.eu**; analytics = **PostHog
 
 All four follow-ups David requested are done. **Build ✅ · lint clean (0 problems) ✅ · tests 57/57 ✅ · Lighthouse Perf 99 / A11y 100 / BP 100 / SEO ~100 (prod)**. Marketing + portal fully localized in 5 languages.
 
+### F5: Apply DB migrations to local Docker DB — ✅ Done (2026-05-23)
+- Both pending migrations applied via `prisma migrate deploy` to the **local Docker Supabase DB** (`localhost:5432/qs_web`, confirmed target before running — NOT prod). `add_user_locale` + `clean_contact_submission` applied; `migrate status` clean.
+- Verified columns: `User.locale` present; `ContactSubmission` = id, company, name, email, createdAt, phone, serviceType, message (solar columns dropped).
+- **E2E verified:** POST /api/contact → `{"ok":true}` 200, row written with name/phone/serviceType/message; test row cleaned up.
+- **Production DB still pending:** run `prisma migrate deploy` against prod Supabase at deploy (back up ContactSubmission first — destructive). DEPLOYMENT.md step 0.
+
 **Remaining = human/credential steps only:**
-1. Apply DB migrations (`prisma migrate deploy`): `add_user_locale` (safe) + `clean_contact_submission` (**destructive** — back up ContactSubmission first). Contact form + locale persistence depend on these.
+1. Apply the same migrations to the **production** Supabase DB at deploy (`prisma migrate deploy`; `clean_contact_submission` is **destructive** — back up first). Local dev DB is already migrated.
 2. Vercel: add the two domains + DNS + env (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_APP_URL`, `AUTH_URL`, and `NEXT_PUBLIC_POSTHOG_KEY` to enable analytics).
 3. Native-speaker review of the AI translations (all `_TODO`).
 4. (Optional) Consolidate `User.language`/`User.locale`; re-run Lighthouse on the live domain.
