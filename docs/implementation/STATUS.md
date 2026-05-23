@@ -346,3 +346,14 @@ documented pre-existing baseline, no new problems). Lighthouse: Perf 99 / A11y 1
 - **Analytics** not wired (no dependency present) — add if desired.
 - **Re-run Lighthouse** on the live domain (confirms SEO ~100).
 
+---
+
+## Post-plan follow-ups (2026-05-23)
+
+David confirmed: canonical domain = **quantum-sphere.eu**; analytics = **PostHog**.
+
+### F1: Fix pre-existing lint baseline — ✅ Done
+- Branch: `fix/lint-baseline`
+- `npm run lint` now **clean (0 problems)**; build ✅; tests 57/57 ✅.
+- Fixes: removed unused `t`/`getTranslations` (workers/[userId]/page.tsx) and unused `tCommon` (SectionsEditor.tsx); MyWagesView reset-on-range-change now via a `key` remount in `wages/page.tsx` (removed the reset effect, `react-hooks/set-state-in-effect`); documented `react-hooks/purity` disable on the intentional wall-clock `Date.now()` in TableLogger (24h edit-lock).
+

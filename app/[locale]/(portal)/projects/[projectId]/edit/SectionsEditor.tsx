@@ -133,7 +133,6 @@ function NewTableRow({
   startTransition: (cb: () => void) => void;
 }) {
   const router = useRouter();
-  const tCommon = useTranslations("common");
   const [name, setName] = useState("");
   const [rows, setRows] = useState("");
   const [cols, setCols] = useState("");

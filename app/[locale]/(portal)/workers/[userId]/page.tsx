@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
 import { EditWorkerForm } from "./EditWorkerForm";
@@ -13,7 +12,6 @@ export default async function EditWorkerPage({
   const { userId } = await params;
   const user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) notFound();
-  const t = await getTranslations("workers");
 
   return (
     <div className="max-w-xl">

@@ -78,7 +78,7 @@ export default async function WagesPage({
     return (
       <div>
         <h1 className="text-2xl font-semibold text-navy mb-8">{t("title")}</h1>
-        <MyWagesView from={fromStr} to={toStr} result={result} />
+        <MyWagesView key={`${fromStr}-${toStr}`} from={fromStr} to={toStr} result={result} />
       </div>
     );
   }

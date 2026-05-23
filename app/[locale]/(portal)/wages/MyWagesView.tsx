@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronRight } from "lucide-react";
@@ -29,13 +29,8 @@ export function MyWagesView({
   const [loadingSections, setLoadingSections] = useState<Set<string>>(new Set());
   const [sectionErrors, setSectionErrors] = useState<Set<string>>(new Set());
 
-  // When the server returns a new result (date range changed), discard cached sections.
-  useEffect(() => {
-    setExpandedProjects(new Set());
-    setSectionCache(new Map());
-    setLoadingSections(new Set());
-    setSectionErrors(new Set());
-  }, [from, to]);
+  // Cached sections are reset when the date range changes via a `key` on this
+  // component in the parent (it remounts), so no reset effect is needed here.
 
   function apply() {
     const params = new URLSearchParams(sp);

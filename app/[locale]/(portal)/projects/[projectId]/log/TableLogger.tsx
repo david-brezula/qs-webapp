@@ -394,6 +394,9 @@ export function TableLogger({
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
               <span className="text-navy/60 uppercase tracking-wide">{labels.recent}:</span>
               {myLogs.map((l) => {
+                // Wall-clock is intentional here: an entry locks 24h after
+                // creation, so the lock state must reflect the current time.
+                // eslint-disable-next-line react-hooks/purity
                 const ageMs = Date.now() - new Date(l.createdAt).getTime();
                 const locked = !isAdmin && ageMs >= 24 * 60 * 60 * 1000;
                 return (
