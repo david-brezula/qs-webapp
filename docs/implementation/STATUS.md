@@ -364,3 +364,8 @@ David confirmed: canonical domain = **quantum-sphere.eu**; analytics = **PostHog
 - Fixed footer email `rfp@quantumsphere.eu` → `rfp@quantum-sphere.eu` (canonical domain confirmed).
 - **Dependency:** contact form needs this migration applied before it works in prod (DEPLOYMENT.md step 0). Until then, submit errors — apply migrations before deploy.
 
+### F3: Portal translations for de/fr/sv — ✅ Done
+- Branch: `feat/portal-i18n-translations`
+- Build ✅ / Lint clean ✅ / JSON valid (key parity with en, 0 placeholders).
+- Translated the portal namespaces (`common`, `nav`, `login`, `projects`, `workers`, `changePassword`, `accommodations`, `wages`, `log`, `errors`, `error`) EN→DE/FR/SV via 3 parallel agents; deep-merged. ICU placeholders (`{count}`, `{password}`, `{amount}`, `{remaining}`) preserved; brand kept; removed the `_TODO_PORTAL_TRANSLATIONS` flags. Portal now fully localized in all 5 languages (still AI drafts — `_TODO` native review remains).
+
