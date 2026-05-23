@@ -369,3 +369,20 @@ David confirmed: canonical domain = **quantum-sphere.eu**; analytics = **PostHog
 - Build ✅ / Lint clean ✅ / JSON valid (key parity with en, 0 placeholders).
 - Translated the portal namespaces (`common`, `nav`, `login`, `projects`, `workers`, `changePassword`, `accommodations`, `wages`, `log`, `errors`, `error`) EN→DE/FR/SV via 3 parallel agents; deep-merged. ICU placeholders (`{count}`, `{password}`, `{amount}`, `{remaining}`) preserved; brand kept; removed the `_TODO_PORTAL_TRANSLATIONS` flags. Portal now fully localized in all 5 languages (still AI drafts — `_TODO` native review remains).
 
+### F4: PostHog analytics — ✅ Done (env-gated)
+- Branch: `feat/posthog-analytics`
+- Build ✅ / Lint clean ✅. Added `posthog-js`.
+- `components/analytics/PostHogProvider.tsx` (mounted in `[locale]/layout.tsx`): inits only when `NEXT_PUBLIC_POSTHOG_KEY` is set, captures `$pageview` with `locale` on route change, autocapture on. `lib/analytics.ts` `track()` helper; `ContactForm` fires `contact_submitted` (with serviceType). Fully no-op until the key is set (DEPLOYMENT.md).
+
+---
+
+## Post-plan summary (2026-05-23)
+
+All four follow-ups David requested are done. **Build ✅ · lint clean (0 problems) ✅ · tests 57/57 ✅ · Lighthouse Perf 99 / A11y 100 / BP 100 / SEO ~100 (prod)**. Marketing + portal fully localized in 5 languages.
+
+**Remaining = human/credential steps only:**
+1. Apply DB migrations (`prisma migrate deploy`): `add_user_locale` (safe) + `clean_contact_submission` (**destructive** — back up ContactSubmission first). Contact form + locale persistence depend on these.
+2. Vercel: add the two domains + DNS + env (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_APP_URL`, `AUTH_URL`, and `NEXT_PUBLIC_POSTHOG_KEY` to enable analytics).
+3. Native-speaker review of the AI translations (all `_TODO`).
+4. (Optional) Consolidate `User.language`/`User.locale`; re-run Lighthouse on the live domain.
+

@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { SERVICES } from "@/lib/services";
 import { contactSchema, type ContactPayload } from "@/lib/contact-schema";
+import { track } from "@/lib/analytics";
 
 type Errors = Partial<Record<keyof ContactPayload, string>> & { _form?: string };
 
@@ -58,6 +59,7 @@ export function ContactForm() {
         setSubmitting(false);
         return;
       }
+      track("contact_submitted", { serviceType: parsed.data.serviceType });
       setDone(true);
     } catch {
       setErrors({ _form: tf("error") });

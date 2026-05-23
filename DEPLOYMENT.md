@@ -55,6 +55,9 @@ The code defaults to **`quantum-sphere.eu`** (with a hyphen) via
 - `DATABASE_URL=<existing>` (+ any direct/pooled URL Prisma needs)
 - Optional contact email: `CONTACT_NOTIFY_EMAIL`, `SMTP_HOST`, `SMTP_PORT`,
   `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`.
+- Analytics (PostHog): `NEXT_PUBLIC_POSTHOG_KEY=<project key>` and optionally
+  `NEXT_PUBLIC_POSTHOG_HOST` (default `https://eu.i.posthog.com`). Without the
+  key, analytics is fully disabled (no-op).
 
 ## 5. Verify after DNS propagates
 
@@ -76,3 +79,6 @@ The code defaults to **`quantum-sphere.eu`** (with a hyphen) via
   `clean_contact_submission` (destructive — see step 0) must be applied. Until
   applied, the contact form will error on submit, so apply migrations before deploy.
 - **`User.language` vs `User.locale`** overlap — consider consolidating.
+- **Analytics**: PostHog is wired (env-gated). Set `NEXT_PUBLIC_POSTHOG_KEY` to
+  enable page views (with `locale`), autocaptured clicks, and the
+  `contact_submitted` conversion event.
