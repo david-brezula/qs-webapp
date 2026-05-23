@@ -1,26 +1,25 @@
 "use client";
 
 import { useState, useRef, useEffect, useTransition } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 import { Globe, Check, ChevronDown } from "lucide-react";
+import { usePathname, useRouter } from "@/lib/i18n/navigation";
 import { routing, localeLabels, type Locale } from "@/lib/i18n/routing";
 import { updateUserLocale } from "@/lib/actions/locale";
 
-// Portal locale switcher. Portal slugs are identical across locales, so it just
-// swaps the leading locale segment of the current path; it also persists the
-// choice to the user's account (best-effort). Works on any portal route,
-// including dynamic ones, and on the pre-auth login/change-password pages.
+// Portal locale switcher. Uses next-intl's locale-aware navigation to swap the
+// active locale while preserving the current path (portal slugs are identical
+// across locales). It also persists the choice to the user's account, but in
+// the background — the visible switch must never wait on the DB write. Works on
+// any portal route, including dynamic ones, and on the login/change-password
+// pages. (NextIntlClientProvider wraps all of them, so the hooks resolve.)
 export function PortalLanguageSwitcher() {
+  const current = useLocale() as Locale;
+  const pathname = usePathname();
   const router = useRouter();
-  const pathname = usePathname() || "/";
   const [open, setOpen] = useState(false);
   const [pending, start] = useTransition();
   const ref = useRef<HTMLDivElement>(null);
-
-  const segments = pathname.split("/");
-  const current = (routing.locales as readonly string[]).includes(segments[1])
-    ? (segments[1] as Locale)
-    : routing.defaultLocale;
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -40,17 +39,11 @@ export function PortalLanguageSwitcher() {
   function switchTo(next: Locale) {
     setOpen(false);
     if (next === current) return;
-    const parts = pathname.split("/");
-    if ((routing.locales as readonly string[]).includes(parts[1])) {
-      parts[1] = next;
-    } else {
-      parts.splice(1, 0, next);
-    }
-    const dest = parts.join("/") || `/${next}`;
-    start(async () => {
-      await updateUserLocale(next);
-      router.replace(dest);
-      router.refresh();
+    // Persist the preference to the account in the background (best-effort,
+    // cross-device); never block the locale switch on this DB write.
+    void updateUserLocale(next);
+    start(() => {
+      router.replace(pathname, { locale: next });
     });
   }
 
