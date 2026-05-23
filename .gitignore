@@ -46,3 +46,6 @@ next-env.d.ts
 
 # Superpowers brainstorm scratch
 .superpowers/
+
+# DB backups / dumps (may contain PII — never commit)
+/backups/
