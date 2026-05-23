@@ -385,10 +385,19 @@ All four follow-ups David requested are done. **Build ✅ · lint clean (0 probl
 - **Production Supabase** (`db.yiqrqnjlozhozwvpbbrn.supabase.co`): applied via `prisma migrate deploy` (DIRECT_URL from `.env.production`, target confirmed before running). Backed up `ContactSubmission` first → **0 rows** (no data lost). Verified: `User.locale` present; `ContactSubmission` = id, company, name, email, createdAt, phone, serviceType, message; 9 migrations recorded. Both DBs now match the schema.
 - Backup written to `backups/` (gitignored). `add_user_locale` backfills locale from `language`.
 
-**Remaining = human/credential steps only:**
-1. Vercel: add the two domains + DNS + env (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_APP_URL`, `AUTH_URL`, and `NEXT_PUBLIC_POSTHOG_KEY` to enable analytics).
-2. Native-speaker review of the AI translations (all `_TODO`).
-3. (Optional) Consolidate `User.language`/`User.locale`; re-run Lighthouse on the live domain.
+### F6: Vercel env + domains + production deploy — ✅ Done (2026-05-23)
+- Linked repo to **qs-webapp** (`asmaels-projects`); `.vercel` gitignored.
+- Env (production): added `NEXT_PUBLIC_SITE_URL=https://quantum-sphere.eu`, `NEXT_PUBLIC_APP_URL=https://app.quantum-sphere.eu`. `DATABASE_URL`/`DIRECT_URL`/`AUTH_SECRET` already present (untouched). **Skipped `AUTH_URL`** — `auth.config.ts` has `trustHost: true`, so NextAuth v5 infers the host (works on both `.vercel.app` and the custom domain; a fixed AUTH_URL would break the pre-DNS preview). `NEXT_PUBLIC_POSTHOG_KEY` not set (no key provided → analytics off).
+- **Production deploy** via `vercel --prod`: READY at `https://qs-webapp.vercel.app`. Smoke-tested live: `/`→307 `/sk`, `/sk`→200, `/sk/solarne-elektrarne`→200, `/en/solar-power-plants`→200, `/sk/dashboard`→307 login, `/sitemap.xml`→200, SK `<title>` correct.
+- Domains attached to qs-webapp: `quantum-sphere.eu` + `www.quantum-sphere.eu` (already attached from prod prep) + `app.quantum-sphere.eu` (added now).
 
-> DB migrations (local + prod) are now **done** — no longer a deploy blocker.
+**Remaining = ONE human step (registrar) + optional:**
+1. **DNS at your registrar (Websupport.sk)** — nameservers are `ns1/2/3.websupport.sk`, so add these records there:
+   - `quantum-sphere.eu` → `A 76.76.21.21`
+   - `www.quantum-sphere.eu` → `CNAME cname.vercel-dns.com`
+   - `app.quantum-sphere.eu` → `A 76.76.21.21` (per Vercel) or `CNAME cname.vercel-dns.com`
+   Vercel auto-verifies and emails when ready. (Verify exact values in Vercel → qs-webapp → Settings → Domains.)
+2. (Optional) Provide `NEXT_PUBLIC_POSTHOG_KEY` to enable analytics; native-speaker copy review; consolidate `User.language`/`User.locale`; re-run Lighthouse on the live domain.
+
+> Live now on `https://qs-webapp.vercel.app`. Custom domains go live once DNS propagates.
 
