@@ -357,3 +357,10 @@ David confirmed: canonical domain = **quantum-sphere.eu**; analytics = **PostHog
 - `npm run lint` now **clean (0 problems)**; build ✅; tests 57/57 ✅.
 - Fixes: removed unused `t`/`getTranslations` (workers/[userId]/page.tsx) and unused `tCommon` (SectionsEditor.tsx); MyWagesView reset-on-range-change now via a `key` remount in `wages/page.tsx` (removed the reset effect, `react-hooks/set-state-in-effect`); documented `react-hooks/purity` disable on the intentional wall-clock `Date.now()` in TableLogger (24h edit-lock).
 
+### F2: ContactSubmission model cleanup + domain email — ✅ Done (migration pending)
+- Branch: `feat/contact-cleanup`
+- Build ✅ / Lint clean ✅ / Tests 57/57 ✅.
+- Replaced the legacy-column mapping with a proper model: `ContactSubmission { name, email, phone?, company?, serviceType, message, createdAt }`; `/api/contact` writes real columns. Migration `20260523110000_clean_contact_submission` created (NOT applied — **DESTRUCTIVE**, drops solar columns; see DEPLOYMENT.md).
+- Fixed footer email `rfp@quantumsphere.eu` → `rfp@quantum-sphere.eu` (canonical domain confirmed).
+- **Dependency:** contact form needs this migration applied before it works in prod (DEPLOYMENT.md step 0). Until then, submit errors — apply migrations before deploy.
+

@@ -27,24 +27,14 @@ export async function POST(req: Request) {
 
   const { name, email, phone, company, serviceType, message } = parsed.data;
 
-  // NOTE: the generic construction enquiry is mapped onto the legacy
-  // (solar-era) ContactSubmission columns so no DB migration is needed and the
-  // form keeps working. `projectType` holds the trade; `notes` holds the message
-  // (+ phone). Cleaning up the model (add phone/serviceType/message columns,
-  // drop the solar-only ones) is a documented follow-up.
   await prisma.contactSubmission.create({
     data: {
-      company: company?.trim() || "—",
       name,
       email,
-      projectType: serviceType,
-      sizeMW: 0,
-      country: "",
-      startDate: "",
-      scope: [],
-      notes: [message, phone ? `Phone: ${phone}` : null]
-        .filter(Boolean)
-        .join("\n\n"),
+      phone: phone?.trim() || null,
+      company: company?.trim() || null,
+      serviceType,
+      message,
     },
   });
 

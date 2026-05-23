@@ -172,15 +172,12 @@ model AccommodationWorker {
 
 model ContactSubmission {
   id          String   @id @default(cuid())
-  company     String
   name        String
   email       String
-  projectType String
-  sizeMW      Float
-  country     String
-  startDate   String
-  scope       String[]
-  notes       String?
+  phone       String?
+  company     String?
+  serviceType String   @default("other")
+  message     String   @default("")
   createdAt   DateTime @default(now())
 
   @@index([createdAt])

@@ -5,16 +5,22 @@ dashboard, the domain registrar, and the production database. Do them in order.
 
 ## 0. Apply database migrations (REQUIRED before deploy)
 
-The codebase adds `User.locale` (migration `20260522120000_add_user_locale`),
-which is **not yet applied** to the database. Apply all pending migrations:
+Two migrations are **not yet applied** to the database:
+- `20260522120000_add_user_locale` — non-destructive (adds `User.locale`,
+  backfilled from `language`).
+- `20260523110000_clean_contact_submission` — **⚠️ DESTRUCTIVE**: drops the
+  solar-era `ContactSubmission` columns (projectType, sizeMW, country, startDate,
+  scope, notes) and adds phone/serviceType/message. **Back up the
+  ContactSubmission table first** if you want historical solar enquiry data.
+
+Apply all pending migrations:
 
 ```bash
 # against the production DATABASE_URL (Supabase / Postgres):
 npx prisma migrate deploy
 ```
 
-If you develop locally first: `npx prisma migrate dev`. The migration is
-non-destructive (adds a `locale` column, backfilled from `language`).
+If you develop locally first: `npx prisma migrate dev`.
 
 > Until this runs, Task 20's locale-preference features (login redirect to the
 > user's locale, the portal language switcher persisting to the DB) will error
@@ -65,8 +71,8 @@ The code defaults to **`quantum-sphere.eu`** (with a hyphen) via
   carry `_TODO` markers); SK copy carries a "review with David" marker.
 - **Portal translations** for de/fr/sv: the portal namespaces currently fall back
   to English in those locales (`_TODO_PORTAL_TRANSLATIONS`).
-- **ContactSubmission model cleanup**: the generic enquiry form is mapped onto the
-  legacy solar columns (`projectType` holds the trade, `notes` holds the message
-  + phone, `sizeMW`/`country`/`scope` are unused). Add proper `phone`/`serviceType`/
-  `message` columns and drop the solar-only ones when convenient.
+- **ContactSubmission model** — cleaned up (now has real `phone`/`serviceType`/
+  `message` columns; solar-only columns dropped). Done in code; the migration
+  `clean_contact_submission` (destructive — see step 0) must be applied. Until
+  applied, the contact form will error on submit, so apply migrations before deploy.
 - **`User.language` vs `User.locale`** overlap — consider consolidating.
