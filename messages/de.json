@@ -651,6 +651,12 @@
   "footer": {
     "tagline": "Ein Bauunternehmen mit Sitz in der Slowakei — fünf Gewerke unter einem Dach.",
     "company": "Unternehmen",
-    "rights": "Alle Rechte vorbehalten."
+    "rights": "Alle Rechte vorbehalten.",
+    "legal": "Rechtliche Informationen",
+    "privacy": "Datenschutz",
+    "cookies": "Cookies",
+    "companyIdLabel": "Reg.-Nr.",
+    "vatLabel": "USt-IdNr.",
+    "registrationLabel": "Eingetragen"
   }
 }

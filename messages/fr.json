@@ -651,6 +651,12 @@
   "footer": {
     "tagline": "Une entreprise de construction établie en Slovaquie — cinq métiers sous un même toit.",
     "company": "Entreprise",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "legal": "Informations légales",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Cookies",
+    "companyIdLabel": "N° d'enregistrement",
+    "vatLabel": "N° TVA",
+    "registrationLabel": "Immatriculée"
   }
 }

@@ -651,6 +651,12 @@
   "footer": {
     "tagline": "Ett byggföretag baserat i Slovakien — fem yrkesområden under ett och samma tak.",
     "company": "Företag",
-    "rights": "Alla rättigheter förbehållna."
+    "rights": "Alla rättigheter förbehållna.",
+    "legal": "Juridisk information",
+    "privacy": "Integritetspolicy",
+    "cookies": "Cookies",
+    "companyIdLabel": "Org.nr",
+    "vatLabel": "Momsreg.nr",
+    "registrationLabel": "Registrerad"
   }
 }

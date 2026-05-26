@@ -636,7 +636,13 @@
   "footer": {
     "tagline": "A construction company based in Slovakia — five trades under one roof.",
     "company": "Company",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookies",
+    "companyIdLabel": "Co. Reg. No.",
+    "vatLabel": "VAT",
+    "registrationLabel": "Registered"
   },
   "consent": {
     "_TODO_LOCALE_REVIEW": "AI-generated EN consent strings — native review required before launch (Task 9)",
