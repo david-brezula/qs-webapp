@@ -17,6 +17,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
+  // Honeypot: bots auto-fill every field; humans never see this one.
+  // Quietly succeed without persisting — don't tell the bot why it failed.
+  if (typeof body === "object" && body !== null && "_hp" in body) {
+    const hp = (body as { _hp?: unknown })._hp;
+    if (typeof hp === "string" && hp.length > 0) {
+      return NextResponse.json({ ok: true });
+    }
+  }
+
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
