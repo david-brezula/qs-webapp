@@ -557,6 +557,49 @@
     "description": "Sidan du letar efter finns inte eller har flyttats.",
     "backHome": "Tillbaka till startsidan"
   },
+  "legal": {
+    "privacy": {
+      "meta": {
+        "title": "Integritetspolicy · Quantum Sphere",
+        "description": "Hur vi behandlar personuppgifter för besökare och klienter."
+      },
+      "eyebrow": "Juridisk information",
+      "title": "Integritetspolicy",
+      "updated": "Uppdaterad 26 maj 2026",
+      "controller": {
+        "heading": "1. Personuppgiftsansvarig",
+        "body": "Personuppgiftsansvarig i enlighet med art. 4.7 GDPR är:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovakiska republiken\nOrg.nr.: __ICO_PLACEHOLDER__\nMoms-nr.: SK2120988117\nRegistrerad i handelsregistret __OR_SUD_PLACEHOLDER__, avdelning __OR_ODDIEL_PLACEHOLDER__, inlaga nr __OR_VLOZKA_PLACEHOLDER__\nKontakt: rfp@quantum-sphere.eu · +421 2 5556 0188"
+      },
+      "scope": {
+        "heading": "2. Vilka uppgifter vi behandlar",
+        "body": "Vi behandlar endast de uppgifter du lämnar till oss via kontaktformuläret eller via e-post:\n\n• För- och efternamn\n• E-postadress\n• Telefonnummer (valfritt)\n• Företagsnamn (valfritt)\n• Typ av tjänst du är intresserad av\n• Innehållet i ditt meddelande\n\nVid besök på webbplatsen behandlar vi tekniska uppgifter (IP-adress, webbläsartyp, besökstid) i den utsträckning som krävs för säker drift av tjänsten."
+      },
+      "purpose": {
+        "heading": "3. Ändamål och rättslig grund",
+        "body": "Vi behandlar uppgifter från kontaktformuläret för följande ändamål:\n\n• Handläggning av din förfrågan och kommunikation om den — rättslig grund: art. 6.1 b GDPR (föravtalsmässiga relationer och fullgörande av avtal).\n• Förande av affärskorrespondensregister — rättslig grund: art. 6.1 f GDPR (den personuppgiftsansvariges berättigade intresse).\n\nMarknadsföringscookies (analys) behandlas uteslutande på grundval av ditt uttryckliga samtycke — art. 6.1 a GDPR — som ges via cookie-bannern. Du kan när som helst återkalla samtycket."
+      },
+      "retention": {
+        "heading": "4. Lagringstider",
+        "body": "Uppgifter från kontaktformuläret lagras under handläggningen av din förfrågan och därefter i högst 3 år från den senaste kontakten (berättigat intresse — korrespondensarkiv). Om ett affärsförhållande ingås förlängs denna tid i enlighet med lagstadgade tidsfrister (särskilt bokförings- och skatteregler).\n\nTekniska loggar över webbplatsbesök lagras i högst 30 dagar."
+      },
+      "recipients": {
+        "heading": "5. Mottagare och personuppgiftsbiträden",
+        "body": "Dina uppgifter lämnas ut endast till följande kategorier av mottagare, i den utsträckning som krävs för ändamålet:\n\n• Vercel Inc. (USA) — webbhotell och leveransinfrastruktur. Överföring av uppgifter till USA säkras med standardavtalsklausuler (SCC) enligt art. 46 GDPR.\n• Supabase (EU) — databaslagring av formulärmeddelanden.\n• SMTP-leverantör (Slovakien/EU) — leverans av e-postavisering om en ny förfrågan.\n• PostHog Inc. (USA) — anonymiserad webbanalys, uteslutande om du samtycker. Överföring till USA täcks av SCC.\n\nVi säljer inte dina uppgifter och lämnar inte ut dem till tredje part för marknadsföringsändamål."
+      },
+      "rights": {
+        "heading": "6. Dina rättigheter",
+        "body": "Enligt GDPR har du rätt:\n\n• till tillgång till dina uppgifter (art. 15),\n• till rättelse av felaktiga uppgifter (art. 16),\n• till radering av uppgifter (art. 17), om de inte längre behövs för det ändamål för vilket de samlades in,\n• till begränsning av behandlingen (art. 18),\n• till dataportabilitet (art. 20),\n• att invända mot behandling baserad på berättigat intresse (art. 21),\n• att när som helst återkalla samtycke till analyscookies (art. 7.3) — återkallelse har ingen retroaktiv verkan.\n\nDu kan utöva dina rättigheter via e-post på rfp@quantum-sphere.eu. Vi svarar inom 30 dagar.\n\nDu har också rätt att lämna in ett klagomål till en tillsynsmyndighet — Úrad na ochranu osobných údajov Slovenskej republiky, Hraničná 12, 820 07 Bratislava (www.dataprotection.gov.sk)."
+      },
+      "cookies": {
+        "heading": "7. Cookies och analys",
+        "body": "Denna webbplats använder ett minimum av cookies. Detaljer finns i det separata dokumentet Cookies."
+      },
+      "changes": {
+        "heading": "8. Ändringar i detta dokument",
+        "body": "Vi förbehåller oss rätten att uppdatera denna policy. Datumet för den senaste uppdateringen anges i dokumenthuvudet. Vid ändringar med väsentlig inverkan på dig kommer vi att informera dig på lämpligt sätt."
+      }
+    }
+  },
   "footer": {
     "tagline": "Ett byggföretag baserat i Slovakien — fem yrkesområden under ett och samma tak.",
     "company": "Företag",

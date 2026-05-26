@@ -557,6 +557,49 @@
     "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
     "backHome": "Zurück zur Startseite"
   },
+  "legal": {
+    "privacy": {
+      "meta": {
+        "title": "Datenschutz · Quantum Sphere",
+        "description": "Wie wir personenbezogene Daten von Besuchern und Kunden verarbeiten."
+      },
+      "eyebrow": "Rechtliches",
+      "title": "Datenschutzerklärung",
+      "updated": "Aktualisiert am 26. Mai 2026",
+      "controller": {
+        "heading": "1. Verantwortlicher",
+        "body": "Verantwortlicher im Sinne von Art. 4 Abs. 7 DSGVO ist:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slowakische Republik\nHandelsreg.-Nr.: __ICO_PLACEHOLDER__\nUSt-IdNr.: SK2120988117\nEingetragen im Handelsregister __OR_SUD_PLACEHOLDER__, Abt. __OR_ODDIEL_PLACEHOLDER__, Einlage Nr. __OR_VLOZKA_PLACEHOLDER__\nKontakt: rfp@quantum-sphere.eu · +421 2 5556 0188"
+      },
+      "scope": {
+        "heading": "2. Welche Daten wir verarbeiten",
+        "body": "Wir verarbeiten nur die Daten, die Sie uns über das Kontaktformular oder per E-Mail mitteilen:\n\n• Vor- und Nachname\n• E-Mail-Adresse\n• Telefonnummer (optional)\n• Firmenname (optional)\n• Art der gewünschten Dienstleistung\n• Inhalt Ihrer Nachricht\n\nBeim Besuch der Website verarbeiten wir technische Daten (IP-Adresse, Browsertyp, Besuchszeit) im für den sicheren Betrieb des Dienstes erforderlichen Umfang."
+      },
+      "purpose": {
+        "heading": "3. Zweck und Rechtsgrundlage",
+        "body": "Daten aus dem Kontaktformular verarbeiten wir zu folgenden Zwecken:\n\n• Bearbeitung Ihrer Anfrage und Kommunikation darüber — Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Beziehungen und Vertragserfüllung).\n• Führung der Geschäftskorrespondenz — Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse des Verantwortlichen).\n\nMarketing-Cookies (Analytik) werden ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung — Art. 6 Abs. 1 lit. a DSGVO — über das Cookie-Banner verarbeitet. Sie können die Einwilligung jederzeit widerrufen."
+      },
+      "retention": {
+        "heading": "4. Speicherdauer",
+        "body": "Daten aus dem Kontaktformular speichern wir für die Dauer der Bearbeitung Ihrer Anfrage und anschließend für höchstens 3 Jahre ab dem letzten Kontakt (berechtigtes Interesse — Korrespondenzarchiv). Bei Abschluss eines Geschäftsverhältnisses verlängert sich diese Frist gemäß gesetzlichen Aufbewahrungsfristen (insbesondere Buchhaltungs- und Steuervorschriften).\n\nTechnische Protokolle über Websitebesuche speichern wir höchstens 30 Tage."
+      },
+      "recipients": {
+        "heading": "5. Empfänger und Auftragsverarbeiter",
+        "body": "Ihre Daten geben wir nur an folgende Kategorien von Empfängern weiter, soweit es für den Zweck erforderlich ist:\n\n• Vercel Inc. (USA) — Website-Hosting und Auslieferungsinfrastruktur. Die Datenübermittlung in die USA wird durch Standardvertragsklauseln (SCC) gemäß Art. 46 DSGVO abgesichert.\n• Supabase (EU) — Datenbankspeicherung von Formularnachrichten.\n• SMTP-Anbieter (Slowakei/EU) — Zustellung der E-Mail-Benachrichtigung über eine neue Anfrage.\n• PostHog Inc. (USA) — anonymisierte Website-Analytik, ausschließlich wenn Sie einwilligen. Übermittlung in die USA durch SCC abgedeckt.\n\nWir verkaufen Ihre Daten nicht und geben sie nicht zu Marketingzwecken an Dritte weiter."
+      },
+      "rights": {
+        "heading": "6. Ihre Rechte",
+        "body": "Gemäß DSGVO haben Sie das Recht:\n\n• auf Auskunft über Ihre Daten (Art. 15),\n• auf Berichtigung unrichtiger Daten (Art. 16),\n• auf Löschung der Daten (Art. 17), sofern sie für den Zweck, für den sie erhoben wurden, nicht mehr erforderlich sind,\n• auf Einschränkung der Verarbeitung (Art. 18),\n• auf Datenübertragbarkeit (Art. 20),\n• der Verarbeitung auf Grundlage eines berechtigten Interesses zu widersprechen (Art. 21),\n• die Einwilligung in Analyse-Cookies jederzeit zu widerrufen (Art. 7 Abs. 3) — der Widerruf hat keine rückwirkende Wirkung.\n\nSie können Ihre Rechte per E-Mail an rfp@quantum-sphere.eu geltend machen. Wir antworten innerhalb von 30 Tagen.\n\nSie haben auch das Recht, bei einer Aufsichtsbehörde Beschwerde einzureichen — Úrad na ochranu osobných údajov Slovenskej republiky, Hraničná 12, 820 07 Bratislava (www.dataprotection.gov.sk)."
+      },
+      "cookies": {
+        "heading": "7. Cookies und Analytik",
+        "body": "Diese Website verwendet ein Minimum an Cookies. Details finden Sie im separaten Dokument Cookies."
+      },
+      "changes": {
+        "heading": "8. Änderungen dieses Dokuments",
+        "body": "Wir behalten uns das Recht vor, diese Richtlinie zu aktualisieren. Das Datum der letzten Aktualisierung ist in der Kopfzeile des Dokuments angegeben. Bei Änderungen mit wesentlichen Auswirkungen auf Sie werden wir Sie angemessen informieren."
+      }
+    }
+  },
   "footer": {
     "tagline": "Ein Bauunternehmen mit Sitz in der Slowakei — fünf Gewerke unter einem Dach.",
     "company": "Unternehmen",

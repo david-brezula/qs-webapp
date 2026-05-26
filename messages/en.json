@@ -556,6 +556,49 @@
     "description": "The page you are looking for doesn't exist or has been moved.",
     "backHome": "Back to home"
   },
+  "legal": {
+    "privacy": {
+      "meta": {
+        "title": "Privacy Policy · Quantum Sphere",
+        "description": "How we process personal data of visitors and clients."
+      },
+      "eyebrow": "Legal",
+      "title": "Privacy Policy",
+      "updated": "Updated 26 May 2026",
+      "controller": {
+        "heading": "1. Controller",
+        "body": "The controller within the meaning of Art. 4(7) GDPR is:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovak Republic\nCo. Reg. No.: __ICO_PLACEHOLDER__\nVAT: SK2120988117\nRegistered in the Commercial Register __OR_SUD_PLACEHOLDER__, section __OR_ODDIEL_PLACEHOLDER__, insert no. __OR_VLOZKA_PLACEHOLDER__\nContact: rfp@quantum-sphere.eu · +421 2 5556 0188"
+      },
+      "scope": {
+        "heading": "2. Data we process",
+        "body": "We process only the data you provide to us via the contact form or by email:\n\n• Full name\n• Email address\n• Phone number (optional)\n• Company name (optional)\n• Type of service you are interested in\n• Content of your message\n\nWhen you visit the website we process technical data (IP address, browser type, time of visit) to the extent necessary for the secure operation of the service."
+      },
+      "purpose": {
+        "heading": "3. Purpose and legal basis",
+        "body": "We process data from the contact form for the following purposes:\n\n• Handling your enquiry and communicating about it — legal basis: Art. 6(1)(b) GDPR (pre-contractual relations and performance of a contract).\n• Keeping records of business correspondence — legal basis: Art. 6(1)(f) GDPR (legitimate interest of the controller).\n\nMarketing cookies (analytics) are processed exclusively on the basis of your explicit consent — Art. 6(1)(a) GDPR — given via the cookie banner. You may withdraw consent at any time."
+      },
+      "retention": {
+        "heading": "4. Retention periods",
+        "body": "Data from the contact form is retained for the duration of processing your enquiry and thereafter for a maximum of 3 years from the last contact (legitimate interest — correspondence records). If a business relationship is established, this period is extended in accordance with statutory time limits (in particular accounting and tax regulations).\n\nTechnical logs of website visits are retained for a maximum of 30 days."
+      },
+      "recipients": {
+        "heading": "5. Recipients and processors",
+        "body": "Your data is disclosed only to the following categories of recipients, to the extent necessary for the purpose:\n\n• Vercel Inc. (USA) — website hosting and delivery infrastructure. Transfer of data to the USA is secured by Standard Contractual Clauses (SCC) pursuant to Art. 46 GDPR.\n• Supabase (EU) — database storage of form messages.\n• SMTP provider (Slovakia/EU) — delivery of email notification of a new enquiry.\n• PostHog Inc. (USA) — anonymised website analytics, exclusively if you give consent. Transfer to the USA covered by SCC.\n\nWe do not sell or provide your data to third parties for marketing purposes."
+      },
+      "rights": {
+        "heading": "6. Your rights",
+        "body": "Under the GDPR you have the right:\n\n• to access your data (Art. 15),\n• to rectification of inaccurate data (Art. 16),\n• to erasure of data (Art. 17), where it is no longer necessary for the purpose for which it was collected,\n• to restriction of processing (Art. 18),\n• to data portability (Art. 20),\n• to object to processing based on legitimate interest (Art. 21),\n• to withdraw consent to analytics cookies at any time (Art. 7(3)) — withdrawal has no retroactive effect.\n\nYou may exercise your rights by email at rfp@quantum-sphere.eu. We will respond within 30 days.\n\nYou also have the right to lodge a complaint with a supervisory authority — the Office for Personal Data Protection of the Slovak Republic, Hraničná 12, 820 07 Bratislava (www.dataprotection.gov.sk)."
+      },
+      "cookies": {
+        "heading": "7. Cookies and analytics",
+        "body": "This website uses a minimum of cookies. Details can be found in the separate Cookies document."
+      },
+      "changes": {
+        "heading": "8. Changes to this document",
+        "body": "We reserve the right to update this policy. The date of the last update is shown in the header of the document. In the event of a change with a material impact on you, we will notify you appropriately."
+      }
+    }
+  },
   "footer": {
     "tagline": "A construction company based in Slovakia — five trades under one roof.",
     "company": "Company",

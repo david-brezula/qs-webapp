@@ -556,6 +556,49 @@
     "description": "Stránka, ktorú hľadáte, neexistuje alebo bola premenovaná.",
     "backHome": "Späť na hlavnú"
   },
+  "legal": {
+    "privacy": {
+      "meta": {
+        "title": "Ochrana osobných údajov · Quantum Sphere",
+        "description": "Ako spracúvame osobné údaje návštevníkov a klientov."
+      },
+      "eyebrow": "Právne informácie",
+      "title": "Ochrana osobných údajov",
+      "updated": "Aktualizované 26. mája 2026",
+      "controller": {
+        "heading": "1. Prevádzkovateľ",
+        "body": "Prevádzkovateľom v zmysle čl. 4 ods. 7 GDPR je:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovenská republika\nIČO: __ICO_PLACEHOLDER__\nDIČ: SK2120988117\nZapísaná v OR __OR_SUD_PLACEHOLDER__, oddiel __OR_ODDIEL_PLACEHOLDER__, vložka č. __OR_VLOZKA_PLACEHOLDER__\nKontakt: rfp@quantum-sphere.eu · +421 2 5556 0188"
+      },
+      "scope": {
+        "heading": "2. Aké údaje spracúvame",
+        "body": "Spracúvame iba údaje, ktoré nám sami poskytnete cez kontaktný formulár alebo e-mailom:\n\n• Meno a priezvisko\n• E-mailová adresa\n• Telefónne číslo (voliteľne)\n• Názov spoločnosti (voliteľne)\n• Typ služby, o ktorú máte záujem\n• Obsah vašej správy\n\nPri návšteve webu spracúvame technické údaje (IP adresa, typ prehliadača, čas návštevy) v rozsahu nevyhnutnom na bezpečnú prevádzku služby."
+      },
+      "purpose": {
+        "heading": "3. Účel a právny základ",
+        "body": "Údaje z kontaktného formulára spracúvame na účely:\n\n• Vybavenie vášho dopytu a komunikácia o ňom — právny základ: čl. 6 ods. 1 písm. b GDPR (predzmluvné vzťahy a plnenie zmluvy).\n• Vedenie evidencie obchodnej korešpondencie — právny základ: čl. 6 ods. 1 písm. f GDPR (oprávnený záujem prevádzkovateľa).\n\nMarketingové cookies (analytika) spracúvame výlučne na základe vášho výslovného súhlasu — čl. 6 ods. 1 písm. a GDPR — udeleného cez cookie banner. Súhlas môžete kedykoľvek odvolať."
+      },
+      "retention": {
+        "heading": "4. Doba uchovávania",
+        "body": "Údaje z kontaktného formulára uchovávame po dobu vybavovania dopytu a následne najviac 3 roky od posledného kontaktu (oprávnený záujem — evidencia korešpondencie). Pri uzatvorení obchodného vzťahu sa táto doba predlžuje podľa zákonných lehôt (najmä účtovné a daňové predpisy).\n\nTechnické logy o návšteve webu uchovávame najviac 30 dní."
+      },
+      "recipients": {
+        "heading": "5. Príjemcovia a sprostredkovatelia",
+        "body": "Vaše údaje sprístupňujeme len týmto kategóriám príjemcov, a to v rozsahu nevyhnutnom na účel:\n\n• Vercel Inc. (USA) — hosting webu a doručovacia infraštruktúra. Prenos údajov do USA je zabezpečený štandardnými zmluvnými doložkami (SCC) podľa čl. 46 GDPR.\n• Supabase (EÚ) — databázové úložisko správ z formulára.\n• Poskytovateľ SMTP (Slovensko/EÚ) — doručenie e-mailovej notifikácie o novom dopyte.\n• PostHog Inc. (USA) — anonymizovaná analytika návštevnosti, výlučne ak udelíte súhlas. Prenos do USA krytý SCC.\n\nVaše údaje nepredávame ani neposkytujeme tretím stranám na marketingové účely."
+      },
+      "rights": {
+        "heading": "6. Vaše práva",
+        "body": "Podľa GDPR máte právo:\n\n• na prístup k vašim údajom (čl. 15),\n• na opravu nesprávnych údajov (čl. 16),\n• na vymazanie údajov (čl. 17), ak nie sú potrebné na účel, na ktorý boli zhromaždené,\n• na obmedzenie spracovania (čl. 18),\n• na prenosnosť údajov (čl. 20),\n• namietať proti spracovaniu na základe oprávneného záujmu (čl. 21),\n• kedykoľvek odvolať súhlas s analytickými cookies (čl. 7 ods. 3) — odvolanie nemá spätné účinky.\n\nSvoje práva môžete uplatniť e-mailom na rfp@quantum-sphere.eu. Odpovieme do 30 dní.\n\nMáte tiež právo podať sťažnosť dozornému orgánu — Úrad na ochranu osobných údajov Slovenskej republiky, Hraničná 12, 820 07 Bratislava (www.dataprotection.gov.sk)."
+      },
+      "cookies": {
+        "heading": "7. Cookies a analytika",
+        "body": "Web používa minimum cookies. Detaily nájdete v samostatnom dokumente Cookies."
+      },
+      "changes": {
+        "heading": "8. Zmeny tohto dokumentu",
+        "body": "Vyhradzujeme si právo aktualizovať tieto zásady. Dátum poslednej aktualizácie je uvedený v hlavičke dokumentu. Pri zmene s podstatným dopadom na vás vás budeme primerane informovať."
+      }
+    }
+  },
   "footer": {
     "tagline": "Stavebná spoločnosť so sídlom na Slovensku - päť remeselných odborov pod jednou strechou.",
     "company": "Spoločnosť",

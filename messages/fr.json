@@ -557,6 +557,49 @@
     "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
     "backHome": "Retour à l'accueil"
   },
+  "legal": {
+    "privacy": {
+      "meta": {
+        "title": "Politique de confidentialité · Quantum Sphere",
+        "description": "Comment nous traitons les données personnelles des visiteurs et des clients."
+      },
+      "eyebrow": "Mentions légales",
+      "title": "Politique de confidentialité",
+      "updated": "Mis à jour le 26 mai 2026",
+      "controller": {
+        "heading": "1. Responsable du traitement",
+        "body": "Le responsable du traitement au sens de l'art. 4 § 7 du RGPD est :\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, République slovaque\nN° de registre : __ICO_PLACEHOLDER__\nN° TVA : SK2120988117\nImmatriculée au registre du commerce __OR_SUD_PLACEHOLDER__, section __OR_ODDIEL_PLACEHOLDER__, feuillet n° __OR_VLOZKA_PLACEHOLDER__\nContact : rfp@quantum-sphere.eu · +421 2 5556 0188"
+      },
+      "scope": {
+        "heading": "2. Données que nous traitons",
+        "body": "Nous traitons uniquement les données que vous nous fournissez via le formulaire de contact ou par e-mail :\n\n• Nom et prénom\n• Adresse e-mail\n• Numéro de téléphone (facultatif)\n• Nom de la société (facultatif)\n• Type de service souhaité\n• Contenu de votre message\n\nLors de votre visite sur le site, nous traitons des données techniques (adresse IP, type de navigateur, heure de visite) dans la mesure nécessaire au fonctionnement sécurisé du service."
+      },
+      "purpose": {
+        "heading": "3. Finalité et base juridique",
+        "body": "Nous traitons les données du formulaire de contact aux fins suivantes :\n\n• Traitement de votre demande et communication à ce sujet — base juridique : art. 6 § 1 b) du RGPD (relations précontractuelles et exécution d'un contrat).\n• Tenue de la correspondance commerciale — base juridique : art. 6 § 1 f) du RGPD (intérêt légitime du responsable du traitement).\n\nLes cookies marketing (analytique) sont traités exclusivement sur la base de votre consentement explicite — art. 6 § 1 a) du RGPD — donné via la bannière de cookies. Vous pouvez retirer ce consentement à tout moment."
+      },
+      "retention": {
+        "heading": "4. Durées de conservation",
+        "body": "Les données du formulaire de contact sont conservées pendant la durée du traitement de votre demande, puis au maximum 3 ans à compter du dernier contact (intérêt légitime — archives de correspondance). En cas de relation commerciale, cette durée est prolongée conformément aux délais légaux (notamment les règles comptables et fiscales).\n\nLes journaux techniques des visites du site sont conservés pendant 30 jours au maximum."
+      },
+      "recipients": {
+        "heading": "5. Destinataires et sous-traitants",
+        "body": "Vos données sont communiquées uniquement aux catégories de destinataires suivantes, dans la mesure nécessaire à la finalité :\n\n• Vercel Inc. (États-Unis) — hébergement du site et infrastructure de diffusion. Le transfert de données vers les États-Unis est sécurisé par des clauses contractuelles types (CCT) conformément à l'art. 46 du RGPD.\n• Supabase (UE) — stockage en base de données des messages du formulaire.\n• Fournisseur SMTP (Slovaquie/UE) — envoi de la notification par e-mail d'une nouvelle demande.\n• PostHog Inc. (États-Unis) — analytique anonymisée du trafic, uniquement si vous consentez. Transfert vers les États-Unis couvert par les CCT.\n\nNous ne vendons pas vos données et ne les communiquons pas à des tiers à des fins marketing."
+      },
+      "rights": {
+        "heading": "6. Vos droits",
+        "body": "En vertu du RGPD, vous disposez du droit :\n\n• d'accès à vos données (art. 15),\n• de rectification des données inexactes (art. 16),\n• d'effacement des données (art. 17), lorsqu'elles ne sont plus nécessaires à la finalité pour laquelle elles ont été collectées,\n• de limitation du traitement (art. 18),\n• à la portabilité des données (art. 20),\n• de vous opposer au traitement fondé sur l'intérêt légitime (art. 21),\n• de retirer à tout moment votre consentement aux cookies analytiques (art. 7 § 3) — le retrait ne produit pas d'effets rétroactifs.\n\nVous pouvez exercer vos droits par e-mail à rfp@quantum-sphere.eu. Nous répondons dans les 30 jours.\n\nVous avez également le droit d'introduire une réclamation auprès d'une autorité de contrôle — Úrad na ochranu osobných údajov Slovenskej republiky, Hraničná 12, 820 07 Bratislava (www.dataprotection.gov.sk)."
+      },
+      "cookies": {
+        "heading": "7. Cookies et analytique",
+        "body": "Ce site utilise un minimum de cookies. Les détails se trouvent dans le document Cookies séparé."
+      },
+      "changes": {
+        "heading": "8. Modifications de ce document",
+        "body": "Nous nous réservons le droit de mettre à jour cette politique. La date de la dernière mise à jour est indiquée dans l'en-tête du document. En cas de modification ayant un impact significatif sur vous, nous vous en informerons de manière appropriée."
+      }
+    }
+  },
   "footer": {
     "tagline": "Une entreprise de construction établie en Slovaquie — cinq métiers sous un même toit.",
     "company": "Entreprise",

@@ -60,6 +60,20 @@ export const routing = defineRouting({
       fr: "/contact",
       sv: "/kontakt",
     },
+    "/privacy": {
+      sk: "/ochrana-osobnych-udajov",
+      en: "/privacy-policy",
+      de: "/datenschutz",
+      fr: "/politique-de-confidentialite",
+      sv: "/integritetspolicy",
+    },
+    "/cookies": {
+      sk: "/cookies",
+      en: "/cookies",
+      de: "/cookies",
+      fr: "/cookies",
+      sv: "/cookies",
+    },
 
     // Portal — English slugs for every locale (not SEO-targeted).
     "/login": "/login",
