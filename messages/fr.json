@@ -562,6 +562,7 @@
   },
   "legal": {
     "privacy": {
+      "_TODO_LOCALE_REVIEW": "Traduit par IA depuis le slovaque — à faire relire par un locuteur natif avant le lancement.",
       "meta": {
         "title": "Politique de confidentialité · Quantum Sphere",
         "description": "Comment nous traitons les données personnelles des visiteurs et des clients."
@@ -579,7 +580,7 @@
       },
       "purpose": {
         "heading": "3. Finalité et base juridique",
-        "body": "Nous traitons les données du formulaire de contact aux fins suivantes :\n\n• Traitement de votre demande et communication à ce sujet — base juridique : art. 6 § 1 b) du RGPD (relations précontractuelles et exécution d'un contrat).\n• Tenue de la correspondance commerciale — base juridique : art. 6 § 1 f) du RGPD (intérêt légitime du responsable du traitement).\n\nLes cookies marketing (analytique) sont traités exclusivement sur la base de votre consentement explicite — art. 6 § 1 a) du RGPD — donné via la bannière de cookies. Vous pouvez retirer ce consentement à tout moment."
+        "body": "Nous traitons les données du formulaire de contact aux fins suivantes :\n\n• Traitement de votre demande et communication à ce sujet — base juridique : art. 6 § 1 b) du RGPD (relations précontractuelles et exécution d'un contrat).\n• Tenue de la correspondance commerciale — base juridique : art. 6 § 1 f) du RGPD (intérêt légitime du responsable du traitement).\n• Journaux techniques des visites du site (adresse IP, agent utilisateur, heure) — base légale : art. 6 § 1 f) du RGPD (intérêt légitime pour l'exploitation sécurisée et protégée du service).\n\nLes cookies marketing (analytique) sont traités exclusivement sur la base de votre consentement explicite — art. 6 § 1 a) du RGPD — donné via la bannière de cookies. Vous pouvez retirer ce consentement à tout moment."
       },
       "retention": {
         "heading": "4. Durées de conservation",

@@ -561,6 +561,7 @@
   },
   "legal": {
     "privacy": {
+      "_TODO_LOCALE_REVIEW": "AI-translated from SK source — needs native-speaker review before campaign launch.",
       "meta": {
         "title": "Privacy Policy · Quantum Sphere",
         "description": "How we process personal data of visitors and clients."
@@ -578,7 +579,7 @@
       },
       "purpose": {
         "heading": "3. Purpose and legal basis",
-        "body": "We process data from the contact form for the following purposes:\n\n• Handling your enquiry and communicating about it — legal basis: Art. 6(1)(b) GDPR (pre-contractual relations and performance of a contract).\n• Keeping records of business correspondence — legal basis: Art. 6(1)(f) GDPR (legitimate interest of the controller).\n\nMarketing cookies (analytics) are processed exclusively on the basis of your explicit consent — Art. 6(1)(a) GDPR — given via the cookie banner. You may withdraw consent at any time."
+        "body": "We process data from the contact form for the following purposes:\n\n• Handling your enquiry and communicating about it — legal basis: Art. 6(1)(b) GDPR (pre-contractual relations and performance of a contract).\n• Keeping records of business correspondence — legal basis: Art. 6(1)(f) GDPR (legitimate interest of the controller).\n• Technical logs of website visits (IP address, user agent, time) — legal basis: Art. 6(1)(f) GDPR (legitimate interest in secure and protected service operation).\n\nMarketing cookies (analytics) are processed exclusively on the basis of your explicit consent — Art. 6(1)(a) GDPR — given via the cookie banner. You may withdraw consent at any time."
       },
       "retention": {
         "heading": "4. Retention periods",

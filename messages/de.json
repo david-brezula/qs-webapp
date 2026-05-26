@@ -562,6 +562,7 @@
   },
   "legal": {
     "privacy": {
+      "_TODO_LOCALE_REVIEW": "Maschinell aus dem Slowakischen übersetzt — vor dem Marketingstart durch Muttersprachler prüfen lassen.",
       "meta": {
         "title": "Datenschutz · Quantum Sphere",
         "description": "Wie wir personenbezogene Daten von Besuchern und Kunden verarbeiten."
@@ -579,7 +580,7 @@
       },
       "purpose": {
         "heading": "3. Zweck und Rechtsgrundlage",
-        "body": "Daten aus dem Kontaktformular verarbeiten wir zu folgenden Zwecken:\n\n• Bearbeitung Ihrer Anfrage und Kommunikation darüber — Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Beziehungen und Vertragserfüllung).\n• Führung der Geschäftskorrespondenz — Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse des Verantwortlichen).\n\nMarketing-Cookies (Analytik) werden ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung — Art. 6 Abs. 1 lit. a DSGVO — über das Cookie-Banner verarbeitet. Sie können die Einwilligung jederzeit widerrufen."
+        "body": "Daten aus dem Kontaktformular verarbeiten wir zu folgenden Zwecken:\n\n• Bearbeitung Ihrer Anfrage und Kommunikation darüber — Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Beziehungen und Vertragserfüllung).\n• Führung der Geschäftskorrespondenz — Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse des Verantwortlichen).\n• Technische Logs der Website-Besuche (IP-Adresse, User-Agent, Zeitpunkt) — Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren und geschützten Betrieb des Dienstes).\n\nMarketing-Cookies (Analytik) werden ausschließlich auf Grundlage Ihrer ausdrücklichen Einwilligung — Art. 6 Abs. 1 lit. a DSGVO — über das Cookie-Banner verarbeitet. Sie können die Einwilligung jederzeit widerrufen."
       },
       "retention": {
         "heading": "4. Speicherdauer",

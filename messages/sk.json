@@ -578,7 +578,7 @@
       },
       "purpose": {
         "heading": "3. Účel a právny základ",
-        "body": "Údaje z kontaktného formulára spracúvame na účely:\n\n• Vybavenie vášho dopytu a komunikácia o ňom — právny základ: čl. 6 ods. 1 písm. b GDPR (predzmluvné vzťahy a plnenie zmluvy).\n• Vedenie evidencie obchodnej korešpondencie — právny základ: čl. 6 ods. 1 písm. f GDPR (oprávnený záujem prevádzkovateľa).\n\nMarketingové cookies (analytika) spracúvame výlučne na základe vášho výslovného súhlasu — čl. 6 ods. 1 písm. a GDPR — udeleného cez cookie banner. Súhlas môžete kedykoľvek odvolať."
+        "body": "Údaje z kontaktného formulára spracúvame na účely:\n\n• Vybavenie vášho dopytu a komunikácia o ňom — právny základ: čl. 6 ods. 1 písm. b GDPR (predzmluvné vzťahy a plnenie zmluvy).\n• Vedenie evidencie obchodnej korešpondencie — právny základ: čl. 6 ods. 1 písm. f GDPR (oprávnený záujem prevádzkovateľa).\n• Technické logy o návšteve webu (IP adresa, user agent, čas) — právny základ: čl. 6 ods. 1 písm. f GDPR (oprávnený záujem na bezpečnej prevádzke a ochrane služby).\n\nMarketingové cookies (analytika) spracúvame výlučne na základe vášho výslovného súhlasu — čl. 6 ods. 1 písm. a GDPR — udeleného cez cookie banner. Súhlas môžete kedykoľvek odvolať."
       },
       "retention": {
         "heading": "4. Doba uchovávania",

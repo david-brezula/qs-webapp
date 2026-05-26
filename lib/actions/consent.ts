@@ -9,6 +9,7 @@ export async function setConsent(value: Exclude<ConsentState, "unset">) {
     maxAge: CONSENT_MAX_AGE,
     path: "/",
     sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
     // Not HttpOnly — we need to read it client-side to gate PostHog init.
   });
 }

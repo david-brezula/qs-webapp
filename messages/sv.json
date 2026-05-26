@@ -562,6 +562,7 @@
   },
   "legal": {
     "privacy": {
+      "_TODO_LOCALE_REVIEW": "AI-översatt från slovakiska — bör granskas av modersmålstalare före lansering.",
       "meta": {
         "title": "Integritetspolicy · Quantum Sphere",
         "description": "Hur vi behandlar personuppgifter för besökare och klienter."
@@ -579,7 +580,7 @@
       },
       "purpose": {
         "heading": "3. Ändamål och rättslig grund",
-        "body": "Vi behandlar uppgifter från kontaktformuläret för följande ändamål:\n\n• Handläggning av din förfrågan och kommunikation om den — rättslig grund: art. 6.1 b GDPR (föravtalsmässiga relationer och fullgörande av avtal).\n• Förande av affärskorrespondensregister — rättslig grund: art. 6.1 f GDPR (den personuppgiftsansvariges berättigade intresse).\n\nMarknadsföringscookies (analys) behandlas uteslutande på grundval av ditt uttryckliga samtycke — art. 6.1 a GDPR — som ges via cookie-bannern. Du kan när som helst återkalla samtycket."
+        "body": "Vi behandlar uppgifter från kontaktformuläret för följande ändamål:\n\n• Handläggning av din förfrågan och kommunikation om den — rättslig grund: art. 6.1 b GDPR (föravtalsmässiga relationer och fullgörande av avtal).\n• Förande av affärskorrespondensregister — rättslig grund: art. 6.1 f GDPR (den personuppgiftsansvariges berättigade intresse).\n• Tekniska loggar för webbplatsbesök (IP-adress, user-agent, tid) — rättslig grund: art. 6.1 f GDPR (berättigat intresse av säker och skyddad drift av tjänsten).\n\nMarknadsföringscookies (analys) behandlas uteslutande på grundval av ditt uttryckliga samtycke — art. 6.1 a GDPR — som ges via cookie-bannern. Du kan när som helst återkalla samtycket."
       },
       "retention": {
         "heading": "4. Lagringstider",
