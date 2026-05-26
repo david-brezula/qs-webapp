@@ -597,6 +597,36 @@
         "heading": "8. Zmeny tohto dokumentu",
         "body": "Vyhradzujeme si právo aktualizovať tieto zásady. Dátum poslednej aktualizácie je uvedený v hlavičke dokumentu. Pri zmene s podstatným dopadom na vás vás budeme primerane informovať."
       }
+    },
+    "cookies": {
+      "meta": {
+        "title": "Cookies · Quantum Sphere",
+        "description": "Aké cookies používame a ako spravovať váš súhlas."
+      },
+      "eyebrow": "Právne informácie",
+      "title": "Cookies",
+      "updated": "Aktualizované 26. mája 2026",
+      "intro": {
+        "heading": "Čo sú cookies",
+        "body": "Cookies sú malé textové súbory, ktoré web ukladá vo vašom prehliadači. Slúžia na fungovanie webu (napríklad zapamätanie vášho jazyka) alebo na meranie návštevnosti."
+      },
+      "necessary": {
+        "heading": "Nevyhnutné cookies",
+        "body": "Tieto cookies sú potrebné pre základné fungovanie webu a nepotrebujú váš súhlas:\n\n• NEXT_LOCALE — uchováva vami zvolený jazyk (platnosť 1 rok).\n• authjs.session-token / authjs.csrf-token — prihlásenie do klientskeho portálu (platí počas trvania prihlásenia).\n\nBez týchto cookies web nebude fungovať správne."
+      },
+      "analytics": {
+        "heading": "Analytické cookies (so súhlasom)",
+        "body": "Ak udelíte súhlas, ukladáme cookies služby PostHog na anonymizované meranie návštevnosti (počet návštev, najčastejšie stránky, zdroj návštev). Údaje sú agregované, neslúžia na profilovanie ani reklamu.\n\n• ph_phc_* — identifikátor návštevy a stav PostHog SDK (platnosť do 1 roka).\n• Spracovateľ: PostHog Inc., USA — prenos krytý štandardnými zmluvnými doložkami.\n\nSúhlas môžete kedykoľvek odvolať — kliknite na odkaz „Spravovať cookies“ v päte alebo vymažte cookies vo vašom prehliadači."
+      },
+      "manage": {
+        "heading": "Ako spravovať súhlas",
+        "body": "Pri prvej návšteve webu vám zobrazíme cookie banner. Tam môžete súhlas s analytikou udeliť alebo odmietnuť. Vaše rozhodnutie si pamätáme cez cookie „qs_consent“ (platnosť 6 mesiacov).\n\nSúhlas môžete kedykoľvek zmeniť — buď cez tlačidlo nižšie, alebo vymazaním cookies vo vašom prehliadači."
+      },
+      "thirdParty": {
+        "heading": "Cookies tretích strán",
+        "body": "Web nepoužíva reklamné cookies, cookies sociálnych sietí ani trackery tretích strán mimo vyššie uvedeného PostHogu."
+      },
+      "manageButton": "Spravovať súhlas s cookies"
     }
   },
   "footer": {

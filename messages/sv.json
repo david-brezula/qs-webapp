@@ -598,6 +598,37 @@
         "heading": "8. Ändringar i detta dokument",
         "body": "Vi förbehåller oss rätten att uppdatera denna policy. Datumet för den senaste uppdateringen anges i dokumenthuvudet. Vid ändringar med väsentlig inverkan på dig kommer vi att informera dig på lämpligt sätt."
       }
+    },
+    "cookies": {
+      "_TODO_LOCALE_REVIEW": "AI-genererad SV-översättning — granskning av modersmålstalare krävs (uppgift 9)",
+      "meta": {
+        "title": "Cookies · Quantum Sphere",
+        "description": "Vilka cookies vi använder och hur du hanterar ditt samtycke."
+      },
+      "eyebrow": "Juridisk information",
+      "title": "Cookies",
+      "updated": "Uppdaterad 26 maj 2026",
+      "intro": {
+        "heading": "Vad är cookies",
+        "body": "Cookies är små textfiler som en webbplats lagrar i din webbläsare. De används för att webbplatsen ska fungera (till exempel för att komma ihåg ditt språkval) eller för att mäta trafiken."
+      },
+      "necessary": {
+        "heading": "Nödvändiga cookies",
+        "body": "Dessa cookies krävs för att webbplatsen ska fungera grundläggande och kräver inte ditt samtycke:\n\n• NEXT_LOCALE — sparar ditt valda språk (giltighet 1 år).\n• authjs.session-token / authjs.csrf-token — inloggning på kundportalen (gäller under sessionens varaktighet).\n\nUtan dessa cookies kommer webbplatsen inte att fungera korrekt."
+      },
+      "analytics": {
+        "heading": "Analyscookies (med samtycke)",
+        "body": "Om du ger ditt samtycke lagrar vi PostHog-cookies för anonymiserad mätning av webbplatstrafiken (antal besök, mest besökta sidor, trafikkällor). Data aggregeras och används inte för profilering eller reklam.\n\n• ph_phc_* — besöksidentifierare och PostHog SDK-status (giltighet upp till 1 år).\n• Personuppgiftsbiträde: PostHog Inc., USA — överföring täckt av standardavtalsklausuler.\n\nDu kan när som helst återkalla ditt samtycke — klicka på länken “Hantera cookies” i sidfoten eller ta bort cookies i din webbläsare."
+      },
+      "manage": {
+        "heading": "Hur du hanterar samtycke",
+        "body": "Vid ditt första besök på webbplatsen visar vi en cookie-banner. Där kan du acceptera eller avböja analyscookies. Vi kommer ihåg ditt val via cookien \"qs_consent\" (giltighet 6 månader).\n\nDu kan ändra ditt samtycke när som helst — antingen via knappen nedan eller genom att ta bort cookies i din webbläsare."
+      },
+      "thirdParty": {
+        "heading": "Tredjepartscookies",
+        "body": "Webbplatsen använder inga reklamcookies, cookies från sociala nätverk eller tredjepartsspårare utöver PostHog-instansen som beskrivs ovan."
+      },
+      "manageButton": "Hantera cookiesamtycke"
     }
   },
   "footer": {

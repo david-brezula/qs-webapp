@@ -597,6 +597,37 @@
         "heading": "8. Changes to this document",
         "body": "We reserve the right to update this policy. The date of the last update is shown in the header of the document. In the event of a change with a material impact on you, we will notify you appropriately."
       }
+    },
+    "cookies": {
+      "_TODO_LOCALE_REVIEW": "AI-generated EN translation — native review required before launch (Task 9)",
+      "meta": {
+        "title": "Cookies · Quantum Sphere",
+        "description": "Which cookies we use and how to manage your consent."
+      },
+      "eyebrow": "Legal",
+      "title": "Cookies",
+      "updated": "Updated 26 May 2026",
+      "intro": {
+        "heading": "What are cookies",
+        "body": "Cookies are small text files that a website stores in your browser. They are used to make the website work (for example, remembering your language preference) or to measure traffic."
+      },
+      "necessary": {
+        "heading": "Strictly necessary cookies",
+        "body": "These cookies are required for the basic functioning of the website and do not require your consent:\n\n• NEXT_LOCALE — stores your chosen language (validity 1 year).\n• authjs.session-token / authjs.csrf-token — client portal login (valid for the duration of the session).\n\nWithout these cookies the website will not function correctly."
+      },
+      "analytics": {
+        "heading": "Analytics cookies (with consent)",
+        "body": "If you give consent, we store PostHog cookies for anonymised measurement of website traffic (number of visits, most-visited pages, traffic sources). Data is aggregated and is not used for profiling or advertising.\n\n• ph_phc_* — visit identifier and PostHog SDK state (validity up to 1 year).\n• Processor: PostHog Inc., USA — transfer covered by Standard Contractual Clauses.\n\nYou may withdraw consent at any time — click the “Manage cookies” link in the footer or delete cookies in your browser."
+      },
+      "manage": {
+        "heading": "How to manage consent",
+        "body": "When you first visit the website we will show you a cookie banner. There you can accept or decline analytics cookies. We remember your decision via the cookie \"qs_consent\" (validity 6 months).\n\nYou can change your consent at any time — either via the button below or by deleting cookies in your browser."
+      },
+      "thirdParty": {
+        "heading": "Third-party cookies",
+        "body": "The website does not use advertising cookies, social-network cookies, or third-party trackers beyond the PostHog instance described above."
+      },
+      "manageButton": "Manage cookie consent"
     }
   },
   "footer": {

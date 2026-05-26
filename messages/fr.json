@@ -598,6 +598,37 @@
         "heading": "8. Modifications de ce document",
         "body": "Nous nous réservons le droit de mettre à jour cette politique. La date de la dernière mise à jour est indiquée dans l'en-tête du document. En cas de modification ayant un impact significatif sur vous, nous vous en informerons de manière appropriée."
       }
+    },
+    "cookies": {
+      "_TODO_LOCALE_REVIEW": "Traduction FR générée par IA — révision par un locuteur natif requise (tâche 9)",
+      "meta": {
+        "title": "Cookies · Quantum Sphere",
+        "description": "Quels cookies nous utilisons et comment gérer votre consentement."
+      },
+      "eyebrow": "Informations légales",
+      "title": "Cookies",
+      "updated": "Mis à jour le 26 mai 2026",
+      "intro": {
+        "heading": "Que sont les cookies",
+        "body": "Les cookies sont de petits fichiers texte qu'un site web stocke dans votre navigateur. Ils servent au fonctionnement du site (par exemple, la mémorisation de votre langue) ou à la mesure du trafic."
+      },
+      "necessary": {
+        "heading": "Cookies nécessaires",
+        "body": "Ces cookies sont indispensables au fonctionnement de base du site et ne nécessitent pas votre consentement :\n\n• NEXT_LOCALE — mémorise votre langue choisie (validité 1 an).\n• authjs.session-token / authjs.csrf-token — connexion au portail client (valide pendant la durée de la session).\n\nSans ces cookies, le site ne fonctionnera pas correctement."
+      },
+      "analytics": {
+        "heading": "Cookies analytiques (avec consentement)",
+        "body": "Si vous donnez votre consentement, nous stockons des cookies PostHog pour une mesure anonymisée du trafic du site (nombre de visites, pages les plus consultées, sources de trafic). Les données sont agrégées et ne sont pas utilisées pour le profilage ou la publicité.\n\n• ph_phc_* — identifiant de visite et état du SDK PostHog (validité jusqu'à 1 an).\n• Sous-traitant : PostHog Inc., États-Unis — transfert couvert par les clauses contractuelles types (RGPD art. 46).\n\nVous pouvez retirer votre consentement à tout moment — cliquez sur le lien « Gérer les cookies » dans le pied de page ou supprimez les cookies dans votre navigateur."
+      },
+      "manage": {
+        "heading": "Comment gérer le consentement",
+        "body": "Lors de votre première visite, nous vous affichons une bannière de cookies. Vous pouvez y accepter ou refuser les cookies analytiques. Nous mémorisons votre choix via le cookie \"qs_consent\" (validité 6 mois).\n\nVous pouvez modifier votre consentement à tout moment — via le bouton ci-dessous ou en supprimant les cookies dans votre navigateur."
+      },
+      "thirdParty": {
+        "heading": "Cookies tiers",
+        "body": "Le site n'utilise pas de cookies publicitaires, de cookies de réseaux sociaux ni de traceurs tiers au-delà de l'instance PostHog décrite ci-dessus."
+      },
+      "manageButton": "Gérer le consentement aux cookies"
     }
   },
   "footer": {

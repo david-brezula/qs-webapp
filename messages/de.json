@@ -598,6 +598,37 @@
         "heading": "8. Änderungen dieses Dokuments",
         "body": "Wir behalten uns das Recht vor, diese Richtlinie zu aktualisieren. Das Datum der letzten Aktualisierung ist in der Kopfzeile des Dokuments angegeben. Bei Änderungen mit wesentlichen Auswirkungen auf Sie werden wir Sie angemessen informieren."
       }
+    },
+    "cookies": {
+      "_TODO_LOCALE_REVIEW": "KI-generierte DE-Übersetzung — Überprüfung durch Muttersprachler erforderlich (Aufgabe 9)",
+      "meta": {
+        "title": "Cookies · Quantum Sphere",
+        "description": "Welche Cookies wir verwenden und wie Sie Ihre Einwilligung verwalten können."
+      },
+      "eyebrow": "Rechtliche Informationen",
+      "title": "Cookies",
+      "updated": "Aktualisiert am 26. Mai 2026",
+      "intro": {
+        "heading": "Was sind Cookies",
+        "body": "Cookies sind kleine Textdateien, die eine Website in Ihrem Browser speichert. Sie dienen dem Betrieb der Website (z. B. zur Speicherung Ihrer Spracheinstellung) oder zur Messung des Datenverkehrs."
+      },
+      "necessary": {
+        "heading": "Notwendige Cookies",
+        "body": "Diese Cookies sind für den grundlegenden Betrieb der Website erforderlich und benötigen keine Einwilligung:\n\n• NEXT_LOCALE — speichert Ihre gewählte Sprache (Gültigkeit 1 Jahr).\n• authjs.session-token / authjs.csrf-token — Anmeldung am Kundenportal (gültig für die Dauer der Sitzung).\n\nOhne diese Cookies wird die Website nicht ordnungsgemäß funktionieren."
+      },
+      "analytics": {
+        "heading": "Analyse-Cookies (mit Einwilligung)",
+        "body": "Bei erteilter Einwilligung speichern wir PostHog-Cookies zur anonymisierten Messung des Website-Traffics (Anzahl der Besuche, meistbesuchte Seiten, Besucherquellen). Die Daten werden aggregiert und nicht für Profiling oder Werbung verwendet.\n\n• ph_phc_* — Besuchskennung und PostHog-SDK-Status (Gültigkeit bis zu 1 Jahr).\n• Auftragsverarbeiter: PostHog Inc., USA — Übermittlung durch Standardvertragsklauseln (DSGVO Art. 46) abgedeckt.\n\nSie können Ihre Einwilligung jederzeit widerrufen — klicken Sie auf den Link „Cookies verwalten“ in der Fußzeile oder löschen Sie Cookies in Ihrem Browser."
+      },
+      "manage": {
+        "heading": "Einwilligung verwalten",
+        "body": "Bei Ihrem ersten Website-Besuch zeigen wir Ihnen ein Cookie-Banner. Dort können Sie der Verwendung von Analyse-Cookies zustimmen oder diese ablehnen. Wir merken uns Ihre Entscheidung über das Cookie \"qs_consent\" (Gültigkeit 6 Monate).\n\nSie können Ihre Einwilligung jederzeit ändern — entweder über die Schaltfläche unten oder indem Sie Cookies in Ihrem Browser löschen."
+      },
+      "thirdParty": {
+        "heading": "Drittanbieter-Cookies",
+        "body": "Die Website verwendet keine Werbe-Cookies, Social-Media-Cookies oder Drittanbieter-Tracker außer der oben beschriebenen PostHog-Instanz."
+      },
+      "manageButton": "Cookie-Einwilligung verwalten"
     }
   },
   "footer": {
