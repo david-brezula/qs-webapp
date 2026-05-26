@@ -106,10 +106,12 @@ export function MarketingFooter() {
         </div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 uppercase tracking-[0.18em]">
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link href={"/privacy" as any} className="hover:text-[var(--color-ink)] transition-colors">
+            {/* @ts-expect-error -- /privacy not yet in routing.pathnames; remove after Task 3 */}
+            <Link href="/privacy" className="hover:text-[var(--color-ink)] transition-colors">
               {tf("privacy")}
             </Link>
-            <Link href={"/cookies" as any} className="hover:text-[var(--color-ink)] transition-colors">
+            {/* @ts-expect-error -- /cookies not yet in routing.pathnames; remove after Task 3 */}
+            <Link href="/cookies" className="hover:text-[var(--color-ink)] transition-colors">
               {tf("cookies")}
             </Link>
             <span className="normal-case tracking-normal">
