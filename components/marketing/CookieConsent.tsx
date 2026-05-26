@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { buttonClass } from "@/components/ui/Button";
-import { readConsentFromDocument, CONSENT_EVENT, type ConsentState } from "@/lib/consent";
+import { CONSENT_EVENT } from "@/lib/consent";
 import { setConsent } from "@/lib/actions/consent";
+import { useConsentState } from "@/lib/hooks/useConsentState";
 
 export function CookieConsent() {
   const t = useTranslations("consent");
-  const [state, setState] = useState<ConsentState>("unset");
-  const [hydrated, setHydrated] = useState(false);
+  const { state, setState, hydrated } = useConsentState();
   const [, startTransition] = useTransition();
-
-  useEffect(() => {
-    setState(readConsentFromDocument());
-    setHydrated(true);
-    const onChange = () => setState(readConsentFromDocument());
-    window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
-  }, []);
 
   if (!hydrated || state !== "unset") return null;
 
@@ -33,9 +25,9 @@ export function CookieConsent() {
 
   return (
     <div
-      role="dialog"
+      role="region"
       aria-labelledby="consent-title"
-      aria-describedby="consent-body"
+      aria-live="polite"
       className="fixed inset-x-3 bottom-3 z-50 md:inset-x-auto md:right-6 md:bottom-6 md:max-w-md rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-paper)] shadow-[0_18px_44px_-22px_rgba(15,22,33,0.35)] p-6"
     >
       <h2

@@ -1,24 +1,16 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { buttonClass } from "@/components/ui/Button";
-import { readConsentFromDocument, CONSENT_EVENT, type ConsentState } from "@/lib/consent";
+import { CONSENT_EVENT } from "@/lib/consent";
 import { setConsent, revokeConsent } from "@/lib/actions/consent";
+import { useConsentState } from "@/lib/hooks/useConsentState";
 
 export function ConsentResetButton({ label }: { label: string }) {
   const t = useTranslations("consent");
-  const [state, setState] = useState<ConsentState>("unset");
-  const [hydrated, setHydrated] = useState(false);
+  const { state, setState, hydrated } = useConsentState();
   const [, startTransition] = useTransition();
-
-  useEffect(() => {
-    setState(readConsentFromDocument());
-    setHydrated(true);
-    const onChange = () => setState(readConsentFromDocument());
-    window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
-  }, []);
 
   if (!hydrated) return null;
 
@@ -26,10 +18,11 @@ export function ConsentResetButton({ label }: { label: string }) {
     startTransition(async () => {
       if (state === "granted") {
         await revokeConsent();
+        setState("unset");
       } else {
         await setConsent("granted");
+        setState("granted");
       }
-      setState(readConsentFromDocument());
       window.dispatchEvent(new CustomEvent(CONSENT_EVENT));
     });
   };
