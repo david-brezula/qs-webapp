@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/lib/i18n/routing";
 import { PostHogProvider } from "@/components/analytics/PostHogProvider";
+import { CookieConsent } from "@/components/marketing/CookieConsent";
 import "../globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <PostHogProvider locale={locale}>{children}</PostHogProvider>
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>

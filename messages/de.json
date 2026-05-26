@@ -631,6 +631,20 @@
       "manageButton": "Cookie-Einwilligung verwalten"
     }
   },
+  "consent": {
+    "_TODO_LOCALE_REVIEW": "AI-generated DE consent strings — native review required before launch (Task 9)",
+    "title": "Cookies & Datenschutz",
+    "body": "Wir verwenden notwendige Cookies für die grundlegende Funktion der Website. Mit Ihrer Einwilligung nutzen wir auch anonymisierte Analyse-Tools (PostHog).",
+    "learnMore": "Mehr erfahren",
+    "accept": "Analyse akzeptieren",
+    "decline": "Nur notwendige",
+    "manageTitle": "Einwilligung verwalten",
+    "currentGranted": "Analyse ist derzeit aktiviert.",
+    "currentDenied": "Analyse ist derzeit deaktiviert.",
+    "currentUnset": "Es wurde noch keine Einwilligung erteilt.",
+    "revoke": "Einwilligung widerrufen",
+    "regrant": "Analyse aktivieren"
+  },
   "footer": {
     "tagline": "Ein Bauunternehmen mit Sitz in der Slowakei — fünf Gewerke unter einem Dach.",
     "company": "Unternehmen",

@@ -631,6 +631,20 @@
       "manageButton": "Hantera cookiesamtycke"
     }
   },
+  "consent": {
+    "_TODO_LOCALE_REVIEW": "AI-generated SV consent strings — native review required before launch (Task 9)",
+    "title": "Cookies & integritet",
+    "body": "Vi använder nödvändiga cookies för webbplatsens grundläggande funktioner. Med ditt samtycke använder vi även anonymiserad analys (PostHog).",
+    "learnMore": "Läs mer",
+    "accept": "Acceptera analys",
+    "decline": "Endast nödvändiga",
+    "manageTitle": "Hantera samtycke",
+    "currentGranted": "Analys är för närvarande aktiverad.",
+    "currentDenied": "Analys är för närvarande inaktiverad.",
+    "currentUnset": "Samtycke har ännu inte lämnats.",
+    "revoke": "Återkalla samtycke",
+    "regrant": "Aktivera analys"
+  },
   "footer": {
     "tagline": "Ett byggföretag baserat i Slovakien — fem yrkesområden under ett och samma tak.",
     "company": "Företag",

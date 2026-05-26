@@ -631,6 +631,20 @@
       "manageButton": "Gérer le consentement aux cookies"
     }
   },
+  "consent": {
+    "_TODO_LOCALE_REVIEW": "AI-generated FR consent strings — native review required before launch (Task 9)",
+    "title": "Cookies & confidentialité",
+    "body": "Nous utilisons des cookies strictement nécessaires au bon fonctionnement du site. Avec votre consentement, nous utilisons également des outils d'analyse anonymisés (PostHog).",
+    "learnMore": "En savoir plus",
+    "accept": "Accepter l'analyse",
+    "decline": "Uniquement nécessaires",
+    "manageTitle": "Gérer le consentement",
+    "currentGranted": "L'analyse est actuellement activée.",
+    "currentDenied": "L'analyse est actuellement désactivée.",
+    "currentUnset": "Le consentement n'a pas encore été donné.",
+    "revoke": "Révoquer le consentement",
+    "regrant": "Activer l'analyse"
+  },
   "footer": {
     "tagline": "Une entreprise de construction établie en Slovaquie — cinq métiers sous un même toit.",
     "company": "Entreprise",

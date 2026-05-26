@@ -640,5 +640,18 @@
     "vatLabel": "DIČ",
     "registrationLabel": "Zápis"
   },
+  "consent": {
+    "title": "Cookies & súkromie",
+    "body": "Používame nevyhnutné cookies pre základné fungovanie webu. So súhlasom používame aj anonymizovanú analytiku (PostHog).",
+    "learnMore": "Viac informácií",
+    "accept": "Prijať analytiku",
+    "decline": "Iba nevyhnutné",
+    "manageTitle": "Spravovať súhlas",
+    "currentGranted": "Analytika je aktuálne povolená.",
+    "currentDenied": "Analytika je aktuálne zakázaná.",
+    "currentUnset": "Súhlas ešte nebol udelený.",
+    "revoke": "Zrušiť súhlas",
+    "regrant": "Povoliť analytiku"
+  },
   "_TODO": "Content drafted by AI — review with David before launch"
 }

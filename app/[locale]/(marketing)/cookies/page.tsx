@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LegalDoc, LegalSection } from "@/components/marketing/LegalDoc";
+import { ConsentResetButton } from "@/components/marketing/ConsentResetButton";
 import { alternatesForPathname } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -30,8 +31,7 @@ export default async function CookiesPage({ params }: Props) {
         </LegalSection>
       ))}
       <div className="pt-4">
-        {/* TODO Task 5: replace with <ConsentResetButton label={t("manageButton")} /> once the component exists. */}
-        <p className="text-[0.875rem] text-[var(--color-slate)]">{t("manageButton")}</p>
+        <ConsentResetButton label={t("manageButton")} />
       </div>
     </LegalDoc>
   );

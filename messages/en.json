@@ -635,5 +635,19 @@
     "company": "Company",
     "rights": "All rights reserved."
   },
+  "consent": {
+    "_TODO_LOCALE_REVIEW": "AI-generated EN consent strings — native review required before launch (Task 9)",
+    "title": "Cookies & privacy",
+    "body": "We use strictly necessary cookies for core website functionality. With your consent, we also use anonymised analytics (PostHog).",
+    "learnMore": "Learn more",
+    "accept": "Accept analytics",
+    "decline": "Only necessary",
+    "manageTitle": "Manage consent",
+    "currentGranted": "Analytics is currently enabled.",
+    "currentDenied": "Analytics is currently disabled.",
+    "currentUnset": "Consent has not yet been given.",
+    "revoke": "Revoke consent",
+    "regrant": "Enable analytics"
+  },
   "_TODO": "AI-generated — review with a native speaker before launch"
 }
