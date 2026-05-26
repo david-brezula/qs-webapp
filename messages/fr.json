@@ -549,7 +549,10 @@
       "message": "Description du projet",
       "submit": "Envoyer la demande",
       "success": "Merci, votre message a été envoyé. Nous vous recontacterons dans les meilleurs délais.",
-      "error": "L'envoi a échoué. Veuillez réessayer ou nous contacter par e-mail."
+      "error": "L'envoi a échoué. Veuillez réessayer ou nous contacter par e-mail.",
+      "gdprLabel": "Je consens au traitement de mes données personnelles conformément à la Politique de confidentialité.",
+      "gdprLinkText": "Politique de confidentialité",
+      "gdprRequired": "Le consentement est requis pour soumettre le formulaire."
     }
   },
   "notFound": {

@@ -548,7 +548,10 @@
       "message": "Popis projektu",
       "submit": "Odoslať dopyt",
       "success": "Ďakujeme, vaša správa bola odoslaná. Ozveme sa čo najskôr.",
-      "error": "Nepodarilo sa odoslať. Skúste to prosím znovu alebo nás kontaktujte e-mailom."
+      "error": "Nepodarilo sa odoslať. Skúste to prosím znovu alebo nás kontaktujte e-mailom.",
+      "gdprLabel": "Súhlasím so spracovaním osobných údajov v zmysle Zásad ochrany osobných údajov.",
+      "gdprLinkText": "Zásad ochrany osobných údajov",
+      "gdprRequired": "Pre odoslanie formulára je nutné udeliť súhlas."
     }
   },
   "notFound": {

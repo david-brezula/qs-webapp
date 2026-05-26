@@ -34,6 +34,8 @@ export function ContactForm() {
       company: String(fd.get("company") ?? ""),
       serviceType: String(fd.get("serviceType") ?? ""),
       message: String(fd.get("message") ?? ""),
+      gdprConsent: fd.get("gdprConsent") === "on",
+      _hp: String(fd.get("_hp") ?? ""),
     };
 
     const parsed = contactSchema.safeParse(payload);
@@ -171,6 +173,45 @@ export function ContactForm() {
               {errors._form}
             </p>
           )}
+
+          {/* Honeypot — keep label/field out of the visual flow; bots fill it, humans don't. */}
+          <div
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
+            className="md:col-span-2"
+          >
+            <label htmlFor="_hp">Leave this field empty</label>
+            <input id="_hp" name="_hp" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="flex items-start gap-3 cursor-pointer text-[0.875rem] text-[var(--color-ink-2)] leading-[1.5]">
+              <input
+                type="checkbox"
+                name="gdprConsent"
+                required
+                aria-invalid={Boolean(errors.gdprConsent)}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--color-rule)] text-[var(--color-fjord)] focus:ring-[var(--color-ink)]/30"
+              />
+              <span>
+                {tf("gdprLabel").replace(tf("gdprLinkText"), "##LINK##").split("##LINK##").map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && (
+                      <Link href="/privacy" className="underline hover:text-[var(--color-ink)]">
+                        {tf("gdprLinkText")}
+                      </Link>
+                    )}
+                  </span>
+                ))}
+              </span>
+            </label>
+            {errors.gdprConsent && (
+              <p className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">
+                {tf("gdprRequired")}
+              </p>
+            )}
+          </div>
 
           <div className="md:col-span-2 pt-2">
             <Button type="submit" variant="primary" disabled={submitting}>

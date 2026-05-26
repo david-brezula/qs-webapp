@@ -548,7 +548,10 @@
       "message": "Project description",
       "submit": "Send enquiry",
       "success": "Thank you, your message has been sent. We will be in touch as soon as possible.",
-      "error": "Could not send. Please try again or contact us by email."
+      "error": "Could not send. Please try again or contact us by email.",
+      "gdprLabel": "I consent to the processing of my personal data in accordance with the Privacy Policy.",
+      "gdprLinkText": "Privacy Policy",
+      "gdprRequired": "Consent is required to submit the form."
     }
   },
   "notFound": {

@@ -20,6 +20,10 @@ export const contactSchema = z.object({
   company: z.string().trim().max(200).optional(),
   serviceType: z.enum(SERVICE_TYPES, { message: "Choose a service" }),
   message: z.string().trim().min(1, "Message is required").max(4000),
+  gdprConsent: z.literal(true, { message: "Consent required" }),
+  // Honeypot — humans never see/fill it, bots usually fill every field.
+  // Schema enforces it must be empty (or absent).
+  _hp: z.string().max(0).optional(),
 });
 
 export type ContactPayload = z.infer<typeof contactSchema>;

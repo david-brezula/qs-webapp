@@ -549,7 +549,10 @@
       "message": "Projektbeskrivning",
       "submit": "Skicka förfrågan",
       "success": "Tack, ditt meddelande har skickats. Vi hör av oss så snart som möjligt.",
-      "error": "Kunde inte skicka. Försök igen eller kontakta oss via e-post."
+      "error": "Kunde inte skicka. Försök igen eller kontakta oss via e-post.",
+      "gdprLabel": "Jag samtycker till behandling av mina personuppgifter i enlighet med integritetspolicyn.",
+      "gdprLinkText": "integritetspolicyn",
+      "gdprRequired": "Samtycke krävs för att skicka formuläret."
     }
   },
   "notFound": {

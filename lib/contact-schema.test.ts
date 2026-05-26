@@ -8,6 +8,7 @@ const valid = {
   company: "Acme s.r.o.",
   serviceType: "roofing",
   message: "We need a new roof on a 200 m² warehouse.",
+  gdprConsent: true,
 } as const;
 
 describe("contactSchema", () => {
@@ -22,6 +23,7 @@ describe("contactSchema", () => {
       email: valid.email,
       serviceType: valid.serviceType,
       message: valid.message,
+      gdprConsent: true,
     });
     expect(r.success).toBe(true);
   });
@@ -44,5 +46,51 @@ describe("contactSchema", () => {
   it("rejects an empty message", () => {
     const r = contactSchema.safeParse({ ...valid, message: "" });
     expect(r.success).toBe(false);
+  });
+});
+
+describe("contactSchema GDPR consent", () => {
+  const base = {
+    name: "Test",
+    email: "test@example.com",
+    serviceType: "solar" as const,
+    message: "hello",
+    gdprConsent: true,
+  };
+
+  it("rejects when gdprConsent is missing", () => {
+    // @ts-expect-error — exercising the missing-field case
+    const { gdprConsent: _omit, ...rest } = base;
+    expect(contactSchema.safeParse(rest).success).toBe(false);
+  });
+
+  it("rejects when gdprConsent is false", () => {
+    expect(contactSchema.safeParse({ ...base, gdprConsent: false }).success).toBe(false);
+  });
+
+  it("accepts when gdprConsent is true", () => {
+    expect(contactSchema.safeParse(base).success).toBe(true);
+  });
+});
+
+describe("contactSchema honeypot", () => {
+  const base = {
+    name: "Test",
+    email: "test@example.com",
+    serviceType: "solar" as const,
+    message: "hello",
+    gdprConsent: true,
+  };
+
+  it("accepts when _hp is omitted", () => {
+    expect(contactSchema.safeParse(base).success).toBe(true);
+  });
+
+  it("accepts when _hp is empty string", () => {
+    expect(contactSchema.safeParse({ ...base, _hp: "" }).success).toBe(true);
+  });
+
+  it("rejects when _hp has any content", () => {
+    expect(contactSchema.safeParse({ ...base, _hp: "x" }).success).toBe(false);
   });
 });
