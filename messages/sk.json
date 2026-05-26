@@ -559,7 +559,13 @@
   "footer": {
     "tagline": "Stavebná spoločnosť so sídlom na Slovensku - päť remeselných odborov pod jednou strechou.",
     "company": "Spoločnosť",
-    "rights": "Všetky práva vyhradené."
+    "rights": "Všetky práva vyhradené.",
+    "legal": "Právne informácie",
+    "privacy": "Ochrana osobných údajov",
+    "cookies": "Cookies",
+    "companyIdLabel": "IČO",
+    "vatLabel": "DIČ",
+    "registrationLabel": "Zápis"
   },
   "_TODO": "Content drafted by AI — review with David before launch"
 }

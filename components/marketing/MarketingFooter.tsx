@@ -89,12 +89,33 @@ export function MarketingFooter() {
         </div>
       </Container>
 
-      <Container className="py-6 border-t border-[var(--color-rule)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--color-slate)] font-mono">
-        <div>
-          © {year} Quantum Sphere s.r.o. — {tf("rights")}
+      <Container className="py-6 border-t border-[var(--color-rule)] flex flex-col gap-4 text-[0.6875rem] text-[var(--color-slate)] font-mono">
+        <div className="flex flex-col md:flex-row md:items-baseline md:flex-wrap gap-x-4 gap-y-2 normal-case tracking-normal">
+          <span className="font-semibold uppercase tracking-[0.18em]">
+            © {year} Quantum Sphere s.r.o.
+          </span>
+          <span>
+            {tf("companyIdLabel")} {FOOTER.companyId}
+          </span>
+          <span>
+            {tf("vatLabel")} {FOOTER.vat}
+          </span>
+          <span>
+            {tf("registrationLabel")}: {FOOTER.registration}
+          </span>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="hidden md:inline normal-case tracking-normal">{FOOTER.vat}</span>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 uppercase tracking-[0.18em]">
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href={"/privacy" as any} className="hover:text-[var(--color-ink)] transition-colors">
+              {tf("privacy")}
+            </Link>
+            <Link href={"/cookies" as any} className="hover:text-[var(--color-ink)] transition-colors">
+              {tf("cookies")}
+            </Link>
+            <span className="normal-case tracking-normal">
+              {tf("rights")}
+            </span>
+          </div>
           <LanguageSwitcher align="right" placement="top" />
         </div>
       </Container>
