@@ -187,10 +187,12 @@ export function ContactForm() {
           <div className="md:col-span-2">
             <label className="flex items-start gap-3 cursor-pointer text-[0.875rem] text-[var(--color-ink-2)] leading-[1.5]">
               <input
+                id="gdprConsent"
                 type="checkbox"
                 name="gdprConsent"
                 required
                 aria-invalid={Boolean(errors.gdprConsent)}
+                aria-describedby={errors.gdprConsent ? "gdprConsent-error" : undefined}
                 className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--color-rule)] text-[var(--color-fjord)] focus:ring-[var(--color-ink)]/30"
               />
               <span>
@@ -207,7 +209,11 @@ export function ContactForm() {
               </span>
             </label>
             {errors.gdprConsent && (
-              <p className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">
+              <p
+                id="gdprConsent-error"
+                className="mt-1.5 text-xs text-[var(--color-ember-2)]"
+                role="alert"
+              >
                 {tf("gdprRequired")}
               </p>
             )}

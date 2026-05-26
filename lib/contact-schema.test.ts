@@ -59,7 +59,6 @@ describe("contactSchema GDPR consent", () => {
   };
 
   it("rejects when gdprConsent is missing", () => {
-    // @ts-expect-error — exercising the missing-field case
     const { gdprConsent: _omit, ...rest } = base;
     expect(contactSchema.safeParse(rest).success).toBe(false);
   });
