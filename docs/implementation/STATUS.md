@@ -406,3 +406,63 @@ All four follow-ups David requested are done. **Build ✅ · lint clean (0 probl
 - Verified in a real browser (local **and** live `qs-webapp.vercel.app`): `$pageview` (with `locale`), autocapture, and `contact_submitted` all POST to `us.i.posthog.com/e/` → **200**. (Beacon `ERR_ABORTED` on nav are normal pageleave events, retried.)
 - **Note:** if a PostHog project in EU is ever used instead, drop the `NEXT_PUBLIC_POSTHOG_HOST` override (EU is the code default).
 
+---
+
+## Post-plan: 2026-05-26 legal-compliance (`docs/superpowers/plans/2026-05-26-legal-compliance.md`)
+
+11-task plan to bring quantum-sphere.eu into GDPR / ePrivacy / § 3a ObchZ compliance, executed subagent-driven with two-stage review (spec + code quality) per task. Branch: `feat/legal-compliance`. **NOT yet deployed to production** — pending real IČO + OR registration values from David.
+
+### LC1: Default to SK locale (localeDetection: false) — ✅ Done
+- Commit `4072c36`. One-line edit to `lib/i18n/routing.ts`. `/` now 307→`/sk` regardless of Accept-Language; SK is the unconditional landing. Code-reviewer flagged `lib/i18n/config.ts` still defaults `User.language` to EN — pre-existing divergence already tracked as a David follow-up, not in this plan's scope.
+
+### LC2: Footer — IBAN removed, IČO + OR added — ✅ Done
+- Commits `786a3b5` + `4c2b283`. `lib/content.ts` restructured (`vat`, `companyId`, `registration`); `MarketingFooter.tsx` two-row identity row + legal links; IBAN removed entirely. § 3a ObchZ identity values still placeholder (`__ICO_*__`, `__OR_*__`) — substituted pre-deploy.
+
+### LC3: Privacy Policy page — ✅ Done
+- Commit `dc5aaf8`. `/privacy` (5 localized slugs) + `LegalDoc`/`LegalSection` shared layout + 8-section SK Privacy Policy in `messages/sk.json` + matching server page with `generateMetadata` + `alternatesForPathname`. Implementer pre-emptively translated `legal.privacy.*` to EN/DE/FR/SV (build constraint — next-intl statically generates all locales). Quality verified as professional v1.
+
+### LC4: Cookies Policy page — ✅ Done
+- Commit `725e647`. `/cookies` (single slug) + 5-section SK Cookies Policy + page component. EN/DE/FR/SV translations + `_TODO_LOCALE_REVIEW` markers. Temp `<p>` placeholder for ConsentResetButton (added by Task 5).
+
+### LC5: Cookie consent banner + state helpers — ✅ Done
+- Commits `e805ebe` + `211563b`. `lib/consent.ts` (cookie reader + event), `lib/actions/consent.ts` (server actions), `CookieConsent.tsx` (sticky banner), `ConsentResetButton.tsx` (manage on /cookies), banner mounted in `[locale]/layout.tsx`. Refactored to share `lib/hooks/useConsentState.ts` (anticipating LC6 as third consumer). `consent.*` SK keys + 4 translated locales. ARIA: `role="region"` + `aria-live="polite"` (NOT `dialog`).
+
+### LC6: Gate PostHog behind consent cookie — ✅ Done
+- Commits `13a23e0` + `a42e683`. `PostHogProvider.tsx` consumes `useConsentState` (third consumer of the hook). `ensureInit` only when `consent === "granted"`; `shutdown` (opt_out + reset) on denied. `$pageview` gated on granted state. Was: PostHog initialized unconditionally; now: requires active opt-in per ePrivacy / GDPR.
+
+### LC7: GDPR checkbox + honeypot on contact form — ✅ Done
+- Commits `7b50021` + `d7fd4b7`. TDD: 6 new schema tests added (3 GDPR consent + 3 honeypot) and confirmed failing before the schema update. `lib/contact-schema.ts` adds `gdprConsent: z.literal(true)` + `_hp: z.string().max(0).optional()`. `ContactForm.tsx` gets visible required checkbox (with inline `/privacy` link via string-split-on-link-text pattern) + hidden honeypot input. All 5 locales translated. 12/12 schema tests pass. SK label fixed to genitive grammar ("Zásad" not "Zásady") so the substring split works.
+
+### LC8: Silent-200 honeypot at API — ✅ Done
+- Commit `b70002b`. 9-line insert in `app/api/contact/route.ts` between JSON parse and schema parse. Filled `_hp` → return `{ok:true}` without writing DB / sending SMTP. Bot doesn't see a 400 validation error. Schema check remains as defense-in-depth.
+
+### LC9: Translate 6 footer keys to EN/DE/FR/SV — ✅ Done
+- Commit `28ceeb3`. The 6 footer.* keys Task 2 added to SK only (legal, privacy, cookies, companyIdLabel, vatLabel, registrationLabel) translated into idiomatic en/de/fr/sv. Other Task 9 scope (privacy/cookies/consent/contact-gdpr translations) was pre-completed in LC3-LC7 due to next-intl's build-time locale requirement.
+
+### LC10: Verify Solar `01### Free site survey` rendering — ✅ Verified (non-bug)
+- No commit. Real-browser inspection via Playwright MCP on `https://qs-webapp.vercel.app/sk/solarne-elektrarne` confirmed: numeral (01/02/...) renders as a separate block above the step title with the intended 12px gap. The original report was a text-extraction artifact (some tool encoded `<h3>` as Markdown `###` and concatenated with the numeral). Screenshot: `docs/implementation/task-10-solar-process.png`.
+
+### LC11: Build/lint/test/Lighthouse gates — ✅ Local | ⚠️ Prod deploy pending
+- **Build:** ✅ clean — 106 pages (Next.js 16.2.6 / Turbopack), 0 errors, TypeScript clean.
+- **Lint:** ✅ 0 problems. Two new lint issues introduced by the plan (LC5: `react-hooks/set-state-in-effect` in `useConsentState.ts`; LC7: unused `_omit` in `contact-schema.test.ts`) fixed in this task: lazy `useState` initializer pattern replaces the effect `setState` call; `eslint-disable-next-line` on the destructure-to-omit pattern in the test.
+- **Tests:** ✅ 63/63 passing (7 test files). 57 from pre-legal baseline + 6 new schema tests from LC7 (GDPR consent ×3 + honeypot ×3).
+- **tsc --noEmit:** ✅ clean (0 errors). LC7's `@ts-expect-error` removed in `d7fd4b7`.
+- **Lighthouse on `/sk` (localhost prod build):** Performance **95**, Accessibility **100**, Best-Practices **100**, SEO **92**\*. FCP 1.1s, LCP 3.0s, CLS 0, TBT 20ms. Performance is 95 vs the Task 22 baseline of 99 — the 4-point drop is from the consent banner + PostHog initialization JS added in LC5/LC6 (both are opt-in only, so real-world impact for non-consenting users is lower). SEO 92 remains the localhost canonical artifact (same as Task 22). Report: `docs/implementation/LIGHTHOUSE-post-legal.html`.
+- \* SEO 92 is a localhost artifact — canonical uses the prod domain (quantum-sphere.eu) ≠ localhost. Will resolve to ~100 on the live domain (same as Task 22 result).
+- **Production deploy NOT executed in this plan.** Reason: placeholders in footer + Privacy controller section (`__ICO_PLACEHOLDER__`, `__OR_SUD_PLACEHOLDER__`, etc.) are explicitly worse than nothing under § 3a ObchZ. David provides real values + authorizes `vercel --prod` as a separate step.
+
+---
+
+## Items requiring David's follow-up (post legal-compliance plan)
+
+- **IČO** (8-digit) and **OR registration** (Okresný súd / Oddiel / Vložka č.) — substituted into `lib/content.ts` and `messages/{sk,en,de,fr,sv}.json` (`legal.privacy.controller.body`) before deploy. Grep targets: `__ICO_PLACEHOLDER__`, `__OR_SUD_PLACEHOLDER__`, `__OR_ODDIEL_PLACEHOLDER__`, `__OR_VLOZKA_PLACEHOLDER__`.
+- **Native-speaker review** of all `legal.privacy.*`, `legal.cookies.*`, `consent.*`, `contact.form.gdpr*` content across en/de/fr/sv — currently AI v1 with `_TODO_LOCALE_REVIEW` markers (and root `_TODO` in en for the privacy block).
+- **Optional polish** flagged by reviewers (deferred):
+  - `lib/i18n/config.ts` parallel locale registry (pre-existing divergence — portal layer)
+  - `ContactForm` GDPR checkbox: link inside `<label>` may toggle checkbox on click in some browsers; would need explicit `for`/`id` separation
+  - `CookieConsent`: no `isPending` loading state during transition
+  - `CookieConsent`: mobile banner overlays page bottom (no padding compensation in layout)
+  - Privacy/Cookies content review for DE/FR/SV: supervisory authority kept in Slovak — consider adding a translated parenthetical
+  - SV GDPR article notation: `art. 6.1 b` vs more conventional `art. 6(1) b` — style preference
+- **Production deploy:** confirm IČO/OR values are correct, then `vercel --prod` from this branch (after merge to `main`).
+

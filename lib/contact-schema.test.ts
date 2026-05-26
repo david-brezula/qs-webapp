@@ -59,6 +59,7 @@ describe("contactSchema GDPR consent", () => {
   };
 
   it("rejects when gdprConsent is missing", () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { gdprConsent: _omit, ...rest } = base;
     expect(contactSchema.safeParse(rest).success).toBe(false);
   });
