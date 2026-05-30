@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { MarketingHeader } from "@/components/marketing/MarketingHeader";
 import { MarketingFooter } from "@/components/marketing/MarketingFooter";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { organizationSchema, localBusinessSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { default: "Quantum Sphere", template: "%s | Quantum Sphere" },
@@ -15,6 +18,7 @@ export default function MarketingLayout({
 }) {
   return (
     <>
+      <JsonLd data={[organizationSchema(SITE_URL), localBusinessSchema(SITE_URL)]} />
       <MarketingHeader />
       <main className="min-h-screen">{children}</main>
       <MarketingFooter />
