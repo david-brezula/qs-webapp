@@ -31,6 +31,14 @@ enum Currency {
   EUR
 }
 
+enum ApplicationStatus {
+  NEW
+  REVIEWING
+  CONTACTED
+  REJECTED
+  HIRED
+}
+
 model User {
   id                 String   @id @default(cuid())
   username           String   @unique
@@ -180,5 +188,26 @@ model ContactSubmission {
   message     String   @default("")
   createdAt   DateTime @default(now())
 
+  @@index([createdAt])
+}
+
+model WorkerApplication {
+  id              String            @id @default(cuid())
+  name            String
+  email           String
+  phone           String?
+  trades          String[]
+  experienceYears Int?
+  location        String?
+  willingToTravel Boolean           @default(false)
+  availableFrom   String?
+  languages       String?
+  drivingLicence  Boolean           @default(false)
+  cvUrl           String?
+  message         String            @default("")
+  status          ApplicationStatus @default(NEW)
+  createdAt       DateTime          @default(now())
+
+  @@index([status])
   @@index([createdAt])
 }
