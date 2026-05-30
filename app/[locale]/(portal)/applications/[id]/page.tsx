@@ -11,10 +11,10 @@ const STATUSES: ApplicationStatus[] = ["NEW", "REVIEWING", "CONTACTED", "REJECTE
 export default async function ApplicationDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }) {
   await requireAdmin();
-  const { id } = await params;
+  const { locale, id } = await params;
   const t = await getTranslations("applications");
   const app = await prisma.workerApplication.findUnique({ where: { id } });
   if (!app) notFound();
@@ -25,7 +25,7 @@ export default async function ApplicationDetailPage({
     const status = String(formData.get("status")) as ApplicationStatus;
     if (!STATUSES.includes(status)) return;
     await prisma.workerApplication.update({ where: { id }, data: { status } });
-    revalidatePath(`/applications/${id}`);
+    revalidatePath(`/${locale}/applications/${id}`);
   }
 
   const rows: [string, string][] = [

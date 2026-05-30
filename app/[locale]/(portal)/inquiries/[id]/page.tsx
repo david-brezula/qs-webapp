@@ -11,10 +11,10 @@ const STATUSES: InquiryStatus[] = ["NEW", "IN_PROGRESS", "CLOSED"];
 export default async function InquiryDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }) {
   await requireAdmin();
-  const { id } = await params;
+  const { locale, id } = await params;
   const t = await getTranslations("inquiries");
   const tServices = await getTranslations("services");
   const row = await prisma.contactSubmission.findUnique({ where: { id } });
@@ -26,7 +26,7 @@ export default async function InquiryDetailPage({
     const status = String(formData.get("status")) as InquiryStatus;
     if (!STATUSES.includes(status)) return;
     await prisma.contactSubmission.update({ where: { id }, data: { status } });
-    revalidatePath(`/inquiries/${id}`);
+    revalidatePath(`/${locale}/inquiries/${id}`);
   }
 
   const fields: [string, string][] = [
