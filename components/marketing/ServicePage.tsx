@@ -2,7 +2,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Check, ArrowRight, Plus } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
-import { localizedPathname } from "@/lib/seo";
+import { localizedPathname, SITE_URL } from "@/lib/seo";
 import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
@@ -13,7 +13,6 @@ type Faq = { q: string; a: string };
 
 // Universal landing template for the five trades. Content comes entirely from
 // the `services.<slug>` message namespace; array sections render only when filled.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://quantum-sphere.eu";
 
 export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const t = useTranslations(`services.${slug}`);
@@ -25,14 +24,14 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const steps = (t.raw("process.steps") as Step[]) ?? [];
   const faqs = (t.raw("faq.items") as Faq[]) ?? [];
 
-  const serviceUrl = `${siteUrl}${localizedPathname(`/${slug}`, locale)}`;
-  const homeUrl = `${siteUrl}${localizedPathname("/", locale)}`;
+  const serviceUrl = `${SITE_URL}${localizedPathname(`/${slug}`, locale)}`;
+  const homeUrl = `${SITE_URL}${localizedPathname("/", locale)}`;
 
   return (
     <>
       <JsonLd
         data={[
-          serviceSchema(t("name"), serviceUrl, siteUrl),
+          serviceSchema(t("name"), serviceUrl, SITE_URL),
           breadcrumbSchema([
             { name: tNav("home"), url: homeUrl },
             { name: t("name"), url: serviceUrl },
