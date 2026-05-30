@@ -1,5 +1,8 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Check, ArrowRight, Plus } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
+import { localizedPathname } from "@/lib/seo";
 import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
@@ -10,17 +13,45 @@ type Faq = { q: string; a: string };
 
 // Universal landing template for the five trades. Content comes entirely from
 // the `services.<slug>` message namespace; array sections render only when filled.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://quantum-sphere.eu";
+
 export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const t = useTranslations(`services.${slug}`);
   const tNav = useTranslations("nav");
+  const locale = useLocale();
   const { icon: Icon } = getService(slug);
 
   const deliverables = (t.raw("deliverables.items") as string[]) ?? [];
   const steps = (t.raw("process.steps") as Step[]) ?? [];
   const faqs = (t.raw("faq.items") as Faq[]) ?? [];
 
+  const serviceUrl = `${siteUrl}${localizedPathname(`/${slug}`, locale)}`;
+  const homeUrl = `${siteUrl}${localizedPathname("/", locale)}`;
+
   return (
     <>
+      <JsonLd
+        data={[
+          serviceSchema(t("name"), serviceUrl, siteUrl),
+          breadcrumbSchema([
+            { name: tNav("home"), url: homeUrl },
+            { name: t("name"), url: serviceUrl },
+          ]),
+        ]}
+      />
+      {faqs.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }}
+        />
+      )}
       {/* Hero */}
       <section className="bg-[var(--color-canvas)] border-b border-[var(--color-rule)]">
         <Container className="py-20 md:py-28">
