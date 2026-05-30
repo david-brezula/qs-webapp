@@ -18,9 +18,10 @@ describe("schema builders", () => {
   });
 
   it("service links to its provider and area", () => {
-    const s = serviceSchema("solar", "Solárne elektrárne", "https://quantum-sphere.eu", "sk");
+    const s = serviceSchema("Solárne elektrárne", "https://quantum-sphere.eu/sk/solarne-elektrarne", "https://quantum-sphere.eu");
     expect(s["@type"]).toBe("Service");
     expect(s.serviceType).toBe("Solárne elektrárne");
+    expect(s.url).toBe("https://quantum-sphere.eu/sk/solarne-elektrarne");
     expect(s.provider["@type"]).toBe("Organization");
   });
 

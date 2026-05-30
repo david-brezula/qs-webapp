@@ -128,17 +128,16 @@ export function localBusinessSchema(siteUrl: string): LocalBusinessSchema {
 }
 
 export function serviceSchema(
-  slug: string,
   name: string,
+  url: string,
   siteUrl: string,
-  locale: string,
 ): ServiceSchema {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name,
     serviceType: name,
-    url: `${siteUrl}/${locale}/${slug}`,
+    url,
     provider: {
       "@type": "Organization",
       name: COMPANY_NAME,
