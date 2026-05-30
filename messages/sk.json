@@ -197,9 +197,65 @@
       "title": "O Quantum Sphere",
       "body": "Sme stavebná spoločnosť so sídlom na Slovensku. Špecializujeme sa na komplexné dodávky v piatich remeselných odboroch. Pracujeme pre firemných aj individuálnych klientov a vďaka vlastným tímom v každom odbore vieme realizovať väčšinu projektov bez subdodávateľov."
     },
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Remeselných odborov" },
+        { "value": "5", "label": "Jazykov" },
+        { "value": "1", "label": "Zodpovedný partner" },
+        { "value": "EÚ", "label": "Pôsobiská" }
+      ]
+    },
+    "values": {
+      "title": "Prečo Quantum Sphere",
+      "subtitle": "Štyri dôvody, prečo nám zákazníci zverujú svoje projekty",
+      "items": [
+        {
+          "title": "Vlastné skúsené tímy",
+          "body": "Každý odbor realizujú naši vlastní pracovníci — žiadni náhodní subdodávatelia. Vďaka tomu máme plnú kontrolu nad kvalitou a harmonogramom."
+        },
+        {
+          "title": "Kvalita a bezpečnosť",
+          "body": "Pracujeme podľa platných noriem STN a predpisov BOZP. Každé dielo odovzdávame s príslušnou dokumentáciou a revíziami."
+        },
+        {
+          "title": "Spoľahlivé termíny",
+          "body": "Dohodnutý harmonogram berieme ako záväzok. Pravidelne informujeme o postupe a riešime prípadné komplikácie včas."
+        },
+        {
+          "title": "Komplexná realizácia",
+          "body": "Od solárnych elektrární po strechy — všetko pod jednou strechou. Jeden partner pre päť odborov znamená jednoduchšiu koordináciu a menej starostí pre vás."
+        }
+      ]
+    },
+    "coverage": {
+      "title": "Kde pôsobíme",
+      "body": "Realizujeme projekty po celom Slovensku s centrom v Bratislave. Vybrané väčšie zákazky realizujeme aj pre klientov v strednej Európe a krajinách EÚ — čomu zodpovedá aj naša päťjazyčná podpora."
+    },
     "featuredProjects": {
       "title": "Vybrané realizácie",
-      "subtitle": "Ukážka projektov z posledných rokov"
+      "subtitle": "Ukážka projektov z posledných rokov",
+      "items": {
+        "solarFarm": {
+          "title": "Strešná fotovoltická elektráreň",
+          "location": "Slovensko",
+          "body": "Návrh a inštalácia strešného FV systému pre priemyselný objekt vrátane projektovej dokumentácie a pripojenia do distribučnej siete."
+        },
+        "officeFitout": {
+          "title": "Sadrokartónový fit-out kancelárií",
+          "location": "Bratislava, Slovensko",
+          "body": "Kompletné sadrokartónové priečky, podhľady a akustické riešenia pre novozrekonštruovaný kancelársky priestor."
+        },
+        "industrialRoof": {
+          "title": "Nová strecha priemyselnej haly",
+          "location": "Slovensko",
+          "body": "Demontáž starej krytiny a položenie novej plochej strechy s fóliovou hydroizoláciou pre výrobný objekt."
+        },
+        "retailWiring": {
+          "title": "Elektroinštalácie v obchodnom centre",
+          "location": "Slovensko",
+          "body": "Silnoprúdové a slaboprúdové rozvody vrátane LED osvetlenia, rozvádzačov a EZS pre komerčné priestory."
+        }
+      }
     }
   },
   "services": {
@@ -253,7 +309,13 @@
         ]
       },
       "certifications": {
-        "title": "Certifikáty a oprávnenia"
+        "title": "Certifikáty a oprávnenia",
+        "items": [
+          "Oprávnenie na montáž FV systémov",
+          "Odborná spôsobilosť elektrotechnik (§ 21 vyhl. 508/2009)",
+          "Výstavba na kľúč podľa STN EN 62446",
+          "ISO 9001 — systém manažérstva kvality"
+        ]
       },
       "faq": {
         "title": "Často kladené otázky",
@@ -323,7 +385,13 @@
         ]
       },
       "certifications": {
-        "title": "Oprávnenia"
+        "title": "Oprávnenia",
+        "items": [
+          "Odborná spôsobilosť elektrotechnik (§ 21 vyhl. 508/2009 Z. z.)",
+          "Oprávnenie na vykonávanie revízií (§ 24 vyhl. 508/2009 Z. z.)",
+          "Práce pod napätím do 1 kV",
+          "BOZP — bezpečnosť pri práci s elektrickým zariadením"
+        ]
       },
       "faq": {
         "title": "Často kladené otázky",
@@ -385,7 +453,13 @@
         ]
       },
       "certifications": {
-        "title": "Systémové certifikácie"
+        "title": "Systémové certifikácie",
+        "items": [
+          "Knauf — certifikovaný montážny partner",
+          "Rigips — systemové certifikovaný zhotoviteľ",
+          "Protipožiarne konštrukcie EI podľa STN EN 13501",
+          "ISO 9001 — systém manažérstva kvality"
+        ]
       },
       "faq": {
         "title": "Často kladené otázky",
@@ -443,7 +517,12 @@
         ]
       },
       "certifications": {
-        "title": "Skúsenosti"
+        "title": "Skúsenosti a štandardy",
+        "items": [
+          "Murárske práce podľa STN EN 1996 (Eurokód 6)",
+          "BOZP — bezpečnosť a ochrana zdravia pri práci na stavenisku",
+          "Nakladanie so stavebnými odpadmi podľa zák. 79/2015 Z. z."
+        ]
       },
       "faq": {
         "title": "Často kladené otázky",
@@ -505,7 +584,13 @@
         ]
       },
       "certifications": {
-        "title": "Systémové školenia"
+        "title": "Systémové školenia a štandardy",
+        "items": [
+          "Bramac / Tondach — autorizovaný pokrývač",
+          "Sarnafil / Sika — aplikátor fóliovej hydroizolácie",
+          "Lindab — certifikovaný partner pre plechové strešné systémy",
+          "BOZP — práca vo výškach"
+        ]
       },
       "faq": {
         "title": "Často kladené otázky",

@@ -198,9 +198,65 @@
       "title": "À propos de Quantum Sphere",
       "body": "Nous sommes une entreprise de construction établie en Slovaquie. Nous sommes spécialisés dans la réalisation complète de cinq corps de métier. Nous travaillons aussi bien pour les clients professionnels que pour les particuliers et, grâce à nos propres équipes dans chaque métier, nous pouvons mener à bien la plupart des projets sans recourir à des sous-traitants."
     },
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Corps de métier" },
+        { "value": "5", "label": "Langues" },
+        { "value": "1", "label": "Partenaire responsable" },
+        { "value": "UE", "label": "Zone d'intervention" }
+      ]
+    },
+    "values": {
+      "title": "Pourquoi Quantum Sphere",
+      "subtitle": "Quatre raisons pour lesquelles nos clients nous confient leurs projets",
+      "items": [
+        {
+          "title": "Équipes expérimentées en interne",
+          "body": "Chaque corps de métier est assuré par nos propres collaborateurs — pas de sous-traitants occasionnels. Cela nous permet de garder un contrôle total sur la qualité et le planning."
+        },
+        {
+          "title": "Qualité et sécurité",
+          "body": "Nous travaillons selon les normes en vigueur et les règles de sécurité au travail. Chaque projet est remis avec la documentation et les rapports de contrôle correspondants."
+        },
+        {
+          "title": "Délais fiables",
+          "body": "Nous considérons le planning convenu comme un engagement. Nous tenons nos clients régulièrement informés et gérons les imprévus en amont."
+        },
+        {
+          "title": "Prestation complète",
+          "body": "Des centrales solaires aux toitures — tout sous un même toit. Un partenaire pour cinq métiers, c'est une coordination simplifiée et moins de soucis pour vous."
+        }
+      ]
+    },
+    "coverage": {
+      "title": "Où nous intervenons",
+      "body": "Nous réalisons des projets dans toute la Slovaquie, depuis notre base à Bratislava. Certaines commandes de plus grande envergure sont également menées pour des clients en Europe centrale et dans l'UE — ce que reflète notre assistance en cinq langues."
+    },
     "featuredProjects": {
       "title": "Projets sélectionnés",
-      "subtitle": "Un aperçu de projets réalisés ces dernières années"
+      "subtitle": "Un aperçu de projets réalisés ces dernières années",
+      "items": {
+        "solarFarm": {
+          "title": "Centrale photovoltaïque en toiture",
+          "location": "Slovaquie",
+          "body": "Conception et installation d'un système photovoltaïque en toiture pour un bâtiment industriel, incluant la documentation de projet et le raccordement au réseau."
+        },
+        "officeFitout": {
+          "title": "Aménagement de bureaux en cloisons sèches",
+          "location": "Bratislava, Slovaquie",
+          "body": "Cloisons sèches complètes, plafonds suspendus et solutions acoustiques pour un espace de bureaux entièrement rénové."
+        },
+        "industrialRoof": {
+          "title": "Réfection de toiture d'un bâtiment industriel",
+          "location": "Slovaquie",
+          "body": "Dépose et remplacement d'une toiture plate existante par un système d'étanchéité par membrane sur un site de production."
+        },
+        "retailWiring": {
+          "title": "Installation électrique pour locaux commerciaux",
+          "location": "Slovaquie",
+          "body": "Câblage courant fort et courant faible, incluant éclairage LED, tableaux de distribution et système d'alarme pour des locaux commerciaux."
+        }
+      }
     }
   },
   "services": {
@@ -254,7 +310,13 @@
         ]
       },
       "certifications": {
-        "title": "Certificats et qualifications"
+        "title": "Certificats et qualifications",
+        "items": [
+          "Qualification pour l'installation de systèmes photovoltaïques",
+          "Compétence d'électricien pour les travaux PV (décret 508/2009)",
+          "Installation clés en main selon STN EN 62446",
+          "ISO 9001 — système de management de la qualité"
+        ]
       },
       "faq": {
         "title": "Questions fréquentes",
@@ -324,7 +386,13 @@
         ]
       },
       "certifications": {
-        "title": "Qualifications"
+        "title": "Qualifications",
+        "items": [
+          "Qualification d'électricien — décret 508/2009 (§ 21)",
+          "Habilitation à réaliser des contrôles électriques (§ 24)",
+          "Travaux sous tension jusqu'à 1 kV",
+          "Sécurité au travail — équipements électriques"
+        ]
       },
       "faq": {
         "title": "Questions fréquentes",
@@ -386,7 +454,13 @@
         ]
       },
       "certifications": {
-        "title": "Certifications de système"
+        "title": "Certifications de système",
+        "items": [
+          "Knauf — partenaire certifié pour la pose",
+          "Rigips — entrepreneur système certifié",
+          "Constructions coupe-feu EI selon STN EN 13501",
+          "ISO 9001 — système de management de la qualité"
+        ]
       },
       "faq": {
         "title": "Questions fréquentes",
@@ -444,7 +518,12 @@
         ]
       },
       "certifications": {
-        "title": "Expérience"
+        "title": "Standards et pratiques",
+        "items": [
+          "Travaux de maçonnerie selon STN EN 1996 (Eurocode 6)",
+          "Sécurité et santé au travail sur les chantiers",
+          "Gestion des déchets de construction conformément à la réglementation en vigueur"
+        ]
       },
       "faq": {
         "title": "Questions fréquentes",
@@ -506,7 +585,13 @@
         ]
       },
       "certifications": {
-        "title": "Formations système"
+        "title": "Formations système et standards",
+        "items": [
+          "Bramac / Tondach — couvreur agréé",
+          "Sarnafil / Sika — applicateur d'étanchéité par membrane",
+          "Lindab — partenaire certifié pour les systèmes de toiture métallique",
+          "Sécurité au travail — travaux en hauteur"
+        ]
       },
       "faq": {
         "title": "Questions fréquentes",

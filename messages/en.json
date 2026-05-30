@@ -197,9 +197,65 @@
       "title": "About Quantum Sphere",
       "body": "We are a construction company based in Slovakia. We specialise in comprehensive delivery across five trades. We work for both business and private clients, and thanks to our own teams in every trade we can carry out most projects without subcontractors."
     },
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Trades" },
+        { "value": "5", "label": "Languages" },
+        { "value": "1", "label": "Accountable partner" },
+        { "value": "EU", "label": "Service area" }
+      ]
+    },
+    "values": {
+      "title": "Why Quantum Sphere",
+      "subtitle": "Four reasons our clients trust us with their projects",
+      "items": [
+        {
+          "title": "Experienced in-house teams",
+          "body": "Every trade is delivered by our own staff — no random subcontractors. That gives us full control over quality and schedule."
+        },
+        {
+          "title": "Quality and safety",
+          "body": "We work to applicable standards and occupational-safety regulations. Every project is handed over with the relevant documentation and inspection reports."
+        },
+        {
+          "title": "Reliable deadlines",
+          "body": "We treat the agreed schedule as a commitment. We keep clients regularly informed and deal with any complications early."
+        },
+        {
+          "title": "Full-service delivery",
+          "body": "From solar power plants to roofing — everything under one roof. One partner for five trades means simpler coordination and fewer headaches for you."
+        }
+      ]
+    },
+    "coverage": {
+      "title": "Where we work",
+      "body": "We carry out projects across Slovakia, with our base in Bratislava. Selected larger commissions are also delivered for clients in Central Europe and the wider EU — reflected in our five-language support."
+    },
     "featuredProjects": {
       "title": "Selected projects",
-      "subtitle": "A sample of projects from recent years"
+      "subtitle": "A sample of projects from recent years",
+      "items": {
+        "solarFarm": {
+          "title": "Rooftop photovoltaic power plant",
+          "location": "Slovakia",
+          "body": "Design and installation of a rooftop PV system for an industrial building, including project documentation and connection to the distribution grid."
+        },
+        "officeFitout": {
+          "title": "Office drywall fit-out",
+          "location": "Bratislava, Slovakia",
+          "body": "Complete drywall partitions, suspended ceilings and acoustic solutions for a newly refurbished office space."
+        },
+        "industrialRoof": {
+          "title": "Industrial hall re-roofing",
+          "location": "Slovakia",
+          "body": "Strip and replacement of an existing flat roof with membrane waterproofing system on a manufacturing facility."
+        },
+        "retailWiring": {
+          "title": "Electrical fit-out for retail premises",
+          "location": "Slovakia",
+          "body": "High- and low-voltage wiring including LED lighting, distribution boards and intruder alarm for commercial premises."
+        }
+      }
     }
   },
   "services": {
@@ -253,7 +309,13 @@
         ]
       },
       "certifications": {
-        "title": "Certificates and qualifications"
+        "title": "Certificates and qualifications",
+        "items": [
+          "PV system installation qualification",
+          "Electrician competence for PV work (per Slovak Decree 508/2009)",
+          "Turnkey installation per STN EN 62446",
+          "ISO 9001 — quality management system"
+        ]
       },
       "faq": {
         "title": "Frequently asked questions",
@@ -323,7 +385,13 @@
         ]
       },
       "certifications": {
-        "title": "Qualifications"
+        "title": "Qualifications",
+        "items": [
+          "Electrician competence — Decree 508/2009 (§ 21)",
+          "Authorisation to perform electrical inspections (§ 24)",
+          "Live-working up to 1 kV",
+          "Occupational safety — electrical equipment"
+        ]
       },
       "faq": {
         "title": "Frequently asked questions",
@@ -385,7 +453,13 @@
         ]
       },
       "certifications": {
-        "title": "System certifications"
+        "title": "System certifications",
+        "items": [
+          "Knauf — certified installation partner",
+          "Rigips — certified system contractor",
+          "Fire-rated assemblies EI per STN EN 13501",
+          "ISO 9001 — quality management system"
+        ]
       },
       "faq": {
         "title": "Frequently asked questions",
@@ -443,7 +517,12 @@
         ]
       },
       "certifications": {
-        "title": "Experience"
+        "title": "Standards and practices",
+        "items": [
+          "Masonry works per STN EN 1996 (Eurocode 6)",
+          "Occupational safety on construction sites",
+          "Construction waste management per applicable regulations"
+        ]
       },
       "faq": {
         "title": "Frequently asked questions",
@@ -505,7 +584,13 @@
         ]
       },
       "certifications": {
-        "title": "System training"
+        "title": "System training and standards",
+        "items": [
+          "Bramac / Tondach — authorised roof tiler",
+          "Sarnafil / Sika — membrane waterproofing applicator",
+          "Lindab — certified partner for metal roof systems",
+          "Occupational safety — working at height"
+        ]
       },
       "faq": {
         "title": "Frequently asked questions",

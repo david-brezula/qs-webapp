@@ -198,9 +198,65 @@
       "title": "Über Quantum Sphere",
       "body": "Wir sind ein Bauunternehmen mit Sitz in der Slowakei. Wir sind auf die umfassende Ausführung in fünf Gewerken spezialisiert. Wir arbeiten sowohl für gewerbliche als auch für private Kunden und können dank eigener Teams in jedem Gewerk die meisten Projekte ohne Subunternehmer ausführen."
     },
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Gewerke" },
+        { "value": "5", "label": "Sprachen" },
+        { "value": "1", "label": "Verantwortlicher Partner" },
+        { "value": "EU", "label": "Einsatzgebiet" }
+      ]
+    },
+    "values": {
+      "title": "Warum Quantum Sphere",
+      "subtitle": "Vier Gründe, warum Kunden uns ihre Projekte anvertrauen",
+      "items": [
+        {
+          "title": "Erfahrene eigene Teams",
+          "body": "Jedes Gewerk wird von unseren eigenen Mitarbeitern ausgeführt — keine zufälligen Subunternehmer. Das gibt uns volle Kontrolle über Qualität und Zeitplan."
+        },
+        {
+          "title": "Qualität und Sicherheit",
+          "body": "Wir arbeiten nach geltenden Normen und Arbeitsschutzvorschriften. Jedes Projekt wird mit der entsprechenden Dokumentation und den Prüfberichten übergeben."
+        },
+        {
+          "title": "Zuverlässige Termine",
+          "body": "Den vereinbarten Zeitplan betrachten wir als Verpflichtung. Wir halten Kunden regelmäßig auf dem Laufenden und gehen auf Komplikationen frühzeitig ein."
+        },
+        {
+          "title": "Vollständige Ausführung",
+          "body": "Von Solarkraftwerken bis zur Dacheindeckung — alles aus einer Hand. Ein Partner für fünf Gewerke bedeutet einfachere Koordination und weniger Aufwand für Sie."
+        }
+      ]
+    },
+    "coverage": {
+      "title": "Wo wir tätig sind",
+      "body": "Wir realisieren Projekte in der gesamten Slowakei mit Standort in Bratislava. Ausgewählte größere Aufträge führen wir auch für Kunden in Mitteleuropa und der EU aus — was sich auch in unserem fünfsprachigen Support widerspiegelt."
+    },
     "featuredProjects": {
       "title": "Ausgewählte Projekte",
-      "subtitle": "Eine Auswahl von Projekten der letzten Jahre"
+      "subtitle": "Eine Auswahl von Projekten der letzten Jahre",
+      "items": {
+        "solarFarm": {
+          "title": "Dach-Photovoltaikkraftwerk",
+          "location": "Slowakei",
+          "body": "Planung und Installation einer Dach-PV-Anlage für ein Industriegebäude, einschließlich Projektdokumentation und Netzanschluss."
+        },
+        "officeFitout": {
+          "title": "Trockenbau-Ausbau von Büroflächen",
+          "location": "Bratislava, Slowakei",
+          "body": "Komplette Trockenbau-Trennwände, Unterdecken und Akustiklösungen für eine neu sanierte Bürofläche."
+        },
+        "industrialRoof": {
+          "title": "Neu-Eindeckung einer Industriehalle",
+          "location": "Slowakei",
+          "body": "Abbruch und Erneuerung eines bestehenden Flachdachs mit Folienabdichtungssystem auf einem Produktionsgebäude."
+        },
+        "retailWiring": {
+          "title": "Elektroausbau für Gewerbeflächen",
+          "location": "Slowakei",
+          "body": "Stark- und Schwachstrominstallation einschließlich LED-Beleuchtung, Verteilerschränken und Einbruchmeldeanlage für gewerbliche Räumlichkeiten."
+        }
+      }
     }
   },
   "services": {
@@ -254,7 +310,13 @@
         ]
       },
       "certifications": {
-        "title": "Zertifikate und Qualifikationen"
+        "title": "Zertifikate und Qualifikationen",
+        "items": [
+          "Qualifikation zur Montage von PV-Systemen",
+          "Elektrotechnische Fachkraft für PV-Arbeiten (Verordnung 508/2009)",
+          "Schlüsselfertige Installation gemäß STN EN 62446",
+          "ISO 9001 — Qualitätsmanagementsystem"
+        ]
       },
       "faq": {
         "title": "Häufig gestellte Fragen",
@@ -324,7 +386,13 @@
         ]
       },
       "certifications": {
-        "title": "Qualifikationen"
+        "title": "Qualifikationen",
+        "items": [
+          "Elektrofachkraft — Verordnung 508/2009 (§ 21)",
+          "Berechtigung zur Durchführung von Elektroprüfungen (§ 24)",
+          "Arbeiten unter Spannung bis 1 kV",
+          "Arbeitsschutz — elektrische Betriebsmittel"
+        ]
       },
       "faq": {
         "title": "Häufig gestellte Fragen",
@@ -386,7 +454,13 @@
         ]
       },
       "certifications": {
-        "title": "Systemzertifizierungen"
+        "title": "Systemzertifizierungen",
+        "items": [
+          "Knauf — zertifizierter Montagepartner",
+          "Rigips — systemzertifizierter Verarbeiter",
+          "Feuerwiderstandsfähige Konstruktionen EI gemäß STN EN 13501",
+          "ISO 9001 — Qualitätsmanagementsystem"
+        ]
       },
       "faq": {
         "title": "Häufig gestellte Fragen",
@@ -444,7 +518,12 @@
         ]
       },
       "certifications": {
-        "title": "Erfahrung"
+        "title": "Standards und Praxis",
+        "items": [
+          "Maurerarbeiten gemäß STN EN 1996 (Eurocode 6)",
+          "Arbeitssicherheit auf Baustellen",
+          "Entsorgung von Bauabfällen gemäß geltenden Vorschriften"
+        ]
       },
       "faq": {
         "title": "Häufig gestellte Fragen",
@@ -506,7 +585,13 @@
         ]
       },
       "certifications": {
-        "title": "Systemschulungen"
+        "title": "Systemschulungen und Standards",
+        "items": [
+          "Bramac / Tondach — autorisierter Dachdecker",
+          "Sarnafil / Sika — Applikateur für Folienabdichtungen",
+          "Lindab — zertifizierter Partner für Metalldachsysteme",
+          "Arbeitssicherheit — Arbeiten auf Dächern"
+        ]
       },
       "faq": {
         "title": "Häufig gestellte Fragen",

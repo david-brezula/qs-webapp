@@ -198,9 +198,65 @@
       "title": "Om Quantum Sphere",
       "body": "Vi är ett byggföretag baserat i Slovakien. Vi är specialiserade på heltäckande leveranser inom fem yrkesområden. Vi arbetar för både företagskunder och privatkunder, och tack vare egna team inom varje yrkesområde kan vi genomföra de flesta projekt utan underentreprenörer."
     },
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Yrkesområden" },
+        { "value": "5", "label": "Språk" },
+        { "value": "1", "label": "Ansvarstagande partner" },
+        { "value": "EU", "label": "Verksamhetsområde" }
+      ]
+    },
+    "values": {
+      "title": "Varför Quantum Sphere",
+      "subtitle": "Fyra skäl till att kunder anförtror oss sina projekt",
+      "items": [
+        {
+          "title": "Erfarna egna team",
+          "body": "Varje yrkesområde utförs av våra egna medarbetare — inga slumpmässiga underentreprenörer. Det ger oss full kontroll över kvalitet och tidsplan."
+        },
+        {
+          "title": "Kvalitet och säkerhet",
+          "body": "Vi arbetar enligt gällande standarder och arbetsmiljöregler. Varje projekt överlämnas med tillhörande dokumentation och besiktningsprotokoll."
+        },
+        {
+          "title": "Pålitliga deadlines",
+          "body": "Den överenskomna tidsplanen ser vi som ett åtagande. Vi håller kunderna regelbundet informerade och hanterar eventuella komplikationer i god tid."
+        },
+        {
+          "title": "Komplett leverans",
+          "body": "Från solcellsanläggningar till tak — allt under ett och samma tak. En partner för fem yrkesområden innebär enklare samordning och färre bekymmer för dig."
+        }
+      ]
+    },
+    "coverage": {
+      "title": "Var vi arbetar",
+      "body": "Vi genomför projekt i hela Slovakien med bas i Bratislava. Utvalda större uppdrag utförs även åt kunder i Centraleuropa och inom EU — vilket återspeglas i vår femspråkiga support."
+    },
     "featuredProjects": {
       "title": "Utvalda projekt",
-      "subtitle": "Ett urval av projekt från de senaste åren"
+      "subtitle": "Ett urval av projekt från de senaste åren",
+      "items": {
+        "solarFarm": {
+          "title": "Takmonterad solcellsanläggning",
+          "location": "Slovakien",
+          "body": "Projektering och installation av ett takbaserat solcellssystem för en industribyggnad, inklusive projektdokumentation och nätanslutning."
+        },
+        "officeFitout": {
+          "title": "Kontorsanpassning med gipsväggar",
+          "location": "Bratislava, Slovakien",
+          "body": "Kompletta mellanväggar av gips, undertak och akustiklösningar för ett nyligen renoverat kontorsutrymme."
+        },
+        "industrialRoof": {
+          "title": "Omläggning av industrihallstak",
+          "location": "Slovakien",
+          "body": "Rivning och byte av befintligt platt tak med tätskiktsmembransystem på en produktionsanläggning."
+        },
+        "retailWiring": {
+          "title": "Elanpassning för handelslokaler",
+          "location": "Slovakien",
+          "body": "Stark- och svagströmsinstallationer inklusive LED-belysning, eldningscentraler och inbrottslarm för kommersiella lokaler."
+        }
+      }
     }
   },
   "services": {
@@ -254,7 +310,13 @@
         ]
       },
       "certifications": {
-        "title": "Certifikat och kvalifikationer"
+        "title": "Certifikat och kvalifikationer",
+        "items": [
+          "Kvalifikation för installation av solcellssystem",
+          "Elektroteknisk kompetens för solcellsarbeten (förordning 508/2009)",
+          "Nyckelfärdig installation enligt STN EN 62446",
+          "ISO 9001 — kvalitetsledningssystem"
+        ]
       },
       "faq": {
         "title": "Vanliga frågor",
@@ -324,7 +386,13 @@
         ]
       },
       "certifications": {
-        "title": "Kvalifikationer"
+        "title": "Kvalifikationer",
+        "items": [
+          "Elektroteknisk kompetens — förordning 508/2009 (§ 21)",
+          "Tillstånd att utföra elbesiktningar (§ 24)",
+          "Arbete under spänning upp till 1 kV",
+          "Arbetsmiljö — elektrisk utrustning"
+        ]
       },
       "faq": {
         "title": "Vanliga frågor",
@@ -386,7 +454,13 @@
         ]
       },
       "certifications": {
-        "title": "Systemcertifieringar"
+        "title": "Systemcertifieringar",
+        "items": [
+          "Knauf — certifierad monteringspartner",
+          "Rigips — systemcertifierad entreprenör",
+          "Brandklassade konstruktioner EI enligt STN EN 13501",
+          "ISO 9001 — kvalitetsledningssystem"
+        ]
       },
       "faq": {
         "title": "Vanliga frågor",
@@ -444,7 +518,12 @@
         ]
       },
       "certifications": {
-        "title": "Erfarenhet"
+        "title": "Standarder och praxis",
+        "items": [
+          "Murningsarbeten enligt STN EN 1996 (Eurokod 6)",
+          "Arbetsmiljö och säkerhet på byggarbetsplatser",
+          "Hantering av byggavfall enligt gällande bestämmelser"
+        ]
       },
       "faq": {
         "title": "Vanliga frågor",
@@ -506,7 +585,13 @@
         ]
       },
       "certifications": {
-        "title": "Systemutbildning"
+        "title": "Systemutbildning och standarder",
+        "items": [
+          "Bramac / Tondach — auktoriserad takläggare",
+          "Sarnafil / Sika — applikator för tätskiktsmembran",
+          "Lindab — certifierad partner för plåttaksystem",
+          "Arbetsmiljö — arbete på höjd"
+        ]
       },
       "faq": {
         "title": "Vanliga frågor",
