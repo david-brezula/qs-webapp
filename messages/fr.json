@@ -200,10 +200,22 @@
     },
     "stats": {
       "items": [
-        { "value": "5", "label": "Corps de métier" },
-        { "value": "5", "label": "Langues" },
-        { "value": "1", "label": "Partenaire responsable" },
-        { "value": "UE", "label": "Zone d'intervention" }
+        {
+          "value": "5",
+          "label": "Corps de métier"
+        },
+        {
+          "value": "5",
+          "label": "Langues"
+        },
+        {
+          "value": "1",
+          "label": "Partenaire responsable"
+        },
+        {
+          "value": "UE",
+          "label": "Zone d'intervention"
+        }
       ]
     },
     "values": {
@@ -255,7 +267,23 @@
           "title": "Installation électrique pour locaux commerciaux",
           "location": "Slovaquie",
           "body": "Câblage courant fort et courant faible, incluant éclairage LED, tableaux de distribution et système d'alarme pour des locaux commerciaux."
+        },
+        "brickFacade": {
+          "title": "Façade en brique et maçonnerie",
+          "location": "Slovaquie",
+          "body": "Maçonnerie porteuse et façade en briques pour un immeuble résidentiel, y compris linteaux et ouvertures."
+        },
+        "solarCarport": {
+          "title": "Abri solaire avec recharge",
+          "location": "Slovaquie",
+          "body": "Structure d’abri photovoltaïque planifiée avec bornes de recharge pour véhicules électriques sur un parking d’entreprise."
         }
+      },
+      "allLabel": "Tout",
+      "status": {
+        "completed": "Terminé",
+        "inProgress": "En cours",
+        "planned": "Planifié"
       }
     }
   },

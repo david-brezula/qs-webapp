@@ -200,10 +200,22 @@
     },
     "stats": {
       "items": [
-        { "value": "5", "label": "Yrkesområden" },
-        { "value": "5", "label": "Språk" },
-        { "value": "1", "label": "Ansvarstagande partner" },
-        { "value": "EU", "label": "Verksamhetsområde" }
+        {
+          "value": "5",
+          "label": "Yrkesområden"
+        },
+        {
+          "value": "5",
+          "label": "Språk"
+        },
+        {
+          "value": "1",
+          "label": "Ansvarstagande partner"
+        },
+        {
+          "value": "EU",
+          "label": "Verksamhetsområde"
+        }
       ]
     },
     "values": {
@@ -255,7 +267,23 @@
           "title": "Elanpassning för handelslokaler",
           "location": "Slovakien",
           "body": "Stark- och svagströmsinstallationer inklusive LED-belysning, eldningscentraler och inbrottslarm för kommersiella lokaler."
+        },
+        "brickFacade": {
+          "title": "Tegelfasad och murningsarbete",
+          "location": "Slovakien",
+          "body": "Bärande murverk och en tegelfasad för ett flerbostadshus, inklusive överliggare och öppningar."
+        },
+        "solarCarport": {
+          "title": "Solcarport med laddning",
+          "location": "Slovakien",
+          "body": "Planerad solcellscarport med integrerade laddpunkter för elbilar på en företagsparkering."
         }
+      },
+      "allLabel": "Alla",
+      "status": {
+        "completed": "Slutfört",
+        "inProgress": "Pågående",
+        "planned": "Planerat"
       }
     }
   },

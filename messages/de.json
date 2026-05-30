@@ -200,10 +200,22 @@
     },
     "stats": {
       "items": [
-        { "value": "5", "label": "Gewerke" },
-        { "value": "5", "label": "Sprachen" },
-        { "value": "1", "label": "Verantwortlicher Partner" },
-        { "value": "EU", "label": "Einsatzgebiet" }
+        {
+          "value": "5",
+          "label": "Gewerke"
+        },
+        {
+          "value": "5",
+          "label": "Sprachen"
+        },
+        {
+          "value": "1",
+          "label": "Verantwortlicher Partner"
+        },
+        {
+          "value": "EU",
+          "label": "Einsatzgebiet"
+        }
       ]
     },
     "values": {
@@ -255,7 +267,23 @@
           "title": "Elektroausbau für Gewerbeflächen",
           "location": "Slowakei",
           "body": "Stark- und Schwachstrominstallation einschließlich LED-Beleuchtung, Verteilerschränken und Einbruchmeldeanlage für gewerbliche Räumlichkeiten."
+        },
+        "brickFacade": {
+          "title": "Ziegelfassade und Maurerarbeiten",
+          "location": "Slowakei",
+          "body": "Tragendes Mauerwerk und eine Ziegelfassade für ein Mehrfamilienhaus, einschließlich Stürzen und Maueröffnungen."
+        },
+        "solarCarport": {
+          "title": "Solar-Carport mit Ladestation",
+          "location": "Slowakei",
+          "body": "Geplante Photovoltaik-Carport-Konstruktion mit integrierten Ladepunkten für Elektrofahrzeuge auf einem Firmenparkplatz."
         }
+      },
+      "allLabel": "Alle",
+      "status": {
+        "completed": "Abgeschlossen",
+        "inProgress": "In Arbeit",
+        "planned": "Geplant"
       }
     }
   },

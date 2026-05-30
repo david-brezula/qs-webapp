@@ -199,10 +199,22 @@
     },
     "stats": {
       "items": [
-        { "value": "5", "label": "Trades" },
-        { "value": "5", "label": "Languages" },
-        { "value": "1", "label": "Accountable partner" },
-        { "value": "EU", "label": "Service area" }
+        {
+          "value": "5",
+          "label": "Trades"
+        },
+        {
+          "value": "5",
+          "label": "Languages"
+        },
+        {
+          "value": "1",
+          "label": "Accountable partner"
+        },
+        {
+          "value": "EU",
+          "label": "Service area"
+        }
       ]
     },
     "values": {
@@ -254,7 +266,23 @@
           "title": "Electrical fit-out for retail premises",
           "location": "Slovakia",
           "body": "High- and low-voltage wiring including LED lighting, distribution boards and intruder alarm for commercial premises."
+        },
+        "brickFacade": {
+          "title": "Brick facade and masonry work",
+          "location": "Slovakia",
+          "body": "Load-bearing masonry and a clay-brick facade for a multi-unit residential building, including lintels and openings."
+        },
+        "solarCarport": {
+          "title": "Solar carport with EV charging",
+          "location": "Slovakia",
+          "body": "Planned photovoltaic carport structure with integrated electric-vehicle charging points for a corporate car park."
         }
+      },
+      "allLabel": "All",
+      "status": {
+        "completed": "Completed",
+        "inProgress": "In progress",
+        "planned": "Planned"
       }
     }
   },

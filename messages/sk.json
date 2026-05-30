@@ -199,10 +199,22 @@
     },
     "stats": {
       "items": [
-        { "value": "5", "label": "Remeselných odborov" },
-        { "value": "5", "label": "Jazykov" },
-        { "value": "1", "label": "Zodpovedný partner" },
-        { "value": "EÚ", "label": "Pôsobiská" }
+        {
+          "value": "5",
+          "label": "Remeselných odborov"
+        },
+        {
+          "value": "5",
+          "label": "Jazykov"
+        },
+        {
+          "value": "1",
+          "label": "Zodpovedný partner"
+        },
+        {
+          "value": "EÚ",
+          "label": "Pôsobiská"
+        }
       ]
     },
     "values": {
@@ -254,7 +266,23 @@
           "title": "Elektroinštalácie v obchodnom centre",
           "location": "Slovensko",
           "body": "Silnoprúdové a slaboprúdové rozvody vrátane LED osvetlenia, rozvádzačov a EZS pre komerčné priestory."
+        },
+        "brickFacade": {
+          "title": "Tehlová fasáda a murárske práce",
+          "location": "Slovensko",
+          "body": "Nosné murivo a tehlová fasáda pre bytový dom vrátane prekladov a stavebných otvorov."
+        },
+        "solarCarport": {
+          "title": "Solárny prístrešok s nabíjaním",
+          "location": "Slovensko",
+          "body": "Plánovaná fotovoltická konštrukcia prístrešku s integrovanými nabíjacími bodmi pre elektromobily na firemnom parkovisku."
         }
+      },
+      "allLabel": "Všetko",
+      "status": {
+        "completed": "Dokončené",
+        "inProgress": "Prebieha",
+        "planned": "Plánované"
       }
     }
   },
