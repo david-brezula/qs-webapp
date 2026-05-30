@@ -55,6 +55,11 @@ export function MarketingFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/careers" className={footerLinkCls}>
+                  {t("careers")}
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className={footerLinkCls}>
                   {t("contact")}
                 </Link>

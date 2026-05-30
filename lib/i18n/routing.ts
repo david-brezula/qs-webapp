@@ -53,6 +53,13 @@ export const routing = defineRouting({
       fr: "/a-propos",
       sv: "/om-oss",
     },
+    "/careers": {
+      sk: "/kariera",
+      en: "/careers",
+      de: "/karriere",
+      fr: "/carrieres",
+      sv: "/karriar",
+    },
     "/contact": {
       sk: "/kontakt",
       en: "/contact",
