@@ -34,6 +34,31 @@
 
   --radius-card: 8px;
   --radius-pill: 999px;
+
+  /* Per-trade accent system. Each trade owns an accent (icons/text ~600),
+     a tint (light fills ~100) and a soft (gradient base ~50). Consumed via a
+     wrapper inline style (see lib/trades.ts) so descendants can use static
+     Tailwind classes like text-[var(--accent)] / bg-[var(--accent-tint)]. */
+  --trade-solar: #D97706;
+  --trade-solar-tint: #FEF3C7;
+  --trade-solar-soft: #FFFBEB;
+  --trade-electrical: #2563EB;
+  --trade-electrical-tint: #DBEAFE;
+  --trade-electrical-soft: #EFF6FF;
+  --trade-drywall: #6366F1;
+  --trade-drywall-tint: #E0E7FF;
+  --trade-drywall-soft: #EEF2FF;
+  --trade-masonry: #C2410C;
+  --trade-masonry-tint: #FFEDD5;
+  --trade-masonry-soft: #FFF7ED;
+  --trade-roofing: #059669;
+  --trade-roofing-tint: #D1FAE5;
+  --trade-roofing-soft: #ECFDF5;
+
+  /* Project status accents */
+  --status-completed: #059669;
+  --status-progress: #D97706;
+  --status-planned: #64748B;
 }
 
 html, body {
@@ -83,3 +108,11 @@ html { scroll-behavior: smooth; }
               box-shadow 0.4s ease;
 }
 .lift:hover { transform: translateY(-2px); }
+
+/* Blueprint grid texture — used over trade gradients in image placeholders. */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
