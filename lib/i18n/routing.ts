@@ -103,6 +103,8 @@ export const routing = defineRouting({
     "/workers": "/workers",
     "/accommodations": "/accommodations",
     "/wages": "/wages",
+    "/applications": "/applications",
+    "/inquiries": "/inquiries",
     "/change-password": "/change-password",
   },
 });
