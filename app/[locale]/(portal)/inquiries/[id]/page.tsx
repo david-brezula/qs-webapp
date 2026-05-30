@@ -16,6 +16,7 @@ export default async function InquiryDetailPage({
   await requireAdmin();
   const { id } = await params;
   const t = await getTranslations("inquiries");
+  const tServices = await getTranslations("services");
   const row = await prisma.contactSubmission.findUnique({ where: { id } });
   if (!row) notFound();
 
@@ -33,7 +34,7 @@ export default async function InquiryDetailPage({
     ["Email", row.email],
     ["Phone", row.phone ?? "—"],
     ["Company", row.company ?? "—"],
-    ["Service", row.serviceType],
+    ["Service", row.serviceType === "other" ? "—" : tServices(`${row.serviceType}.name`)],
     ["Message", row.message || "—"],
   ];
 
