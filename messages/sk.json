@@ -52,6 +52,7 @@
     "home": "Domov",
     "services": "Služby",
     "about": "O nás",
+    "careers": "Kariéra",
     "contact": "Kontakt",
     "portal": "Prihlásiť sa"
   },
@@ -838,5 +839,30 @@
     "revoke": "Zrušiť súhlas",
     "regrant": "Povoliť analytiku"
   },
-  "_TODO": "Content drafted by AI — review with David before launch"
+  "_TODO": "Content drafted by AI — review with David before launch",
+  "careers": {
+    "title": "Pridajte sa k nášmu tímu",
+    "subtitle": "Pracujte s nami",
+    "form": {
+      "name": "Meno a priezvisko",
+      "email": "E-mail",
+      "phone": "Telefón",
+      "location": "Lokalita",
+      "trades": "Ktoré remeslá ovládate?",
+      "tradeOther": "Iné",
+      "experienceYears": "Roky praxe",
+      "availableFrom": "Dostupný od",
+      "languages": "Jazyky",
+      "cvUrl": "Odkaz na životopis alebo portfólio (nepovinné)",
+      "willingToTravel": "Som ochotný cestovať za prácou",
+      "drivingLicence": "Mám vodičský preukaz",
+      "message": "Čokoľvek ďalšie, čo by sme mali vedieť",
+      "submit": "Odoslať žiadosť",
+      "success": "Ďakujeme — vašu žiadosť sme prijali a ozveme sa vám.",
+      "error": "Niečo sa pokazilo. Skúste to znova.",
+      "gdprLabel": "Súhlasím so spracovaním osobných údajov podľa zásad ochrany súkromia.",
+      "gdprLinkText": "zásad ochrany súkromia",
+      "gdprRequired": "Súhlas je povinný."
+    }
+  }
 }

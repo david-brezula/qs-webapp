@@ -53,6 +53,7 @@
     "home": "Hem",
     "services": "Tjänster",
     "about": "Om oss",
+    "careers": "Karriär",
     "contact": "Kontakt",
     "portal": "Logga in"
   },
@@ -841,5 +842,30 @@
     "companyIdLabel": "Org.nr",
     "vatLabel": "Momsreg.nr",
     "registrationLabel": "Registrerad"
+  },
+  "careers": {
+    "title": "Gå med i vårt team",
+    "subtitle": "Arbeta med oss",
+    "form": {
+      "name": "Fullständigt namn",
+      "email": "E-post",
+      "phone": "Telefon",
+      "location": "Ort",
+      "trades": "Vilka hantverksyrken behärskar du?",
+      "tradeOther": "Övrigt",
+      "experienceYears": "Års erfarenhet",
+      "availableFrom": "Tillgänglig från",
+      "languages": "Språk",
+      "cvUrl": "Länk till CV eller portfolio (valfritt)",
+      "willingToTravel": "Jag är villig att resa för projekt",
+      "drivingLicence": "Jag har körkort",
+      "message": "Något annat du vill att vi ska veta",
+      "submit": "Skicka ansökan",
+      "success": "Tack — vi har tagit emot din ansökan och hör av oss.",
+      "error": "Något gick fel. Försök igen.",
+      "gdprLabel": "Jag godkänner behandlingen av mina personuppgifter enligt integritetspolicyn.",
+      "gdprLinkText": "integritetspolicyn",
+      "gdprRequired": "Samtycke krävs."
+    }
   }
 }

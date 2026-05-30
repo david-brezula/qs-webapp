@@ -52,6 +52,7 @@
     "home": "Home",
     "services": "Services",
     "about": "About",
+    "careers": "Careers",
     "contact": "Contact",
     "portal": "Sign in"
   },
@@ -841,5 +842,30 @@
     "revoke": "Revoke consent",
     "regrant": "Enable analytics"
   },
-  "_TODO": "AI-generated — review with a native speaker before launch"
+  "_TODO": "AI-generated — review with a native speaker before launch",
+  "careers": {
+    "title": "Join our team",
+    "subtitle": "Work with us",
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "trades": "Which trades can you do?",
+      "tradeOther": "Other",
+      "experienceYears": "Years of experience",
+      "availableFrom": "Available from",
+      "languages": "Languages",
+      "cvUrl": "Link to CV or portfolio (optional)",
+      "willingToTravel": "I'm willing to travel for projects",
+      "drivingLicence": "I hold a driving licence",
+      "message": "Anything else you'd like us to know",
+      "submit": "Send application",
+      "success": "Thank you — we've received your application and will be in touch.",
+      "error": "Something went wrong. Please try again.",
+      "gdprLabel": "I agree to the processing of my personal data per the privacy policy.",
+      "gdprLinkText": "privacy policy",
+      "gdprRequired": "Consent is required."
+    }
+  }
 }

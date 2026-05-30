@@ -53,6 +53,7 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
+    "careers": "Carrières",
     "contact": "Contact",
     "portal": "Se connecter"
   },
@@ -841,5 +842,30 @@
     "companyIdLabel": "N° d'enregistrement",
     "vatLabel": "N° TVA",
     "registrationLabel": "Immatriculée"
+  },
+  "careers": {
+    "title": "Rejoignez notre équipe",
+    "subtitle": "Travaillez avec nous",
+    "form": {
+      "name": "Nom complet",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "location": "Localisation",
+      "trades": "Quels métiers maîtrisez-vous ?",
+      "tradeOther": "Autre",
+      "experienceYears": "Années d'expérience",
+      "availableFrom": "Disponible à partir de",
+      "languages": "Langues",
+      "cvUrl": "Lien vers CV ou portfolio (optionnel)",
+      "willingToTravel": "Je suis prêt(e) à me déplacer pour des projets",
+      "drivingLicence": "Je possède un permis de conduire",
+      "message": "Tout ce que vous souhaitez nous faire savoir",
+      "submit": "Envoyer la candidature",
+      "success": "Merci — nous avons bien reçu votre candidature et prendrons contact avec vous.",
+      "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "gdprLabel": "J'accepte le traitement de mes données personnelles conformément à la politique de confidentialité.",
+      "gdprLinkText": "politique de confidentialité",
+      "gdprRequired": "Le consentement est requis."
+    }
   }
 }
