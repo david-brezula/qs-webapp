@@ -630,6 +630,43 @@
         "body": "Obsah tejto webovej stránky bol vytvorený s maximálnou starostlivosťou. Napriek tomu nemôžeme prevziať záruku za správnosť, úplnosť a aktuálnosť obsahu. Ako poskytovateľ služieb zodpovedáme v súlade s platnými právnymi predpismi za vlastný obsah na týchto stránkach.\n\nZodpovednosť za obsah externých odkazov: Naša ponuka obsahuje odkazy na externé webové stránky tretích strán, na ktorých obsah nemáme žiaden vplyv. Preto nemôžeme za tento cudzí obsah prevziať žiadnu zodpovednosť. Za obsah odkazovaných stránok je vždy zodpovedný ich príslušný poskytovateľ alebo prevádzkovateľ."
       }
     },
+    "terms": {
+      "meta": {
+        "title": "Obchodné podmienky · Quantum Sphere",
+        "description": "Všeobecné obchodné podmienky spoločnosti Quantum Sphere s.r.o. pre poskytovanie stavebných a inštalačných služieb."
+      },
+      "eyebrow": "Právne informácie",
+      "title": "Obchodné podmienky",
+      "updated": "Aktualizované 30. mája 2026",
+      "scope": {
+        "heading": "1. Rozsah pôsobnosti",
+        "body": "Tieto všeobecné obchodné podmienky (ďalej „VOP“) upravujú zmluvný vzťah medzi spoločnosťou Quantum Sphere s.r.o., so sídlom Mlynské Nivy 5, 821 09 Bratislava, Slovenská republika (ďalej „Zhotoviteľ“), a objednávateľom (fyzickou alebo právnickou osobou; ďalej „Objednávateľ“). VOP sa vzťahujú na všetky stavebné a inštalačné práce vykonávané Zhotoviteľom, pokiaľ sa zmluvné strany písomne nedohodli inak."
+      },
+      "services": {
+        "heading": "2. Predmet plnenia",
+        "body": "Zhotoviteľ poskytuje stavebné a inštalačné práce v rozsahu piatich remeselných odborov: montáž solárnych elektrární, elektroinstalačné práce, sadrokartónové práce, murárske práce a montáž striech. Cenové ponuky sú nezáväzné a platné 30 dní odo dňa ich vystavenia, pokiaľ nie je uvedené inak. Záväznou sa ponuka stáva až písomným potvrdením objednávky oboma stranami."
+      },
+      "contract": {
+        "heading": "3. Uzavretie zmluvy",
+        "body": "Zmluva je uzavretá okamihom písomného potvrdenia objednávky Zhotoviteľom alebo podpisom samostatnej zmluvy o dielo. Za písomné sa považuje aj potvrdenie e-mailom. Akékoľvek zmeny rozsahu prác musia byť dohodnuté písomne a môžu ovplyvniť cenu aj termín plnenia."
+      },
+      "pricing": {
+        "heading": "4. Ceny a platobné podmienky",
+        "body": "Ceny sú uvedené bez DPH, ak nie je výslovne stanovené inak. K cene bude pripočítaná DPH v zákonnej sadzbe platnej v deň uskutočnenia zdaniteľného plnenia.\n\n[TODO: platobné podmienky — splatnosť, záloha, spôsob úhrady]\n\nV prípade omeškania s platbou je Zhotoviteľ oprávnený účtovať zákonný úrok z omeškania."
+      },
+      "warranty": {
+        "heading": "5. Záruka a zodpovednosť",
+        "body": "Na vykonané práce poskytuje Zhotoviteľ záruku v rozsahu stanovenom všeobecne záväznými právnymi predpismi Slovenskej republiky. Záručná doba na stavebné práce je 24 mesiacov odo dňa odovzdania a prevzatia diela, ak nie je v zmluve dohodnutá dlhšia doba.\n\nZodpovednosť Zhotoviteľa za škodu je obmedzená na výšku zmluvnej ceny diela, s výnimkou prípadov úmyselného zavinenia alebo hrubej nedbanlivosti. Zhotoviteľ nezodpovedá za škody spôsobené okolnosťami vylučujúcimi zodpovednosť (vyššia moc)."
+      },
+      "withdrawal": {
+        "heading": "6. Odstúpenie od zmluvy",
+        "body": "Spotrebiteľ má právo odstúpiť od zmluvy uzavretej na diaľku alebo mimo prevádzkových priestorov Zhotoviteľa do 14 dní bez uvedenia dôvodu v súlade so zákonom č. 102/2014 Z. z. Právo na odstúpenie sa neuplatňuje, ak boli práce na výslovnú žiadosť spotrebiteľa začaté pred uplynutím lehoty na odstúpenie a spotrebiteľ bol o tom riadne poučený.\n\nNa zmluvy uzavreté medzi podnikateľmi sa spotrebiteľské právo na odstúpenie nevzťahuje. Zmluvné strany môžu od zmluvy odstúpiť z dôvodov stanovených príslušnými ustanoveniami Obchodného zákonníka alebo dohodnutých v zmluve."
+      },
+      "governing": {
+        "heading": "7. Rozhodné právo a riešenie sporov",
+        "body": "Zmluvný vzťah sa riadi právnym poriadkom Slovenskej republiky. Akékoľvek spory vyplývajúce z tejto zmluvy alebo v súvislosti s ňou budú riešené príslušnými súdmi Slovenskej republiky.\n\nSpotrebitelia môžu alternatívne využiť platformu riešenia sporov online dostupnú na https://ec.europa.eu/consumers/odr alebo sa obrátiť na príslušný orgán alternatívneho riešenia sporov."
+      }
+    },
     "cookies": {
       "meta": {
         "title": "Cookies · Quantum Sphere",
@@ -669,6 +706,7 @@
     "privacy": "Ochrana osobných údajov",
     "cookies": "Cookies",
     "impressum": "Impressum",
+    "terms": "Obchodné podmienky",
     "companyIdLabel": "IČO",
     "vatLabel": "DIČ",
     "registrationLabel": "Zápis"

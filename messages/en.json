@@ -631,6 +631,43 @@
         "body": "The contents of this website have been created with the greatest possible care. However, we cannot guarantee the accuracy, completeness or topicality of the content. As a service provider we are responsible for our own content on these pages in accordance with applicable law.\n\nLiability for links: Our website contains links to external third-party websites over whose content we have no control. We therefore accept no liability for this third-party content. The respective provider or operator of the linked pages is always responsible for their content."
       }
     },
+    "terms": {
+      "meta": {
+        "title": "Terms & Conditions · Quantum Sphere",
+        "description": "General terms and conditions of Quantum Sphere s.r.o. for the provision of construction and installation services."
+      },
+      "eyebrow": "Legal",
+      "title": "Terms & Conditions",
+      "updated": "Updated 30 May 2026",
+      "scope": {
+        "heading": "1. Scope",
+        "body": "These General Terms and Conditions (\"GTC\") govern the contractual relationship between Quantum Sphere s.r.o., registered at Mlynské Nivy 5, 821 09 Bratislava, Slovak Republic (\"Contractor\"), and the client (a natural or legal person; \"Client\"). The GTC apply to all construction and installation work carried out by the Contractor, unless the parties have agreed otherwise in writing."
+      },
+      "services": {
+        "heading": "2. Scope of Services",
+        "body": "The Contractor provides construction and installation services across five trades: solar power plant installation, electrical installations, drywall work, masonry, and roof installation. Quotations are non-binding and valid for 30 days from the date of issue unless otherwise stated. A quotation becomes binding only upon written confirmation of the order by both parties."
+      },
+      "contract": {
+        "heading": "3. Formation of Contract",
+        "body": "A contract is formed upon the Contractor's written confirmation of the order or upon signature of a separate works contract. Confirmation by e-mail is considered written. Any changes to the scope of work must be agreed in writing and may affect the price and completion date."
+      },
+      "pricing": {
+        "heading": "4. Prices and Payment Terms",
+        "body": "Prices are quoted exclusive of VAT unless expressly stated otherwise. VAT will be added at the statutory rate applicable on the date of the taxable supply.\n\n[TODO: payment terms — due date, deposit, payment method]\n\nIn the event of late payment, the Contractor is entitled to charge statutory interest on arrears."
+      },
+      "warranty": {
+        "heading": "5. Warranty and Liability",
+        "body": "The Contractor warrants the completed work in accordance with the mandatory provisions of Slovak law. The warranty period for construction work is 24 months from the date of handover and acceptance, unless a longer period is agreed in the contract.\n\nThe Contractor's liability for damages is limited to the contract price of the work, except in cases of intentional misconduct or gross negligence. The Contractor is not liable for damage caused by force majeure."
+      },
+      "withdrawal": {
+        "heading": "6. Right of Withdrawal",
+        "body": "A consumer has the right to withdraw from a contract concluded at a distance or off-premises within 14 days without giving reasons, in accordance with Act No. 102/2014 Coll. The right of withdrawal does not apply where work has commenced at the consumer's express request before the withdrawal period has expired and the consumer has been duly informed of this.\n\nThe consumer right of withdrawal does not apply to contracts concluded between businesses. The parties may withdraw from the contract on grounds established by the applicable provisions of the Commercial Code or agreed in the contract."
+      },
+      "governing": {
+        "heading": "7. Governing Law and Disputes",
+        "body": "The contractual relationship is governed by the laws of the Slovak Republic. Any disputes arising from or in connection with this contract shall be resolved by the competent courts of the Slovak Republic.\n\nConsumers may alternatively use the online dispute resolution platform available at https://ec.europa.eu/consumers/odr or contact the relevant alternative dispute resolution body."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "AI-generated EN translation — native review required before launch (Task 9)",
       "meta": {
@@ -671,6 +708,7 @@
     "privacy": "Privacy Policy",
     "cookies": "Cookies",
     "impressum": "Legal Notice",
+    "terms": "Terms & Conditions",
     "companyIdLabel": "Co. Reg. No.",
     "vatLabel": "VAT",
     "registrationLabel": "Registered"

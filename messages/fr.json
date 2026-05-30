@@ -632,6 +632,43 @@
         "body": "Les contenus de ce site ont été créés avec le plus grand soin. Nous ne pouvons cependant garantir l'exactitude, l'exhaustivité et l'actualité des contenus. En tant que prestataire de services, nous sommes responsables de nos propres contenus conformément à la législation applicable.\n\nResponsabilité pour les liens : Notre site contient des liens vers des sites tiers sur lesquels nous n'avons aucune influence. Nous déclinons donc toute responsabilité quant à ces contenus externes. L'exploitant des pages liées est toujours responsable de leur contenu."
       }
     },
+    "terms": {
+      "meta": {
+        "title": "Conditions générales · Quantum Sphere",
+        "description": "Conditions générales de vente et de service de Quantum Sphere s.r.o. pour la prestation de services de construction et d'installation."
+      },
+      "eyebrow": "Informations légales",
+      "title": "Conditions générales",
+      "updated": "Mis à jour le 30 mai 2026",
+      "scope": {
+        "heading": "1. Champ d'application",
+        "body": "Les présentes conditions générales (« CG ») régissent la relation contractuelle entre la société Quantum Sphere s.r.o., dont le siège social est situé Mlynské Nivy 5, 821 09 Bratislava, République slovaque (« Prestataire »), et le client (personne physique ou morale ; « Client »). Les CG s'appliquent à tous les travaux de construction et d'installation réalisés par le Prestataire, sauf accord écrit contraire entre les parties."
+      },
+      "services": {
+        "heading": "2. Objet des prestations",
+        "body": "Le Prestataire fournit des services de construction et d'installation dans cinq corps de métier : installation de centrales solaires, installations électriques, travaux en plaques de plâtre, maçonnerie et installation de toitures. Les devis sont non contraignants et valables 30 jours à compter de leur date d'émission, sauf indication contraire. Un devis n'est contraignant qu'après confirmation écrite de la commande par les deux parties."
+      },
+      "contract": {
+        "heading": "3. Formation du contrat",
+        "body": "Le contrat est formé à la réception de la confirmation écrite de la commande par le Prestataire ou à la signature d'un contrat de travaux distinct. La confirmation par courriel est considérée comme une confirmation écrite. Toute modification du périmètre des travaux doit être convenue par écrit et peut avoir une incidence sur le prix et le délai d'exécution."
+      },
+      "pricing": {
+        "heading": "4. Prix et conditions de paiement",
+        "body": "Les prix sont indiqués hors TVA, sauf mention contraire. La TVA sera ajoutée au taux légal en vigueur à la date de la réalisation de la prestation.\n\n[TODO: conditions de paiement — délai, acompte, mode de règlement]\n\nEn cas de retard de paiement, le Prestataire est en droit de facturer des intérêts de retard au taux légal."
+      },
+      "warranty": {
+        "heading": "5. Garantie et responsabilité",
+        "body": "Le Prestataire garantit les travaux réalisés conformément aux dispositions impératives du droit slovaque. Le délai de garantie pour les travaux de construction est de 24 mois à compter de la date de réception des travaux, sauf délai plus long convenu au contrat.\n\nLa responsabilité du Prestataire pour les dommages est limitée au montant du prix contractuel, sauf en cas de faute intentionnelle ou de négligence grave. Le Prestataire n'est pas responsable des dommages causés par un cas de force majeure."
+      },
+      "withdrawal": {
+        "heading": "6. Droit de rétractation",
+        "body": "Le consommateur dispose d'un droit de rétractation de 14 jours sans motif pour tout contrat conclu à distance ou hors établissement, conformément à la loi n° 102/2014 Rec. Le droit de rétractation ne s'applique pas si les travaux ont commencé à la demande expresse du consommateur avant l'expiration du délai de rétractation et que celui-ci en a été dûment informé.\n\nLe droit de rétractation du consommateur ne s'applique pas aux contrats conclus entre professionnels. Les parties peuvent se rétracter du contrat pour les motifs prévus par le Code de commerce applicable ou convenus dans le contrat."
+      },
+      "governing": {
+        "heading": "7. Droit applicable et règlement des litiges",
+        "body": "La relation contractuelle est régie par le droit de la République slovaque. Tout litige découlant du présent contrat ou en lien avec celui-ci sera soumis aux tribunaux compétents de la République slovaque.\n\nLes consommateurs peuvent également utiliser la plateforme de règlement des litiges en ligne disponible à l'adresse https://ec.europa.eu/consumers/odr ou s'adresser à l'organisme compétent de règlement alternatif des litiges."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "Traduction FR générée par IA — révision par un locuteur natif requise (tâche 9)",
       "meta": {
@@ -686,6 +723,7 @@
     "privacy": "Politique de confidentialité",
     "cookies": "Cookies",
     "impressum": "Mentions légales",
+    "terms": "Conditions générales",
     "companyIdLabel": "N° d'enregistrement",
     "vatLabel": "N° TVA",
     "registrationLabel": "Immatriculée"

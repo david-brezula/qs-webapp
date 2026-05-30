@@ -632,6 +632,43 @@
         "body": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß geltendem Recht für eigene Inhalte auf diesen Seiten verantwortlich.\n\nHaftung für Links: Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
       }
     },
+    "terms": {
+      "meta": {
+        "title": "AGB · Quantum Sphere",
+        "description": "Allgemeine Geschäftsbedingungen der Quantum Sphere s.r.o. für die Erbringung von Bau- und Installationsleistungen."
+      },
+      "eyebrow": "Rechtliche Informationen",
+      "title": "Allgemeine Geschäftsbedingungen",
+      "updated": "Aktualisiert am 30. Mai 2026",
+      "scope": {
+        "heading": "1. Geltungsbereich",
+        "body": "Diese Allgemeinen Geschäftsbedingungen (\"AGB\") regeln das Vertragsverhältnis zwischen der Quantum Sphere s.r.o., eingetragen unter Mlynské Nivy 5, 821 09 Bratislava, Slowakische Republik (\"Auftragnehmer\"), und dem Auftraggeber (natürliche oder juristische Person; \"Auftraggeber\"). Die AGB gelten für alle vom Auftragnehmer ausgeführten Bau- und Installationsarbeiten, sofern die Vertragsparteien nicht schriftlich etwas anderes vereinbart haben."
+      },
+      "services": {
+        "heading": "2. Leistungsgegenstand",
+        "body": "Der Auftragnehmer erbringt Bau- und Installationsleistungen in fünf Gewerken: Montage von Solaranlagen, Elektroinstallationen, Trockenbauarbeiten, Maurerarbeiten und Dachmontage. Angebote sind unverbindlich und gelten 30 Tage ab Ausstellungsdatum, sofern nichts anderes angegeben ist. Verbindlich wird ein Angebot erst durch die schriftliche Auftragsbestätigung beider Parteien."
+      },
+      "contract": {
+        "heading": "3. Vertragsschluss",
+        "body": "Ein Vertrag kommt durch die schriftliche Auftragsbestätigung des Auftragnehmers oder durch Unterzeichnung eines gesonderten Werkvertrags zustande. Eine Bestätigung per E-Mail gilt als schriftlich. Änderungen des Leistungsumfangs bedürfen der Schriftform und können Preis und Fertigstellungstermin beeinflussen."
+      },
+      "pricing": {
+        "heading": "4. Preise und Zahlungsbedingungen",
+        "body": "Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern nicht ausdrücklich anders angegeben. Die Mehrwertsteuer wird zum gesetzlichen Satz zum Zeitpunkt der Leistungserbringung hinzugerechnet.\n\n[TODO: Zahlungsbedingungen — Fälligkeit, Anzahlung, Zahlungsart]\n\nBei Zahlungsverzug ist der Auftragnehmer berechtigt, gesetzliche Verzugszinsen zu berechnen."
+      },
+      "warranty": {
+        "heading": "5. Gewährleistung und Haftung",
+        "body": "Der Auftragnehmer gewährleistet die ausgeführten Arbeiten gemäß den zwingenden Bestimmungen des slowakischen Rechts. Die Gewährleistungsfrist für Bauarbeiten beträgt 24 Monate ab dem Datum der Übergabe und Abnahme, sofern im Vertrag keine längere Frist vereinbart ist.\n\nDie Haftung des Auftragnehmers für Schäden ist auf die Auftragssumme begrenzt, ausgenommen bei Vorsatz oder grober Fahrlässigkeit. Der Auftragnehmer haftet nicht für Schäden, die durch höhere Gewalt verursacht werden."
+      },
+      "withdrawal": {
+        "heading": "6. Widerrufsrecht",
+        "body": "Ein Verbraucher hat das Recht, einen Fernabsatz- oder außerhalb von Geschäftsräumen geschlossenen Vertrag innerhalb von 14 Tagen ohne Angabe von Gründen zu widerrufen, gemäß Gesetz Nr. 102/2014 Slg. Das Widerrufsrecht erlischt, wenn die Arbeiten auf ausdrücklichen Wunsch des Verbrauchers vor Ablauf der Widerrufsfrist begonnen wurden und der Verbraucher darüber ordnungsgemäß belehrt wurde.\n\nDas Verbraucherwiderrufsrecht gilt nicht für Verträge zwischen Unternehmern. Die Parteien können aus den im Handelsgesetzbuch oder im Vertrag vereinbarten Gründen vom Vertrag zurücktreten."
+      },
+      "governing": {
+        "heading": "7. Anwendbares Recht und Streitigkeiten",
+        "body": "Das Vertragsverhältnis unterliegt dem Recht der Slowakischen Republik. Alle aus diesem Vertrag entstehenden oder damit zusammenhängenden Streitigkeiten werden von den zuständigen Gerichten der Slowakischen Republik entschieden.\n\nVerbraucher können alternativ die Online-Streitbeilegungsplattform unter https://ec.europa.eu/consumers/odr nutzen oder die zuständige alternative Streitbeilegungsstelle kontaktieren."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "KI-generierte DE-Übersetzung — Überprüfung durch Muttersprachler erforderlich (Aufgabe 9)",
       "meta": {
@@ -686,6 +723,7 @@
     "privacy": "Datenschutz",
     "cookies": "Cookies",
     "impressum": "Impressum",
+    "terms": "AGB",
     "companyIdLabel": "Reg.-Nr.",
     "vatLabel": "USt-IdNr.",
     "registrationLabel": "Eingetragen"

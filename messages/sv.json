@@ -632,6 +632,43 @@
         "body": "Innehållet på denna webbplats har skapats med största möjliga omsorg. Vi kan dock inte garantera innehållets riktighet, fullständighet eller aktualitet. Som tjänsteleverantör ansvarar vi för eget innehåll på dessa sidor i enlighet med gällande lagstiftning.\n\nAnsvar för länkar: Vår webbplats innehåller länkar till externa tredjepartswebbplatser vars innehåll vi inte har något inflytande över. Vi kan därför inte ta något ansvar för detta externa innehåll. Den respektive leverantören eller operatören av de länkade sidorna ansvarar alltid för deras innehåll."
       }
     },
+    "terms": {
+      "meta": {
+        "title": "Allmänna villkor · Quantum Sphere",
+        "description": "Allmänna affärsvillkor för Quantum Sphere s.r.o. avseende tillhandahållande av bygg- och installationstjänster."
+      },
+      "eyebrow": "Juridisk information",
+      "title": "Allmänna villkor",
+      "updated": "Uppdaterad 30 maj 2026",
+      "scope": {
+        "heading": "1. Tillämpningsområde",
+        "body": "Dessa allmänna villkor (\"AV\") reglerar avtalsförhållandet mellan Quantum Sphere s.r.o., med registrerad adress Mlynské Nivy 5, 821 09 Bratislava, Slovakiska republiken (\"Entreprenören\"), och beställaren (fysisk eller juridisk person; \"Beställaren\"). AV gäller för alla bygg- och installationsarbeten som utförs av Entreprenören, om inte parterna skriftligen avtalat annat."
+      },
+      "services": {
+        "heading": "2. Tjänsternas omfattning",
+        "body": "Entreprenören tillhandahåller bygg- och installationstjänster inom fem yrkesområden: installation av solcellsanläggningar, elinstallationer, gipsväggsarbeten, murning samt takmontering. Offerter är ej bindande och gäller 30 dagar från utfärdandedatum om inget annat anges. En offert blir bindande först efter skriftlig orderbekräftelse från båda parter."
+      },
+      "contract": {
+        "heading": "3. Avtalets ingående",
+        "body": "Avtal ingås när Entreprenören skriftligen bekräftar ordern eller när ett separat entreprenadavtal undertecknas. Bekräftelse via e-post anses som skriftlig. Ändringar av arbetets omfattning måste avtalas skriftligen och kan påverka pris och slutförandedatum."
+      },
+      "pricing": {
+        "heading": "4. Priser och betalningsvillkor",
+        "body": "Priser anges exklusive moms om inget annat uttryckligen anges. Moms läggs till med den lagstadgade skattesatsen som gäller på dagen för den skattepliktiga leveransen.\n\n[TODO: betalningsvillkor — förfallodag, förskott, betalningssätt]\n\nVid försenad betalning har Entreprenören rätt att debitera lagstadgad dröjsmålsränta."
+      },
+      "warranty": {
+        "heading": "5. Garanti och ansvar",
+        "body": "Entreprenören garanterar utfört arbete i enlighet med de tvingande bestämmelserna i slovakisk lag. Garantitiden för byggnadsarbeten är 24 månader från datum för överlämnande och godkännande, om inte en längre tid avtalats i kontraktet.\n\nEntreprenörens skadeståndsansvar begränsas till kontraktssumman, utom vid avsiktligt handlande eller grov oaktsamhet. Entreprenören ansvarar inte för skador orsakade av force majeure."
+      },
+      "withdrawal": {
+        "heading": "6. Ångerrätt",
+        "body": "En konsument har rätt att frånträda ett avtal som ingåtts på distans eller utanför affärslokaler inom 14 dagar utan att ange skäl, i enlighet med lag nr 102/2014. Ångerrätten gäller inte om arbetet påbörjats på konsumentens uttryckliga begäran innan ångerfristen löpt ut och konsumenten vederbörligen informerats om detta.\n\nKonsumentens ångerrätt gäller inte för avtal mellan näringsidkare. Parterna kan frånträda avtalet av skäl som fastställs i tillämpliga bestämmelser i handelslagen eller som avtalats i kontraktet."
+      },
+      "governing": {
+        "heading": "7. Tillämplig lag och tvistlösning",
+        "body": "Avtalsförhållandet regleras av Slovakiska republikens lag. Eventuella tvister som uppstår ur eller i samband med detta avtal ska lösas av behörig domstol i Slovakiska republiken.\n\nKonsumenter kan alternativt använda plattformen för onlinetvistlösning på https://ec.europa.eu/consumers/odr eller vända sig till relevant alternativt tvistlösningsorgan."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "AI-genererad SV-översättning — granskning av modersmålstalare krävs (uppgift 9)",
       "meta": {
@@ -686,6 +723,7 @@
     "privacy": "Integritetspolicy",
     "cookies": "Cookies",
     "impressum": "Impressum",
+    "terms": "Allmänna villkor",
     "companyIdLabel": "Org.nr",
     "vatLabel": "Momsreg.nr",
     "registrationLabel": "Registrerad"
