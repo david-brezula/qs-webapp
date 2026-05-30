@@ -873,5 +873,21 @@
       "gdprLinkText": "Datenschutzrichtlinie",
       "gdprRequired": "Die Einwilligung ist erforderlich."
     }
+  },
+  "applications": {
+    "list": "Bewerbungen von Arbeitern",
+    "trades": "Gewerke",
+    "experience": "Erfahrung",
+    "received": "Eingegangen",
+    "detail": "Bewerbungsdetail",
+    "updateStatus": "Status ändern",
+    "save": "Speichern",
+    "status": {
+      "NEW": "Neu",
+      "REVIEWING": "In Prüfung",
+      "CONTACTED": "Kontaktiert",
+      "REJECTED": "Abgelehnt",
+      "HIRED": "Eingestellt"
+    }
   }
 }

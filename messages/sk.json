@@ -870,5 +870,21 @@
       "gdprLinkText": "zásad ochrany súkromia",
       "gdprRequired": "Súhlas je povinný."
     }
+  },
+  "applications": {
+    "list": "Žiadosti pracovníkov",
+    "trades": "Remeslá",
+    "experience": "Prax",
+    "received": "Prijaté",
+    "detail": "Detail žiadosti",
+    "updateStatus": "Zmeniť stav",
+    "save": "Uložiť",
+    "status": {
+      "NEW": "Nová",
+      "REVIEWING": "V posudzovaní",
+      "CONTACTED": "Kontaktovaný",
+      "REJECTED": "Zamietnutá",
+      "HIRED": "Prijatý"
+    }
   }
 }

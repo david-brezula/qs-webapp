@@ -873,5 +873,21 @@
       "gdprLinkText": "politique de confidentialité",
       "gdprRequired": "Le consentement est requis."
     }
+  },
+  "applications": {
+    "list": "Candidatures des travailleurs",
+    "trades": "Métiers",
+    "experience": "Expérience",
+    "received": "Reçu le",
+    "detail": "Détail de la candidature",
+    "updateStatus": "Modifier le statut",
+    "save": "Enregistrer",
+    "status": {
+      "NEW": "Nouvelle",
+      "REVIEWING": "En cours d'examen",
+      "CONTACTED": "Contacté",
+      "REJECTED": "Rejetée",
+      "HIRED": "Recruté"
+    }
   }
 }

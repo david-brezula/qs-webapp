@@ -873,5 +873,21 @@
       "gdprLinkText": "privacy policy",
       "gdprRequired": "Consent is required."
     }
+  },
+  "applications": {
+    "list": "Worker applications",
+    "trades": "Trades",
+    "experience": "Experience",
+    "received": "Received",
+    "detail": "Application detail",
+    "updateStatus": "Update status",
+    "save": "Save",
+    "status": {
+      "NEW": "New",
+      "REVIEWING": "Reviewing",
+      "CONTACTED": "Contacted",
+      "REJECTED": "Rejected",
+      "HIRED": "Hired"
+    }
   }
 }

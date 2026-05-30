@@ -873,5 +873,21 @@
       "gdprLinkText": "integritetspolicyn",
       "gdprRequired": "Samtycke krävs."
     }
+  },
+  "applications": {
+    "list": "Arbetaransökningar",
+    "trades": "Yrkesområden",
+    "experience": "Erfarenhet",
+    "received": "Mottagen",
+    "detail": "Ansökningsdetaljer",
+    "updateStatus": "Uppdatera status",
+    "save": "Spara",
+    "status": {
+      "NEW": "Ny",
+      "REVIEWING": "Under granskning",
+      "CONTACTED": "Kontaktad",
+      "REJECTED": "Avvisad",
+      "HIRED": "Anställd"
+    }
   }
 }
