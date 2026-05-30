@@ -844,6 +844,10 @@
     "registrationLabel": "Eingetragen"
   },
   "careers": {
+    "meta": {
+      "title": "Karriere | Quantum Sphere",
+      "description": "Werden Sie Teil von Quantum Sphere — wir suchen qualifizierte Fachkräfte in den Bereichen Solaranlagen, Elektroinstallation, Trockenbau, Maurerarbeiten und Dachmontage. Bewerben Sie sich in wenigen Minuten."
+    },
     "title": "Werden Sie Teil unseres Teams",
     "subtitle": "Arbeiten Sie mit uns",
     "form": {

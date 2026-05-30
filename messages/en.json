@@ -844,6 +844,10 @@
   },
   "_TODO": "AI-generated — review with a native speaker before launch",
   "careers": {
+    "meta": {
+      "title": "Careers | Quantum Sphere",
+      "description": "Join Quantum Sphere — we're hiring skilled tradespeople across solar, electrical, drywall, masonry and roofing. Apply in minutes."
+    },
     "title": "Join our team",
     "subtitle": "Work with us",
     "form": {

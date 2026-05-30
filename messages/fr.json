@@ -844,6 +844,10 @@
     "registrationLabel": "Immatriculée"
   },
   "careers": {
+    "meta": {
+      "title": "Carrières | Quantum Sphere",
+      "description": "Rejoignez Quantum Sphere — nous recrutons des artisans qualifiés dans les domaines du solaire, de l'électricité, des cloisons sèches, de la maçonnerie et de la toiture. Postulez en quelques minutes."
+    },
     "title": "Rejoignez notre équipe",
     "subtitle": "Travaillez avec nous",
     "form": {

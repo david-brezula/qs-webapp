@@ -844,6 +844,10 @@
     "registrationLabel": "Registrerad"
   },
   "careers": {
+    "meta": {
+      "title": "Karriär | Quantum Sphere",
+      "description": "Gå med i Quantum Sphere — vi rekryterar skickliga hantverkare inom solceller, elinstallation, gipsväggar, murning och takmontering. Ansök på några minuter."
+    },
     "title": "Gå med i vårt team",
     "subtitle": "Arbeta med oss",
     "form": {

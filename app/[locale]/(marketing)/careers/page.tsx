@@ -4,10 +4,10 @@ import { CareersForm } from "./CareersForm";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "careers" });
+  const t = await getTranslations({ locale, namespace: "careers.meta" });
   return {
-    title: t("title"),
-    description: t("subtitle"),
+    title: { absolute: t("title") },
+    description: t("description"),
     alternates: alternatesForPathname("/careers", locale),
   };
 }

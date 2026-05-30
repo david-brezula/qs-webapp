@@ -122,7 +122,8 @@ export function CareersForm() {
           <Field label={tf("phone")} name="phone" type="tel" error={errors.phone} />
           <Field label={tf("location")} name="location" error={errors.location} />
 
-          <fieldset className="md:col-span-2">
+          <fieldset className="md:col-span-2"
+            aria-describedby={errors.trades ? "trades-error" : undefined}>
             <legend className="eyebrow text-[var(--color-ink)] mb-3">{tf("trades")}</legend>
             <div className="grid gap-2 sm:grid-cols-2">
               {SERVICES.map(({ slug }) => (
@@ -139,7 +140,7 @@ export function CareersForm() {
               </label>
             </div>
             {errors.trades && (
-              <p className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">{errors.trades}</p>
+              <p id="trades-error" className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">{errors.trades}</p>
             )}
           </fieldset>
 
@@ -182,6 +183,7 @@ export function CareersForm() {
             <label className="flex items-start gap-3 cursor-pointer text-[0.875rem] text-[var(--color-ink-2)] leading-[1.5]">
               <input id="gdprConsent" type="checkbox" name="gdprConsent" required
                 aria-invalid={Boolean(errors.gdprConsent)}
+                aria-describedby={errors.gdprConsent ? "gdprConsent-error" : undefined}
                 className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--color-rule)] text-[var(--color-fjord)] focus:ring-[var(--color-ink)]/30" />
               <span>
                 {tf("gdprLabel").replace(tf("gdprLinkText"), "##LINK##").split("##LINK##").map((part, i, arr) => (
@@ -195,7 +197,7 @@ export function CareersForm() {
               </span>
             </label>
             {errors.gdprConsent && (
-              <p className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">{tf("gdprRequired")}</p>
+              <p id="gdprConsent-error" className="mt-1.5 text-xs text-[var(--color-ember-2)]" role="alert">{tf("gdprRequired")}</p>
             )}
           </div>
 

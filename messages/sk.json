@@ -841,6 +841,10 @@
   },
   "_TODO": "Content drafted by AI — review with David before launch",
   "careers": {
+    "meta": {
+      "title": "Kariéra | Quantum Sphere",
+      "description": "Pridajte sa k Quantum Sphere — hľadáme šikovných remeselníkov v oblasti solárnych elektrární, elektroinštalácií, sadrokartónu, murárskych prác a montáže striech. Prihláste sa za pár minút."
+    },
     "title": "Pridajte sa k nášmu tímu",
     "subtitle": "Pracujte s nami",
     "form": {
