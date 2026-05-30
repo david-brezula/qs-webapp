@@ -4,10 +4,27 @@ import { organizationSchema, localBusinessSchema, serviceSchema, breadcrumbSchem
 describe("schema builders", () => {
   it("organization has required fields", () => {
     const s = organizationSchema("https://quantum-sphere.eu");
+    expect(s["@context"]).toBe("https://schema.org");
     expect(s["@type"]).toBe("Organization");
     expect(s.name).toBe("Quantum Sphere s.r.o.");
     expect(s.url).toBe("https://quantum-sphere.eu");
-    expect(typeof s.logo).toBe("string");
+    expect(Array.isArray(s.sameAs)).toBe(true);
+  });
+
+  it("organization omits logo when no asset is configured", () => {
+    delete process.env.NEXT_PUBLIC_ORG_LOGO_URL;
+    const s = organizationSchema("https://quantum-sphere.eu");
+    expect(s.logo).toBeUndefined();
+  });
+
+  it("organization emits an absolute logo URL when configured", () => {
+    process.env.NEXT_PUBLIC_ORG_LOGO_URL = "/logo.png";
+    try {
+      const s = organizationSchema("https://quantum-sphere.eu");
+      expect(s.logo).toBe("https://quantum-sphere.eu/logo.png");
+    } finally {
+      delete process.env.NEXT_PUBLIC_ORG_LOGO_URL;
+    }
   });
 
   it("localBusiness carries a postal address and telephone", () => {

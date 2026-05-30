@@ -35,7 +35,7 @@ export interface OrganizationSchema extends Record<string, unknown> {
   "@type": "Organization";
   name: string;
   url: string;
-  logo: string;
+  logo?: string;
   sameAs: string[];
   contactPoint: ContactPoint;
 }
@@ -91,12 +91,18 @@ export interface BreadcrumbSchema extends Record<string, unknown> {
 // ─── Builders ─────────────────────────────────────────────────────────────────
 
 export function organizationSchema(siteUrl: string): OrganizationSchema {
+  // Only advertise a logo when a real asset path is configured. The brand mark
+  // is currently an inline SVG (components/marketing/Logo.tsx) with no static
+  // file, so emitting `${siteUrl}/logo.png` would point Google at a 404 and the
+  // logo claim would be rejected. Set NEXT_PUBLIC_ORG_LOGO_URL to a relative
+  // path (e.g. "/logo.png") once a rasterized logo exists in /public.
+  const logoPath = process.env.NEXT_PUBLIC_ORG_LOGO_URL;
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: COMPANY_NAME,
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    ...(logoPath ? { logo: `${siteUrl}${logoPath}` } : {}),
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
