@@ -45,6 +45,7 @@ function PortalLink({
 export function MarketingHeader() {
   const t = useTranslations("nav");
   const tServices = useTranslations("services");
+  const tCommon = useTranslations("common");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -93,7 +94,7 @@ export function MarketingHeader() {
             <button
               type="button"
               aria-expanded={servicesOpen}
-              className={`${navLinkCls} inline-flex items-center gap-1`}
+              className={`${navLinkCls} inline-flex items-center gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-fjord)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-paper)]`}
               onClick={() => setServicesOpen((v) => !v)}
             >
               {t("services")}
@@ -105,14 +106,16 @@ export function MarketingHeader() {
             </button>
             {servicesOpen && (
               <div className="absolute left-0 top-full pt-3">
-                <ul className="min-w-[16rem] rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-paper)] p-2 shadow-lg">
+                <ul className="min-w-[17rem] rounded-[var(--radius-feature)] border border-[var(--color-rule)] bg-[var(--color-paper)] p-2 shadow-[var(--shadow-float)]">
                   {SERVICES.map(({ slug, internalPath, icon: Icon }) => (
                     <li key={slug}>
                       <Link
                         href={internalPath}
-                        className="flex items-center gap-3 rounded-md px-3 py-2.5 text-[0.875rem] text-[var(--color-slate)] hover:bg-[var(--color-canvas)] hover:text-[var(--color-ink)] transition-colors"
+                        className="flex items-center gap-3 rounded-[var(--radius-card)] px-3 py-2 text-[0.875rem] text-[var(--color-slate)] transition-colors hover:bg-[var(--color-canvas)] hover:text-[var(--color-ink)]"
                       >
-                        <Icon size={17} strokeWidth={1.5} className="text-[var(--color-fjord)]" />
+                        <span className="grid h-8 w-8 place-items-center rounded-[var(--radius-card)] bg-[var(--color-paper-2)]">
+                          <Icon size={16} strokeWidth={1.75} className="text-[var(--color-fjord)]" />
+                        </span>
                         {tServices(`${slug}.name`)}
                       </Link>
                     </li>
@@ -142,9 +145,9 @@ export function MarketingHeader() {
         </div>
 
         <button
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? tCommon("close") : tCommon("menu")}
           aria-expanded={open}
-          className="lg:hidden p-2 text-[var(--color-ink)]"
+          className="lg:hidden rounded-sm p-2 text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-fjord)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-paper)]"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -168,7 +171,9 @@ export function MarketingHeader() {
                     onClick={() => setOpen(false)}
                     className="flex items-center gap-3 px-1 py-2 text-[0.9375rem] text-[var(--color-slate)] hover:text-[var(--color-ink)]"
                   >
-                    <Icon size={17} strokeWidth={1.5} className="text-[var(--color-fjord)]" />
+                    <span className="grid h-8 w-8 place-items-center rounded-[var(--radius-card)] bg-[var(--color-paper-2)]">
+                      <Icon size={16} strokeWidth={1.75} className="text-[var(--color-fjord)]" />
+                    </span>
                     {tServices(`${slug}.name`)}
                   </Link>
                 ))}

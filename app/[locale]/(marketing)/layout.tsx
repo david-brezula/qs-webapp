@@ -19,6 +19,8 @@ export default function MarketingLayout({
   return (
     <>
       <JsonLd data={[organizationSchema(SITE_URL), localBusinessSchema(SITE_URL)]} />
+      {/* Site-wide background texture (swap variant: texture-dots / texture-grid / texture-grain). */}
+      <div aria-hidden className="texture-overlay texture-dots" />
       <MarketingHeader />
       <main className="min-h-screen">{children}</main>
       <MarketingFooter />

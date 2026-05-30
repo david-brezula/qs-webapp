@@ -1,59 +1,99 @@
 @import "tailwindcss";
 
 @theme {
-  /* Clean modern palette — white surfaces, neutral grays, single blue accent */
-  --color-paper: #FFFFFF;
-  --color-paper-2: #F1F3F5;
-  --color-canvas: #F7F8FA;
-  --color-ink: #0F172A;
+  /* ─────────────────────────────────────────────────────────────
+     Refined-modern palette. Light, clean, layered. The neutrals
+     stack (paper → canvas → canvas-2) to build depth instead of
+     sitting on one flat plane; the per-trade hues carry the colour.
+     ───────────────────────────────────────────────────────────── */
+  --color-paper: #FFFFFF;        /* card / top surface            */
+  --color-paper-2: #F4F6F9;      /* tinted chip / inset           */
+  --color-canvas: #F7F9FC;       /* default section background    */
+  --color-canvas-2: #EEF2F7;     /* deeper alternating band       */
+  --color-ink: #0F172A;          /* headings / primary text       */
   --color-ink-2: #1E293B;
-  --color-slate: #475569;
-  --color-mist: #94A3B8;
-  --color-rule: #E2E8F0;
-  --color-rule-soft: #EEF1F4;
+  --color-slate: #475569;        /* body copy                     */
+  --color-slate-2: #64748B;
+  --color-mist: #94A3B8;         /* meta / captions               */
+  --color-rule: #E3E8EF;         /* hairline borders              */
+  --color-rule-soft: #EDF1F6;
+
+  /* Brand accent (homepage / global) — a confident blue with a
+     soft tint for washes and a deep stop for gradients. */
   --color-fjord: #2563EB;
   --color-fjord-2: #1D4ED8;
+  --color-fjord-soft: #EFF4FF;
+  --color-fjord-deep: #1E40AF;
   --color-ember: #2563EB;
   --color-ember-2: #1D4ED8;
   --color-moss: #2563EB;
 
   /* Legacy aliases (used by internal /app/* and /portal/* pages) */
   --color-bg: #FFFFFF;
-  --color-surface: #F7F8FA;
+  --color-surface: #F7F9FC;
   --color-navy: #0F172A;
   --color-navy-700: #1E293B;
   --color-slate-ink: #475569;
-  --color-border-soft: #E2E8F0;
+  --color-border-soft: #E3E8EF;
   --color-accent: #2563EB;
   --color-accent-ink: #FFFFFF;
   --color-muted: #94A3B8;
 
+  /* Type — distinctive grotesque display + clean sans body. */
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-mono-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 8px;
+  /* Radii — softer, modern. -card is shared with the portal so it
+     stays modest; -feature is marketing-only for hero panels. */
+  --radius-card: 10px;
+  --radius-feature: 18px;
   --radius-pill: 999px;
 
-  /* Per-trade accent system. Each trade owns an accent (icons/text ~600),
-     a tint (light fills ~100) and a soft (gradient base ~50). Consumed via a
-     wrapper inline style (see lib/trades.ts) so descendants can use static
-     Tailwind classes like text-[var(--accent)] / bg-[var(--accent-tint)]. */
+  /* Depth scale — layered, low-opacity shadows tuned to a light
+     surface. New names (soft/card/float) so default shadow-* keep
+     working in the portal. */
+  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 1px rgba(15, 23, 42, 0.03);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 28px -14px rgba(15, 23, 42, 0.14);
+  --shadow-float: 0 2px 6px rgba(15, 23, 42, 0.05), 0 28px 56px -22px rgba(15, 23, 42, 0.24);
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ── Per-trade accent system ────────────────────────────────────
+   Each trade owns an accent (icons/text ~600), a tint (light fills
+   ~100), a soft (gradient base ~50) and a deep (gradient end /
+   strong text ~700). Consumed via a wrapper inline style (see
+   lib/trades.ts) so descendants use STATIC Tailwind classes like
+   text-[var(--accent)] / from-[var(--accent-soft)].
+
+   These live in a plain :root block — NOT @theme — on purpose:
+   Tailwind v4 tree-shakes @theme variables that never appear in a
+   scanned class string, and these are only referenced at runtime
+   through tradeAccent()'s inline style, so several trades would be
+   dropped from the output (leaving them colourless). Plain custom
+   properties are always emitted. Status colours sit here too. */
+:root {
   --trade-solar: #D97706;
   --trade-solar-tint: #FEF3C7;
   --trade-solar-soft: #FFFBEB;
+  --trade-solar-deep: #B45309;
   --trade-electrical: #2563EB;
   --trade-electrical-tint: #DBEAFE;
   --trade-electrical-soft: #EFF6FF;
+  --trade-electrical-deep: #1D4ED8;
   --trade-drywall: #6366F1;
   --trade-drywall-tint: #E0E7FF;
   --trade-drywall-soft: #EEF2FF;
+  --trade-drywall-deep: #4F46E5;
   --trade-masonry: #C2410C;
   --trade-masonry-tint: #FFEDD5;
   --trade-masonry-soft: #FFF7ED;
+  --trade-masonry-deep: #9A3412;
   --trade-roofing: #059669;
   --trade-roofing-tint: #D1FAE5;
   --trade-roofing-soft: #ECFDF5;
+  --trade-roofing-deep: #047857;
 
   /* Project status accents */
   --status-completed: #059669;
@@ -62,7 +102,7 @@
 }
 
 html, body {
-  background-color: var(--color-paper);
+  background-color: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,8 +110,8 @@ html, body {
 }
 
 ::selection {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--color-fjord);
+  color: #fff;
 }
 
 html { scroll-behavior: smooth; }
@@ -79,8 +119,11 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
 }
 
+/* ── Typography helpers ─────────────────────────────────────────── */
 .font-display {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 .font-mono {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
@@ -90,29 +133,113 @@ html { scroll-behavior: smooth; }
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-slate);
 }
 
-.rule-hair { background: var(--color-rule); height: 1px; width: 100%; }
-
 .numeral {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "tnum";
+  letter-spacing: -0.03em;
 }
 
+.rule-hair { background: var(--color-rule); height: 1px; width: 100%; }
+
+/* ── Depth & interaction ────────────────────────────────────────── */
+/* Card lift: translate + shadow bloom on hover. */
 .lift {
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+  transition: transform 0.45s var(--ease-out-soft),
               border-color 0.3s ease,
-              box-shadow 0.4s ease;
+              box-shadow 0.45s var(--ease-out-soft);
 }
-.lift:hover { transform: translateY(-2px); }
+.lift:hover { transform: translateY(-4px); }
 
-/* Blueprint grid texture — used over trade gradients in image placeholders. */
+/* ── Atmosphere & texture ───────────────────────────────────────── */
+/* Blueprint grid — used over trade gradients in image placeholders. */
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.55) 1px, transparent 1px);
   background-size: 22px 22px;
+}
+
+/* Fine dot/engineering grid that fades out — section atmosphere. */
+.grid-fade {
+  background-image:
+    linear-gradient(var(--color-rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-rule-soft) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Subtle film grain for depth on flat panels (very low opacity). */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Page background texture ────────────────────────────────────
+   A single fixed, ultra-faint overlay applied site-wide in the
+   marketing layout. Sits below the sticky header (z-40) and is
+   pointer-events:none so it never blocks interaction. Swap the
+   variant class (texture-dots / texture-grid / texture-grain) in
+   the layout to change the treatment. Disabled-friendly: purely
+   decorative, aria-hidden. */
+.texture-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+/* Technical dot grid (blueprint feel). */
+.texture-dots {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+/* Fine engineering line grid. */
+.texture-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+/* Tactile film grain. */
+.texture-grain {
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Ink → slate gradient text for hero headlines. */
+.text-ink-gradient {
+  background: linear-gradient(180deg, var(--color-ink) 0%, var(--color-ink-2) 60%, var(--color-slate) 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Motion keyframes (all disabled under reduced-motion) ───────── */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(2%, -3%, 0) scale(1.06); }
+}
+.animate-drift { animation: drift 18s ease-in-out infinite; }
+
+@keyframes drift-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50%      { transform: translate3d(-3%, 2%, 0) scale(1); }
+}
+.animate-drift-slow { animation: drift-slow 24s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift, .animate-drift-slow { animation: none; }
 }

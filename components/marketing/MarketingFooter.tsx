@@ -30,7 +30,11 @@ export function MarketingFooter() {
             <ul className="space-y-2.5 text-[0.875rem]">
               {SERVICES.map(({ slug, internalPath }) => (
                 <li key={slug}>
-                  <Link href={internalPath} className={footerLinkCls}>
+                  <Link
+                    href={internalPath}
+                    className={`group inline-flex items-center gap-2.5 ${footerLinkCls}`}
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-mist)] transition-colors duration-300 group-hover:bg-[var(--color-fjord)]" />
                     {tServices(`${slug}.name`)}
                   </Link>
                 </li>

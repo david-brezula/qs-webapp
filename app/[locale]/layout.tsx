@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Stack_Sans_Text } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -9,7 +9,10 @@ import { CookieConsent } from "@/components/marketing/CookieConsent";
 import { SITE_URL } from "@/lib/seo";
 import "../globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+// Single distinctive typeface across the whole site. Stack Sans Text is a
+// variable "expressive business" sans (wght 200–700); headings get weight +
+// tight tracking (see .font-display in globals.css) for hierarchy.
+const stackSans = Stack_Sans_Text({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
@@ -39,7 +42,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning className={jakarta.variable}>
+    <html lang={locale} suppressHydrationWarning className={stackSans.variable}>
       <body>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <PostHogProvider locale={locale}>{children}</PostHogProvider>

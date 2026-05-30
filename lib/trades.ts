@@ -13,5 +13,6 @@ export function tradeAccent(trade: ServiceSlug): CSSProperties {
     "--accent": `var(--trade-${trade})`,
     "--accent-tint": `var(--trade-${trade}-tint)`,
     "--accent-soft": `var(--trade-${trade}-soft)`,
+    "--accent-deep": `var(--trade-${trade}-deep)`,
   } as CSSProperties;
 }

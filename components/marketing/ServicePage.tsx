@@ -1,13 +1,17 @@
 import { useTranslations, useLocale } from "next-intl";
-import { Check, ArrowRight, Plus } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 import { localizedPathname, SITE_URL } from "@/lib/seo";
 import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 import { getService, type ServiceSlug } from "@/lib/services";
 import { tradeAccent } from "@/lib/trades";
+import { TRADE_IMAGE } from "@/lib/marketingImages";
+import { TradeImage } from "@/components/marketing/TradeImage";
+import { FaqList } from "@/components/marketing/FaqList";
 import { Certifications } from "@/components/marketing/Certifications";
 import { ContactCta } from "@/components/marketing/ContactCta";
 
@@ -15,7 +19,8 @@ type Step = { title: string; body: string };
 type Faq = { q: string; a: string };
 
 // Universal landing template for the five trades. Content comes entirely from
-// the `services.<slug>` message namespace; array sections render only when filled.
+// the `services.<slug>` message namespace; array sections render only when
+// filled. The whole page wears its trade colour via a tradeAccent() wrapper.
 
 export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const t = useTranslations(`services.${slug}`);
@@ -31,7 +36,7 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const homeUrl = `${SITE_URL}${localizedPathname("/", locale)}`;
 
   return (
-    <>
+    <div style={tradeAccent(slug)}>
       <JsonLd
         data={[
           serviceSchema(t("name"), serviceUrl, SITE_URL),
@@ -54,144 +59,192 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
           }}
         />
       )}
-      {/* Hero */}
-      <section
-        style={tradeAccent(slug)}
-        className="relative overflow-hidden bg-[var(--color-canvas)] border-b border-[var(--color-rule)]"
-      >
+
+      {/* Trade-coloured identity bar across the very top. */}
+      <div
+        aria-hidden
+        className="h-1 w-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)]"
+      />
+
+      {/* Hero — copy + trade photo. */}
+      <section className="relative overflow-hidden border-b border-[var(--color-rule)] bg-[var(--color-canvas)]">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[var(--accent-tint)] opacity-60 blur-3xl"
+          className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[var(--accent-tint)] opacity-70 blur-3xl"
         />
-        <Container className="relative py-20 md:py-28">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="grid place-items-center h-10 w-10 rounded-[var(--radius-card)] bg-[var(--accent-tint)]">
-              <Icon size={20} strokeWidth={1.5} className="text-[var(--accent)]" />
-            </span>
-            <span className="eyebrow text-[var(--accent)]">{t("name")}</span>
-          </div>
-          <h1
-            className="font-display text-[2.5rem] md:text-[4rem] leading-[1.03] tracking-[-0.03em] text-[var(--color-ink)] max-w-4xl"
-            style={{ fontWeight: 700 }}
-          >
-            {t("hero.title")}
-          </h1>
-          <p className="mt-6 text-[1.0625rem] md:text-[1.1875rem] text-[var(--color-slate)] max-w-2xl leading-[1.6]">
-            {t("hero.subtitle")}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className={buttonClass("primary")}>
-              {tNav("contact")}
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
-            <Link href="/about" className={buttonClass("secondary")}>
-              {tNav("about")}
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* Description */}
-      <section>
-        <Container className="py-16 md:py-20">
-          <p className="font-display text-[1.375rem] md:text-[1.75rem] leading-[1.5] tracking-[-0.01em] text-[var(--color-ink-2)] max-w-3xl">
-            {t("description")}
-          </p>
-        </Container>
-      </section>
-
-      {/* Deliverables */}
-      {deliverables.length > 0 && (
-        <section className="bg-[var(--color-canvas)] border-y border-[var(--color-rule)]">
-          <Container className="py-16 md:py-24">
-            <h2
-              className="font-display text-[1.75rem] md:text-[2.25rem] tracking-[-0.02em] text-[var(--color-ink)] mb-10"
-              style={{ fontWeight: 700 }}
-            >
-              {t("deliverables.title")}
-            </h2>
-            <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
-              {deliverables.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <Check
-                    size={18}
-                    strokeWidth={2}
-                    className="mt-0.5 shrink-0 text-[var(--color-fjord)]"
-                  />
-                  <span className="text-[0.9375rem] text-[var(--color-slate)] leading-[1.55]">
-                    {item}
+        <div
+          aria-hidden
+          className="grid-fade pointer-events-none absolute inset-0 opacity-50"
+          style={{
+            maskImage:
+              "radial-gradient(ellipse 70% 60% at 20% 0%, #000 35%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 70% 60% at 20% 0%, #000 35%, transparent 100%)",
+          }}
+        />
+        <Container className="relative py-16 md:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <Stagger>
+              <StaggerItem>
+                <div className="mb-6 flex items-center gap-3">
+                  <span className="grid h-11 w-11 place-items-center rounded-[var(--radius-card)] bg-[var(--accent-tint)] shadow-[var(--shadow-soft)]">
+                    <Icon size={22} strokeWidth={1.5} className="text-[var(--accent)]" />
                   </span>
-                </li>
+                  <span className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">
+                    {t("name")}
+                  </span>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <h1
+                  className="max-w-2xl font-display text-[2.5rem] leading-[1.03] tracking-[-0.035em] text-[var(--color-ink)] md:text-[3.75rem]"
+                  style={{ fontWeight: 700 }}
+                >
+                  {t("hero.title")}
+                </h1>
+              </StaggerItem>
+              <StaggerItem>
+                <p className="mt-6 max-w-2xl text-[1.0625rem] leading-[1.6] text-[var(--color-slate)] md:text-[1.1875rem]">
+                  {t("hero.subtitle")}
+                </p>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link href="/contact" className={buttonClass("primary")}>
+                    {tNav("contact")}
+                    <ArrowRight
+                      size={15}
+                      strokeWidth={1.5}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                  <Link href="/about" className={buttonClass("secondary")}>
+                    {tNav("about")}
+                  </Link>
+                </div>
+              </StaggerItem>
+            </Stagger>
+
+            <Reveal delay={0.15} y={24} className="group relative">
+              <div
+                aria-hidden
+                className="absolute -inset-5 -z-10 rounded-[2rem] bg-gradient-to-tr from-[var(--accent)]/15 to-transparent blur-2xl"
+              />
+              <TradeImage
+                trade={slug}
+                src={TRADE_IMAGE[slug]}
+                alt={t("name")}
+                ratio="aspect-[5/4]"
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="rounded-[var(--radius-feature)] border border-[var(--color-rule)] shadow-[var(--shadow-float)]"
+              />
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* Lead description. */}
+      <section className="bg-[var(--color-paper)]">
+        <Container className="py-16 md:py-20">
+          <Reveal>
+            <p className="max-w-3xl font-display text-[1.375rem] leading-[1.5] tracking-[-0.01em] text-[var(--color-ink-2)] md:text-[1.75rem]">
+              {t("description")}
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Deliverables. */}
+      {deliverables.length > 0 && (
+        <section className="border-y border-[var(--color-rule)] bg-[var(--color-canvas)]">
+          <Container className="py-16 md:py-24">
+            <Reveal>
+              <h2
+                className="mb-10 font-display text-[1.75rem] tracking-[-0.025em] text-[var(--color-ink)] md:text-[2.25rem]"
+                style={{ fontWeight: 700 }}
+              >
+                {t("deliverables.title")}
+              </h2>
+            </Reveal>
+            <Stagger className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+              {deliverables.map((item, i) => (
+                <StaggerItem key={i}>
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[var(--accent-tint)]">
+                      <Check size={14} strokeWidth={2.5} className="text-[var(--accent)]" />
+                    </span>
+                    <span className="text-[0.9375rem] leading-[1.55] text-[var(--color-slate)]">
+                      {item}
+                    </span>
+                  </div>
+                </StaggerItem>
               ))}
-            </ul>
+            </Stagger>
           </Container>
         </section>
       )}
 
-      {/* Process */}
+      {/* Process — colour-coded numbered steps. */}
       {steps.length > 0 && (
-        <section>
+        <section className="bg-[var(--color-paper)]">
           <Container className="py-16 md:py-24">
-            <h2
-              className="font-display text-[1.75rem] md:text-[2.25rem] tracking-[-0.02em] text-[var(--color-ink)] mb-12"
-              style={{ fontWeight: 700 }}
-            >
-              {t("process.title")}
-            </h2>
-            <ol className="grid gap-px bg-[var(--color-rule)] border border-[var(--color-rule)] rounded-[var(--radius-card)] overflow-hidden md:grid-cols-2">
+            <Reveal>
+              <h2
+                className="mb-12 font-display text-[1.75rem] tracking-[-0.025em] text-[var(--color-ink)] md:text-[2.25rem]"
+                style={{ fontWeight: 700 }}
+              >
+                {t("process.title")}
+              </h2>
+            </Reveal>
+            <Stagger className="grid gap-5 md:grid-cols-2">
               {steps.map((step, i) => (
-                <li key={i} className="bg-[var(--color-paper)] p-7">
-                  <span className="numeral font-display text-[2rem] text-[var(--color-rule)] block leading-none mb-3">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-[1.0625rem] font-semibold text-[var(--color-ink)] mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-[0.9375rem] text-[var(--color-slate)] leading-[1.6]">
-                    {step.body}
-                  </p>
-                </li>
+                <StaggerItem key={i} className="h-full">
+                  <div className="lift group relative h-full overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-paper)] p-7 shadow-[var(--shadow-card)] hover:border-[var(--accent)]/40 hover:shadow-[var(--shadow-float)]">
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] transition-transform duration-300 group-hover:scale-x-100"
+                    />
+                    <span className="numeral block leading-none text-[2.25rem] text-[var(--color-mist)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-3 text-[1.0625rem] font-semibold text-[var(--color-ink)]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-[0.9375rem] leading-[1.6] text-[var(--color-slate)]">
+                      {step.body}
+                    </p>
+                  </div>
+                </StaggerItem>
               ))}
-            </ol>
+            </Stagger>
           </Container>
         </section>
       )}
 
       <Certifications slug={slug} />
 
-      {/* FAQ */}
+      {/* FAQ. */}
       {faqs.length > 0 && (
-        <section className="bg-[var(--color-canvas)] border-y border-[var(--color-rule)]">
-          <Container className="py-16 md:py-24 max-w-3xl">
-            <h2
-              className="font-display text-[1.75rem] md:text-[2.25rem] tracking-[-0.02em] text-[var(--color-ink)] mb-10"
-              style={{ fontWeight: 700 }}
-            >
-              {t("faq.title")}
-            </h2>
-            <div className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
-              {faqs.map((item, i) => (
-                <details key={i} className="group py-5">
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 list-none text-[1.0625rem] font-medium text-[var(--color-ink)]">
-                    {item.q}
-                    <Plus
-                      size={18}
-                      strokeWidth={1.5}
-                      className="shrink-0 text-[var(--color-slate)] transition-transform duration-300 group-open:rotate-45"
-                    />
-                  </summary>
-                  <p className="mt-3 text-[0.9375rem] text-[var(--color-slate)] leading-[1.65]">
-                    {item.a}
-                  </p>
-                </details>
-              ))}
-            </div>
+        <section className="border-y border-[var(--color-rule)] bg-[var(--color-canvas)]">
+          <Container className="max-w-3xl py-16 md:py-24">
+            <Reveal>
+              <h2
+                className="mb-10 font-display text-[1.75rem] tracking-[-0.025em] text-[var(--color-ink)] md:text-[2.25rem]"
+                style={{ fontWeight: 700 }}
+              >
+                {t("faq.title")}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <FaqList items={faqs} />
+            </Reveal>
           </Container>
         </section>
       )}
 
-      {/* Contact CTA */}
+      {/* Contact CTA. */}
       <ContactCta heading={t("tagline")} />
-    </>
+    </div>
   );
 }

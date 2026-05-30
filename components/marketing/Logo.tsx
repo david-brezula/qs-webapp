@@ -13,11 +13,11 @@ export function Logo({ subtitle }: { subtitle?: string }) {
         viewBox="0 0 32 32"
         width="28"
         height="28"
-        className="text-[var(--color-ink)]"
+        className="text-[var(--color-ink)] transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:rotate-90"
         aria-hidden
       >
         <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="1.25" />
-        <circle cx="16" cy="16" r="5" fill="currentColor" />
+        <circle cx="16" cy="16" r="5" fill="var(--color-fjord)" />
         <line x1="16" y1="2" x2="16" y2="30" stroke="currentColor" strokeWidth="0.6" />
         <line x1="2" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="0.6" />
       </svg>
