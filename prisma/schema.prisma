@@ -39,6 +39,12 @@ enum ApplicationStatus {
   HIRED
 }
 
+enum InquiryStatus {
+  NEW
+  IN_PROGRESS
+  CLOSED
+}
+
 model User {
   id                 String   @id @default(cuid())
   username           String   @unique
@@ -179,15 +185,17 @@ model AccommodationWorker {
 }
 
 model ContactSubmission {
-  id          String   @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   email       String
   phone       String?
   company     String?
-  serviceType String   @default("other")
-  message     String   @default("")
-  createdAt   DateTime @default(now())
+  serviceType String        @default("other")
+  message     String        @default("")
+  status      InquiryStatus @default(NEW)
+  createdAt   DateTime      @default(now())
 
+  @@index([status])
   @@index([createdAt])
 }
 
