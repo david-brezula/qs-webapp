@@ -1,6 +1,10 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { MainHero } from "@/components/marketing/MainHero";
+import { StatsBand } from "@/components/marketing/StatsBand";
 import { ServicesGrid } from "@/components/marketing/ServicesGrid";
+import { ValuesGrid } from "@/components/marketing/ValuesGrid";
+import { FeaturedProjects } from "@/components/marketing/FeaturedProjects";
+import { CoverageArea } from "@/components/marketing/CoverageArea";
 import { AboutTeaser } from "@/components/marketing/AboutTeaser";
 import { alternatesForPathname } from "@/lib/seo";
 
@@ -29,7 +33,11 @@ export default async function HomePage({
   return (
     <>
       <MainHero />
+      <StatsBand />
       <ServicesGrid />
+      <ValuesGrid />
+      <FeaturedProjects />
+      <CoverageArea />
       <AboutTeaser />
     </>
   );

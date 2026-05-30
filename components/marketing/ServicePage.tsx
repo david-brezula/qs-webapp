@@ -7,6 +7,8 @@ import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
 import { getService, type ServiceSlug } from "@/lib/services";
+import { Certifications } from "@/components/marketing/Certifications";
+import { ContactCta } from "@/components/marketing/ContactCta";
 
 type Step = { title: string; body: string };
 type Faq = { q: string; a: string };
@@ -147,6 +149,8 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
         </section>
       )}
 
+      <Certifications slug={slug} />
+
       {/* FAQ */}
       {faqs.length > 0 && (
         <section className="bg-[var(--color-canvas)] border-y border-[var(--color-rule)]">
@@ -179,22 +183,7 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
       )}
 
       {/* Contact CTA */}
-      <section className="bg-[var(--color-ink)]">
-        <Container className="py-20 md:py-28 text-center">
-          <h2
-            className="font-display text-[2rem] md:text-[3rem] tracking-[-0.025em] text-[var(--color-paper)] max-w-3xl mx-auto"
-            style={{ fontWeight: 700 }}
-          >
-            {t("tagline")}
-          </h2>
-          <div className="mt-10">
-            <Link href="/contact" className={buttonClass("ghost")}>
-              {tNav("contact")}
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <ContactCta heading={t("tagline")} />
     </>
   );
 }

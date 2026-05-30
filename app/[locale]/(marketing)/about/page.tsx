@@ -1,5 +1,9 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
+import { StatsBand } from "@/components/marketing/StatsBand";
+import { ValuesGrid } from "@/components/marketing/ValuesGrid";
+import { CoverageArea } from "@/components/marketing/CoverageArea";
+import { ContactCta } from "@/components/marketing/ContactCta";
 import { alternatesForPathname } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -26,18 +30,24 @@ export default async function AboutPage({
   const t = await getTranslations("about");
 
   return (
-    <section>
-      <Container className="py-20 md:py-28 max-w-3xl">
-        <h1
-          className="font-display text-[2.5rem] md:text-[3.5rem] leading-[1.05] tracking-[-0.03em] text-[var(--color-ink)]"
-          style={{ fontWeight: 700 }}
-        >
-          {t("title")}
-        </h1>
-        <div className="mt-8 space-y-6 text-[1.0625rem] md:text-[1.1875rem] text-[var(--color-slate)] leading-[1.7] whitespace-pre-line">
-          {t("body")}
-        </div>
-      </Container>
-    </section>
+    <>
+      <section>
+        <Container className="py-20 md:py-28 max-w-3xl">
+          <h1
+            className="font-display text-[2.5rem] md:text-[3.5rem] leading-[1.05] tracking-[-0.03em] text-[var(--color-ink)]"
+            style={{ fontWeight: 700 }}
+          >
+            {t("title")}
+          </h1>
+          <div className="mt-8 space-y-6 text-[1.0625rem] md:text-[1.1875rem] text-[var(--color-slate)] leading-[1.7] whitespace-pre-line">
+            {t("body")}
+          </div>
+        </Container>
+      </section>
+      <StatsBand />
+      <ValuesGrid />
+      <CoverageArea />
+      <ContactCta heading={t("ctaHeading")} />
+    </>
   );
 }
