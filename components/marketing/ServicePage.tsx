@@ -7,6 +7,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
 import { getService, type ServiceSlug } from "@/lib/services";
+import { tradeAccent } from "@/lib/trades";
 import { Certifications } from "@/components/marketing/Certifications";
 import { ContactCta } from "@/components/marketing/ContactCta";
 
@@ -54,13 +55,20 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
         />
       )}
       {/* Hero */}
-      <section className="bg-[var(--color-canvas)] border-b border-[var(--color-rule)]">
-        <Container className="py-20 md:py-28">
+      <section
+        style={tradeAccent(slug)}
+        className="relative overflow-hidden bg-[var(--color-canvas)] border-b border-[var(--color-rule)]"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[var(--accent-tint)] opacity-60 blur-3xl"
+        />
+        <Container className="relative py-20 md:py-28">
           <div className="flex items-center gap-3 mb-6">
-            <span className="grid place-items-center h-10 w-10 rounded-[var(--radius-card)] bg-[var(--color-paper)] border border-[var(--color-rule)]">
-              <Icon size={20} strokeWidth={1.5} className="text-[var(--color-fjord)]" />
+            <span className="grid place-items-center h-10 w-10 rounded-[var(--radius-card)] bg-[var(--accent-tint)]">
+              <Icon size={20} strokeWidth={1.5} className="text-[var(--accent)]" />
             </span>
-            <span className="eyebrow text-[var(--color-fjord)]">{t("name")}</span>
+            <span className="eyebrow text-[var(--accent)]">{t("name")}</span>
           </div>
           <h1
             className="font-display text-[2.5rem] md:text-[4rem] leading-[1.03] tracking-[-0.03em] text-[var(--color-ink)] max-w-4xl"

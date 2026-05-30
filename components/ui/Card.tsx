@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 type CardTone = "default" | "success";
 
@@ -12,13 +12,16 @@ export function Card({
   children,
   className = "",
   tone = "default",
+  style,
 }: {
   children: ReactNode;
   className?: string;
   tone?: CardTone;
+  style?: CSSProperties;
 }) {
   return (
     <div
+      style={style}
       className={`lift relative border rounded-[var(--radius-card)] p-7 ${TONE_CLASSES[tone]} ${className}`}
     >
       {children}
