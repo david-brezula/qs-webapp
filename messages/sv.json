@@ -889,5 +889,18 @@
       "REJECTED": "Avvisad",
       "HIRED": "Anställd"
     }
+  },
+  "inquiries": {
+    "list": "Kundförfrågningar",
+    "service": "Tjänst",
+    "received": "Mottagen",
+    "detail": "Förfrågningsdetaljer",
+    "updateStatus": "Uppdatera status",
+    "save": "Spara",
+    "status": {
+      "NEW": "Ny",
+      "IN_PROGRESS": "Pågår",
+      "CLOSED": "Avslutad"
+    }
   }
 }

@@ -889,5 +889,18 @@
       "REJECTED": "Rejected",
       "HIRED": "Hired"
     }
+  },
+  "inquiries": {
+    "list": "Customer inquiries",
+    "service": "Service",
+    "received": "Received",
+    "detail": "Inquiry detail",
+    "updateStatus": "Update status",
+    "save": "Save",
+    "status": {
+      "NEW": "New",
+      "IN_PROGRESS": "In progress",
+      "CLOSED": "Closed"
+    }
   }
 }

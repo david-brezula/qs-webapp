@@ -889,5 +889,18 @@
       "REJECTED": "Rejetée",
       "HIRED": "Recruté"
     }
+  },
+  "inquiries": {
+    "list": "Demandes clients",
+    "service": "Service",
+    "received": "Reçu le",
+    "detail": "Détail de la demande",
+    "updateStatus": "Modifier le statut",
+    "save": "Enregistrer",
+    "status": {
+      "NEW": "Nouvelle",
+      "IN_PROGRESS": "En cours",
+      "CLOSED": "Fermée"
+    }
   }
 }

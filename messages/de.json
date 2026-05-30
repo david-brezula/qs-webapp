@@ -889,5 +889,18 @@
       "REJECTED": "Abgelehnt",
       "HIRED": "Eingestellt"
     }
+  },
+  "inquiries": {
+    "list": "Kundenanfragen",
+    "service": "Leistung",
+    "received": "Eingegangen",
+    "detail": "Anfrage-Detail",
+    "updateStatus": "Status ändern",
+    "save": "Speichern",
+    "status": {
+      "NEW": "Neu",
+      "IN_PROGRESS": "In Bearbeitung",
+      "CLOSED": "Abgeschlossen"
+    }
   }
 }

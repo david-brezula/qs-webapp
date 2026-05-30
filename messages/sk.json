@@ -886,5 +886,18 @@
       "REJECTED": "Zamietnutá",
       "HIRED": "Prijatý"
     }
+  },
+  "inquiries": {
+    "list": "Dopyty zákazníkov",
+    "service": "Služba",
+    "received": "Prijaté",
+    "detail": "Detail dopytu",
+    "updateStatus": "Zmeniť stav",
+    "save": "Uložiť",
+    "status": {
+      "NEW": "Nový",
+      "IN_PROGRESS": "Prebieha",
+      "CLOSED": "Uzavretý"
+    }
   }
 }
