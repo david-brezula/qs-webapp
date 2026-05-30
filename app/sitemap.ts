@@ -12,6 +12,7 @@ const MARKETING_PATHS = [
   "/roofing",
   "/about",
   "/contact",
+  "/impressum",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

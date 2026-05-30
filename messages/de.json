@@ -603,6 +603,35 @@
         "body": "Wir behalten uns das Recht vor, diese Richtlinie zu aktualisieren. Das Datum der letzten Aktualisierung ist in der Kopfzeile des Dokuments angegeben. Bei Änderungen mit wesentlichen Auswirkungen auf Sie werden wir Sie angemessen informieren."
       }
     },
+    "impressum": {
+      "meta": {
+        "title": "Impressum · Quantum Sphere",
+        "description": "Pflichtangaben gemäß § 5 DDG für diesen Internetauftritt."
+      },
+      "eyebrow": "Rechtliches",
+      "title": "Impressum",
+      "updated": "Aktualisiert am 30. Mai 2026",
+      "provider": {
+        "heading": "Angaben gemäß § 5 DDG",
+        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slowakische Republik\n\nHandelsreg.-Nr.: [TODO: IČO]\nUSt-IdNr.: SK2120988117\nEingetragen: [TODO: registrový súd, oddiel, vložka]"
+      },
+      "represented": {
+        "heading": "Vertreten durch",
+        "body": "[TODO: konateľ]"
+      },
+      "contact": {
+        "heading": "Kontakt",
+        "body": "Telefon: +421 2 5556 0188\nE-Mail: rfp@quantum-sphere.eu"
+      },
+      "supervisory": {
+        "heading": "Zuständige Aufsichtsbehörde",
+        "body": "[TODO: dozorný orgán]"
+      },
+      "disclaimer": {
+        "heading": "Haftung für Inhalte",
+        "body": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß geltendem Recht für eigene Inhalte auf diesen Seiten verantwortlich.\n\nHaftung für Links: Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "KI-generierte DE-Übersetzung — Überprüfung durch Muttersprachler erforderlich (Aufgabe 9)",
       "meta": {
@@ -656,6 +685,7 @@
     "legal": "Rechtliche Informationen",
     "privacy": "Datenschutz",
     "cookies": "Cookies",
+    "impressum": "Impressum",
     "companyIdLabel": "Reg.-Nr.",
     "vatLabel": "USt-IdNr.",
     "registrationLabel": "Eingetragen"

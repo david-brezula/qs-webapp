@@ -603,6 +603,35 @@
         "body": "Nous nous réservons le droit de mettre à jour cette politique. La date de la dernière mise à jour est indiquée dans l'en-tête du document. En cas de modification ayant un impact significatif sur vous, nous vous en informerons de manière appropriée."
       }
     },
+    "impressum": {
+      "meta": {
+        "title": "Mentions légales · Quantum Sphere",
+        "description": "Informations légales obligatoires sur l'éditeur de ce site web."
+      },
+      "eyebrow": "Informations légales",
+      "title": "Mentions légales",
+      "updated": "Mis à jour le 30 mai 2026",
+      "provider": {
+        "heading": "Éditeur du site",
+        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, République slovaque\n\nN° d'immatriculation : [TODO: IČO]\nN° TVA : SK2120988117\nImmatriculée : [TODO: registrový súd, oddiel, vložka]"
+      },
+      "represented": {
+        "heading": "Représentée par",
+        "body": "[TODO: konateľ]"
+      },
+      "contact": {
+        "heading": "Contact",
+        "body": "Téléphone : +421 2 5556 0188\nE-mail : rfp@quantum-sphere.eu"
+      },
+      "supervisory": {
+        "heading": "Autorité de contrôle compétente",
+        "body": "[TODO: dozorný orgán]"
+      },
+      "disclaimer": {
+        "heading": "Responsabilité pour le contenu",
+        "body": "Les contenus de ce site ont été créés avec le plus grand soin. Nous ne pouvons cependant garantir l'exactitude, l'exhaustivité et l'actualité des contenus. En tant que prestataire de services, nous sommes responsables de nos propres contenus conformément à la législation applicable.\n\nResponsabilité pour les liens : Notre site contient des liens vers des sites tiers sur lesquels nous n'avons aucune influence. Nous déclinons donc toute responsabilité quant à ces contenus externes. L'exploitant des pages liées est toujours responsable de leur contenu."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "Traduction FR générée par IA — révision par un locuteur natif requise (tâche 9)",
       "meta": {
@@ -656,6 +685,7 @@
     "legal": "Informations légales",
     "privacy": "Politique de confidentialité",
     "cookies": "Cookies",
+    "impressum": "Mentions légales",
     "companyIdLabel": "N° d'enregistrement",
     "vatLabel": "N° TVA",
     "registrationLabel": "Immatriculée"

@@ -74,6 +74,13 @@ export const routing = defineRouting({
       fr: "/cookies",
       sv: "/cookies",
     },
+    "/impressum": {
+      sk: "/impressum",
+      en: "/legal-notice",
+      de: "/impressum",
+      fr: "/mentions-legales",
+      sv: "/impressum",
+    },
 
     // Portal — English slugs for every locale (not SEO-targeted).
     "/login": "/login",

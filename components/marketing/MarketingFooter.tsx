@@ -112,6 +112,9 @@ export function MarketingFooter() {
             <Link href="/cookies" className="hover:text-[var(--color-ink)] transition-colors">
               {tf("cookies")}
             </Link>
+            <Link href="/impressum" className="hover:text-[var(--color-ink)] transition-colors">
+              {tf("impressum")}
+            </Link>
             <span className="normal-case tracking-normal">
               {tf("rights")}
             </span>

@@ -602,6 +602,35 @@
         "body": "We reserve the right to update this policy. The date of the last update is shown in the header of the document. In the event of a change with a material impact on you, we will notify you appropriately."
       }
     },
+    "impressum": {
+      "meta": {
+        "title": "Legal Notice · Quantum Sphere",
+        "description": "Legal notice and mandatory provider information for this website."
+      },
+      "eyebrow": "Legal",
+      "title": "Legal Notice",
+      "updated": "Updated 30 May 2026",
+      "provider": {
+        "heading": "Provider",
+        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovak Republic\n\nCompany ID: [TODO: IČO]\nVAT: SK2120988117\nRegistered: [TODO: registrový súd, oddiel, vložka]"
+      },
+      "represented": {
+        "heading": "Represented by",
+        "body": "[TODO: konateľ]"
+      },
+      "contact": {
+        "heading": "Contact",
+        "body": "Phone: +421 2 5556 0188\nEmail: rfp@quantum-sphere.eu"
+      },
+      "supervisory": {
+        "heading": "Supervisory authority",
+        "body": "[TODO: dozorný orgán]"
+      },
+      "disclaimer": {
+        "heading": "Liability for content",
+        "body": "The contents of this website have been created with the greatest possible care. However, we cannot guarantee the accuracy, completeness or topicality of the content. As a service provider we are responsible for our own content on these pages in accordance with applicable law.\n\nLiability for links: Our website contains links to external third-party websites over whose content we have no control. We therefore accept no liability for this third-party content. The respective provider or operator of the linked pages is always responsible for their content."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "AI-generated EN translation — native review required before launch (Task 9)",
       "meta": {
@@ -641,6 +670,7 @@
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "cookies": "Cookies",
+    "impressum": "Legal Notice",
     "companyIdLabel": "Co. Reg. No.",
     "vatLabel": "VAT",
     "registrationLabel": "Registered"

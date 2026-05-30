@@ -603,6 +603,35 @@
         "body": "Vi förbehåller oss rätten att uppdatera denna policy. Datumet för den senaste uppdateringen anges i dokumenthuvudet. Vid ändringar med väsentlig inverkan på dig kommer vi att informera dig på lämpligt sätt."
       }
     },
+    "impressum": {
+      "meta": {
+        "title": "Impressum · Quantum Sphere",
+        "description": "Obligatorisk information om webbplatsens utgivare."
+      },
+      "eyebrow": "Juridisk information",
+      "title": "Impressum",
+      "updated": "Uppdaterad 30 maj 2026",
+      "provider": {
+        "heading": "Utgivare",
+        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovakiska republiken\n\nOrg.nr.: [TODO: IČO]\nMomsreg.nr: SK2120988117\nRegistrerad: [TODO: registrový súd, oddiel, vložka]"
+      },
+      "represented": {
+        "heading": "Företrädd av",
+        "body": "[TODO: konateľ]"
+      },
+      "contact": {
+        "heading": "Kontakt",
+        "body": "Telefon: +421 2 5556 0188\nE-post: rfp@quantum-sphere.eu"
+      },
+      "supervisory": {
+        "heading": "Tillsynsmyndighet",
+        "body": "[TODO: dozorný orgán]"
+      },
+      "disclaimer": {
+        "heading": "Ansvar för innehåll",
+        "body": "Innehållet på denna webbplats har skapats med största möjliga omsorg. Vi kan dock inte garantera innehållets riktighet, fullständighet eller aktualitet. Som tjänsteleverantör ansvarar vi för eget innehåll på dessa sidor i enlighet med gällande lagstiftning.\n\nAnsvar för länkar: Vår webbplats innehåller länkar till externa tredjepartswebbplatser vars innehåll vi inte har något inflytande över. Vi kan därför inte ta något ansvar för detta externa innehåll. Den respektive leverantören eller operatören av de länkade sidorna ansvarar alltid för deras innehåll."
+      }
+    },
     "cookies": {
       "_TODO_LOCALE_REVIEW": "AI-genererad SV-översättning — granskning av modersmålstalare krävs (uppgift 9)",
       "meta": {
@@ -656,6 +685,7 @@
     "legal": "Juridisk information",
     "privacy": "Integritetspolicy",
     "cookies": "Cookies",
+    "impressum": "Impressum",
     "companyIdLabel": "Org.nr",
     "vatLabel": "Momsreg.nr",
     "registrationLabel": "Registrerad"

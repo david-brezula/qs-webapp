@@ -601,6 +601,35 @@
         "body": "Vyhradzujeme si právo aktualizovať tieto zásady. Dátum poslednej aktualizácie je uvedený v hlavičke dokumentu. Pri zmene s podstatným dopadom na vás vás budeme primerane informovať."
       }
     },
+    "impressum": {
+      "meta": {
+        "title": "Impressum · Quantum Sphere",
+        "description": "Povinné informácie o prevádzkovateľovi webovej stránky podľa platných právnych predpisov."
+      },
+      "eyebrow": "Právne informácie",
+      "title": "Impressum",
+      "updated": "Aktualizované 30. mája 2026",
+      "provider": {
+        "heading": "Prevádzkovateľ",
+        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovenská republika\n\nIČO: [TODO: IČO]\nIČ DPH: SK2120988117\nZápis: [TODO: registrový súd, oddiel, vložka]"
+      },
+      "represented": {
+        "heading": "Zastúpený",
+        "body": "[TODO: konateľ]"
+      },
+      "contact": {
+        "heading": "Kontakt",
+        "body": "Telefón: +421 2 5556 0188\nE-mail: rfp@quantum-sphere.eu"
+      },
+      "supervisory": {
+        "heading": "Dozorný orgán",
+        "body": "[TODO: dozorný orgán]"
+      },
+      "disclaimer": {
+        "heading": "Zodpovednosť za obsah",
+        "body": "Obsah tejto webovej stránky bol vytvorený s maximálnou starostlivosťou. Napriek tomu nemôžeme prevziať záruku za správnosť, úplnosť a aktuálnosť obsahu. Ako poskytovateľ služieb zodpovedáme v súlade s platnými právnymi predpismi za vlastný obsah na týchto stránkach.\n\nZodpovednosť za obsah externých odkazov: Naša ponuka obsahuje odkazy na externé webové stránky tretích strán, na ktorých obsah nemáme žiaden vplyv. Preto nemôžeme za tento cudzí obsah prevziať žiadnu zodpovednosť. Za obsah odkazovaných stránok je vždy zodpovedný ich príslušný poskytovateľ alebo prevádzkovateľ."
+      }
+    },
     "cookies": {
       "meta": {
         "title": "Cookies · Quantum Sphere",
@@ -639,6 +668,7 @@
     "legal": "Právne informácie",
     "privacy": "Ochrana osobných údajov",
     "cookies": "Cookies",
+    "impressum": "Impressum",
     "companyIdLabel": "IČO",
     "vatLabel": "DIČ",
     "registrationLabel": "Zápis"
