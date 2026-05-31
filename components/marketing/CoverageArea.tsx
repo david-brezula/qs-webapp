@@ -19,7 +19,7 @@ export function CoverageArea() {
               <div aria-hidden className="grid-fade absolute inset-0 opacity-50" />
               <div aria-hidden className="grain absolute inset-0" />
               <img
-                src="/coverage-map.svg"
+                src="/coverage-europe.svg"
                 alt=""
                 aria-hidden="true"
                 className="relative mx-auto w-full max-w-md"

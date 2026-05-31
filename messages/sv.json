@@ -57,36 +57,435 @@
     "about": "Om oss",
     "careers": "Karriär",
     "contact": "Kontakt",
-    "portal": "Logga in"
+    "portal": "Logga in",
+    "work": "Projekt"
   },
   "projects": {
-    "list": "Projekt",
-    "new": "Nytt projekt",
-    "name": "Projektnamn",
-    "location": "Plats",
-    "section": "Sektion",
-    "newSection": "Lägg till sektion",
-    "table": "Bord",
-    "newTable": "Lägg till bord",
-    "rows": "Rader (A)",
-    "cols": "Kolumner (B)",
-    "skipped": "Överhoppade (C)",
-    "modules": "Moduler",
-    "modulesTotal": "{count} moduler totalt",
-    "assignedWorkers": "Tilldelade arbetare",
-    "assignWorker": "Tilldela arbetare",
-    "priceTie": "Pris per fastsättning",
-    "priceConnect": "Pris per anslutning",
-    "tied": "Fastsatt",
-    "connected": "Ansluten",
-    "noProjects": "Inga projekt ännu.",
-    "close": "Avsluta projekt",
-    "reopen": "Återöppna",
-    "bulkAdd": "Massuppläggning",
-    "namePrefix": "Namnprefix",
-    "startNumber": "Startnummer",
-    "quantity": "Antal",
-    "addQuantity": "Lägg till {count} bord"
+    "meta": {
+      "title": "Projekt och referensuppdrag",
+      "description": "En närmare titt på utvalda projekt inom solceller, el, gipsväggar, murverk och tak — vad vi föresatte oss att göra, hur vi grep oss an det och resultatet."
+    },
+    "index": {
+      "title": "Projekt och referensuppdrag",
+      "subtitle": "En närmare titt på hur vi planerar och genomför arbeten inom våra fem yrkesområden."
+    },
+    "backLabel": "Alla projekt",
+    "viewCase": "Visa referensuppdrag",
+    "detail": {
+      "overviewTitle": "Översikt",
+      "challengeTitle": "Uppdraget",
+      "scopeTitle": "Vad vi gjorde",
+      "processTitle": "Så gjorde vi",
+      "outcomeTitle": "Resultat",
+      "statusTitleInProgress": "Nuläge",
+      "statusTitlePlanned": "Det vi kommer att leverera",
+      "factsTitle": "Projektet i korthet",
+      "relatedTitle": "Relaterade projekt",
+      "facts": {
+        "trade": "Yrkesområde",
+        "location": "Plats",
+        "year": "År",
+        "status": "Status"
+      }
+    },
+    "items": {
+      "solarFarm": {
+        "title": "Takmonterad solcellsanläggning",
+        "location": "Slovakien",
+        "summary": "Projektering och installation av ett takbaserat solcellssystem för en industribyggnad, inklusive projektdokumentation och anslutning till distributionsnätet.",
+        "overview": "Ett nätanslutet solcellssystem över taket på en stor industribyggnad, dimensionerat för att täcka en betydande del av platsens elbehov under dagtid. Vi drev projektet från inledande förstudie via dokumentation, installation och idrifttagning.",
+        "challenge": "Taket behövde bära en fullständig anläggning utan att tätskiktet eller konstruktionen äventyrades, och anslutningen till distributionsnätet krävde nätbolagets godkännande innan anläggningen kunde tas i drift.",
+        "scope": [
+          "Bedömning av takkonstruktion och bärförmåga",
+          "Solcellslayout och modellering av årlig avkastning",
+          "Projektdokumentation och ansökan om nätanslutning",
+          "Monteringsstrukturer, paneler, växelriktare och skydd",
+          "Idrifttagning, nätanslutning och överlämning av övervakning"
+        ],
+        "process": [
+          {
+            "title": "Inventering och förstudie",
+            "body": "Vi bedömde takets konstruktion, orientering och skuggning och modellerade sedan den förväntade avkastningen för att dimensionera anläggningen realistiskt."
+          },
+          {
+            "title": "Dokumentation och godkännanden",
+            "body": "Vi tog fram projektdokumentationen och hanterade ansökan om nätanslutning hos distributionsnätbolaget."
+          },
+          {
+            "title": "Installation",
+            "body": "Monteringsstrukturer, paneler, växelriktare och skydd installerades med det befintliga tätskiktsmembranet bevarat intakt under hela arbetet."
+          },
+          {
+            "title": "Idrifttagning",
+            "body": "Systemet provades, anslöts till nätet och överlämnades med övervakning så att produktionen kan följas över tid."
+          }
+        ],
+        "outcome": "Byggnaden producerar nu en betydande del av sin egen el under dagsljustimmarna, med fjärrövervakning på plats för att bekräfta prestandan säsong för säsong."
+      },
+      "groundMountSolar": {
+        "title": "Markmonterad solpark med lagring",
+        "location": "Nitra-regionen, Slovakien",
+        "summary": "Nyckelfärdig markmonterad solcellsanläggning på cirka 480 kWp kombinerad med batterilagring, levererad från fundament till nätanslutning.",
+        "overview": "En nyckelfärdig markmonterad solpark på ungefär 480 kWp på en tidigare industritomt, kombinerad med batterilagring så att produktionen kan flyttas mot kvällens effekttopp. Vi levererade hela kedjan, från markarbeten till idrifttagning.",
+        "challenge": "En sluttande, tidigare exploaterad tomt innebar att monteringsstrukturerna behövde sättas ut exakt, och att lägga till lagring krävde att utformningen av växelriktare och skydd kunde hantera både laddning och urladdning på ett rent sätt.",
+        "scope": [
+          "Utsättning på platsen, fundament och monteringsstrukturer",
+          "Stringlayout, paneler och växelriktare",
+          "Integration och styrning av batterilagring",
+          "Skydd, mätning och nätanslutning",
+          "Idrifttagning och prestandaövervakning"
+        ],
+        "process": [
+          {
+            "title": "Markarbeten",
+            "body": "Vi satte ut raderna efter terrängen och installerade fundament och monteringsstrukturer anpassade till den återställda marken."
+          },
+          {
+            "title": "Anläggning och lagring",
+            "body": "Paneler, växelriktare och batterisystemet installerades och kopplades så att lagringen laddas från överskottsproduktionen."
+          },
+          {
+            "title": "Nätanslutning",
+            "body": "Skydd, mätning och anslutningen till nätet färdigställdes i enlighet med nätbolagets krav."
+          },
+          {
+            "title": "Idrifttagning",
+            "body": "Vi provade produktion och lagring tillsammans och överlämnade anläggningen med övervakning av båda."
+          }
+        ],
+        "outcome": "Anläggningen täcker behovet under dagtid och använder lagrad energi för att minska kvällens effekttoppar, driftsatt och överlämnad inom en enda byggsäsong."
+      },
+      "retailWiring": {
+        "title": "Elanpassning för handelslokaler",
+        "location": "Slovakien",
+        "summary": "Stark- och svagströmsinstallationer inklusive LED-belysning, eldningscentraler och inbrottslarm för kommersiella lokaler.",
+        "overview": "En komplett elanpassning av handelslokaler, omfattande kraft, belysning och svagströmssystem från eldningscentralerna till de slutliga armaturerna. Arbetet planerades kring hyresgästens inredning så att lokalen kunde öppna enligt tidsplan.",
+        "challenge": "Kraft- och svagströmssystemen behövde samordnas med butiksinredarna och ytskikten, och larmet och belysningen behövde driftsättas och certifieras före öppningen.",
+        "scope": [
+          "Eldningscentraler och slutliga kretsar",
+          "Layout och installation av LED-belysning",
+          "Svagströmskablage (data och larm)",
+          "Matning och idrifttagning av inbrottslarm",
+          "Provning, certifiering och överlämning"
+        ],
+        "process": [
+          {
+            "title": "Samordning",
+            "body": "Vi fastställde dragvägar och centralernas placering tillsammans med butiksinredarna så att grundinstallationen kunde löpa före ytskikten."
+          },
+          {
+            "title": "Grundinstallation",
+            "body": "Kanaler, kablage och dosor installerades innan väggar och tak slöts till."
+          },
+          {
+            "title": "Slutmontering",
+            "body": "Centraler, armaturer, tillbehör och larmet monterades och anslöts."
+          },
+          {
+            "title": "Provning och överlämning",
+            "body": "Kretsarna provades och certifierades, larmet driftsattes och installationen överlämnades inför öppningen."
+          }
+        ],
+        "outcome": "Lokalerna öppnade i tid med en fullt provad och certifierad elinstallation, energieffektiv LED-belysning och ett fungerande inbrottslarm."
+      },
+      "evChargingHub": {
+        "title": "Laddhubb för en logistikanläggning",
+        "location": "Trnava-regionen, Slovakien",
+        "summary": "DC-snabbladdningsplatser för en fordonsflotta, laststyrda för att hålla sig inom platsens tillgängliga nätkapacitet.",
+        "overview": "En laddhubb för elfordon för en fordonsflotta, uppbyggd kring snabbladdningsplatser matade från en uppgraderad anslutning och laststyrda så att platsen aldrig överskrider sin tillgängliga nätkapacitet.",
+        "challenge": "Att ladda en hel flotta samtidigt skulle ha överbelastat den befintliga anslutningen, så utformningen behövde kombinera en uppgraderad anslutning med aktiv laststyrning i stället för att bara lägga till laddare.",
+        "scope": [
+          "Uppgradering av matningen från transformatorstationen",
+          "Schaktning, rörläggning och kabeldragning",
+          "Eldningscentraler och skydd",
+          "Snabbladdare med dynamisk laststyrning",
+          "Integration med debitering och övervakning"
+        ],
+        "process": [
+          {
+            "title": "Kapacitetsbedömning",
+            "body": "Vi mätte den tillgängliga matningen och planerade en uppgradering plus laststyrning för att klara samtidig laddning."
+          },
+          {
+            "title": "Markarbeten och kablage",
+            "body": "Schaktning, rörläggning och kabeldragning installerades från den uppgraderade matningen till varje plats."
+          },
+          {
+            "title": "Laddare",
+            "body": "Snabbladdare monterades, anslöts och konfigurerades för dynamisk lastdelning mellan platserna."
+          },
+          {
+            "title": "Integration och idrifttagning",
+            "body": "Laddarna kopplades till operatörens debiterings- och övervakningssystem och provades sedan under last."
+          }
+        ],
+        "outcome": "Anläggningen kan ladda flera fordon samtidigt utan att överskrida sin anslutningsgräns, med användning och debitering synlig genom operatörens plattform."
+      },
+      "warehousePower": {
+        "title": "Elförsörjning och LED-takbelysning för lager",
+        "location": "Žilina-regionen, Slovakien",
+        "summary": "Lågspänningsdistribution och LED-belysning för höga takhöjder i ett logistiklager på 9 000 m², styrd av dagsljus- och närvarosensorer.",
+        "overview": "En kombinerad el- och belysningsanpassning för ett logistiklager på 9 000 m²: lågspänningsdistribution utlagd kring ställagen och LED-belysning för höga takhöjder styrd av dagsljus- och närvarosensorer.",
+        "challenge": "Belysningen behövde passa höga ställagegångar och ett arbetande golv, samtidigt som utbytet av äldre armaturer behövde ske med minimal störning av den pågående driften.",
+        "scope": [
+          "Lågspänningsdistribution och slutliga kretsar",
+          "LED-belysning för höga takhöjder utformad efter gånglayouten",
+          "Styrning med dagsljus- och närvarosensorer",
+          "Borttagning av gamla armaturer",
+          "Provning, certifiering och överlämning"
+        ],
+        "process": [
+          {
+            "title": "Belysningsprojektering",
+            "body": "Vi utformade layouten för de höga takhöjderna kring ställagegångarna och det arbetande golvet för att ge jämna, användbara ljusnivåer."
+          },
+          {
+            "title": "Eldistribution",
+            "body": "Lågspänningsdistribution och slutliga kretsar installerades för att mata belysning och utrustning."
+          },
+          {
+            "title": "Styrning",
+            "body": "Dagsljus- och närvarosensorer ställdes in så att belysningen dämpas eller slås om efter förhållanden och närvaro."
+          },
+          {
+            "title": "Omställning",
+            "body": "Gamla armaturer togs bort och installationen provades, certifierades och överlämnades med minimal driftstörning."
+          }
+        ],
+        "outcome": "Lagret drivs med effektiv, välstyrd belysning som svarar på dagsljus och närvaro, med märkbart lägre energiförbrukning för belysning och bättre ljus i plockzonen."
+      },
+      "officeFitout": {
+        "title": "Kontorsanpassning med gipsväggar",
+        "location": "Bratislava, Slovakien",
+        "summary": "Kompletta mellanväggar av gips, undertak och akustiklösningar för ett nyligen renoverat kontorsutrymme.",
+        "overview": "En komplett gipsanpassning av ett renoverat kontorsplan — mellanväggar, undertak och akustikåtgärder — levererad enligt arkitektens layout och ytskiktsspecifikation.",
+        "challenge": "Öppna planlösningar och mötesrum behövde rimlig akustisk avskiljning, och undertaken behövde samordnas rent med belysning, ventilation och sprinkler.",
+        "scope": [
+          "Mellanväggar med stålregelstomme enligt kontorslayouten",
+          "Undertak samordnade med installationer",
+          "Akustikisolering och detaljutförande",
+          "Öppningar, nedsänkningar och inspektionsluckor",
+          "Skarvning och spackling klar för målning"
+        ],
+        "process": [
+          {
+            "title": "Utsättning",
+            "body": "Vi satte ut mellanväggar och undertaksraster efter arkitektens ritningar och installationslayouten."
+          },
+          {
+            "title": "Stomme",
+            "body": "Stålregelstommen restes med akustikisolering där avskiljning mellan utrymmen behövdes."
+          },
+          {
+            "title": "Beklädnad och undertak",
+            "body": "Mellanväggarna kläddes och undertaken monterades, samordnade med belysning och ventilation."
+          },
+          {
+            "title": "Slutbearbetning",
+            "body": "Skarvar tejpades och spacklades och ytorna lämnades klara för målning."
+          }
+        ],
+        "outcome": "Planet överlämnades klart för målning, med rena linjer, väl avvägd akustik och undertak som integrerar byggnadens installationer prydligt."
+      },
+      "clinicFitout": {
+        "title": "Inredningsanpassning av en öppenvårdsklinik",
+        "location": "Bratislava, Slovakien",
+        "summary": "Brandklassade och hygieniska gipsväggar, undertak och akustikåtgärder för en öppenvårdsklinik över två våningar.",
+        "overview": "En inredningsanpassning med gipsväggar för en öppenvårdsklinik över två våningar, byggd enligt vårdstandard: brandklassade och hygieniska väggar, undertak och akustikåtgärder kring mottagnings- och behandlingsrum.",
+        "challenge": "Vårdinteriörer kräver rengöringsbar, brandklassad och på vissa ställen strålskärmad konstruktion, allt med snäva toleranser kring medicinska installationer och ventilation.",
+        "scope": [
+          "Brandklassade väggar mot mottagnings- och behandlingsrum",
+          "Hygieniska, rengöringsbara vägganslutningar och ytskikt",
+          "Blyinklädda väggar mot röntgenrummet",
+          "Undertak och akustikåtgärder",
+          "Samordning med medicinska installationer och ventilation"
+        ],
+        "process": [
+          {
+            "title": "Regelstyrd utsättning",
+            "body": "Vi satte ut väggarna efter varje rums krav på brand, hygien och strålskärmning."
+          },
+          {
+            "title": "Specialstomme",
+            "body": "Stomme och beklädnad omfattade blyinklädnad mot röntgenrummet och detaljutförande för rengöringsbara anslutningar."
+          },
+          {
+            "title": "Undertak och installationer",
+            "body": "Undertak monterades med snäva toleranser kring medicinska installationer och ventilation."
+          },
+          {
+            "title": "Slutbearbetning",
+            "body": "Ytorna bearbetades till en hygienisk, lättrengörd standard klar för klinikens inredning."
+          }
+        ],
+        "outcome": "Kliniken tog över interiörer som uppfyller vårdens krav på brand, hygien och strålskärmning, med undertak och ytskikt som sitter rent kring de medicinska installationerna."
+      },
+      "apartmentReroof": {
+        "title": "Förnyelse av sadeltak på flerbostadshus",
+        "location": "Košice, Slovakien",
+        "summary": "Komplett förnyelse av sadeltaket på ett femvånings bostadshus — läkt, underlagsduk, tegelpannor, isolering och plåtarbeten — utförd i etapper med byggnaden bebodd.",
+        "overview": "En komplett förnyelse av sadeltaket på ett femvånings bostadshus — nya läkt, underlagsduk, tegelpannor, isolering och plåtarbeten — utförd i etapper så att de boende kunde bo kvar i sina hem under hela arbetet.",
+        "challenge": "Att arbeta över en bebodd byggnad innebar strikt uppmärksamhet på väderskydd och säkerhet, där varje etapp gjordes vattentät innan nästa öppnades upp.",
+        "scope": [
+          "Rivning av den befintliga takbeläggningen",
+          "Ny isolering, underlagsduk och läkt",
+          "Tegelpannebeläggning",
+          "Takkupor, takgenomföringar och beslag",
+          "Förnyat dagvattensystem"
+        ],
+        "process": [
+          {
+            "title": "Etappindelning och skydd",
+            "body": "Vi delade taket i sektioner så att varje kunde öppnas, bearbetas och göras vattentät utan att lägenheterna nedanför exponerades."
+          },
+          {
+            "title": "Rivning och uppbyggnad",
+            "body": "Den gamla beläggningen togs av och ny isolering, underlagsduk och läkt lades på, sektion för sektion."
+          },
+          {
+            "title": "Pannläggning och detaljutförande",
+            "body": "Tegelpannor lades och takkupor, takgenomföringar och beslag detaljerades för ett vädertätt utförande."
+          },
+          {
+            "title": "Dagvatten och överlämning",
+            "body": "Dagvattensystemet förnyades och det färdiga taket överlämnades."
+          }
+        ],
+        "outcome": "Bostadshuset har ett förnyat, korrekt isolerat och vädertätt tak, levererat i etapper som lät de boende bo kvar under hela arbetet."
+      },
+      "retainingWall": {
+        "title": "Armerad stödmur och markmurning",
+        "location": "Trenčín-regionen, Slovakien",
+        "summary": "Armerad stödkonstruktion som stabiliserar en sluttande tomt för ett nybygge, med naturstensbeklädnad, dränering och murverk i utemiljön.",
+        "overview": "En armerad stödkonstruktion för att stabilisera en sluttande tomt för ett nybygge, avslutad med naturstensbeklädnad och sammanknuten med trappor och trädgårdsmurar över hela tomten.",
+        "challenge": "Sluttningen och grundvattnet behövde kontrolleras för att säkra terrängen ovanför, samtidigt som de synliga ytorna behövde ett naturstensutförande i samklang med huset.",
+        "scope": [
+          "Schaktning och fundament mot sluttningen",
+          "Armerad stödkonstruktion",
+          "Dränering bakom muren",
+          "Naturstensbeklädnad",
+          "Trappor och trädgårdsmurar"
+        ],
+        "process": [
+          {
+            "title": "Markarbeten",
+            "body": "Vi schaktade och formade fundament dimensionerade efter sluttningen och lasterna ovanför."
+          },
+          {
+            "title": "Konstruktion",
+            "body": "Den armerade stödkonstruktionen byggdes och försågs med dränering för att hantera grundvatten."
+          },
+          {
+            "title": "Beklädnad",
+            "body": "Naturstensbeklädnad lades för att ge de synliga ytorna ett utförande som passar huset."
+          },
+          {
+            "title": "Utemiljö",
+            "body": "Trappor och lägre trädgårdsmurar knöts samman för att färdigställa tomten."
+          }
+        ],
+        "outcome": "Terrängen ovanför är säkrad mot rörelse och vatten, med naturstensytor och integrerade trappor som färdigställer utemiljön prydligt."
+      },
+      "industrialRoof": {
+        "title": "Omläggning av industrihallstak",
+        "location": "Slovakien",
+        "summary": "Rivning och byte av ett befintligt platt tak med ett tätskiktsmembransystem på en produktionsanläggning.",
+        "overview": "En omläggning av en produktionshall, där ett slitet platt tak byts mot ett nytt tätskiktsmembransystem över den arbetande anläggningen. Projektet pågår för närvarande.",
+        "challenge": "Hallen är kvar i produktion under arbetet, så taket måste rivas och täckas om i sektioner som görs vattentäta varje dag utan att avbryta driften nedanför.",
+        "scope": [
+          "Inventering och specifikation av takuppbyggnad",
+          "Etappvis rivning av det befintliga platta taket",
+          "Ny isolering och tätskiktsmembran",
+          "Förnyade beslag, ståndskivor och takbrunnar",
+          "Takavvattning"
+        ],
+        "process": [
+          {
+            "title": "Inventering och plan",
+            "body": "Vi inventerade det befintliga taket och planerade en etappvis uppbyggnad som håller hallen vattentät dag för dag."
+          },
+          {
+            "title": "Etappvis rivning",
+            "body": "Den slitna beläggningen tas bort i sektioner dimensionerade för att kunna täckas om inom varje arbetsfönster."
+          },
+          {
+            "title": "Nytt tätskikt",
+            "body": "Isolering och ett nytt membransystem läggs för närvarande, med beslag och takbrunnar som förnyas."
+          },
+          {
+            "title": "Avvattning och färdigställande",
+            "body": "Takavvattningen bringas upp till standard allteftersom varje sektion sluts till."
+          }
+        ],
+        "outcome": "Arbetet fortskrider sektion för sektion och håller anläggningen i produktion medan taket byts; färdigställande och överlämning är planerade inom det pågående programmet."
+      },
+      "brickFacade": {
+        "title": "Tegelfasad och murningsarbete",
+        "location": "Slovakien",
+        "summary": "Bärande murverk och en tegelfasad för ett flerbostadshus, inklusive överliggare och öppningar.",
+        "overview": "Bärande murverk och en tegelfasad för ett flerbostadshus, inklusive överliggare och öppningar. Stommen och fasaden byggs i takt med det övergripande projektet.",
+        "challenge": "Fasaden ska framstå som ett rent, regelbundet tegelmönster medan murverket bakom den bär last och inramar fönster- och dörröppningarna exakt.",
+        "scope": [
+          "Bärande murverk enligt konstruktionsritningarna",
+          "Överliggare över öppningar",
+          "Tegelfasad",
+          "Utsättning av fönster- och dörröppningar",
+          "Rörelsefogar och detaljutförande"
+        ],
+        "process": [
+          {
+            "title": "Utsättning",
+            "body": "Vi satte ut väggarna och öppningarna från konstruktionsritningarna så att fasadmönstret förblir regelbundet."
+          },
+          {
+            "title": "Bärande murverk",
+            "body": "Det bärande murverket byggs för närvarande med överliggare placerade över öppningarna allteftersom väggarna reser sig."
+          },
+          {
+            "title": "Tegelfasad",
+            "body": "Tegelfasaden muras för närvarande med ett enhetligt förband och fog över fasaderna."
+          },
+          {
+            "title": "Detaljutförande",
+            "body": "Rörelsefogar och öppningsdetaljer färdigställs allteftersom varje fasad blir klar."
+          }
+        ],
+        "outcome": "Murverket och fasaden reser sig i takt med bygget; de fasader som hittills färdigställts visar det rena, regelbundna tegelarbete som utformningen kräver."
+      },
+      "solarCarport": {
+        "title": "Solcarport med laddning",
+        "location": "Slovakien",
+        "summary": "Planerad solcellscarport med integrerade laddpunkter för elbilar för en företagsparkering.",
+        "overview": "En planerad solcellscarport för en företagsparkering: en takkonstruktion som bär solpaneler, med integrerade laddpunkter för elbilar under den. Projektet är under planering.",
+        "challenge": "Konstruktionen behöver skugga och skydda parkeringen samtidigt som den bär anläggningen, och laddpunkterna måste matas och laststyras inom platsens elkapacitet.",
+        "scope": [
+          "Takkonstruktion för carport",
+          "Solcellsanläggning på taket",
+          "Integrerade laddpunkter för elbilar",
+          "Matning, skydd och laststyrning",
+          "Nätanslutning och idrifttagning"
+        ],
+        "process": [
+          {
+            "title": "Koncept och layout",
+            "body": "Vi kommer att anpassa takets layout till parkeringsplatserna och dimensionera anläggningen och laddarna efter platsen."
+          },
+          {
+            "title": "Konstruktion",
+            "body": "Carportkonstruktionen kommer att byggas för att bära anläggningen och skydda parkeringen nedanför."
+          },
+          {
+            "title": "Solceller och laddning",
+            "body": "Paneler och laddpunkter för elbilar kommer att installeras, matas och laststyras inom kapaciteten."
+          },
+          {
+            "title": "Anslutning",
+            "body": "Systemet kommer att anslutas, driftsättas och överlämnas med övervakning."
+          }
+        ],
+        "outcome": "När den är byggd kommer carporten att skydda parkeringen, producera solel och ladda fordon från en enda konstruktion — och förena vårt sol- och elarbete på ett och samma ställe."
+      }
+    }
   },
   "workers": {
     "list": "Arbetare",
@@ -250,38 +649,6 @@
     "featuredProjects": {
       "title": "Utvalda projekt",
       "subtitle": "Ett urval av projekt från de senaste åren",
-      "items": {
-        "solarFarm": {
-          "title": "Takmonterad solcellsanläggning",
-          "location": "Slovakien",
-          "body": "Projektering och installation av ett takbaserat solcellssystem för en industribyggnad, inklusive projektdokumentation och nätanslutning."
-        },
-        "officeFitout": {
-          "title": "Kontorsanpassning med gipsväggar",
-          "location": "Bratislava, Slovakien",
-          "body": "Kompletta mellanväggar av gips, undertak och akustiklösningar för ett nyligen renoverat kontorsutrymme."
-        },
-        "industrialRoof": {
-          "title": "Omläggning av industrihallstak",
-          "location": "Slovakien",
-          "body": "Rivning och byte av befintligt platt tak med tätskiktsmembransystem på en produktionsanläggning."
-        },
-        "retailWiring": {
-          "title": "Elanpassning för handelslokaler",
-          "location": "Slovakien",
-          "body": "Stark- och svagströmsinstallationer inklusive LED-belysning, eldningscentraler och inbrottslarm för kommersiella lokaler."
-        },
-        "brickFacade": {
-          "title": "Tegelfasad och murningsarbete",
-          "location": "Slovakien",
-          "body": "Bärande murverk och en tegelfasad för ett flerbostadshus, inklusive överliggare och öppningar."
-        },
-        "solarCarport": {
-          "title": "Solcarport med laddning",
-          "location": "Slovakien",
-          "body": "Planerad solcellscarport med integrerade laddpunkter för elbilar på en företagsparkering."
-        }
-      },
       "allLabel": "Alla",
       "status": {
         "completed": "Slutfört",

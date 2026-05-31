@@ -96,6 +96,25 @@ export const routing = defineRouting({
       sv: "/villkor",
     },
 
+    // Marketing project case studies. Internal path is "/work" because the portal
+    // already owns "/projects" (auth-gated in proxy.ts). Only the prefix is
+    // localized; the [slug] segment is a stable, language-independent project
+    // slug (see lib/projects.ts).
+    "/work": {
+      sk: "/realizacie",
+      en: "/case-studies",
+      de: "/projekte",
+      fr: "/realisations",
+      sv: "/projekt",
+    },
+    "/work/[slug]": {
+      sk: "/realizacie/[slug]",
+      en: "/case-studies/[slug]",
+      de: "/projekte/[slug]",
+      fr: "/realisations/[slug]",
+      sv: "/projekt/[slug]",
+    },
+
     // Portal — English slugs for every locale (not SEO-targeted).
     "/login": "/login",
     "/dashboard": "/dashboard",

@@ -56,36 +56,435 @@
     "about": "O nás",
     "careers": "Kariéra",
     "contact": "Kontakt",
-    "portal": "Prihlásiť sa"
+    "portal": "Prihlásiť sa",
+    "work": "Realizácie"
   },
   "projects": {
-    "list": "Projekty",
-    "new": "Nový projekt",
-    "name": "Názov projektu",
-    "location": "Lokalita",
-    "section": "Sekcia",
-    "newSection": "Pridať sekciu",
-    "table": "Tabuľka",
-    "newTable": "Pridať tabuľku",
-    "rows": "Riadky (A)",
-    "cols": "Stĺpce (B)",
-    "skipped": "Vynechané (C)",
-    "modules": "Moduly",
-    "modulesTotal": "{count} modulov spolu",
-    "assignedWorkers": "Priradení pracovníci",
-    "assignWorker": "Priradiť pracovníka",
-    "priceTie": "Cena za uviazanie",
-    "priceConnect": "Cena za zapojenie",
-    "tied": "Uviazané",
-    "connected": "Zapojené",
-    "noProjects": "Zatiaľ žiadne projekty.",
-    "close": "Uzavrieť projekt",
-    "reopen": "Otvoriť",
-    "bulkAdd": "Hromadné pridanie",
-    "namePrefix": "Predpona názvu",
-    "startNumber": "Začať od",
-    "quantity": "Počet",
-    "addQuantity": "Pridať {count} tabuliek"
+    "meta": {
+      "title": "Projekty a prípadové štúdie",
+      "description": "Bližší pohľad na vybrané solárne, elektroinštalačné, sadrokartónové, murárske a strešné projekty — čo sme si predsavzali, ako sme k tomu pristúpili a aký bol výsledok."
+    },
+    "index": {
+      "title": "Projekty a prípadové štúdie",
+      "subtitle": "Bližší pohľad na to, ako plánujeme a realizujeme práce naprieč našimi piatimi odbormi."
+    },
+    "backLabel": "Všetky projekty",
+    "viewCase": "Zobraziť prípadovú štúdiu",
+    "detail": {
+      "overviewTitle": "Prehľad",
+      "challengeTitle": "Zadanie",
+      "scopeTitle": "Čo sme urobili",
+      "processTitle": "Ako sme to urobili",
+      "outcomeTitle": "Výsledok",
+      "statusTitleInProgress": "Aktuálny stav",
+      "statusTitlePlanned": "Čo dodáme",
+      "factsTitle": "Projekt v skratke",
+      "relatedTitle": "Súvisiace projekty",
+      "facts": {
+        "trade": "Odbor",
+        "location": "Lokalita",
+        "year": "Rok",
+        "status": "Stav"
+      }
+    },
+    "items": {
+      "solarFarm": {
+        "title": "Strešná fotovoltická elektráreň",
+        "location": "Slovensko",
+        "summary": "Návrh a inštalácia strešného FV systému pre priemyselný objekt vrátane projektovej dokumentácie a pripojenia do distribučnej siete.",
+        "overview": "Fotovoltický systém pripojený do siete na streche veľkého priemyselného objektu, dimenzovaný tak, aby pokryl významný podiel dennej spotreby elektriny v areáli. Projekt sme previedli od úvodnej štúdie realizovateľnosti cez dokumentáciu a inštaláciu až po uvedenie do prevádzky.",
+        "challenge": "Strecha musela uniesť celé pole panelov bez narušenia hydroizolácie či statiky a pripojenie do distribučnej siete si pred spustením elektrárne vyžadovalo súhlas prevádzkovateľa siete.",
+        "scope": [
+          "Posúdenie statiky a nosnosti strechy",
+          "Rozmiestnenie fotovoltiky a modelovanie ročného výnosu",
+          "Projektová dokumentácia a žiadosť o pripojenie do siete",
+          "Montážne konštrukcie, panely, meniče a ochrany",
+          "Uvedenie do prevádzky, pripojenie do siete a odovzdanie monitoringu"
+        ],
+        "process": [
+          {
+            "title": "Obhliadka a štúdia realizovateľnosti",
+            "body": "Posúdili sme statiku strechy, orientáciu a tienenie, potom sme namodelovali očakávaný výnos, aby sme pole panelov reálne nadimenzovali."
+          },
+          {
+            "title": "Dokumentácia a povolenia",
+            "body": "Pripravili sme projektovú dokumentáciu a vybavili žiadosť o pripojenie do siete u distribučného prevádzkovateľa."
+          },
+          {
+            "title": "Inštalácia",
+            "body": "Montážne konštrukcie, panely, meniče a ochrany sme nainštalovali tak, aby existujúca strešná fólia zostala počas celých prác neporušená."
+          },
+          {
+            "title": "Uvedenie do prevádzky",
+            "body": "Systém sme otestovali, pripojili do siete a odovzdali s monitoringom, aby bolo možné sledovať výrobu v čase."
+          }
+        ],
+        "outcome": "Objekt si teraz počas denného svetla vyrába podstatnú časť vlastnej elektriny, pričom diaľkový monitoring sledovaním potvrdzuje výkon sezónu za sezónou."
+      },
+      "groundMountSolar": {
+        "title": "Pozemná fotovoltická elektráreň s úložiskom",
+        "location": "Nitriansky kraj, Slovensko",
+        "summary": "Pozemné FV pole s výkonom približne 480 kWp na kľúč doplnené batériovým úložiskom, dodané od základov až po pripojenie do siete.",
+        "overview": "Pozemná fotovoltická elektráreň s výkonom približne 480 kWp na kľúč na bývalej priemyselnej ploche, doplnená batériovým úložiskom, aby bolo možné presunúť výrobu do večernej špičky. Dodali sme celý reťazec — od zemných prác až po uvedenie do prevádzky.",
+        "challenge": "Svahovitý a predtým narušený pozemok znamenal, že montážne konštrukcie bolo treba presne vytýčiť, a doplnenie úložiska si vyžadovalo, aby návrh meničov a ochrán zvládol bez problémov nabíjanie aj vybíjanie.",
+        "scope": [
+          "Vytýčenie plochy, základy a montážne konštrukcie",
+          "Návrh stringov, panely a meniče",
+          "Integrácia a riadenie batériového úložiska",
+          "Ochrany, meranie a pripojenie do siete",
+          "Uvedenie do prevádzky a monitoring výkonu"
+        ],
+        "process": [
+          {
+            "title": "Zemné práce",
+            "body": "Rady panelov sme vytýčili podľa terénu a osadili sme základy a montážne konštrukcie vhodné pre rekultivovaný pozemok."
+          },
+          {
+            "title": "Pole panelov a úložisko",
+            "body": "Panely, meniče a batériový systém sme nainštalovali a zapojili tak, aby sa úložisko nabíjalo z prebytkov výroby."
+          },
+          {
+            "title": "Pripojenie do siete",
+            "body": "Ochrany, meranie a pripojenie do siete sme dokončili v súlade s požiadavkami prevádzkovateľa."
+          },
+          {
+            "title": "Uvedenie do prevádzky",
+            "body": "Výrobu a úložisko sme otestovali spoločne a elektráreň sme odovzdali s monitoringom oboch."
+          }
+        ],
+        "outcome": "Elektráreň pokrýva dennú spotrebu a uloženou energiou znižuje večerné špičky; uviedli sme ju do prevádzky a odovzdali v rámci jednej stavebnej sezóny."
+      },
+      "retailWiring": {
+        "title": "Elektroinštalácie pre obchodné priestory",
+        "location": "Slovensko",
+        "summary": "Silnoprúdové a slaboprúdové rozvody vrátane LED osvetlenia, rozvádzačov a EZS pre komerčné priestory.",
+        "overview": "Kompletné elektroinštalácie obchodných priestorov pokrývajúce silnoprúd, osvetlenie a slaboprúdové systémy od rozvádzačov až po koncové prvky. Práce sme zosúladili s vybavovaním priestoru nájomcom, aby sa prevádzka mohla otvoriť načas.",
+        "challenge": "Silnoprúdové a slaboprúdové systémy bolo treba koordinovať s dodávateľmi interiéru a povrchových úprav a zabezpečovací systém aj osvetlenie bolo potrebné pred otvorením uviesť do prevádzky a odovzdať s revíziou.",
+        "scope": [
+          "Rozvádzače a koncové obvody",
+          "Návrh a inštalácia LED osvetlenia",
+          "Slaboprúdové rozvody (dáta a EZS)",
+          "Napájanie a uvedenie EZS do prevádzky",
+          "Skúšky, revízie a odovzdanie"
+        ],
+        "process": [
+          {
+            "title": "Koordinácia",
+            "body": "S dodávateľmi interiéru sme určili trasy a polohy rozvádzačov tak, aby hrubá inštalácia mohla prebehnúť pred povrchovými úpravami."
+          },
+          {
+            "title": "Hrubá inštalácia",
+            "body": "Pred uzatvorením stien a stropov sme osadili chráničky, káble a inštalačné krabice."
+          },
+          {
+            "title": "Finálna montáž",
+            "body": "Rozvádzače, svietidlá, prístroje a zabezpečovací systém sme osadili a zapojili."
+          },
+          {
+            "title": "Skúšky a odovzdanie",
+            "body": "Obvody sme odskúšali a vystavili revíznu správu, EZS uviedli do prevádzky a inštaláciu odovzdali pripravenú na otvorenie."
+          }
+        ],
+        "outcome": "Priestory sa otvorili načas s kompletne odskúšanou elektroinštaláciou s revíziou, energeticky úsporným LED osvetlením a funkčným zabezpečovacím systémom."
+      },
+      "evChargingHub": {
+        "title": "Nabíjacie centrum pre logistický areál",
+        "location": "Trnavský kraj, Slovensko",
+        "summary": "DC rýchlonabíjacie miesta pre flotilu úžitkových vozidiel, riadené podľa zaťaženia tak, aby sa dodržala dostupná kapacita siete v areáli.",
+        "overview": "Nabíjacie centrum pre firemnú flotilu elektromobilov postavené okolo rýchlonabíjacích miest napájaných z rekonštruovanej prípojky a riadených podľa zaťaženia tak, aby areál nikdy neprekročil dostupnú kapacitu siete.",
+        "challenge": "Nabíjanie celej flotily naraz by preťažilo existujúcu prípojku, preto bolo treba návrh skĺbiť z posilnenia prípojky s aktívnym riadením zaťaženia, a nie len pridať nabíjačky.",
+        "scope": [
+          "Posilnenie prípojky z trafostanice",
+          "Výkopy, uloženie chráničiek a vedenie káblov",
+          "Rozvádzače a ochrany",
+          "Rýchlonabíjačky s dynamickým riadením zaťaženia",
+          "Integrácia s fakturáciou a monitoringom"
+        ],
+        "process": [
+          {
+            "title": "Posúdenie kapacity",
+            "body": "Zmerali sme dostupnú kapacitu prípojky a naplánovali jej posilnenie spolu s riadením zaťaženia tak, aby pokrylo súčasné nabíjanie."
+          },
+          {
+            "title": "Výkopy a kabeláž",
+            "body": "Od posilnenej prípojky ku každému nabíjaciemu miestu sme zrealizovali výkopy, chráničky a vedenia káblov."
+          },
+          {
+            "title": "Nabíjačky",
+            "body": "Rýchlonabíjačky sme osadili, zapojili a nakonfigurovali na dynamické rozdeľovanie zaťaženia medzi jednotlivé miesta."
+          },
+          {
+            "title": "Integrácia a uvedenie do prevádzky",
+            "body": "Nabíjačky sme prepojili s fakturačným a monitorovacím systémom prevádzkovateľa a následne otestovali pod zaťažením."
+          }
+        ],
+        "outcome": "Areál dokáže nabíjať viacero vozidiel naraz bez prekročenia limitu prípojky, pričom spotreba aj fakturácia sú viditeľné cez platformu prevádzkovateľa."
+      },
+      "warehousePower": {
+        "title": "Elektroinštalácie a LED priemyselné osvetlenie skladu",
+        "location": "Žilinský kraj, Slovensko",
+        "summary": "Nízkonapäťové rozvody a LED priemyselné osvetlenie pre logistický sklad s plochou 9 000 m², riadené snímačmi denného svetla a prítomnosti.",
+        "overview": "Kombinovaná dodávka silnoprúdu a osvetlenia pre logistický sklad s plochou 9 000 m²: nízkonapäťové rozvody navrhnuté okolo regálov a LED priemyselné osvetlenie riadené snímačmi denného svetla a prítomnosti.",
+        "challenge": "Osvetlenie muselo vyhovovať vysokým regálovým uličkám aj pracovnej ploche, pričom výmena starších svietidiel mala prebehnúť s minimálnym narušením prebiehajúcej prevádzky.",
+        "scope": [
+          "Nízkonapäťové rozvody a koncové obvody",
+          "LED priemyselné osvetlenie navrhnuté podľa rozloženia uličiek",
+          "Riadenie snímačmi denného svetla a prítomnosti",
+          "Demontáž zastaraných svietidiel",
+          "Skúšky, revízie a odovzdanie"
+        ],
+        "process": [
+          {
+            "title": "Návrh osvetlenia",
+            "body": "Rozloženie priemyselných svietidiel sme navrhli okolo regálových uličiek a pracovnej plochy tak, aby sme dosiahli rovnomerné a využiteľné úrovne osvetlenia."
+          },
+          {
+            "title": "Silnoprúdové rozvody",
+            "body": "Nízkonapäťové rozvody a koncové obvody sme osadili na napájanie osvetlenia a zariadení."
+          },
+          {
+            "title": "Riadenie",
+            "body": "Snímače denného svetla a prítomnosti sme nastavili tak, aby osvetlenie stmievalo alebo spínalo podľa podmienok a prítomnosti osôb."
+          },
+          {
+            "title": "Výmena",
+            "body": "Zastarané svietidlá sme demontovali a inštaláciu odskúšali, vystavili revíziu a odovzdali s minimálnym výpadkom prevádzky."
+          }
+        ],
+        "outcome": "Sklad funguje na úspornom a dobre riadenom osvetlení, ktoré reaguje na denné svetlo a prítomnosť osôb, s citeľne nižšou spotrebou energie na osvetlenie a lepším osvetlením v expedičnej zóne."
+      },
+      "officeFitout": {
+        "title": "Sadrokartónový fit-out kancelárií",
+        "location": "Bratislava, Slovensko",
+        "summary": "Kompletné sadrokartónové priečky, podhľady a akustické riešenia pre novozrekonštruovaný kancelársky priestor.",
+        "overview": "Kompletný sadrokartónový fit-out zrekonštruovaného kancelárskeho podlažia — priečky, podhľady a akustické riešenia — zrealizovaný podľa návrhu architekta a harmonogramu povrchových úprav.",
+        "challenge": "Open-space priestory aj zasadačky potrebovali zmysluplné akustické oddelenie a podhľady bolo treba čisto zosúladiť s osvetlením, vzduchotechnikou a sprinklermi.",
+        "scope": [
+          "Sadrokartónové priečky na oceľovej podkonštrukcii podľa dispozície",
+          "Podhľady zosúladené s rozvodmi",
+          "Akustická izolácia a detaily",
+          "Otvory, prievlaky a revízne dvierka",
+          "Tmelenie a finalizácia pripravená na maľbu"
+        ],
+        "process": [
+          {
+            "title": "Zameranie",
+            "body": "Priečky a rošty podhľadov sme vytýčili podľa výkresov architekta a rozmiestnenia rozvodov."
+          },
+          {
+            "title": "Podkonštrukcia",
+            "body": "Oceľovú podkonštrukciu sme osadili s akustickou izoláciou tam, kde bolo potrebné oddelenie priestorov."
+          },
+          {
+            "title": "Opláštenie a podhľady",
+            "body": "Priečky sme opláštili a osadili podhľady, zosúladené s osvetlením a vzduchotechnikou."
+          },
+          {
+            "title": "Finalizácia",
+            "body": "Spoje sme zatmelili a vyplnili a povrchy nechali pripravené na maľbu."
+          }
+        ],
+        "outcome": "Podlažie sme odovzdali pripravené na maľbu, s čistými líniami, vyváženou akustikou a podhľadmi, ktoré úhľadne integrujú technické rozvody budovy."
+      },
+      "clinicFitout": {
+        "title": "Interiérový fit-out ambulantnej kliniky",
+        "location": "Bratislava, Slovensko",
+        "summary": "Protipožiarne a hygienické sadrokartónové priečky, podhľady a akustické riešenia pre ambulantnú kliniku na dvoch podlažiach.",
+        "overview": "Interiérový sadrokartónový fit-out ambulantnej kliniky na dvoch podlažiach, vybudovaný podľa zdravotníckych štandardov: protipožiarne a hygienické priečky, podhľady a akustické riešenia okolo ambulancií a zákrokových miestností.",
+        "challenge": "Zdravotnícke interiéry si vyžadujú umývateľné, protipožiarne a miestami radiačne tienené konštrukcie, a to všetko pri dodržaní prísnych tolerancií okolo zdravotníckych rozvodov a vzduchotechniky.",
+        "scope": [
+          "Protipožiarne priečky pri ambulanciách a zákrokových miestnostiach",
+          "Hygienické, umývateľné napojenia stien a povrchy",
+          "Olovom tienené steny pri RTG miestnosti",
+          "Podhľady a akustické riešenia",
+          "Koordinácia so zdravotníckymi rozvodmi a vzduchotechnikou"
+        ],
+        "process": [
+          {
+            "title": "Vytýčenie podľa noriem",
+            "body": "Priečky sme vytýčili podľa protipožiarnych, hygienických a tieniacich požiadaviek každej miestnosti."
+          },
+          {
+            "title": "Špecializovaná podkonštrukcia",
+            "body": "Podkonštrukcia a opláštenie zahŕňali olovené tienenie pri RTG miestnosti a detaily pre umývateľné napojenia."
+          },
+          {
+            "title": "Podhľady a rozvody",
+            "body": "Podhľady sme osadili v prísnych toleranciách okolo zdravotníckych rozvodov a vzduchotechniky."
+          },
+          {
+            "title": "Finalizácia",
+            "body": "Povrchy sme dokončili do hygienického, ľahko umývateľného štandardu pripraveného na vybavenie kliniky."
+          }
+        ],
+        "outcome": "Klinika prevzala interiéry, ktoré spĺňajú zdravotnícke požiadavky na protipožiarnu odolnosť, hygienu a tienenie, s podhľadmi a povrchmi, ktoré čisto obklopujú zdravotnícke rozvody."
+      },
+      "apartmentReroof": {
+        "title": "Obnova šikmej strechy bytového domu",
+        "location": "Košice, Slovensko",
+        "summary": "Kompletná obnova šikmej strechy päťpodlažného domu — laty, fólia, pálená krytina, izolácia a klampiarske práce — realizovaná po etapách počas obývanej budovy.",
+        "overview": "Kompletná obnova šikmej strechy päťpodlažného bytového domu — nové laty, fólia, pálená krytina, izolácia a klampiarske práce — realizovaná po etapách tak, aby obyvatelia mohli počas celých prác zostať vo svojich bytoch.",
+        "challenge": "Práca nad obývanou budovou znamenala prísnu pozornosť venovanú ochrane pred poveternosťou a bezpečnosti, pričom každá etapa musela byť pred otvorením ďalšej vodotesne zabezpečená.",
+        "scope": [
+          "Demontáž existujúcej strešnej krytiny",
+          "Nová izolácia, fólia a laty",
+          "Pálená krytina",
+          "Vikiere, strešné prestupy a oplechovania",
+          "Obnovený dažďový systém"
+        ],
+        "process": [
+          {
+            "title": "Etapizácia a ochrana",
+            "body": "Strechu sme rozdelili na úseky tak, aby bolo možné každý otvoriť, zrealizovať a vodotesne uzavrieť bez vystavenia bytov pod ním."
+          },
+          {
+            "title": "Demontáž a skladba",
+            "body": "Stará krytina sa odstránila a nová izolácia, fólia a laty sa osadili úsek po úseku."
+          },
+          {
+            "title": "Krytina a detaily",
+            "body": "Pálenú krytinu sme položili a vikiere, prestupy a oplechovania vyriešili do vodotesného vyhotovenia."
+          },
+          {
+            "title": "Dažďový systém a odovzdanie",
+            "body": "Dažďový systém sme obnovili a dokončenú strechu odovzdali."
+          }
+        ],
+        "outcome": "Bytový dom má obnovenú, riadne zateplenú a vodotesnú strechu, dodanú po etapách, vďaka ktorým obyvatelia počas celých prác zostali na mieste."
+      },
+      "retainingWall": {
+        "title": "Vystužený oporný múr a vonkajšie murivo",
+        "location": "Trenčiansky kraj, Slovensko",
+        "summary": "Vystužená oporná konštrukcia stabilizujúca svahovitý pozemok pre novostavbu domu, s kamenným obkladom, drenážou a záhradným murivom.",
+        "overview": "Vystužená oporná konštrukcia na stabilizáciu svahovitého pozemku pre novostavbu domu, dokončená kamenným obkladom a previazaná so schodmi a záhradnými múrikmi po celom areáli.",
+        "challenge": "Svah a podzemnú vodu bolo treba zvládnuť tak, aby sa zabezpečil terén nad múrom, pričom viditeľné plochy potrebovali kamenný obklad ladiaci s domom.",
+        "scope": [
+          "Výkop a základy podľa svahu",
+          "Vystužená oporná konštrukcia",
+          "Drenáž za múrom",
+          "Kamenný obklad",
+          "Schody a záhradné múriky"
+        ],
+        "process": [
+          {
+            "title": "Zemné práce",
+            "body": "Vykopali sme a vytvorili základy dimenzované podľa svahu a zaťaženia nad ním."
+          },
+          {
+            "title": "Konštrukcia",
+            "body": "Vystuženú opornú konštrukciu sme postavili a zozadu doplnili drenážou na odvedenie podzemnej vody."
+          },
+          {
+            "title": "Obklad",
+            "body": "Kamenný obklad sme položili tak, aby viditeľné plochy dostali vyhotovenie ladiace s domom."
+          },
+          {
+            "title": "Sadové úpravy",
+            "body": "Schody a nižšie záhradné múriky sme previazali tak, aby dotvorili areál."
+          }
+        ],
+        "outcome": "Terén nad múrom je zabezpečený proti zosuvu aj vode, s kamennými plochami a integrovanými schodmi, ktoré úhľadne dotvárajú areál."
+      },
+      "industrialRoof": {
+        "title": "Nová strecha priemyselnej haly",
+        "location": "Slovensko",
+        "summary": "Demontáž a výmena existujúcej plochej strechy za systém fóliovej hydroizolácie na výrobnom objekte.",
+        "overview": "Výmena strechy výrobnej haly, pri ktorej nahrádzame opotrebovanú plochú strechu novým systémom fóliovej hydroizolácie nad fungujúcim objektom. Projekt aktuálne prebieha.",
+        "challenge": "Hala počas prác zostáva vo výrobe, takže strechu treba demontovať a prekryť po úsekoch, ktoré sa každý deň vodotesne uzavrú bez prerušenia prevádzky pod nimi.",
+        "scope": [
+          "Obhliadka a špecifikácia skladby",
+          "Etapová demontáž existujúcej plochej strechy",
+          "Nová izolácia a fóliová hydroizolácia",
+          "Obnovené oplechovania, atiky a vpusty",
+          "Odvodnenie strechy"
+        ],
+        "process": [
+          {
+            "title": "Obhliadka a plán",
+            "body": "Existujúcu strechu sme zamerali a naplánovali etapovú skladbu, ktorá udrží halu deň po dni vodotesnú."
+          },
+          {
+            "title": "Etapová demontáž",
+            "body": "Opotrebovaná krytina sa odstraňuje po úsekoch dimenzovaných tak, aby sa dali prekryť v rámci každého pracovného okna."
+          },
+          {
+            "title": "Nová hydroizolácia",
+            "body": "Aktuálne sa kladie izolácia a nový fóliový systém, pričom sa obnovujú oplechovania a vpusty."
+          },
+          {
+            "title": "Odvodnenie a dokončenie",
+            "body": "Odvodnenie strechy sa uvádza do požadovaného stavu vždy, keď sa daný úsek uzatvára."
+          }
+        ],
+        "outcome": "Práce postupujú úsek po úseku a udržiavajú objekt vo výrobe počas výmeny strechy; dokončenie a odovzdanie sú naplánované v rámci aktuálneho harmonogramu."
+      },
+      "brickFacade": {
+        "title": "Tehlová fasáda a murárske práce",
+        "location": "Slovensko",
+        "summary": "Nosné murivo a tehlová fasáda z pálenej tehly pre viacbytový dom vrátane prekladov a otvorov.",
+        "overview": "Nosné murivo a tehlová fasáda z pálenej tehly pre viacbytový dom vrátane prekladov a otvorov. Konštrukcia a fasáda sa budujú v súbehu so širším projektom.",
+        "challenge": "Fasáda musí pôsobiť ako čistý, pravidelný tehlový vzor, zatiaľ čo murivo za ňou nesie zaťaženie a presne rámuje okenné a dverné otvory.",
+        "scope": [
+          "Nosné murivo podľa statického návrhu",
+          "Preklady nad otvormi",
+          "Fasáda z pálenej tehly",
+          "Vytýčenie okenných a dverných otvorov",
+          "Dilatačné škáry a detaily"
+        ],
+        "process": [
+          {
+            "title": "Vytýčenie",
+            "body": "Steny a otvory sme vytýčili zo statických výkresov tak, aby vzor fasády zostal pravidelný."
+          },
+          {
+            "title": "Nosné murivo",
+            "body": "Nosné murivo sa buduje a preklady sa s rastom stien osádzajú nad otvory."
+          },
+          {
+            "title": "Tehlová fasáda",
+            "body": "Fasáda z pálenej tehly sa kladie s rovnomernou väzbou a škárou naprieč fasádami."
+          },
+          {
+            "title": "Detaily",
+            "body": "Dilatačné škáry a detaily otvorov sa dokončujú vždy, keď je daná fasáda hotová."
+          }
+        ],
+        "outcome": "Murivo a fasáda rastú v súbehu s výstavbou; doteraz dokončené fasády ukazujú čisté a pravidelné tehlové murivo, ktoré návrh vyžaduje."
+      },
+      "solarCarport": {
+        "title": "Solárny prístrešok s nabíjaním elektromobilov",
+        "location": "Slovensko",
+        "summary": "Plánovaná fotovoltická konštrukcia prístrešku s integrovanými nabíjacími bodmi pre elektromobily na firemnom parkovisku.",
+        "overview": "Plánovaný fotovoltický prístrešok pre firemné parkovisko: zastrešená konštrukcia nesúca solárne panely s integrovanými nabíjacími bodmi pre elektromobily pod ňou. Projekt je vo fáze plánovania.",
+        "challenge": "Konštrukcia musí tieniť a chrániť parkovanie a zároveň niesť pole panelov, pričom nabíjacie body bude treba napojiť a riadiť podľa zaťaženia v rámci elektrickej kapacity areálu.",
+        "scope": [
+          "Konštrukcia prístrešku parkovania",
+          "Strešné fotovoltické pole",
+          "Integrované nabíjacie body pre elektromobily",
+          "Napájanie, ochrany a riadenie zaťaženia",
+          "Pripojenie do siete a uvedenie do prevádzky"
+        ],
+        "process": [
+          {
+            "title": "Koncept a dispozícia",
+            "body": "Dispozíciu prístrešku navrhneme podľa parkovacích miest a pole panelov aj nabíjačky nadimenzujeme podľa areálu."
+          },
+          {
+            "title": "Konštrukcia",
+            "body": "Konštrukciu prístrešku postavíme tak, aby niesla pole panelov a chránila parkovanie pod ním."
+          },
+          {
+            "title": "Fotovoltika a nabíjanie",
+            "body": "Panely a nabíjacie body pre elektromobily nainštalujeme, napojíme a budeme riadiť podľa zaťaženia v rámci kapacity."
+          },
+          {
+            "title": "Pripojenie",
+            "body": "Systém pripojíme, uvedieme do prevádzky a odovzdáme s monitoringom."
+          }
+        ],
+        "outcome": "Po vybudovaní bude prístrešok chrániť parkovanie, vyrábať solárnu elektrinu a nabíjať vozidlá z jednej konštrukcie — spojí našu solárnu a elektroinštalačnú prácu na jednom mieste."
+      }
+    }
   },
   "workers": {
     "list": "Pracovníci",
@@ -249,38 +648,6 @@
     "featuredProjects": {
       "title": "Vybrané realizácie",
       "subtitle": "Ukážka projektov z posledných rokov",
-      "items": {
-        "solarFarm": {
-          "title": "Strešná fotovoltická elektráreň",
-          "location": "Slovensko",
-          "body": "Návrh a inštalácia strešného FV systému pre priemyselný objekt vrátane projektovej dokumentácie a pripojenia do distribučnej siete."
-        },
-        "officeFitout": {
-          "title": "Sadrokartónový fit-out kancelárií",
-          "location": "Bratislava, Slovensko",
-          "body": "Kompletné sadrokartónové priečky, podhľady a akustické riešenia pre novozrekonštruovaný kancelársky priestor."
-        },
-        "industrialRoof": {
-          "title": "Nová strecha priemyselnej haly",
-          "location": "Slovensko",
-          "body": "Demontáž starej krytiny a položenie novej plochej strechy s fóliovou hydroizoláciou pre výrobný objekt."
-        },
-        "retailWiring": {
-          "title": "Elektroinštalácie v obchodnom centre",
-          "location": "Slovensko",
-          "body": "Silnoprúdové a slaboprúdové rozvody vrátane LED osvetlenia, rozvádzačov a EZS pre komerčné priestory."
-        },
-        "brickFacade": {
-          "title": "Tehlová fasáda a murárske práce",
-          "location": "Slovensko",
-          "body": "Nosné murivo a tehlová fasáda pre bytový dom vrátane prekladov a stavebných otvorov."
-        },
-        "solarCarport": {
-          "title": "Solárny prístrešok s nabíjaním",
-          "location": "Slovensko",
-          "body": "Plánovaná fotovoltická konštrukcia prístrešku s integrovanými nabíjacími bodmi pre elektromobily na firemnom parkovisku."
-        }
-      },
       "allLabel": "Všetko",
       "status": {
         "completed": "Dokončené",

@@ -57,36 +57,435 @@
     "about": "Über uns",
     "careers": "Karriere",
     "contact": "Kontakt",
-    "portal": "Anmelden"
+    "portal": "Anmelden",
+    "work": "Projekte"
   },
   "projects": {
-    "list": "Projekte",
-    "new": "Neues Projekt",
-    "name": "Projektname",
-    "location": "Standort",
-    "section": "Abschnitt",
-    "newSection": "Abschnitt hinzufügen",
-    "table": "Tisch",
-    "newTable": "Tisch hinzufügen",
-    "rows": "Reihen (A)",
-    "cols": "Spalten (B)",
-    "skipped": "Ausgelassen (C)",
-    "modules": "Module",
-    "modulesTotal": "{count} Module insgesamt",
-    "assignedWorkers": "Zugewiesene Mitarbeiter",
-    "assignWorker": "Mitarbeiter zuweisen",
-    "priceTie": "Preis pro Befestigung",
-    "priceConnect": "Preis pro Anschluss",
-    "tied": "Befestigt",
-    "connected": "Angeschlossen",
-    "noProjects": "Noch keine Projekte.",
-    "close": "Projekt schließen",
-    "reopen": "Wieder öffnen",
-    "bulkAdd": "Sammeleintrag",
-    "namePrefix": "Namenspräfix",
-    "startNumber": "Startnummer",
-    "quantity": "Anzahl",
-    "addQuantity": "{count} Tische hinzufügen"
+    "meta": {
+      "title": "Projekte & Referenzen",
+      "description": "Ein genauerer Blick auf ausgewählte Projekte in den Bereichen Photovoltaik, Elektro, Trockenbau, Mauerwerk und Dach — was wir uns vorgenommen haben, wie wir vorgegangen sind und das Ergebnis."
+    },
+    "index": {
+      "title": "Projekte & Referenzen",
+      "subtitle": "Ein genauerer Blick darauf, wie wir Arbeiten in unseren fünf Gewerken planen und ausführen."
+    },
+    "backLabel": "Alle Projekte",
+    "viewCase": "Referenz ansehen",
+    "detail": {
+      "overviewTitle": "Überblick",
+      "challengeTitle": "Die Aufgabenstellung",
+      "scopeTitle": "Was wir gemacht haben",
+      "processTitle": "Wie wir vorgegangen sind",
+      "outcomeTitle": "Ergebnis",
+      "statusTitleInProgress": "Aktueller Stand",
+      "statusTitlePlanned": "Was wir liefern werden",
+      "factsTitle": "Projekt auf einen Blick",
+      "relatedTitle": "Verwandte Projekte",
+      "facts": {
+        "trade": "Gewerk",
+        "location": "Standort",
+        "year": "Jahr",
+        "status": "Status"
+      }
+    },
+    "items": {
+      "solarFarm": {
+        "title": "Dach-Photovoltaikkraftwerk",
+        "location": "Slowakei",
+        "summary": "Planung und Installation einer Dach-PV-Anlage für ein Industriegebäude, einschließlich Projektdokumentation und Anschluss an das Verteilnetz.",
+        "overview": "Eine netzgekoppelte Photovoltaik-Anlage über das Dach eines großen Industriegebäudes, ausgelegt auf einen wesentlichen Anteil des Tagesstrombedarfs des Standorts. Wir haben das Projekt von der ersten Machbarkeitsbetrachtung über die Dokumentation und Installation bis zur Inbetriebnahme begleitet.",
+        "challenge": "Das Dach musste eine vollständige Modulbelegung tragen, ohne seine Abdichtung oder Struktur zu beeinträchtigen, und der Anschluss an das Verteilnetz erforderte die Zustimmung des Netzbetreibers, bevor die Anlage in Betrieb gehen konnte.",
+        "scope": [
+          "Beurteilung der Dachkonstruktion und Tragfähigkeit",
+          "PV-Auslegung und Modellierung des Jahresertrags",
+          "Projektdokumentation und Netzanschlussantrag",
+          "Unterkonstruktion, Module, Wechselrichter und Schutzeinrichtungen",
+          "Inbetriebnahme, Netzanschluss und Übergabe des Monitorings"
+        ],
+        "process": [
+          {
+            "title": "Begehung & Machbarkeit",
+            "body": "Wir haben Struktur, Ausrichtung und Verschattung des Dachs beurteilt und anschließend den erwarteten Ertrag modelliert, um die Anlage realistisch auszulegen."
+          },
+          {
+            "title": "Dokumentation & Genehmigungen",
+            "body": "Wir haben die Projektdokumentation erstellt und den Netzanschlussantrag beim Verteilnetzbetreiber abgewickelt."
+          },
+          {
+            "title": "Installation",
+            "body": "Unterkonstruktion, Module, Wechselrichter und Schutzeinrichtungen wurden installiert, wobei die bestehende Dachabdichtung durchgehend unversehrt blieb."
+          },
+          {
+            "title": "Inbetriebnahme",
+            "body": "Die Anlage wurde geprüft, ans Netz angeschlossen und mit einem Monitoring übergeben, sodass die Erzeugung über die Zeit nachverfolgt werden kann."
+          }
+        ],
+        "outcome": "Das Gebäude erzeugt nun während der Tagesstunden einen erheblichen Anteil seines eigenen Stroms, und ein Fernmonitoring bestätigt die Leistung von Saison zu Saison."
+      },
+      "groundMountSolar": {
+        "title": "Freiflächen-Solarpark mit Speicher",
+        "location": "Region Nitra, Slowakei",
+        "summary": "Schlüsselfertige Freiflächen-PV-Anlage von ≈ 480 kWp kombiniert mit einem Batteriespeicher, ausgeführt von den Fundamenten bis zum Netzanschluss.",
+        "overview": "Ein schlüsselfertiger Freiflächen-Solarpark von ≈ 480 kWp auf einer ehemaligen Brachfläche, kombiniert mit einem Batteriespeicher, sodass die Erzeugung in die abendliche Spitzenlast verlagert werden kann. Wir haben die gesamte Kette übernommen — vom Erdbau bis zur Inbetriebnahme.",
+        "challenge": "Ein abschüssiges, zuvor genutztes Gelände bedeutete, dass die Unterkonstruktionen präzise abgesteckt werden mussten, und die Ergänzung des Speichers erforderte eine Auslegung von Wechselrichter und Schutztechnik, die sowohl Laden als auch Entladen sauber bewältigt.",
+        "scope": [
+          "Absteckung des Geländes, Fundamente und Unterkonstruktionen",
+          "String-Auslegung, Module und Wechselrichter",
+          "Integration und Steuerung des Batteriespeichers",
+          "Schutztechnik, Zählung und Netzanschluss",
+          "Inbetriebnahme und Leistungsmonitoring"
+        ],
+        "process": [
+          {
+            "title": "Erdbau",
+            "body": "Wir haben die Reihen an das Gelände angepasst abgesteckt und Fundamente sowie Unterkonstruktionen installiert, die für den wiederhergestellten Untergrund geeignet sind."
+          },
+          {
+            "title": "Anlage & Speicher",
+            "body": "Module, Wechselrichter und das Batteriesystem wurden installiert und verkabelt, sodass sich der Speicher aus der überschüssigen Erzeugung lädt."
+          },
+          {
+            "title": "Netzanschluss",
+            "body": "Schutztechnik, Zählung und der Anschluss an das Netz wurden im Einklang mit den Anforderungen des Betreibers fertiggestellt."
+          },
+          {
+            "title": "Inbetriebnahme",
+            "body": "Wir haben Erzeugung und Speicher gemeinsam geprüft und die Anlage mit einem Monitoring für beide übergeben."
+          }
+        ],
+        "outcome": "Die Anlage deckt den Tagesbedarf und nutzt gespeicherte Energie, um die Abendspitzen zu reduzieren — innerhalb einer einzigen Bausaison in Betrieb genommen und übergeben."
+      },
+      "retailWiring": {
+        "title": "Elektroausbau für Gewerbeflächen",
+        "location": "Slowakei",
+        "summary": "Stark- und Schwachstromverkabelung einschließlich LED-Beleuchtung, Verteilerschränken und einer Einbruchmeldeanlage für gewerbliche Räumlichkeiten.",
+        "overview": "Ein kompletter Elektroausbau gewerblicher Räumlichkeiten, der Strom, Beleuchtung und Schwachstromsysteme von den Verteilerschränken bis zu den Endgeräten abdeckt. Die Arbeiten wurden mit dem Ladenausbau des Mieters abgestimmt, damit die Fläche termingerecht eröffnen konnte.",
+        "challenge": "Stark- und Schwachstromsysteme mussten mit den Ladenbauern und den Oberflächen koordiniert werden, und die Alarm- und Beleuchtungsanlage musste vor der Eröffnung in Betrieb genommen und zertifiziert werden.",
+        "scope": [
+          "Verteilerschränke und Endstromkreise",
+          "Planung und Installation der LED-Beleuchtung",
+          "Schwachstromverkabelung (Daten und Alarm)",
+          "Versorgung und Inbetriebnahme der Einbruchmeldeanlage",
+          "Prüfung, Zertifizierung und Übergabe"
+        ],
+        "process": [
+          {
+            "title": "Koordination",
+            "body": "Wir haben die Trassen und Schrankpositionen mit den Ladenbauern festgelegt, sodass die Rohinstallation vor den Oberflächen erfolgen konnte."
+          },
+          {
+            "title": "Rohinstallation",
+            "body": "Kabeltragsysteme, Verkabelung und Dosen wurden installiert, bevor Wände und Decken geschlossen wurden."
+          },
+          {
+            "title": "Endmontage",
+            "body": "Verteilerschränke, Leuchten, Geräte und die Alarmanlage wurden eingebaut und angeschlossen."
+          },
+          {
+            "title": "Prüfung & Übergabe",
+            "body": "Die Stromkreise wurden geprüft und zertifiziert, die Alarmanlage in Betrieb genommen und die Installation für die Eröffnung übergeben."
+          }
+        ],
+        "outcome": "Die Räumlichkeiten wurden termingerecht eröffnet — mit einer vollständig geprüften und zertifizierten Elektroinstallation, energieeffizienter LED-Beleuchtung und einer funktionierenden Einbruchmeldeanlage."
+      },
+      "evChargingHub": {
+        "title": "Ladepark für ein Logistikdepot",
+        "location": "Region Trnava, Slowakei",
+        "summary": "DC-Schnellladepunkte für eine Nutzfahrzeugflotte, lastgesteuert, um die verfügbare Netzkapazität des Standorts einzuhalten.",
+        "overview": "Ein Ladepark für eine Nutzfahrzeugflotte, aufgebaut um Schnellladepunkte, die aus einer aufgerüsteten Versorgung gespeist und lastgesteuert werden, sodass der Standort seine verfügbare Netzkapazität nie überschreitet.",
+        "challenge": "Eine Flotte gleichzeitig zu laden hätte den bestehenden Anschluss überlastet, daher musste die Auslegung eine Aufrüstung der Versorgung mit aktivem Lastmanagement verbinden, anstatt einfach Ladepunkte hinzuzufügen.",
+        "scope": [
+          "Aufrüstung der Versorgung aus der Trafostation",
+          "Tiefbau, Leerrohrverlegung und Kabelführung",
+          "Verteilerschränke und Schutztechnik",
+          "Schnellladepunkte mit dynamischem Lastmanagement",
+          "Anbindung an Abrechnung und Monitoring"
+        ],
+        "process": [
+          {
+            "title": "Kapazitätsbeurteilung",
+            "body": "Wir haben die verfügbare Versorgung gemessen und eine Aufrüstung samt Lastmanagement geplant, um das gleichzeitige Laden abzudecken."
+          },
+          {
+            "title": "Tiefbau & Verkabelung",
+            "body": "Tiefbau, Leerrohre und Kabeltrassen wurden von der aufgerüsteten Versorgung zu jedem Ladepunkt verlegt."
+          },
+          {
+            "title": "Ladepunkte",
+            "body": "Die Schnellladepunkte wurden montiert, angeschlossen und für eine dynamische Lastverteilung über die Ladeplätze konfiguriert."
+          },
+          {
+            "title": "Anbindung & Inbetriebnahme",
+            "body": "Die Ladepunkte wurden an das Abrechnungs- und Monitoringsystem des Betreibers angebunden und anschließend unter Last geprüft."
+          }
+        ],
+        "outcome": "Das Depot kann mehrere Fahrzeuge gleichzeitig laden, ohne seine Anschlussgrenze zu überschreiten, wobei Nutzung und Abrechnung über die Plattform des Betreibers sichtbar sind."
+      },
+      "warehousePower": {
+        "title": "Hallenstromversorgung und LED-Hallenbeleuchtung",
+        "location": "Region Žilina, Slowakei",
+        "summary": "Niederspannungsverteilung und LED-Hallenbeleuchtung für ein 9.000 m² großes Logistiklager, gesteuert über Tageslicht- und Präsenzsensoren.",
+        "overview": "Ein kombinierter Ausbau von Stromversorgung und Beleuchtung für ein 9.000 m² großes Logistiklager: Niederspannungsverteilung entlang der Regale ausgelegt und LED-Hallenbeleuchtung, gesteuert über Tageslicht- und Präsenzsensoren.",
+        "challenge": "Die Beleuchtung musste zu hohen Regalgängen und einer Arbeitsfläche passen, während die Sanierung der älteren Leuchten mit minimaler Störung des laufenden Betriebs erfolgen musste.",
+        "scope": [
+          "Niederspannungsverteilung und Endstromkreise",
+          "LED-Hallenbeleuchtung, ausgelegt auf die Gangstruktur",
+          "Steuerung über Tageslicht- und Präsenzsensoren",
+          "Demontage veralteter Leuchten",
+          "Prüfung, Zertifizierung und Übergabe"
+        ],
+        "process": [
+          {
+            "title": "Beleuchtungsplanung",
+            "body": "Wir haben die Hallenbeleuchtung entlang der Regalgänge und der Arbeitsfläche ausgelegt, um gleichmäßige, nutzbare Lichtverhältnisse zu erzielen."
+          },
+          {
+            "title": "Stromverteilung",
+            "body": "Niederspannungsverteilung und Endstromkreise wurden installiert, um Beleuchtung und Geräte zu versorgen."
+          },
+          {
+            "title": "Steuerung",
+            "body": "Tageslicht- und Präsenzsensoren wurden eingerichtet, sodass die Beleuchtung je nach Bedingungen und Belegung dimmt oder schaltet."
+          },
+          {
+            "title": "Umstellung",
+            "body": "Veraltete Leuchten wurden demontiert und die Installation mit minimaler Ausfallzeit geprüft, zertifiziert und übergeben."
+          }
+        ],
+        "outcome": "Das Lager läuft mit einer effizienten, gut gesteuerten Beleuchtung, die auf Tageslicht und Belegung reagiert — mit spürbar geringerem Beleuchtungsstromverbrauch und besseren Lichtverhältnissen im Kommissionierbereich."
+      },
+      "officeFitout": {
+        "title": "Trockenbau-Ausbau von Büroflächen",
+        "location": "Bratislava, Slowakei",
+        "summary": "Komplette Trockenbau-Trennwände, Unterdecken und Akustiklösungen für eine neu sanierte Bürofläche.",
+        "overview": "Ein vollständiger Trockenbau-Ausbau einer sanierten Büroetage — Trennwände, Unterdecken und Akustikmaßnahmen — ausgeführt nach dem Layout und dem Ausbaustandard des Architekten.",
+        "challenge": "Großraum- und Besprechungsbereiche benötigten eine sinnvolle akustische Trennung, und die Decken mussten sauber mit Beleuchtung, Lüftung und Sprinklern koordiniert werden.",
+        "scope": [
+          "Metallständer-Trennwände nach dem Bürolayout",
+          "Mit der Gebäudetechnik koordinierte Unterdecken",
+          "Akustikdämmung und Detailausbildung",
+          "Öffnungen, Unterzüge und Revisionsklappen",
+          "Verspachteln und Finish, bereit für den Anstrich"
+        ],
+        "process": [
+          {
+            "title": "Absteckung",
+            "body": "Wir haben Trennwände und Deckenraster nach den Plänen des Architekten und dem Layout der Gebäudetechnik abgesteckt."
+          },
+          {
+            "title": "Unterkonstruktion",
+            "body": "Die Metallständer-Unterkonstruktion wurde errichtet, mit Akustikdämmung dort, wo eine Trennung zwischen den Bereichen erforderlich war."
+          },
+          {
+            "title": "Beplankung & Decken",
+            "body": "Die Trennwände wurden beplankt und die Unterdecken installiert, koordiniert mit Beleuchtung und Lüftung."
+          },
+          {
+            "title": "Finish",
+            "body": "Die Fugen wurden verspachtelt und gefüllt und die Oberflächen für den Anstrich vorbereitet hinterlassen."
+          }
+        ],
+        "outcome": "Die Etage wurde anstrichbereit übergeben — mit sauberen Linien, gut abgestimmter Akustik und Decken, welche die Gebäudetechnik ordentlich integrieren."
+      },
+      "clinicFitout": {
+        "title": "Innenausbau einer Facharztklinik",
+        "location": "Bratislava, Slowakei",
+        "summary": "Brandschutz- und Hygiene-Trockenbauwände, Unterdecken und Akustikmaßnahmen für eine ambulante Klinik über zwei Etagen.",
+        "overview": "Ein Trockenbau-Innenausbau für eine ambulante Klinik über zwei Etagen, ausgeführt nach Standards des Gesundheitswesens: brandschutz- und hygienegerechte Trennwände, Unterdecken und Akustikmaßnahmen rund um Sprech- und Behandlungsräume.",
+        "challenge": "Interieurs im Gesundheitswesen verlangen reinigungsfähige, brandschutzgerechte und stellenweise strahlengeschützte Konstruktionen — und das alles bei engen Toleranzen rund um die medizinische Gebäudetechnik und Lüftung.",
+        "scope": [
+          "Brandschutzwände zu Sprech- und Behandlungsräumen",
+          "Hygienische, reinigungsfähige Wandanschlüsse und Oberflächen",
+          "Bleiverkleidete Wände zum Röntgenraum",
+          "Unterdecken und Akustikmaßnahmen",
+          "Koordination mit der medizinischen Gebäudetechnik und Lüftung"
+        ],
+        "process": [
+          {
+            "title": "Normgerechte Absteckung",
+            "body": "Wir haben die Trennwände nach den Brandschutz-, Hygiene- und Strahlenschutzanforderungen jedes Raums abgesteckt."
+          },
+          {
+            "title": "Spezial-Unterkonstruktion",
+            "body": "Unterkonstruktion und Beplankung umfassten eine Bleiverkleidung zum Röntgenraum sowie die Detailausbildung für reinigungsfähige Anschlüsse."
+          },
+          {
+            "title": "Decken & Gebäudetechnik",
+            "body": "Die Unterdecken wurden mit engen Toleranzen rund um die medizinische Gebäudetechnik und Lüftung installiert."
+          },
+          {
+            "title": "Finish",
+            "body": "Die Oberflächen wurden auf einen hygienischen, leicht reinigbaren Standard fertiggestellt, bereit für den Ausbau der Klinik."
+          }
+        ],
+        "outcome": "Die Klinik übernahm Interieurs, welche die Anforderungen des Gesundheitswesens an Brandschutz, Hygiene und Strahlenschutz erfüllen — mit Decken und Oberflächen, die sich sauber um die medizinische Gebäudetechnik fügen."
+      },
+      "apartmentReroof": {
+        "title": "Steildach-Erneuerung eines Wohnblocks",
+        "location": "Košice, Slowakei",
+        "summary": "Komplette Erneuerung des Steildachs eines fünfgeschossigen Blocks — Lattung, Unterspannbahn, Tondachziegel, Dämmung und Klempnerarbeiten — in Abschnitten bei bewohntem Gebäude ausgeführt.",
+        "overview": "Eine komplette Erneuerung des Steildachs eines fünfgeschossigen Wohnhauses — neue Lattung, Unterspannbahn, Tondachziegel, Dämmung und Klempnerarbeiten — in Abschnitten ausgeführt, sodass die Bewohner während der gesamten Arbeiten in ihren Wohnungen bleiben konnten.",
+        "challenge": "Die Arbeiten über einem bewohnten Gebäude erforderten strenge Aufmerksamkeit für Witterungsschutz und Sicherheit, wobei jeder Abschnitt wasserdicht gemacht wurde, bevor der nächste geöffnet wurde.",
+        "scope": [
+          "Abtragen der bestehenden Dacheindeckung",
+          "Neue Dämmung, Unterspannbahn und Lattung",
+          "Eindeckung mit Tondachziegeln",
+          "Gauben, Durchdringungen und Verblechungen",
+          "Erneuertes Regenentwässerungssystem"
+        ],
+        "process": [
+          {
+            "title": "Abschnittsplanung & Schutz",
+            "body": "Wir haben das Dach in Abschnitte unterteilt, sodass jeder geöffnet, bearbeitet und wasserdicht gemacht werden konnte, ohne die darunterliegenden Wohnungen freizulegen."
+          },
+          {
+            "title": "Abtragen & Aufbau",
+            "body": "Die alte Eindeckung wurde abgetragen und neue Dämmung, Unterspannbahn und Lattung Abschnitt für Abschnitt aufgebracht."
+          },
+          {
+            "title": "Eindeckung & Details",
+            "body": "Die Tondachziegel wurden verlegt und Gauben, Durchdringungen und Verblechungen für ein wetterdichtes Finish ausgebildet."
+          },
+          {
+            "title": "Regenentwässerung & Übergabe",
+            "body": "Das Regenentwässerungssystem wurde erneuert und das fertiggestellte Dach übergeben."
+          }
+        ],
+        "outcome": "Der Block hat ein erneuertes, fachgerecht gedämmtes und wetterdichtes Dach erhalten — ausgeführt in Abschnitten, die den Bewohnern durchgehend den Verbleib ermöglichten."
+      },
+      "retainingWall": {
+        "title": "Stahlbeton-Stützmauer und Außenmauerwerk",
+        "location": "Region Trenčín, Slowakei",
+        "summary": "Bewehrtes Stützbauwerk zur Stabilisierung eines Hanggrundstücks für einen Neubau, mit Natursteinverblendung, Drainage und Mauerwerk für die Außenanlage.",
+        "overview": "Ein bewehrtes Stützbauwerk zur Stabilisierung eines Hanggrundstücks für einen Neubau, mit Natursteinverblendung versehen und in Treppen und Gartenmauern über das gesamte Grundstück eingebunden.",
+        "challenge": "Hang und Grundwasser mussten beherrscht werden, um das darüberliegende Gelände zu sichern, während die sichtbaren Flächen ein zum Haus passendes Natursteinfinish benötigten.",
+        "scope": [
+          "Aushub und Fundamente am Hang",
+          "Bewehrtes Stützbauwerk",
+          "Drainage hinter der Mauer",
+          "Natursteinverblendung",
+          "Treppen und Gartenmauern"
+        ],
+        "process": [
+          {
+            "title": "Erdbau",
+            "body": "Wir haben ausgehoben und Fundamente ausgebildet, die auf den Hang und die darüberliegenden Lasten ausgelegt sind."
+          },
+          {
+            "title": "Bauwerk",
+            "body": "Das bewehrte Stützbauwerk wurde errichtet und mit einer Drainage hinterfüllt, um das Grundwasser zu beherrschen."
+          },
+          {
+            "title": "Verblendung",
+            "body": "Die Natursteinverblendung wurde verlegt, um den sichtbaren Flächen ein zum Haus passendes Finish zu geben."
+          },
+          {
+            "title": "Außenanlage",
+            "body": "Treppen und niedrigere Gartenmauern wurden eingebunden, um das Grundstück zu vervollständigen."
+          }
+        ],
+        "outcome": "Das darüberliegende Gelände ist gegen Bewegung und Wasser gesichert — mit Natursteinflächen und integrierten Treppen, die das Grundstück sauber abschließen."
+      },
+      "industrialRoof": {
+        "title": "Neu-Eindeckung einer Industriehalle",
+        "location": "Slowakei",
+        "summary": "Abbruch und Erneuerung eines bestehenden Flachdachs mit einem Folienabdichtungssystem auf einem Produktionsgebäude.",
+        "overview": "Eine Neu-Eindeckung einer Produktionshalle, bei der ein abgenutztes Flachdach durch ein neues Folienabdichtungssystem über dem laufenden Betrieb ersetzt wird. Die Arbeiten laufen derzeit.",
+        "challenge": "Die Halle bleibt während der Arbeiten in Produktion, daher muss das Dach in Abschnitten abgetragen und neu eingedeckt werden, die täglich wasserdicht gemacht werden, ohne den Betrieb darunter zu unterbrechen.",
+        "scope": [
+          "Begehung und Festlegung des Dachaufbaus",
+          "Abschnittsweiser Abbruch des bestehenden Flachdachs",
+          "Neue Dämmung und Folienabdichtung",
+          "Erneuerte Verblechungen, Anschlüsse und Abläufe",
+          "Dachentwässerung"
+        ],
+        "process": [
+          {
+            "title": "Begehung & Plan",
+            "body": "Wir haben das bestehende Dach begangen und einen abschnittsweisen Aufbau geplant, der die Halle Tag für Tag wasserdicht hält."
+          },
+          {
+            "title": "Abschnittsweiser Abbruch",
+            "body": "Die abgenutzte Eindeckung wird in Abschnitten entfernt, die so bemessen sind, dass sie innerhalb jedes Arbeitsfensters neu eingedeckt werden können."
+          },
+          {
+            "title": "Neue Abdichtung",
+            "body": "Dämmung und ein neues Foliensystem werden verlegt, wobei Verblechungen und Abläufe erneuert werden."
+          },
+          {
+            "title": "Entwässerung & Fertigstellung",
+            "body": "Die Dachentwässerung wird auf den aktuellen Stand gebracht, sobald jeder Abschnitt geschlossen wird."
+          }
+        ],
+        "outcome": "Die Arbeiten schreiten Abschnitt für Abschnitt voran und halten den Betrieb während der Dacherneuerung in Produktion; Fertigstellung und Übergabe sind innerhalb des laufenden Programms vorgesehen."
+      },
+      "brickFacade": {
+        "title": "Ziegelfassade und Maurerarbeiten",
+        "location": "Slowakei",
+        "summary": "Tragendes Mauerwerk und eine Ziegelfassade für ein Mehrfamilienhaus, einschließlich Stürzen und Maueröffnungen.",
+        "overview": "Tragendes Mauerwerk und eine Ziegelfassade für ein Mehrfamilienhaus, einschließlich Stürzen und Maueröffnungen. Tragwerk und Fassade werden im Takt mit dem Gesamtprojekt errichtet.",
+        "challenge": "Die Fassade muss sich als sauberes, regelmäßiges Ziegelbild lesen, während das dahinterliegende Mauerwerk Lasten trägt und die Fenster- und Türöffnungen präzise einrahmt.",
+        "scope": [
+          "Tragendes Mauerwerk nach der Tragwerksplanung",
+          "Stürze über den Öffnungen",
+          "Ziegelfassade",
+          "Absteckung der Fenster- und Türöffnungen",
+          "Bewegungsfugen und Detailausbildung"
+        ],
+        "process": [
+          {
+            "title": "Absteckung",
+            "body": "Wir haben die Wände und Öffnungen aus den Tragwerksplänen abgesteckt, damit das Fassadenbild regelmäßig bleibt."
+          },
+          {
+            "title": "Tragendes Mauerwerk",
+            "body": "Das tragende Mauerwerk wird errichtet, wobei die Stürze über den Öffnungen gesetzt werden, während die Wände hochgezogen werden."
+          },
+          {
+            "title": "Ziegelfassade",
+            "body": "Die Ziegelfassade wird in einem gleichmäßigen Verband und mit gleichmäßiger Fuge über die Ansichten verlegt."
+          },
+          {
+            "title": "Detailausbildung",
+            "body": "Bewegungsfugen und Öffnungsdetails werden fertiggestellt, sobald jede Ansicht abgeschlossen ist."
+          }
+        ],
+        "outcome": "Mauerwerk und Fassade entstehen im Takt mit dem Bau; die bislang fertiggestellten Ansichten zeigen das saubere, regelmäßige Ziegelbild, das der Entwurf verlangt."
+      },
+      "solarCarport": {
+        "title": "Solar-Carport mit Ladestation",
+        "location": "Slowakei",
+        "summary": "Geplante Photovoltaik-Carport-Konstruktion mit integrierten Ladepunkten für Elektrofahrzeuge auf einem Firmenparkplatz.",
+        "overview": "Ein geplanter Photovoltaik-Carport für einen Firmenparkplatz: eine Überdachungskonstruktion, die Solarmodule trägt, mit darunter integrierten Ladepunkten für Elektrofahrzeuge. Das Projekt befindet sich in Planung.",
+        "challenge": "Die Konstruktion muss die Parkplätze beschatten und schützen und zugleich die Module tragen, und die Ladepunkte müssen innerhalb der elektrischen Kapazität des Standorts versorgt und lastgesteuert werden.",
+        "scope": [
+          "Carport-Überdachungskonstruktion",
+          "Photovoltaik-Anlage auf dem Dach",
+          "Integrierte Ladepunkte für Elektrofahrzeuge",
+          "Versorgung, Schutztechnik und Lastmanagement",
+          "Netzanschluss und Inbetriebnahme"
+        ],
+        "process": [
+          {
+            "title": "Konzept & Layout",
+            "body": "Wir werden das Layout der Überdachung an die Parkplätze anpassen und die Anlage sowie die Ladepunkte auf den Standort auslegen."
+          },
+          {
+            "title": "Konstruktion",
+            "body": "Die Carport-Konstruktion wird errichtet, um die Anlage zu tragen und die darunterliegenden Parkplätze zu schützen."
+          },
+          {
+            "title": "PV & Laden",
+            "body": "Module und Ladepunkte für Elektrofahrzeuge werden installiert, versorgt und innerhalb der Kapazität lastgesteuert."
+          },
+          {
+            "title": "Anschluss",
+            "body": "Die Anlage wird angeschlossen, in Betrieb genommen und mit einem Monitoring übergeben."
+          }
+        ],
+        "outcome": "Nach der Fertigstellung wird der Carport Parkplätze schützen, Solarstrom erzeugen und Fahrzeuge aus einer einzigen Konstruktion laden — und so unsere Solar- und Elektroarbeiten an einem Ort vereinen."
+      }
+    }
   },
   "workers": {
     "list": "Mitarbeiter",
@@ -250,38 +649,6 @@
     "featuredProjects": {
       "title": "Ausgewählte Projekte",
       "subtitle": "Eine Auswahl von Projekten der letzten Jahre",
-      "items": {
-        "solarFarm": {
-          "title": "Dach-Photovoltaikkraftwerk",
-          "location": "Slowakei",
-          "body": "Planung und Installation einer Dach-PV-Anlage für ein Industriegebäude, einschließlich Projektdokumentation und Netzanschluss."
-        },
-        "officeFitout": {
-          "title": "Trockenbau-Ausbau von Büroflächen",
-          "location": "Bratislava, Slowakei",
-          "body": "Komplette Trockenbau-Trennwände, Unterdecken und Akustiklösungen für eine neu sanierte Bürofläche."
-        },
-        "industrialRoof": {
-          "title": "Neu-Eindeckung einer Industriehalle",
-          "location": "Slowakei",
-          "body": "Abbruch und Erneuerung eines bestehenden Flachdachs mit Folienabdichtungssystem auf einem Produktionsgebäude."
-        },
-        "retailWiring": {
-          "title": "Elektroausbau für Gewerbeflächen",
-          "location": "Slowakei",
-          "body": "Stark- und Schwachstrominstallation einschließlich LED-Beleuchtung, Verteilerschränken und Einbruchmeldeanlage für gewerbliche Räumlichkeiten."
-        },
-        "brickFacade": {
-          "title": "Ziegelfassade und Maurerarbeiten",
-          "location": "Slowakei",
-          "body": "Tragendes Mauerwerk und eine Ziegelfassade für ein Mehrfamilienhaus, einschließlich Stürzen und Maueröffnungen."
-        },
-        "solarCarport": {
-          "title": "Solar-Carport mit Ladestation",
-          "location": "Slowakei",
-          "body": "Geplante Photovoltaik-Carport-Konstruktion mit integrierten Ladepunkten für Elektrofahrzeuge auf einem Firmenparkplatz."
-        }
-      },
       "allLabel": "Alle",
       "status": {
         "completed": "Abgeschlossen",

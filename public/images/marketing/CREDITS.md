@@ -19,3 +19,15 @@ below as a courtesy and for record-keeping.
 | project-industrialRoof.jpg | Pexels | https://www.pexels.com/photo/aerial-view-of-solar-panels-on-industrial-building-29923348/ | Nova lv | Pexels License (free, commercial use, no attribution required) |
 | project-brickFacade.jpg | Pexels | https://www.pexels.com/photo/symmetrical-red-brick-building-facade-pattern-31128387/ | Colin Piret | Pexels License (free, commercial use, no attribution required) |
 | project-solarCarport.jpg | Pexels | https://www.pexels.com/photo/parking-lot-with-sustainable-solar-panels-9799764/ | Kindel Media | Pexels License (free, commercial use, no attribution required) |
+| project-groundMountSolar.jpg | Pexels | https://www.pexels.com/photo/solar-panels-on-green-grass-field-under-blue-sky-6876534/ | Quang Nguyen Vinh | Pexels License (free, commercial use, no attribution required) |
+| project-evChargingHub.jpg | Pexels | https://www.pexels.com/photo/gray-electric-car-parked-on-a-charging-bay-9800006/ | Kindel Media | Pexels License (free, commercial use, no attribution required) |
+| project-warehousePower.jpg | Pexels | https://www.pexels.com/photo/interior-of-warehouse-10697106/ | On Shot | Pexels License (free, commercial use, no attribution required) |
+| project-clinicFitout.jpg | Pexels | https://www.pexels.com/photo/modern-hospital-corridor-with-empty-chairs-33812023/ | Jinshu Pulpatta | Pexels License (free, commercial use, no attribution required) |
+| project-apartmentReroof.jpg | Pexels | https://www.pexels.com/photo/drone-shot-of-a-tile-roof-9038268/ | Pexels contributor (see photo page) | Pexels License (free, commercial use, no attribution required) |
+| project-retainingWall.jpg | Pexels | https://www.pexels.com/photo/close-up-of-stone-wall-texture-surface-32129603/ | Timothy Huliselan | Pexels License (free, commercial use, no attribution required) |
+
+## Other assets
+
+| File | Source | Author | License |
+|---|---|---|---|
+| /public/coverage-europe.svg ("Where we work" map of Europe) | Cropped & recoloured from [simple-world-map](https://github.com/flekschas/simple-world-map) | Fritz Lekschas | CC BY-SA 3.0 — attribution + share-alike (this derivative is likewise CC BY-SA 3.0; attribution also recorded in the SVG header comment) |

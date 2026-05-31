@@ -56,36 +56,435 @@
     "about": "About",
     "careers": "Careers",
     "contact": "Contact",
-    "portal": "Sign in"
+    "portal": "Sign in",
+    "work": "Projects"
   },
   "projects": {
-    "list": "Projects",
-    "new": "New project",
-    "name": "Project name",
-    "location": "Location",
-    "section": "Section",
-    "newSection": "Add section",
-    "table": "Table",
-    "newTable": "Add table",
-    "rows": "Rows (A)",
-    "cols": "Columns (B)",
-    "skipped": "Skipped (C)",
-    "modules": "Modules",
-    "modulesTotal": "{count} modules total",
-    "assignedWorkers": "Assigned workers",
-    "assignWorker": "Assign worker",
-    "priceTie": "Price per tie",
-    "priceConnect": "Price per connect",
-    "tied": "Tied",
-    "connected": "Connected",
-    "noProjects": "No projects yet.",
-    "close": "Close project",
-    "reopen": "Reopen",
-    "bulkAdd": "Bulk add",
-    "namePrefix": "Name prefix",
-    "startNumber": "Start number",
-    "quantity": "Quantity",
-    "addQuantity": "Add {count} tables"
+    "meta": {
+      "title": "Projects & case studies",
+      "description": "A closer look at selected solar, electrical, drywall, masonry and roofing projects — what we set out to do, how we approached it, and the result."
+    },
+    "index": {
+      "title": "Projects & case studies",
+      "subtitle": "A closer look at how we plan and deliver work across our five trades."
+    },
+    "backLabel": "All projects",
+    "viewCase": "View case study",
+    "detail": {
+      "overviewTitle": "Overview",
+      "challengeTitle": "The brief",
+      "scopeTitle": "What we did",
+      "processTitle": "How we did it",
+      "outcomeTitle": "Outcome",
+      "statusTitleInProgress": "Where it stands",
+      "statusTitlePlanned": "What we'll deliver",
+      "factsTitle": "Project at a glance",
+      "relatedTitle": "Related projects",
+      "facts": {
+        "trade": "Trade",
+        "location": "Location",
+        "year": "Year",
+        "status": "Status"
+      }
+    },
+    "items": {
+      "solarFarm": {
+        "title": "Rooftop photovoltaic power plant",
+        "location": "Slovakia",
+        "summary": "Design and installation of a rooftop PV system for an industrial building, including project documentation and connection to the distribution grid.",
+        "overview": "A grid-connected photovoltaic system across the roof of a large industrial building, sized to cover a meaningful share of the site's daytime electricity demand. We carried the project from initial feasibility through documentation, installation and energisation.",
+        "challenge": "The roof had to carry a full array without compromising its waterproofing or structure, and the connection to the distribution grid required the network operator's approval before the plant could be switched on.",
+        "scope": [
+          "Roof structure and load-bearing assessment",
+          "Photovoltaic layout and annual-yield modelling",
+          "Project documentation and grid-connection application",
+          "Mounting structures, panels, inverters and protection",
+          "Commissioning, grid connection and monitoring handover"
+        ],
+        "process": [
+          {
+            "title": "Survey & feasibility",
+            "body": "We assessed the roof's structure, orientation and shading, then modelled the expected yield to size the array realistically."
+          },
+          {
+            "title": "Documentation & approvals",
+            "body": "We prepared the project documentation and handled the grid-connection application with the distribution operator."
+          },
+          {
+            "title": "Installation",
+            "body": "Mounting structures, panels, inverters and protection were installed with the existing roof membrane kept intact throughout."
+          },
+          {
+            "title": "Commissioning",
+            "body": "The system was tested, connected to the grid and handed over with monitoring so output can be tracked over time."
+          }
+        ],
+        "outcome": "The building now generates a substantial share of its own electricity during daylight hours, with remote monitoring in place to confirm performance season to season."
+      },
+      "groundMountSolar": {
+        "title": "Ground-mounted solar park with storage",
+        "location": "Nitra Region, Slovakia",
+        "summary": "Turnkey ground-mounted PV array of approximately 480 kWp paired with battery storage, delivered from foundations through to grid connection.",
+        "overview": "A turnkey ground-mounted solar park of roughly 480 kWp on a former brownfield plot, paired with battery storage so generation can be shifted toward evening peak demand. We delivered the whole chain, from groundworks to energisation.",
+        "challenge": "A sloping, previously disturbed site meant the mounting structures had to be set out precisely, and adding storage required the inverter and protection design to handle both charge and discharge cleanly.",
+        "scope": [
+          "Site setting-out, foundations and mounting structures",
+          "String layout, panels and inverters",
+          "Battery storage integration and control",
+          "Protection, metering and grid connection",
+          "Commissioning and performance monitoring"
+        ],
+        "process": [
+          {
+            "title": "Groundworks",
+            "body": "We set out the rows to the terrain and installed foundations and mounting structures suited to the recovered ground."
+          },
+          {
+            "title": "Array & storage",
+            "body": "Panels, inverters and the battery system were installed and wired so storage charges from surplus generation."
+          },
+          {
+            "title": "Grid connection",
+            "body": "Protection, metering and the connection to the network were completed in line with the operator's requirements."
+          },
+          {
+            "title": "Commissioning",
+            "body": "We tested generation and storage together and handed the plant over with monitoring of both."
+          }
+        ],
+        "outcome": "The plant covers daytime demand and uses stored energy to reduce evening peaks, commissioned and handed over within a single construction season."
+      },
+      "retailWiring": {
+        "title": "Electrical fit-out for retail premises",
+        "location": "Slovakia",
+        "summary": "High- and low-voltage wiring including LED lighting, distribution boards and an intruder alarm for commercial premises.",
+        "overview": "A complete electrical fit-out of retail premises, covering power, lighting and low-voltage systems from the distribution boards to the final fittings. The work was sequenced around the tenant's fit-out so the space could open on schedule.",
+        "challenge": "Power and low-voltage systems had to be coordinated with the shopfitters and finishes, and the alarm and lighting needed to be commissioned and certified before opening.",
+        "scope": [
+          "Distribution boards and final circuits",
+          "LED lighting layout and installation",
+          "Low-voltage cabling (data and alarm)",
+          "Intruder alarm supply and commissioning",
+          "Testing, certification and handover"
+        ],
+        "process": [
+          {
+            "title": "Coordination",
+            "body": "We set the routes and board positions with the shopfitters so first-fix could run ahead of the finishes."
+          },
+          {
+            "title": "First fix",
+            "body": "Containment, cabling and back-boxes were installed before walls and ceilings were closed up."
+          },
+          {
+            "title": "Second fix",
+            "body": "Boards, luminaires, accessories and the alarm were fitted and connected."
+          },
+          {
+            "title": "Testing & handover",
+            "body": "Circuits were tested and certified, the alarm commissioned, and the installation handed over for opening."
+          }
+        ],
+        "outcome": "The premises opened on time with a fully tested and certified electrical installation, energy-efficient LED lighting and a working intruder alarm."
+      },
+      "evChargingHub": {
+        "title": "EV charging hub for a logistics depot",
+        "location": "Trnava Region, Slovakia",
+        "summary": "DC fast-charging bays for a commercial vehicle fleet, load-managed to stay within the site's available grid capacity.",
+        "overview": "An electric-vehicle charging hub for a commercial fleet, built around fast-charging bays fed from an upgraded supply and load-managed so the site never exceeds its available grid capacity.",
+        "challenge": "Charging a fleet at once would have overloaded the existing connection, so the design had to combine a supply upgrade with active load management rather than simply adding chargers.",
+        "scope": [
+          "Supply upgrade from the transformer station",
+          "Trenching, ducting and cable routing",
+          "Distribution boards and protection",
+          "Fast chargers with dynamic load management",
+          "Integration with billing and monitoring"
+        ],
+        "process": [
+          {
+            "title": "Capacity assessment",
+            "body": "We measured the available supply and planned an upgrade plus load management to cover simultaneous charging."
+          },
+          {
+            "title": "Civils & cabling",
+            "body": "Trenching, ducting and cable runs were installed from the upgraded supply to each bay."
+          },
+          {
+            "title": "Chargers",
+            "body": "Fast chargers were mounted, connected and configured for dynamic load sharing across the bays."
+          },
+          {
+            "title": "Integration & commissioning",
+            "body": "Chargers were linked to the operator's billing and monitoring system, then tested under load."
+          }
+        ],
+        "outcome": "The depot can charge multiple vehicles at once without breaching its connection limit, with usage and billing visible through the operator's platform."
+      },
+      "warehousePower": {
+        "title": "Warehouse power and LED high-bay lighting",
+        "location": "Žilina Region, Slovakia",
+        "summary": "Low-voltage distribution and LED high-bay lighting for a 9,000 m² logistics warehouse, controlled by daylight and presence sensors.",
+        "overview": "A combined power and lighting fit-out for a 9,000 m² logistics warehouse: low-voltage distribution laid out around the racking, and LED high-bay lighting controlled by daylight and presence sensors.",
+        "challenge": "The lighting had to suit tall racking aisles and a working floor, while the retrofit of older fittings needed to happen with minimal disruption to ongoing operations.",
+        "scope": [
+          "Low-voltage distribution and final circuits",
+          "LED high-bay lighting designed to the aisle layout",
+          "Daylight and presence sensor controls",
+          "Removal of legacy fittings",
+          "Testing, certification and handover"
+        ],
+        "process": [
+          {
+            "title": "Lighting design",
+            "body": "We designed the high-bay layout around the racking aisles and the working floor to give even, usable light levels."
+          },
+          {
+            "title": "Power distribution",
+            "body": "Low-voltage distribution and final circuits were installed to feed lighting and equipment."
+          },
+          {
+            "title": "Controls",
+            "body": "Daylight and presence sensors were set up so lighting dims or switches with conditions and occupancy."
+          },
+          {
+            "title": "Changeover",
+            "body": "Legacy fittings were removed and the installation tested, certified and handed over with minimal downtime."
+          }
+        ],
+        "outcome": "The warehouse runs on efficient, well-controlled lighting that responds to daylight and occupancy, with noticeably lower lighting energy use and better light on the picking floor."
+      },
+      "officeFitout": {
+        "title": "Office drywall fit-out",
+        "location": "Bratislava, Slovakia",
+        "summary": "Complete drywall partitions, suspended ceilings and acoustic solutions for a newly refurbished office space.",
+        "overview": "A full drywall fit-out of a refurbished office floor — partitions, suspended ceilings and acoustic treatment — delivered to the architect's layout and finish schedule.",
+        "challenge": "Open-plan and meeting spaces needed sensible acoustic separation, and the ceilings had to coordinate cleanly with lighting, ventilation and sprinklers.",
+        "scope": [
+          "Metal-stud partitions to the office layout",
+          "Suspended ceilings coordinated with services",
+          "Acoustic insulation and detailing",
+          "Openings, bulkheads and access panels",
+          "Jointing and finishing ready for decoration"
+        ],
+        "process": [
+          {
+            "title": "Set-out",
+            "body": "We set out partitions and ceiling grids to the architect's drawings and the services layout."
+          },
+          {
+            "title": "Framing",
+            "body": "Metal-stud framing went up with acoustic insulation where separation between spaces was needed."
+          },
+          {
+            "title": "Boarding & ceilings",
+            "body": "Partitions were boarded and suspended ceilings installed, coordinated with lighting and ventilation."
+          },
+          {
+            "title": "Finishing",
+            "body": "Joints were taped and filled and surfaces left ready for decoration."
+          }
+        ],
+        "outcome": "The floor was handed over ready for decoration, with clean lines, well-judged acoustics and ceilings that integrate the building services tidily."
+      },
+      "clinicFitout": {
+        "title": "Outpatient clinic interior fit-out",
+        "location": "Bratislava, Slovakia",
+        "summary": "Fire-rated and hygienic drywall partitions, suspended ceilings and acoustic treatment for an outpatient clinic across two floors.",
+        "overview": "An interior drywall fit-out for an outpatient clinic over two floors, built to healthcare standards: fire-rated and hygienic partitions, suspended ceilings and acoustic treatment around consulting and procedure rooms.",
+        "challenge": "Healthcare interiors demand cleanable, fire-rated and in places radiation-shielded construction, all while holding tight tolerances around medical services and ductwork.",
+        "scope": [
+          "Fire-rated partitions to consulting and procedure rooms",
+          "Hygienic, cleanable wall junctions and finishes",
+          "Lead-lined walls to the imaging room",
+          "Suspended ceilings and acoustic treatment",
+          "Coordination with medical services and ventilation"
+        ],
+        "process": [
+          {
+            "title": "Compliance set-out",
+            "body": "We set out partitions to the fire, hygiene and shielding requirements of each room."
+          },
+          {
+            "title": "Specialist framing",
+            "body": "Framing and boarding included lead lining to the imaging room and detailing for cleanable junctions."
+          },
+          {
+            "title": "Ceilings & services",
+            "body": "Suspended ceilings were installed to tight tolerances around medical services and ductwork."
+          },
+          {
+            "title": "Finishing",
+            "body": "Surfaces were finished to a hygienic, easily cleaned standard ready for the clinic's fit-out."
+          }
+        ],
+        "outcome": "The clinic took over interiors that meet healthcare requirements for fire, hygiene and shielding, with ceilings and finishes that sit cleanly around the medical services."
+      },
+      "apartmentReroof": {
+        "title": "Apartment block pitched-roof renewal",
+        "location": "Košice, Slovakia",
+        "summary": "Full renewal of a five-storey block's pitched roof — battens, membrane, clay tiles, insulation and tinwork — carried out in phases with the building occupied.",
+        "overview": "A complete renewal of the pitched roof on a five-storey residential block — new battens, membrane, clay tiles, insulation and tinwork — carried out in phases so residents could stay in their homes throughout.",
+        "challenge": "Working over an occupied building meant strict attention to weather protection and safety, with each phase made watertight before the next was opened up.",
+        "scope": [
+          "Strip-out of the existing roof covering",
+          "New insulation, membrane and battens",
+          "Clay tile covering",
+          "Dormers, penetrations and flashings",
+          "Renewed rainwater system"
+        ],
+        "process": [
+          {
+            "title": "Phasing & protection",
+            "body": "We split the roof into sections so each could be opened, worked and made watertight without exposing the flats below."
+          },
+          {
+            "title": "Strip & build-up",
+            "body": "The old covering came off and new insulation, membrane and battens went on, section by section."
+          },
+          {
+            "title": "Tiling & detailing",
+            "body": "Clay tiles were laid and dormers, penetrations and flashings detailed for a weathertight finish."
+          },
+          {
+            "title": "Rainwater & handover",
+            "body": "The rainwater system was renewed and the completed roof handed over."
+          }
+        ],
+        "outcome": "The block has a renewed, properly insulated and weathertight roof, delivered in phases that kept residents in place throughout the works."
+      },
+      "retainingWall": {
+        "title": "Reinforced retaining wall and site masonry",
+        "location": "Trenčín Region, Slovakia",
+        "summary": "Reinforced retaining structure stabilising a sloped plot for a new-build house, with natural-stone facing, drainage and landscaping masonry.",
+        "overview": "A reinforced retaining structure to stabilise a sloped plot for a new-build house, finished with natural-stone facing and tied into steps and landscaping walls across the grounds.",
+        "challenge": "The slope and groundwater had to be controlled to secure the terrain above, while the visible faces needed a natural-stone finish in keeping with the house.",
+        "scope": [
+          "Excavation and foundations to the slope",
+          "Reinforced retaining structure",
+          "Drainage behind the wall",
+          "Natural-stone facing",
+          "Steps and landscaping walls"
+        ],
+        "process": [
+          {
+            "title": "Groundworks",
+            "body": "We excavated and formed foundations sized to the slope and the loads above."
+          },
+          {
+            "title": "Structure",
+            "body": "The reinforced retaining structure was built and backed with drainage to manage groundwater."
+          },
+          {
+            "title": "Facing",
+            "body": "Natural-stone facing was laid to give the visible faces a finish that suits the house."
+          },
+          {
+            "title": "Landscaping",
+            "body": "Steps and lower landscaping walls were tied in to complete the grounds."
+          }
+        ],
+        "outcome": "The terrain above is secured against movement and water, with natural-stone faces and integrated steps that finish the grounds neatly."
+      },
+      "industrialRoof": {
+        "title": "Industrial hall re-roofing",
+        "location": "Slovakia",
+        "summary": "Strip and replacement of an existing flat roof with a membrane waterproofing system on a manufacturing facility.",
+        "overview": "A re-roofing of a manufacturing hall, replacing a worn flat roof with a new membrane waterproofing system over the working facility. The project is currently underway.",
+        "challenge": "The hall stays in production during the works, so the roof has to be stripped and re-covered in sections that are made watertight each day without interrupting the operation below.",
+        "scope": [
+          "Survey and build-up specification",
+          "Phased strip-out of the existing flat roof",
+          "New insulation and membrane waterproofing",
+          "Renewed flashings, upstands and outlets",
+          "Roof drainage"
+        ],
+        "process": [
+          {
+            "title": "Survey & plan",
+            "body": "We surveyed the existing roof and planned a phased build-up that keeps the hall watertight day to day."
+          },
+          {
+            "title": "Phased strip-out",
+            "body": "The worn covering is being removed in sections sized to be re-covered within each working window."
+          },
+          {
+            "title": "New waterproofing",
+            "body": "Insulation and a new membrane system are being laid, with flashings and outlets renewed."
+          },
+          {
+            "title": "Drainage & completion",
+            "body": "Roof drainage is being brought up to standard as each section is closed in."
+          }
+        ],
+        "outcome": "Work is progressing section by section, keeping the facility in production while the roof is replaced; completion and handover are scheduled within the current programme."
+      },
+      "brickFacade": {
+        "title": "Brick facade and masonry work",
+        "location": "Slovakia",
+        "summary": "Load-bearing masonry and a clay-brick facade for a multi-unit residential building, including lintels and openings.",
+        "overview": "Load-bearing masonry and a clay-brick facade for a multi-unit residential building, including lintels and openings. The structure and facade are being built in step with the wider project.",
+        "challenge": "The facade has to read as a clean, regular brick pattern while the masonry behind it carries load and frames the window and door openings accurately.",
+        "scope": [
+          "Load-bearing masonry to the structural design",
+          "Lintels over openings",
+          "Clay-brick facade",
+          "Setting-out of window and door openings",
+          "Movement joints and detailing"
+        ],
+        "process": [
+          {
+            "title": "Set-out",
+            "body": "We set out the walls and openings from the structural drawings so the facade pattern stays regular."
+          },
+          {
+            "title": "Load-bearing masonry",
+            "body": "The structural masonry is being built with lintels placed over the openings as the walls rise."
+          },
+          {
+            "title": "Brick facade",
+            "body": "The clay-brick facade is being laid to a consistent bond and joint across the elevations."
+          },
+          {
+            "title": "Detailing",
+            "body": "Movement joints and opening details are being completed as each elevation is finished."
+          }
+        ],
+        "outcome": "The masonry and facade are going up in step with the build; the elevations completed so far show the clean, regular brickwork the design calls for."
+      },
+      "solarCarport": {
+        "title": "Solar carport with EV charging",
+        "location": "Slovakia",
+        "summary": "Planned photovoltaic carport structure with integrated electric-vehicle charging points for a corporate car park.",
+        "overview": "A planned photovoltaic carport for a corporate car park: a canopy structure carrying solar panels, with electric-vehicle charging points integrated beneath it. The project is in planning.",
+        "challenge": "The structure needs to shade and shelter parking while carrying the array, and the charging points have to be fed and load-managed within the site's electrical capacity.",
+        "scope": [
+          "Carport canopy structure",
+          "Rooftop photovoltaic array",
+          "Integrated EV charging points",
+          "Supply, protection and load management",
+          "Grid connection and commissioning"
+        ],
+        "process": [
+          {
+            "title": "Concept & layout",
+            "body": "We will set the canopy layout to the parking bays and size the array and chargers to the site."
+          },
+          {
+            "title": "Structure",
+            "body": "The carport structure will be built to carry the array and shelter the parking below."
+          },
+          {
+            "title": "PV & charging",
+            "body": "Panels and EV charging points will be installed, fed and load-managed within capacity."
+          },
+          {
+            "title": "Connection",
+            "body": "The system will be connected, commissioned and handed over with monitoring."
+          }
+        ],
+        "outcome": "Once built, the carport will shelter parking, generate solar power and charge vehicles from a single structure — combining our solar and electrical work in one place."
+      }
+    }
   },
   "workers": {
     "list": "Workers",
@@ -249,38 +648,6 @@
     "featuredProjects": {
       "title": "Selected projects",
       "subtitle": "A sample of projects from recent years",
-      "items": {
-        "solarFarm": {
-          "title": "Rooftop photovoltaic power plant",
-          "location": "Slovakia",
-          "body": "Design and installation of a rooftop PV system for an industrial building, including project documentation and connection to the distribution grid."
-        },
-        "officeFitout": {
-          "title": "Office drywall fit-out",
-          "location": "Bratislava, Slovakia",
-          "body": "Complete drywall partitions, suspended ceilings and acoustic solutions for a newly refurbished office space."
-        },
-        "industrialRoof": {
-          "title": "Industrial hall re-roofing",
-          "location": "Slovakia",
-          "body": "Strip and replacement of an existing flat roof with membrane waterproofing system on a manufacturing facility."
-        },
-        "retailWiring": {
-          "title": "Electrical fit-out for retail premises",
-          "location": "Slovakia",
-          "body": "High- and low-voltage wiring including LED lighting, distribution boards and intruder alarm for commercial premises."
-        },
-        "brickFacade": {
-          "title": "Brick facade and masonry work",
-          "location": "Slovakia",
-          "body": "Load-bearing masonry and a clay-brick facade for a multi-unit residential building, including lintels and openings."
-        },
-        "solarCarport": {
-          "title": "Solar carport with EV charging",
-          "location": "Slovakia",
-          "body": "Planned photovoltaic carport structure with integrated electric-vehicle charging points for a corporate car park."
-        }
-      },
       "allLabel": "All",
       "status": {
         "completed": "Completed",

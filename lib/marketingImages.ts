@@ -25,4 +25,11 @@ export const PROJECT_IMAGE: Record<string, string | null> = {
   industrialRoof: `${BASE}/project-industrialRoof.jpg`,
   brickFacade: `${BASE}/project-brickFacade.jpg`,
   solarCarport: `${BASE}/project-solarCarport.jpg`,
+  // Newer case-study entries (license-clean Pexels photos — see CREDITS.md).
+  groundMountSolar: `${BASE}/project-groundMountSolar.jpg`,
+  evChargingHub: `${BASE}/project-evChargingHub.jpg`,
+  warehousePower: `${BASE}/project-warehousePower.jpg`,
+  clinicFitout: `${BASE}/project-clinicFitout.jpg`,
+  apartmentReroof: `${BASE}/project-apartmentReroof.jpg`,
+  retainingWall: `${BASE}/project-retainingWall.jpg`,
 };

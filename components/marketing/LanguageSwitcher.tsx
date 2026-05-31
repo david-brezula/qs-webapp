@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { Globe, Check, ChevronDown } from "lucide-react";
+import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/lib/i18n/navigation";
 import { routing, localeLabels, type Locale } from "@/lib/i18n/routing";
 
@@ -17,6 +18,7 @@ export function LanguageSwitcher({
 }) {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
+  const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [pending, start] = useTransition();
@@ -41,7 +43,11 @@ export function LanguageSwitcher({
     setOpen(false);
     if (next === locale) return;
     start(() => {
-      router.replace(pathname, { locale: next });
+      // `{pathname, params}` covers dynamic routes (e.g. /work/[slug]). The
+      // params always match the current pathname at runtime, so the union-type
+      // mismatch the compiler flags here cannot actually occur.
+      // @ts-expect-error -- params is validated per-pathname; safe for the current route
+      router.replace({ pathname, params }, { locale: next });
     });
   }
 

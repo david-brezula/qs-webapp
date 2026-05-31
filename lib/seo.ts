@@ -31,3 +31,17 @@ export function alternatesForPathname(internalPath: string, locale: string) {
     canonical: languages[locale] ?? languages[routing.defaultLocale],
   };
 }
+
+// hreflang `alternates` for a dynamic project case study. The localized `/work`
+// prefix comes from the routing config; the project `slug` is stable across
+// locales, so we append it to each locale's prefix.
+export function alternatesForProject(slug: string, locale: string) {
+  const languages: Record<string, string> = {};
+  for (const loc of routing.locales) {
+    languages[loc] = `${localizedPathname("/work", loc)}/${slug}`;
+  }
+  return {
+    languages,
+    canonical: languages[locale] ?? languages[routing.defaultLocale],
+  };
+}

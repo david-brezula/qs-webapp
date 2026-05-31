@@ -57,36 +57,435 @@
     "about": "À propos",
     "careers": "Carrières",
     "contact": "Contact",
-    "portal": "Se connecter"
+    "portal": "Se connecter",
+    "work": "Projets"
   },
   "projects": {
-    "list": "Projets",
-    "new": "Nouveau projet",
-    "name": "Nom du projet",
-    "location": "Lieu",
-    "section": "Section",
-    "newSection": "Ajouter une section",
-    "table": "Table",
-    "newTable": "Ajouter une table",
-    "rows": "Rangées (A)",
-    "cols": "Colonnes (B)",
-    "skipped": "Ignorées (C)",
-    "modules": "Modules",
-    "modulesTotal": "{count} modules au total",
-    "assignedWorkers": "Ouvriers affectés",
-    "assignWorker": "Affecter un ouvrier",
-    "priceTie": "Prix par fixation",
-    "priceConnect": "Prix par raccordement",
-    "tied": "Fixé",
-    "connected": "Raccordé",
-    "noProjects": "Aucun projet pour le moment.",
-    "close": "Clôturer le projet",
-    "reopen": "Rouvrir",
-    "bulkAdd": "Ajout groupé",
-    "namePrefix": "Préfixe de nom",
-    "startNumber": "Numéro de départ",
-    "quantity": "Quantité",
-    "addQuantity": "Ajouter {count} tables"
+    "meta": {
+      "title": "Projets et études de cas",
+      "description": "Un regard plus attentif sur une sélection de projets solaires, électriques, de cloisons sèches, de maçonnerie et de toiture — ce que nous voulions accomplir, comment nous l'avons abordé et le résultat."
+    },
+    "index": {
+      "title": "Projets et études de cas",
+      "subtitle": "Un aperçu de la façon dont nous planifions et menons les travaux dans nos cinq corps de métier."
+    },
+    "backLabel": "Tous les projets",
+    "viewCase": "Voir l'étude de cas",
+    "detail": {
+      "overviewTitle": "Aperçu",
+      "challengeTitle": "Le cahier des charges",
+      "scopeTitle": "Ce que nous avons fait",
+      "processTitle": "Comment nous l'avons fait",
+      "outcomeTitle": "Résultat",
+      "statusTitleInProgress": "Où en est le projet",
+      "statusTitlePlanned": "Ce que nous réaliserons",
+      "factsTitle": "Le projet en bref",
+      "relatedTitle": "Projets associés",
+      "facts": {
+        "trade": "Corps de métier",
+        "location": "Lieu",
+        "year": "Année",
+        "status": "Statut"
+      }
+    },
+    "items": {
+      "solarFarm": {
+        "title": "Centrale photovoltaïque en toiture",
+        "location": "Slovaquie",
+        "summary": "Conception et installation d'un système photovoltaïque en toiture pour un bâtiment industriel, incluant la documentation de projet et le raccordement au réseau de distribution.",
+        "overview": "Un système photovoltaïque raccordé au réseau couvrant la toiture d'un grand bâtiment industriel, dimensionné pour couvrir une part significative de la consommation d'électricité diurne du site. Nous avons mené le projet de l'étude de faisabilité initiale jusqu'à la documentation, l'installation et la mise sous tension.",
+        "challenge": "La toiture devait supporter un champ complet sans compromettre son étanchéité ni sa structure, et le raccordement au réseau de distribution nécessitait l'accord du gestionnaire de réseau avant que la centrale puisse être mise en service.",
+        "scope": [
+          "Évaluation de la structure et de la portance de la toiture",
+          "Calepinage photovoltaïque et modélisation du productible annuel",
+          "Documentation de projet et demande de raccordement au réseau",
+          "Structures de montage, panneaux, onduleurs et protections",
+          "Mise en service, raccordement au réseau et remise du suivi"
+        ],
+        "process": [
+          {
+            "title": "Relevé et faisabilité",
+            "body": "Nous avons évalué la structure de la toiture, son orientation et les ombrages, puis modélisé le productible attendu afin de dimensionner le champ de manière réaliste."
+          },
+          {
+            "title": "Documentation et autorisations",
+            "body": "Nous avons préparé la documentation de projet et géré la demande de raccordement auprès du gestionnaire du réseau de distribution."
+          },
+          {
+            "title": "Installation",
+            "body": "Les structures de montage, les panneaux, les onduleurs et les protections ont été installés en préservant la membrane d'étanchéité existante tout au long des travaux."
+          },
+          {
+            "title": "Mise en service",
+            "body": "Le système a été testé, raccordé au réseau et remis avec un suivi permettant de mesurer la production dans le temps."
+          }
+        ],
+        "outcome": "Le bâtiment produit désormais une part substantielle de sa propre électricité pendant les heures de jour, avec un suivi à distance en place pour confirmer les performances au fil des saisons."
+      },
+      "groundMountSolar": {
+        "title": "Parc solaire au sol avec stockage",
+        "location": "Région de Nitra, Slovaquie",
+        "summary": "Champ photovoltaïque au sol clés en main d'environ 480 kWp associé à un stockage par batterie, livré des fondations jusqu'au raccordement au réseau.",
+        "overview": "Un parc solaire au sol clés en main d'environ 480 kWp sur une ancienne friche, associé à un stockage par batterie pour décaler la production vers la pointe de demande du soir. Nous avons assuré l'ensemble de la chaîne, des terrassements à la mise sous tension.",
+        "challenge": "Un site en pente et remanié auparavant imposait une implantation précise des structures de montage, et l'ajout d'un stockage exigeait que la conception des onduleurs et des protections gère proprement la charge comme la décharge.",
+        "scope": [
+          "Implantation du site, fondations et structures de montage",
+          "Calepinage des strings, panneaux et onduleurs",
+          "Intégration et pilotage du stockage par batterie",
+          "Protections, comptage et raccordement au réseau",
+          "Mise en service et suivi des performances"
+        ],
+        "process": [
+          {
+            "title": "Terrassements",
+            "body": "Nous avons implanté les rangées selon le terrain et installé des fondations et des structures de montage adaptées au sol récupéré."
+          },
+          {
+            "title": "Champ et stockage",
+            "body": "Les panneaux, les onduleurs et le système de batterie ont été installés et câblés de sorte que le stockage se charge à partir du surplus de production."
+          },
+          {
+            "title": "Raccordement au réseau",
+            "body": "Les protections, le comptage et le raccordement au réseau ont été réalisés conformément aux exigences du gestionnaire."
+          },
+          {
+            "title": "Mise en service",
+            "body": "Nous avons testé conjointement la production et le stockage et remis la centrale avec un suivi des deux."
+          }
+        ],
+        "outcome": "La centrale couvre la demande diurne et utilise l'énergie stockée pour réduire les pointes du soir, mise en service et remise en une seule saison de chantier."
+      },
+      "retailWiring": {
+        "title": "Installation électrique pour locaux commerciaux",
+        "location": "Slovaquie",
+        "summary": "Câblage courant fort et courant faible incluant éclairage LED, tableaux de distribution et alarme intrusion pour des locaux commerciaux.",
+        "overview": "Une installation électrique complète de locaux commerciaux, couvrant le courant fort, l'éclairage et les systèmes courant faible, des tableaux de distribution jusqu'aux appareils terminaux. Les travaux ont été phasés autour de l'aménagement du preneur afin que l'espace puisse ouvrir dans les délais.",
+        "challenge": "Le courant fort et le courant faible devaient être coordonnés avec les agenceurs et les finitions, et l'alarme ainsi que l'éclairage devaient être mis en service et certifiés avant l'ouverture.",
+        "scope": [
+          "Tableaux de distribution et circuits terminaux",
+          "Calepinage et installation de l'éclairage LED",
+          "Câblage courant faible (données et alarme)",
+          "Alimentation et mise en service de l'alarme intrusion",
+          "Essais, certification et remise"
+        ],
+        "process": [
+          {
+            "title": "Coordination",
+            "body": "Nous avons défini les cheminements et l'emplacement des tableaux avec les agenceurs afin que le premier œuvre puisse précéder les finitions."
+          },
+          {
+            "title": "Premier œuvre",
+            "body": "Les chemins de câbles, le câblage et les boîtiers d'encastrement ont été installés avant la fermeture des murs et des plafonds."
+          },
+          {
+            "title": "Second œuvre",
+            "body": "Les tableaux, les luminaires, les appareillages et l'alarme ont été posés et raccordés."
+          },
+          {
+            "title": "Essais et remise",
+            "body": "Les circuits ont été testés et certifiés, l'alarme mise en service, et l'installation remise pour l'ouverture."
+          }
+        ],
+        "outcome": "Les locaux ont ouvert dans les délais avec une installation électrique entièrement testée et certifiée, un éclairage LED économe en énergie et une alarme intrusion fonctionnelle."
+      },
+      "evChargingHub": {
+        "title": "Hub de recharge pour véhicules électriques d'un dépôt logistique",
+        "location": "Région de Trnava, Slovaquie",
+        "summary": "Bornes de recharge rapide en courant continu pour une flotte de véhicules utilitaires, pilotées en charge pour respecter la capacité réseau disponible du site.",
+        "overview": "Un hub de recharge pour véhicules électriques destiné à une flotte d'entreprise, articulé autour de bornes de recharge rapide alimentées par une alimentation renforcée et pilotées en charge afin que le site ne dépasse jamais sa capacité réseau disponible.",
+        "challenge": "Recharger une flotte simultanément aurait surchargé le raccordement existant ; la conception devait donc associer un renforcement de l'alimentation à une gestion active de la charge plutôt que d'ajouter simplement des bornes.",
+        "scope": [
+          "Renforcement de l'alimentation depuis le poste de transformation",
+          "Terrassement, fourreaux et cheminement des câbles",
+          "Tableaux de distribution et protections",
+          "Bornes de recharge rapide avec gestion dynamique de la charge",
+          "Intégration à la facturation et à la supervision"
+        ],
+        "process": [
+          {
+            "title": "Évaluation de la capacité",
+            "body": "Nous avons mesuré l'alimentation disponible et planifié un renforcement ainsi qu'une gestion de la charge pour couvrir une recharge simultanée."
+          },
+          {
+            "title": "Génie civil et câblage",
+            "body": "Les terrassements, les fourreaux et les cheminements de câbles ont été installés depuis l'alimentation renforcée jusqu'à chaque borne."
+          },
+          {
+            "title": "Bornes",
+            "body": "Les bornes de recharge rapide ont été posées, raccordées et configurées pour un partage dynamique de la charge entre les emplacements."
+          },
+          {
+            "title": "Intégration et mise en service",
+            "body": "Les bornes ont été reliées au système de facturation et de supervision de l'exploitant, puis testées en charge."
+          }
+        ],
+        "outcome": "Le dépôt peut recharger plusieurs véhicules à la fois sans dépasser sa limite de raccordement, avec un suivi de l'utilisation et de la facturation visible via la plateforme de l'exploitant."
+      },
+      "warehousePower": {
+        "title": "Distribution électrique et éclairage LED grande hauteur d'entrepôt",
+        "location": "Région de Žilina, Slovaquie",
+        "summary": "Distribution basse tension et éclairage LED grande hauteur pour un entrepôt logistique de 9 000 m², commandés par capteurs de lumière du jour et de présence.",
+        "overview": "Un aménagement combiné d'alimentation et d'éclairage pour un entrepôt logistique de 9 000 m² : une distribution basse tension implantée autour du rayonnage, et un éclairage LED grande hauteur commandé par capteurs de lumière du jour et de présence.",
+        "challenge": "L'éclairage devait convenir aux allées de rayonnage de grande hauteur et à la zone de travail, tandis que le remplacement des anciens luminaires devait se faire avec un minimum de perturbation de l'exploitation en cours.",
+        "scope": [
+          "Distribution basse tension et circuits terminaux",
+          "Éclairage LED grande hauteur conçu selon l'implantation des allées",
+          "Commandes par capteurs de lumière du jour et de présence",
+          "Dépose des anciens luminaires",
+          "Essais, certification et remise"
+        ],
+        "process": [
+          {
+            "title": "Conception de l'éclairage",
+            "body": "Nous avons conçu l'implantation grande hauteur autour des allées de rayonnage et de la zone de travail afin d'obtenir des niveaux d'éclairement homogènes et exploitables."
+          },
+          {
+            "title": "Distribution électrique",
+            "body": "La distribution basse tension et les circuits terminaux ont été installés pour alimenter l'éclairage et les équipements."
+          },
+          {
+            "title": "Commandes",
+            "body": "Les capteurs de lumière du jour et de présence ont été configurés afin que l'éclairage varie ou s'éteigne selon les conditions et l'occupation."
+          },
+          {
+            "title": "Remplacement",
+            "body": "Les anciens luminaires ont été déposés et l'installation testée, certifiée et remise avec un minimum d'interruption."
+          }
+        ],
+        "outcome": "L'entrepôt fonctionne avec un éclairage efficace et bien régulé qui répond à la lumière du jour et à l'occupation, avec une consommation d'éclairage nettement réduite et un meilleur éclairement sur la zone de préparation."
+      },
+      "officeFitout": {
+        "title": "Aménagement de bureaux en cloisons sèches",
+        "location": "Bratislava, Slovaquie",
+        "summary": "Cloisons sèches complètes, plafonds suspendus et solutions acoustiques pour un espace de bureaux entièrement rénové.",
+        "overview": "Un aménagement complet en cloisons sèches d'un plateau de bureaux rénové — cloisons, plafonds suspendus et traitement acoustique — réalisé selon le plan et le calepin de finitions de l'architecte.",
+        "challenge": "Les espaces ouverts et les salles de réunion nécessitaient une séparation acoustique judicieuse, et les plafonds devaient se coordonner proprement avec l'éclairage, la ventilation et les sprinklers.",
+        "scope": [
+          "Cloisons sur ossature métallique selon le plan des bureaux",
+          "Plafonds suspendus coordonnés avec les réseaux",
+          "Isolation acoustique et traitement des détails",
+          "Ouvertures, retombées et trappes d'accès",
+          "Jointoiement et finition prêts pour la décoration"
+        ],
+        "process": [
+          {
+            "title": "Implantation",
+            "body": "Nous avons implanté les cloisons et les ossatures de plafond selon les plans de l'architecte et l'implantation des réseaux."
+          },
+          {
+            "title": "Ossature",
+            "body": "L'ossature métallique a été posée avec isolation acoustique là où une séparation entre les espaces était nécessaire."
+          },
+          {
+            "title": "Pose des plaques et plafonds",
+            "body": "Les cloisons ont été plaquées et les plafonds suspendus installés, coordonnés avec l'éclairage et la ventilation."
+          },
+          {
+            "title": "Finition",
+            "body": "Les joints ont été marouflés et rebouchés et les surfaces laissées prêtes pour la décoration."
+          }
+        ],
+        "outcome": "Le plateau a été remis prêt pour la décoration, avec des lignes nettes, une acoustique bien dosée et des plafonds qui intègrent proprement les réseaux du bâtiment."
+      },
+      "clinicFitout": {
+        "title": "Aménagement intérieur d'une clinique ambulatoire",
+        "location": "Bratislava, Slovaquie",
+        "summary": "Cloisons sèches coupe-feu et hygiéniques, plafonds suspendus et traitement acoustique pour une clinique ambulatoire répartie sur deux niveaux.",
+        "overview": "Un aménagement intérieur en cloisons sèches pour une clinique ambulatoire sur deux niveaux, réalisé aux normes du secteur de la santé : cloisons coupe-feu et hygiéniques, plafonds suspendus et traitement acoustique autour des salles de consultation et de soins.",
+        "challenge": "Les intérieurs de santé exigent une construction nettoyable, coupe-feu et par endroits protégée contre les rayonnements, tout en respectant des tolérances serrées autour des réseaux médicaux et des gaines.",
+        "scope": [
+          "Cloisons coupe-feu pour les salles de consultation et de soins",
+          "Jonctions de murs et finitions hygiéniques et nettoyables",
+          "Parois plombées pour la salle d'imagerie",
+          "Plafonds suspendus et traitement acoustique",
+          "Coordination avec les réseaux médicaux et la ventilation"
+        ],
+        "process": [
+          {
+            "title": "Implantation réglementaire",
+            "body": "Nous avons implanté les cloisons selon les exigences de feu, d'hygiène et de protection de chaque salle."
+          },
+          {
+            "title": "Ossature spécialisée",
+            "body": "L'ossature et la pose des plaques ont intégré le plombage de la salle d'imagerie et le traitement des jonctions nettoyables."
+          },
+          {
+            "title": "Plafonds et réseaux",
+            "body": "Les plafonds suspendus ont été installés selon des tolérances serrées autour des réseaux médicaux et des gaines."
+          },
+          {
+            "title": "Finition",
+            "body": "Les surfaces ont été finies selon un standard hygiénique et facilement nettoyable, prêtes pour l'aménagement de la clinique."
+          }
+        ],
+        "outcome": "La clinique a réceptionné des intérieurs conformes aux exigences de santé en matière de feu, d'hygiène et de protection, avec des plafonds et des finitions qui s'intègrent proprement autour des réseaux médicaux."
+      },
+      "apartmentReroof": {
+        "title": "Réfection de la toiture en pente d'un immeuble",
+        "location": "Košice, Slovaquie",
+        "summary": "Réfection complète de la toiture en pente d'un immeuble de cinq étages — liteaux, écran de sous-toiture, tuiles en terre cuite, isolation et zinguerie — réalisée par phases avec le bâtiment occupé.",
+        "overview": "Une réfection complète de la toiture en pente d'un immeuble résidentiel de cinq étages — nouveaux liteaux, écran de sous-toiture, tuiles en terre cuite, isolation et zinguerie — réalisée par phases afin que les résidents puissent rester chez eux tout au long des travaux.",
+        "challenge": "Travailler sur un bâtiment occupé imposait une attention stricte à la protection contre les intempéries et à la sécurité, chaque phase étant rendue étanche à l'eau avant l'ouverture de la suivante.",
+        "scope": [
+          "Dépose de la couverture de toiture existante",
+          "Nouvelle isolation, écran de sous-toiture et liteaux",
+          "Couverture en tuiles en terre cuite",
+          "Lucarnes, pénétrations et solins",
+          "Système d'évacuation des eaux pluviales rénové"
+        ],
+        "process": [
+          {
+            "title": "Phasage et protection",
+            "body": "Nous avons divisé la toiture en sections afin que chacune puisse être ouverte, travaillée et rendue étanche à l'eau sans exposer les logements situés en dessous."
+          },
+          {
+            "title": "Dépose et composition",
+            "body": "L'ancienne couverture a été déposée et la nouvelle isolation, l'écran de sous-toiture et les liteaux ont été posés, section par section."
+          },
+          {
+            "title": "Couverture et détails",
+            "body": "Les tuiles en terre cuite ont été posées et les lucarnes, pénétrations et solins traités pour une finition étanche aux intempéries."
+          },
+          {
+            "title": "Eaux pluviales et remise",
+            "body": "Le système d'évacuation des eaux pluviales a été rénové et la toiture achevée remise."
+          }
+        ],
+        "outcome": "L'immeuble dispose d'une toiture rénovée, correctement isolée et étanche aux intempéries, livrée par phases qui ont permis aux résidents de rester sur place tout au long des travaux."
+      },
+      "retainingWall": {
+        "title": "Mur de soutènement armé et maçonnerie de site",
+        "location": "Région de Trenčín, Slovaquie",
+        "summary": "Ouvrage de soutènement armé stabilisant un terrain en pente pour une maison neuve, avec parement en pierre naturelle, drainage et maçonnerie paysagère.",
+        "overview": "Un ouvrage de soutènement armé destiné à stabiliser un terrain en pente pour une maison neuve, fini avec un parement en pierre naturelle et relié aux escaliers et aux murets paysagers répartis sur l'ensemble du terrain.",
+        "challenge": "La pente et les eaux souterraines devaient être maîtrisées pour sécuriser le terrain situé au-dessus, tandis que les faces visibles nécessitaient une finition en pierre naturelle en accord avec la maison.",
+        "scope": [
+          "Terrassement et fondations adaptés à la pente",
+          "Ouvrage de soutènement armé",
+          "Drainage à l'arrière du mur",
+          "Parement en pierre naturelle",
+          "Escaliers et murets paysagers"
+        ],
+        "process": [
+          {
+            "title": "Terrassements",
+            "body": "Nous avons terrassé et réalisé des fondations dimensionnées pour la pente et les charges situées au-dessus."
+          },
+          {
+            "title": "Structure",
+            "body": "L'ouvrage de soutènement armé a été construit et doublé d'un drainage pour gérer les eaux souterraines."
+          },
+          {
+            "title": "Parement",
+            "body": "Le parement en pierre naturelle a été posé pour donner aux faces visibles une finition en accord avec la maison."
+          },
+          {
+            "title": "Aménagement paysager",
+            "body": "Les escaliers et les murets paysagers inférieurs ont été reliés pour achever les aménagements."
+          }
+        ],
+        "outcome": "Le terrain situé au-dessus est sécurisé contre les mouvements et l'eau, avec des faces en pierre naturelle et des escaliers intégrés qui finissent proprement les aménagements."
+      },
+      "industrialRoof": {
+        "title": "Réfection de toiture d'un bâtiment industriel",
+        "location": "Slovaquie",
+        "summary": "Dépose et remplacement d'une toiture plate existante par un système d'étanchéité par membrane sur un site de production.",
+        "overview": "Une réfection de toiture d'un hall de production, remplaçant une toiture plate usée par un nouveau système d'étanchéité par membrane sur un site en exploitation. Le projet est actuellement en cours.",
+        "challenge": "Le hall reste en production pendant les travaux ; la toiture doit donc être déposée et recouverte par sections, rendues étanches à l'eau chaque jour sans interrompre l'exploitation située en dessous.",
+        "scope": [
+          "Relevé et spécification de la composition",
+          "Dépose phasée de la toiture plate existante",
+          "Nouvelle isolation et étanchéité par membrane",
+          "Solins, relevés et évacuations rénovés",
+          "Évacuation des eaux de toiture"
+        ],
+        "process": [
+          {
+            "title": "Relevé et planification",
+            "body": "Nous avons relevé la toiture existante et planifié une composition phasée qui maintient le hall étanche à l'eau au jour le jour."
+          },
+          {
+            "title": "Dépose phasée",
+            "body": "La couverture usée est déposée par sections dimensionnées pour être recouvertes au cours de chaque fenêtre de travail."
+          },
+          {
+            "title": "Nouvelle étanchéité",
+            "body": "L'isolation et un nouveau système de membrane sont en cours de pose, avec rénovation des solins et des évacuations."
+          },
+          {
+            "title": "Évacuation et achèvement",
+            "body": "L'évacuation des eaux de toiture est mise aux normes au fur et à mesure de la fermeture de chaque section."
+          }
+        ],
+        "outcome": "Les travaux progressent section par section, maintenant le site en production pendant le remplacement de la toiture ; l'achèvement et la remise sont prévus dans le cadre du programme en cours."
+      },
+      "brickFacade": {
+        "title": "Façade en brique et travaux de maçonnerie",
+        "location": "Slovaquie",
+        "summary": "Maçonnerie porteuse et façade en briques de terre cuite pour un immeuble résidentiel à logements multiples, incluant linteaux et ouvertures.",
+        "overview": "Maçonnerie porteuse et façade en briques de terre cuite pour un immeuble résidentiel à logements multiples, incluant linteaux et ouvertures. La structure et la façade sont en cours de construction au rythme du projet d'ensemble.",
+        "challenge": "La façade doit présenter un appareillage de brique net et régulier tandis que la maçonnerie qui la porte reprend les charges et cadre précisément les ouvertures de fenêtres et de portes.",
+        "scope": [
+          "Maçonnerie porteuse selon l'étude de structure",
+          "Linteaux au-dessus des ouvertures",
+          "Façade en briques de terre cuite",
+          "Implantation des ouvertures de fenêtres et de portes",
+          "Joints de dilatation et traitement des détails"
+        ],
+        "process": [
+          {
+            "title": "Implantation",
+            "body": "Nous avons implanté les murs et les ouvertures à partir des plans de structure afin que l'appareillage de la façade reste régulier."
+          },
+          {
+            "title": "Maçonnerie porteuse",
+            "body": "La maçonnerie de structure est en cours de construction, les linteaux étant posés au-dessus des ouvertures à mesure que les murs s'élèvent."
+          },
+          {
+            "title": "Façade en brique",
+            "body": "La façade en briques de terre cuite est posée selon un appareillage et un joint constants sur l'ensemble des élévations."
+          },
+          {
+            "title": "Traitement des détails",
+            "body": "Les joints de dilatation et les détails des ouvertures sont réalisés au fur et à mesure de l'achèvement de chaque élévation."
+          }
+        ],
+        "outcome": "La maçonnerie et la façade s'élèvent au rythme du chantier ; les élévations achevées à ce jour montrent l'appareillage de brique net et régulier que la conception requiert."
+      },
+      "solarCarport": {
+        "title": "Abri solaire avec recharge pour véhicules électriques",
+        "location": "Slovaquie",
+        "summary": "Structure d'abri photovoltaïque planifiée avec bornes de recharge pour véhicules électriques intégrées, pour un parking d'entreprise.",
+        "overview": "Un abri photovoltaïque planifié pour un parking d'entreprise : une structure d'auvent portant des panneaux solaires, avec des bornes de recharge pour véhicules électriques intégrées en dessous. Le projet est en phase de planification.",
+        "challenge": "La structure devra ombrager et abriter le stationnement tout en portant le champ, et les bornes de recharge devront être alimentées et pilotées en charge dans la limite de la capacité électrique du site.",
+        "scope": [
+          "Structure d'auvent de l'abri",
+          "Champ photovoltaïque en toiture",
+          "Bornes de recharge pour véhicules électriques intégrées",
+          "Alimentation, protections et gestion de la charge",
+          "Raccordement au réseau et mise en service"
+        ],
+        "process": [
+          {
+            "title": "Concept et implantation",
+            "body": "Nous définirons l'implantation de l'auvent selon les places de stationnement et dimensionnerons le champ et les bornes en fonction du site."
+          },
+          {
+            "title": "Structure",
+            "body": "La structure de l'abri sera construite pour porter le champ et abriter le stationnement situé en dessous."
+          },
+          {
+            "title": "Photovoltaïque et recharge",
+            "body": "Les panneaux et les bornes de recharge seront installés, alimentés et pilotés en charge dans la limite de la capacité."
+          },
+          {
+            "title": "Raccordement",
+            "body": "Le système sera raccordé, mis en service et remis avec un suivi."
+          }
+        ],
+        "outcome": "Une fois construit, l'abri abritera le stationnement, produira de l'énergie solaire et rechargera les véhicules à partir d'une seule structure — réunissant nos travaux solaires et électriques en un même lieu."
+      }
+    }
   },
   "workers": {
     "list": "Ouvriers",
@@ -250,38 +649,6 @@
     "featuredProjects": {
       "title": "Projets sélectionnés",
       "subtitle": "Un aperçu de projets réalisés ces dernières années",
-      "items": {
-        "solarFarm": {
-          "title": "Centrale photovoltaïque en toiture",
-          "location": "Slovaquie",
-          "body": "Conception et installation d'un système photovoltaïque en toiture pour un bâtiment industriel, incluant la documentation de projet et le raccordement au réseau."
-        },
-        "officeFitout": {
-          "title": "Aménagement de bureaux en cloisons sèches",
-          "location": "Bratislava, Slovaquie",
-          "body": "Cloisons sèches complètes, plafonds suspendus et solutions acoustiques pour un espace de bureaux entièrement rénové."
-        },
-        "industrialRoof": {
-          "title": "Réfection de toiture d'un bâtiment industriel",
-          "location": "Slovaquie",
-          "body": "Dépose et remplacement d'une toiture plate existante par un système d'étanchéité par membrane sur un site de production."
-        },
-        "retailWiring": {
-          "title": "Installation électrique pour locaux commerciaux",
-          "location": "Slovaquie",
-          "body": "Câblage courant fort et courant faible, incluant éclairage LED, tableaux de distribution et système d'alarme pour des locaux commerciaux."
-        },
-        "brickFacade": {
-          "title": "Façade en brique et maçonnerie",
-          "location": "Slovaquie",
-          "body": "Maçonnerie porteuse et façade en briques pour un immeuble résidentiel, y compris linteaux et ouvertures."
-        },
-        "solarCarport": {
-          "title": "Abri solaire avec recharge",
-          "location": "Slovaquie",
-          "body": "Structure d’abri photovoltaïque planifiée avec bornes de recharge pour véhicules électriques sur un parking d’entreprise."
-        }
-      },
       "allLabel": "Tout",
       "status": {
         "completed": "Terminé",

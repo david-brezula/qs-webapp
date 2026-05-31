@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { Globe, Check, ChevronDown } from "lucide-react";
+import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/lib/i18n/navigation";
 import { routing, localeLabels, type Locale } from "@/lib/i18n/routing";
 import { updateUserLocale } from "@/lib/actions/locale";
@@ -16,6 +17,7 @@ import { updateUserLocale } from "@/lib/actions/locale";
 export function PortalLanguageSwitcher() {
   const current = useLocale() as Locale;
   const pathname = usePathname();
+  const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [pending, start] = useTransition();
@@ -43,7 +45,11 @@ export function PortalLanguageSwitcher() {
     // cross-device); never block the locale switch on this DB write.
     void updateUserLocale(next);
     start(() => {
-      router.replace(pathname, { locale: next });
+      // `{pathname, params}` covers dynamic routes; params always match the
+      // current pathname at runtime, so the union-type mismatch the compiler
+      // flags here cannot actually occur.
+      // @ts-expect-error -- params is validated per-pathname; safe for the current route
+      router.replace({ pathname, params }, { locale: next });
     });
   }
 

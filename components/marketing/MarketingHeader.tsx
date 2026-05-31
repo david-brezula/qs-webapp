@@ -125,6 +125,9 @@ export function MarketingHeader() {
             )}
           </div>
 
+          <Link href="/work" className={navLinkCls}>
+            {t("work")}
+          </Link>
           <Link href="/about" className={navLinkCls}>
             {t("about")}
           </Link>
@@ -183,6 +186,9 @@ export function MarketingHeader() {
               </div>
             </div>
 
+            <Link href="/work" className={mobileLinkCls} onClick={() => setOpen(false)}>
+              {t("work")}
+            </Link>
             <Link href="/about" className={mobileLinkCls} onClick={() => setOpen(false)}>
               {t("about")}
             </Link>
