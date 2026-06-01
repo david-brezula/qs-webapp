@@ -49,6 +49,7 @@
     "workers": "Mitarbeiter",
     "accommodations": "Unterkünfte",
     "wages": "Löhne",
+    "advances": "Vorschüsse",
     "applications": "Bewerbungen",
     "inquiries": "Anfragen",
     "signOut": "Abmelden",
@@ -540,7 +541,11 @@
     "sections": "Abschnitte",
     "workersSummary": "Übersicht pro Mitarbeiter",
     "noSections": "Noch keine Abschnitte.",
-    "loadError": "Abschnitte konnten nicht geladen werden. Zum Wiederholen klicken."
+    "loadError": "Abschnitte konnten nicht geladen werden. Zum Wiederholen klicken.",
+    "invoiced": "Fakturiert",
+    "advances": "Vorschüsse",
+    "netToPay": "Auszuzahlen",
+    "net": "Netto"
   },
   "log": {
     "title": "Arbeit erfassen",
@@ -1269,5 +1274,24 @@
       "IN_PROGRESS": "In Bearbeitung",
       "CLOSED": "Abgeschlossen"
     }
+  },
+  "advances": {
+    "title": "Vorschüsse",
+    "request": "Vorschuss anfordern",
+    "amount": "Betrag",
+    "note": "Notiz",
+    "mine": "Meine Anfragen",
+    "allRequests": "Alle Anfragen",
+    "noRequests": "Noch keine Vorschussanfragen.",
+    "worker": "Mitarbeiter",
+    "requestedAt": "Angefordert",
+    "decidedAt": "Entschieden",
+    "paidAt": "Bezahlt",
+    "approve": "Genehmigen",
+    "reject": "Ablehnen",
+    "markPaid": "Als bezahlt markieren",
+    "cancel": "Stornieren",
+    "confirmCancel": "Diese Anfrage stornieren?",
+    "status": { "REQUESTED": "Angefordert", "APPROVED": "Genehmigt", "REJECTED": "Abgelehnt", "PAID": "Bezahlt" }
   }
 }

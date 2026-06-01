@@ -48,6 +48,7 @@
     "workers": "Pracovníci",
     "accommodations": "Ubytovanie",
     "wages": "Mzdy",
+    "advances": "Zálohy",
     "applications": "Žiadosti",
     "inquiries": "Dopyty",
     "signOut": "Odhlásiť sa",
@@ -539,7 +540,11 @@
     "sections": "Sekcie",
     "workersSummary": "Súhrn po pracovníkoch",
     "noSections": "Zatiaľ žiadne sekcie.",
-    "loadError": "Nepodarilo sa načítať sekcie. Kliknite pre zopakovanie."
+    "loadError": "Nepodarilo sa načítať sekcie. Kliknite pre zopakovanie.",
+    "invoiced": "Vyfakturované",
+    "advances": "Zálohy",
+    "netToPay": "Na vyplatenie",
+    "net": "Čisté"
   },
   "log": {
     "title": "Zapísať prácu",
@@ -1266,5 +1271,24 @@
       "IN_PROGRESS": "Prebieha",
       "CLOSED": "Uzavretý"
     }
+  },
+  "advances": {
+    "title": "Zálohy",
+    "request": "Požiadať o zálohu",
+    "amount": "Suma",
+    "note": "Poznámka",
+    "mine": "Moje žiadosti",
+    "allRequests": "Všetky žiadosti",
+    "noRequests": "Zatiaľ žiadne žiadosti o zálohu.",
+    "worker": "Pracovník",
+    "requestedAt": "Požiadané",
+    "decidedAt": "Rozhodnuté",
+    "paidAt": "Vyplatené",
+    "approve": "Schváliť",
+    "reject": "Zamietnuť",
+    "markPaid": "Označiť vyplatené",
+    "cancel": "Zrušiť",
+    "confirmCancel": "Zrušiť túto žiadosť?",
+    "status": { "REQUESTED": "Požiadané", "APPROVED": "Schválené", "REJECTED": "Zamietnuté", "PAID": "Vyplatené" }
   }
 }

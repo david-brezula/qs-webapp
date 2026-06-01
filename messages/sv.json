@@ -49,6 +49,7 @@
     "workers": "Arbetare",
     "accommodations": "Boenden",
     "wages": "Löner",
+    "advances": "Förskott",
     "applications": "Ansökningar",
     "inquiries": "Förfrågningar",
     "signOut": "Logga ut",
@@ -540,7 +541,11 @@
     "sections": "Sektioner",
     "workersSummary": "Sammanställning per arbetare",
     "noSections": "Inga sektioner ännu.",
-    "loadError": "Det gick inte att läsa in sektionerna. Klicka för att försöka igen."
+    "loadError": "Det gick inte att läsa in sektionerna. Klicka för att försöka igen.",
+    "invoiced": "Fakturerad",
+    "advances": "Förskott",
+    "netToPay": "Att betala",
+    "net": "Netto"
   },
   "log": {
     "title": "Registrera arbete",
@@ -1269,5 +1274,24 @@
       "IN_PROGRESS": "Pågår",
       "CLOSED": "Avslutad"
     }
+  },
+  "advances": {
+    "title": "Förskott",
+    "request": "Begär förskott",
+    "amount": "Belopp",
+    "note": "Anteckning",
+    "mine": "Mina förfrågningar",
+    "allRequests": "Alla förfrågningar",
+    "noRequests": "Inga förskottsförfrågningar än.",
+    "worker": "Arbetare",
+    "requestedAt": "Begärd",
+    "decidedAt": "Beslutad",
+    "paidAt": "Betald",
+    "approve": "Godkänn",
+    "reject": "Avvisa",
+    "markPaid": "Markera betald",
+    "cancel": "Avbryt",
+    "confirmCancel": "Avbryt denna förfrågan?",
+    "status": { "REQUESTED": "Begärd", "APPROVED": "Godkänd", "REJECTED": "Avvisad", "PAID": "Betald" }
   }
 }

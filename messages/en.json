@@ -48,6 +48,7 @@
     "workers": "Workers",
     "accommodations": "Accommodations",
     "wages": "Wages",
+    "advances": "Advances",
     "applications": "Applications",
     "inquiries": "Inquiries",
     "signOut": "Sign out",
@@ -539,7 +540,11 @@
     "sections": "Sections",
     "workersSummary": "Per-worker summary",
     "noSections": "No sections yet.",
-    "loadError": "Failed to load sections. Click to retry."
+    "loadError": "Failed to load sections. Click to retry.",
+    "invoiced": "Invoiced",
+    "advances": "Advances",
+    "netToPay": "Net to pay",
+    "net": "Net"
   },
   "log": {
     "title": "Log work",
@@ -1269,5 +1274,24 @@
       "IN_PROGRESS": "In progress",
       "CLOSED": "Closed"
     }
+  },
+  "advances": {
+    "title": "Advances",
+    "request": "Request advance",
+    "amount": "Amount",
+    "note": "Note",
+    "mine": "My requests",
+    "allRequests": "All requests",
+    "noRequests": "No advance requests yet.",
+    "worker": "Worker",
+    "requestedAt": "Requested",
+    "decidedAt": "Decided",
+    "paidAt": "Paid",
+    "approve": "Approve",
+    "reject": "Reject",
+    "markPaid": "Mark paid",
+    "cancel": "Cancel",
+    "confirmCancel": "Cancel this request?",
+    "status": { "REQUESTED": "Requested", "APPROVED": "Approved", "REJECTED": "Rejected", "PAID": "Paid" }
   }
 }

@@ -49,6 +49,7 @@
     "workers": "Ouvriers",
     "accommodations": "Hébergements",
     "wages": "Salaires",
+    "advances": "Avances",
     "applications": "Candidatures",
     "inquiries": "Demandes",
     "signOut": "Se déconnecter",
@@ -540,7 +541,11 @@
     "sections": "Sections",
     "workersSummary": "Récapitulatif par ouvrier",
     "noSections": "Aucune section pour le moment.",
-    "loadError": "Échec du chargement des sections. Cliquez pour réessayer."
+    "loadError": "Échec du chargement des sections. Cliquez pour réessayer.",
+    "invoiced": "Facturé",
+    "advances": "Avances",
+    "netToPay": "Net à payer",
+    "net": "Net"
   },
   "log": {
     "title": "Saisir le travail",
@@ -1269,5 +1274,24 @@
       "IN_PROGRESS": "En cours",
       "CLOSED": "Fermée"
     }
+  },
+  "advances": {
+    "title": "Avances",
+    "request": "Demander une avance",
+    "amount": "Montant",
+    "note": "Note",
+    "mine": "Mes demandes",
+    "allRequests": "Toutes les demandes",
+    "noRequests": "Aucune demande d'avance pour le moment.",
+    "worker": "Ouvrier",
+    "requestedAt": "Demandé",
+    "decidedAt": "Décidé",
+    "paidAt": "Payé",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "markPaid": "Marquer payé",
+    "cancel": "Annuler",
+    "confirmCancel": "Annuler cette demande ?",
+    "status": { "REQUESTED": "Demandée", "APPROVED": "Approuvée", "REJECTED": "Rejetée", "PAID": "Payée" }
   }
 }
