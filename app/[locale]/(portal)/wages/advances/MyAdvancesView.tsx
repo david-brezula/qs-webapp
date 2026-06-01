@@ -14,8 +14,9 @@ type Row = {
   amount: string;
   currency: string;
   note: string | null;
-  status: "REQUESTED" | "APPROVED" | "REJECTED" | "PAID";
+  status: "REQUESTED" | "APPROVED" | "REJECTED" | "PAID" | "SETTLED";
   requestedAt: string;
+  sectionName: string | null;
 };
 
 export function MyAdvancesView({ requests }: { requests: Row[] }) {
@@ -72,12 +73,13 @@ export function MyAdvancesView({ requests }: { requests: Row[] }) {
       <div>
         <h2 className="text-sm uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">{t("mine")}</h2>
         <DataTable
-          headers={[t("amount"), tCommon("currency"), tCommon("status"), t("requestedAt"), t("note"), tCommon("actions")]}
+          headers={[t("amount"), tCommon("currency"), tCommon("status"), t("section"), t("requestedAt"), t("note"), tCommon("actions")]}
           empty={t("noRequests")}
           rows={requests.map((r) => [
             r.amount,
             r.currency,
             t(`status.${r.status}`),
+            r.sectionName ?? "—",
             r.requestedAt,
             r.note ?? "—",
             r.status === "REQUESTED" ? (
