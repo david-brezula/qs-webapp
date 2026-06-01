@@ -328,3 +328,38 @@ describe("computeWages section accommodation", () => {
     expect(none.accommodation).toBe(0);
   });
 });
+
+const sectionBreakdownAccInput: WageInput & { sections: { id: string; name: string }[] } = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  projectId: "p1",
+  workers: [{ id: "w1", name: "Alice" }],
+  sections: [{ id: "s1", name: "North" }, { id: "s2", name: "South" }],
+  prices: [{ projectId: "p1", userId: "w1", priceTie: 1.0, priceConnect: 1.0 }],
+  activity: [
+    { userId: "w1", projectId: "p1", sectionId: "s1", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+  ],
+  accommodations: [
+    { id: "a1", totalCost: 40, currency: "EUR", startDate: new Date("2026-05-01"), endDate: new Date("2026-05-31"), workerIds: ["w1"], projectId: "p1", sectionId: "s1" },
+    { id: "a2", totalCost: 25, currency: "EUR", startDate: new Date("2026-05-01"), endDate: new Date("2026-05-31"), workerIds: ["w1"], projectId: "p1", sectionId: "s2" },
+  ],
+};
+
+describe("computeWagesBySection accommodation", () => {
+  it("attributes accommodation and net to the section with earnings", () => {
+    const rows = computeWagesBySection(sectionBreakdownAccInput);
+    const s1 = rows.find((r) => r.sectionId === "s1")!;
+    expect(s1.earnings).toBe(100);
+    expect(s1.accommodation).toBe(40);
+    expect(s1.wage).toBe(60);
+  });
+
+  it("includes a section that has only an accommodation deduction (zero earnings)", () => {
+    const rows = computeWagesBySection(sectionBreakdownAccInput);
+    const s2 = rows.find((r) => r.sectionId === "s2")!;
+    expect(s2).toBeDefined();
+    expect(s2.earnings).toBe(0);
+    expect(s2.accommodation).toBe(25);
+    expect(s2.wage).toBe(-25);
+  });
+});
