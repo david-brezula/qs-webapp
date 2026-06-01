@@ -15,6 +15,7 @@ export function AccommodationForm({
   initial,
   workers,
   projects,
+  sections,
   selectedWorkerIds,
 }: {
   initial?: {
@@ -26,9 +27,11 @@ export function AccommodationForm({
     totalCost: number;
     currency: "USD" | "EUR";
     notes: string | null;
+    sectionId: string | null;
   };
   workers: { id: string; name: string; email: string }[];
   projects: { id: string; name: string }[];
+  sections: { id: string; name: string; projectId: string }[];
   selectedWorkerIds: string[];
 }) {
   const router = useRouter();
@@ -37,6 +40,7 @@ export function AccommodationForm({
   const [pending, start] = useTransition();
   const [selected, setSelected] = useState<Set<string>>(new Set(selectedWorkerIds));
   const [formError, setFormError] = useState<string | null>(null);
+  const [projectId, setProjectId] = useState<string>(initial?.projectId ?? "");
 
   function toggle(id: string) {
     const next = new Set(selected);
@@ -82,8 +86,19 @@ export function AccommodationForm({
       <FormSelect
         label="Project"
         name="projectId"
-        defaultValue={initial?.projectId ?? ""}
+        value={projectId}
+        onChange={(e) => setProjectId(e.target.value)}
         options={[{ value: "", label: "— none —" }, ...projects.map((p) => ({ value: p.id, label: p.name }))]}
+      />
+      <FormSelect
+        label="Section"
+        name="sectionId"
+        defaultValue={initial?.sectionId ?? ""}
+        key={projectId}
+        options={[
+          { value: "", label: "— none —" },
+          ...sections.filter((s) => s.projectId === projectId).map((s) => ({ value: s.id, label: s.name })),
+        ]}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField label={t("startDate")} name="startDate" type="date" defaultValue={initial?.startDate} required />

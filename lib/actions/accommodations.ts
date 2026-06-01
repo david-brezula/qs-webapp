@@ -15,6 +15,7 @@ const schema = z.object({
   totalCost: z.coerce.number().nonnegative(),
   currency: z.enum(["USD", "EUR"]),
   notes: z.string().optional(),
+  sectionId: z.string().optional().nullable(),
   workerIds: z.array(z.string()).default([]),
 });
 
@@ -29,9 +30,18 @@ export async function saveAccommodationAction(fd: FormData) {
     totalCost: fd.get("totalCost"),
     currency: fd.get("currency") || "USD",
     notes: fd.get("notes") || undefined,
+    sectionId: fd.get("sectionId") || null,
     workerIds: fd.getAll("workerIds").map(String),
   });
   if (!parsed.success) return { ok: false as const, error: "validation" };
+
+  const sectionId = parsed.data.sectionId || null;
+  if (sectionId) {
+    const section = await prisma.section.findUnique({ where: { id: sectionId }, select: { projectId: true } });
+    if (!section || section.projectId !== (parsed.data.projectId || null)) {
+      return { ok: false as const, error: "validation" };
+    }
+  }
 
   const data = {
     projectId: parsed.data.projectId || null,
@@ -41,6 +51,7 @@ export async function saveAccommodationAction(fd: FormData) {
     totalCost: parsed.data.totalCost,
     currency: parsed.data.currency as Currency,
     notes: parsed.data.notes ?? null,
+    sectionId,
   };
 
   let id = parsed.data.id;

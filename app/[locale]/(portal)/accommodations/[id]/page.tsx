@@ -16,9 +16,10 @@ export default async function EditAccommodationPage({
   });
   if (!acc) notFound();
 
-  const [workers, projects] = await Promise.all([
+  const [workers, projects, sections] = await Promise.all([
     prisma.user.findMany({ where: { active: true, role: "WORKER" }, orderBy: { name: "asc" } }),
     prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
+    prisma.section.findMany({ orderBy: { orderIndex: "asc" }, select: { id: true, name: true, projectId: true } }),
   ]);
 
   return (
@@ -34,9 +35,11 @@ export default async function EditAccommodationPage({
           totalCost: Number(acc.totalCost),
           currency: acc.currency as "USD" | "EUR",
           notes: acc.notes,
+          sectionId: acc.sectionId,
         }}
         workers={workers.map((w) => ({ id: w.id, name: w.name, email: w.email ?? w.username }))}
         projects={projects.map((p) => ({ id: p.id, name: p.name }))}
+        sections={sections}
         selectedWorkerIds={acc.workers.map((w) => w.userId)}
       />
     </div>
