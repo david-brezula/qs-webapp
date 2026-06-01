@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { withWorkerScope } from "@/lib/prisma-worker";
 import { computeWagesBySection } from "@/lib/portal/wages";
+import type { WorkerSectionRow } from "@/app/[locale]/(portal)/wages/section-row";
 
 export async function GET(
   req: Request,
@@ -28,7 +29,7 @@ export async function GET(
   const userId = session.user.id as string;
 
   const data = await withWorkerScope(userId, async (tx) => {
-    const [prices, activity, sections] = await Promise.all([
+    const [prices, activity, sections, accommodations, invoices] = await Promise.all([
       tx.projectWorker.findMany({ where: { projectId, userId } }),
       tx.activityLog.findMany({
         where: {
@@ -37,15 +38,20 @@ export async function GET(
         },
         include: { projectWorker: true, table: { include: { section: true } } },
       }),
-      tx.section.findMany({
-        where: { projectId },
-        orderBy: { orderIndex: "asc" },
+      tx.section.findMany({ where: { projectId }, orderBy: { orderIndex: "asc" } }),
+      tx.accommodation.findMany({
+        where: { projectId, startDate: { lte: to }, endDate: { gte: from } },
+        include: { workers: true },
+      }),
+      tx.sectionInvoice.findMany({
+        where: { projectWorker: { projectId, userId } },
+        select: { sectionId: true, invoicedAt: true },
       }),
     ]);
-    return { prices, activity, sections };
+    return { prices, activity, sections, accommodations, invoices };
   });
 
-  const sections = computeWagesBySection({
+  const sectionRows = computeWagesBySection({
     from,
     to,
     projectId,
@@ -64,9 +70,25 @@ export async function GET(
       count: a.count,
       workDate: a.workDate,
     })),
-    accommodations: [],
+    accommodations: data.accommodations.map((acc) => ({
+      id: acc.id,
+      totalCost: Number(acc.totalCost),
+      currency: acc.currency,
+      startDate: acc.startDate,
+      endDate: acc.endDate,
+      workerIds: acc.workers.map((w) => w.userId),
+      projectId: acc.projectId,
+      sectionId: acc.sectionId,
+    })),
     sections: data.sections.map((s) => ({ id: s.id, name: s.name })),
   });
+
+  const invoicedAt = new Map(data.invoices.map((i) => [i.sectionId, i.invoicedAt.toISOString()] as const));
+  const sections: WorkerSectionRow[] = sectionRows.map((s) => ({
+    ...s,
+    invoiced: invoicedAt.has(s.sectionId),
+    invoicedAt: invoicedAt.get(s.sectionId) ?? null,
+  }));
 
   return NextResponse.json({ sections });
 }
