@@ -266,7 +266,7 @@ describe("computeWagesBySection", () => {
     expect(rows.map((r) => r.sectionId).sort()).toEqual(["s1", "s2"]);
   });
 
-  it("omits sections with zero earnings", () => {
+  it("omits sections with zero earnings and zero accommodation", () => {
     const rows = computeWagesBySection(sectionBreakdownInput);
     expect(rows.find((r) => r.sectionId === "s3")).toBeUndefined();
   });
@@ -370,14 +370,29 @@ describe("sumPaidAdvances", () => {
     { amount: 50, status: "PAID", paidAt: new Date("2026-04-10") },   // out of range
     { amount: 30, status: "APPROVED", paidAt: null },
     { amount: 20, status: "REQUESTED", paidAt: null },
+    { amount: 40, status: "REJECTED", paidAt: new Date("2026-05-12") }, // rejected, in range → excluded
   ];
 
   it("sums only PAID advances with paidAt inside the range", () => {
     expect(sumPaidAdvances(advs, new Date("2026-05-01"), new Date("2026-05-31"))).toBe(100);
   });
 
+  it("excludes a REJECTED advance even with a paidAt inside the range", () => {
+    expect(sumPaidAdvances(advs, new Date("2026-05-01"), new Date("2026-05-31"))).toBe(100);
+  });
+
   it("ignores PAID advances with a null paidAt", () => {
     expect(sumPaidAdvances([{ amount: 99, status: "PAID", paidAt: null }], new Date("2026-05-01"), new Date("2026-05-31"))).toBe(0);
+  });
+
+  it("includes PAID advances with paidAt exactly on the range boundaries", () => {
+    const from = new Date("2026-05-01");
+    const to = new Date("2026-05-31");
+    const boundary = [
+      { amount: 10, status: "PAID", paidAt: from },
+      { amount: 25, status: "PAID", paidAt: to },
+    ];
+    expect(sumPaidAdvances(boundary, from, to)).toBe(35);
   });
 
   it("returns 0 for an empty list", () => {

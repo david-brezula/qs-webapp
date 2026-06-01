@@ -225,7 +225,8 @@ export interface SectionWageRow {
  * For a single worker, returns one row per section that had activity or an
  * accommodation cost within the range. Sections with zero earnings AND zero
  * accommodation are omitted. Each row includes accommodation and net wage
- * figures filtered to that section.
+ * figures filtered to that section. Accommodations without a `sectionId` are
+ * NOT attributed to any section row — they appear in the project total only.
  */
 export function computeWagesBySection(
   input: WageInput & { sections: { id: string; name: string }[] },
