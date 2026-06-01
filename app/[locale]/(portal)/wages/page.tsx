@@ -29,6 +29,11 @@ export default async function WagesPage({
     const toStr = sp.to ?? today;
     const from = new Date(fromStr);
     const to = new Date(toStr);
+    // `to` is UTC midnight of the end day; advance `paidAt` is a full timestamp,
+    // so use an end-of-day bound to include advances paid on the final day.
+    // (Earnings/accommodation use @db.Date columns, so midnight `to` is correct.)
+    const toEndOfDay = new Date(to);
+    toEndOfDay.setUTCHours(23, 59, 59, 999);
 
     const data = await withWorkerScope(user.id, async (tx) => {
       const [prices, activity, accommodations, projects, advances] = await Promise.all([
@@ -42,7 +47,7 @@ export default async function WagesPage({
           include: { workers: true },
         }),
         tx.project.findMany({ orderBy: { createdAt: "desc" } }),
-        tx.advanceRequest.findMany({ where: { status: "PAID", paidAt: { gte: from, lte: to } } }),
+        tx.advanceRequest.findMany({ where: { status: "PAID", paidAt: { gte: from, lte: toEndOfDay } } }),
       ]);
       return { prices, activity, accommodations, projects, advances };
     });
@@ -80,7 +85,7 @@ export default async function WagesPage({
     const advancesTotal = sumPaidAdvances(
       data.advances.map((a) => ({ amount: Number(a.amount), status: a.status, paidAt: a.paidAt })),
       from,
-      to,
+      toEndOfDay,
     );
 
     return (
