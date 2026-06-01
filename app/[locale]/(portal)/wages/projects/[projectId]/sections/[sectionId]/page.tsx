@@ -13,7 +13,7 @@ export default async function AdminSectionWagePage({
   await requireAdmin();
   const { projectId, sectionId } = await params;
 
-  const [section, project, workers, prices, activity] = await Promise.all([
+  const [section, project, workers, prices, activity, accommodations, invoices] = await Promise.all([
     prisma.section.findUnique({
       where: { id: sectionId },
       select: { id: true, name: true, projectId: true },
@@ -28,6 +28,8 @@ export default async function AdminSectionWagePage({
       where: { table: { sectionId } },
       include: { projectWorker: true },
     }),
+    prisma.accommodation.findMany({ where: { sectionId }, include: { workers: true } }),
+    prisma.sectionInvoice.findMany({ where: { sectionId }, include: { projectWorker: true } }),
   ]);
 
   if (!section || !project) notFound();
@@ -53,8 +55,19 @@ export default async function AdminSectionWagePage({
       count: a.count,
       workDate: a.workDate,
     })),
-    accommodations: [],
+    accommodations: accommodations.map((acc) => ({
+      id: acc.id,
+      totalCost: Number(acc.totalCost),
+      currency: acc.currency,
+      startDate: acc.startDate,
+      endDate: acc.endDate,
+      workerIds: acc.workers.map((w) => w.userId),
+      projectId,
+      sectionId,
+    })),
   });
+
+  const invoicedByUser = new Map(invoices.map((i) => [i.projectWorker.userId, i.invoicedAt.toISOString()] as const));
 
   const workerRows = result.rows
     .map((r) => ({
@@ -63,9 +76,11 @@ export default async function AdminSectionWagePage({
       tie: r.breakdown.tie,
       connect: r.breakdown.connect,
       earnings: r.earnings,
+      accommodation: r.accommodation,
+      invoicedAt: invoicedByUser.get(r.userId) ?? null,
       warnings: r.warnings,
     }))
-    .filter((r) => r.earnings !== 0);
+    .filter((r) => r.earnings !== 0 || r.accommodation !== 0);
 
   return (
     <div>

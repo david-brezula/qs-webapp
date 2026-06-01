@@ -9,6 +9,8 @@ type SectionWorkerRow = {
   tie: number;
   connect: number;
   earnings: number;
+  accommodation: number;
+  invoicedAt: string | null;
   warnings: string[];
 };
 
@@ -31,13 +33,15 @@ export function AdminSectionWageView({ workers }: { workers: SectionWorkerRow[] 
       )}
 
       <DataTable
-        headers={[tCommon("name"), t("tie"), t("connect"), t("earnings")]}
+        headers={[tCommon("name"), t("tie"), t("connect"), t("earnings"), t("accommodation"), t("invoiced")]}
         empty={t("noActivityYet")}
         rows={workers.map((w) => [
           w.name,
           <NumCell key={`tie-${w.userId}`} value={w.tie} />,
           <NumCell key={`con-${w.userId}`} value={w.connect} />,
           <NumCell key={`ear-${w.userId}`} value={w.earnings} />,
+          <NumCell key={`acc-${w.userId}`} value={w.accommodation} />,
+          <span key={`inv-${w.userId}`} className="text-sm text-slate-ink">{w.invoicedAt ? `✓ ${w.invoicedAt.slice(0, 10)}` : "—"}</span>,
         ])}
       />
     </>
