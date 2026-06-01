@@ -94,3 +94,54 @@ export async function markAdvancePaidAction(fd: FormData): Promise<AdvanceResult
   });
   return { ok: true };
 }
+
+const settleSchema = z.object({
+  id: z.string().min(1),
+  sectionId: z.string().min(1),
+});
+
+/** Admin settles an open (PAID) advance against a section the worker is assigned to. */
+export async function settleAdvanceAction(fd: FormData): Promise<AdvanceResult> {
+  await requireAdmin();
+  const parsed = settleSchema.safeParse({ id: fd.get("id"), sectionId: fd.get("sectionId") });
+  if (!parsed.success) return { ok: false, error: "validation" };
+
+  const adv = await prisma.advanceRequest.findUnique({ where: { id: parsed.data.id } });
+  if (!adv) return { ok: false, error: "validation" };
+  if (adv.status !== "PAID") return { ok: false, error: "bad-state" };
+
+  const section = await prisma.section.findUnique({
+    where: { id: parsed.data.sectionId },
+    select: { projectId: true },
+  });
+  if (!section) return { ok: false, error: "validation" };
+
+  const pw = await prisma.projectWorker.findUnique({
+    where: { projectId_userId: { projectId: section.projectId, userId: adv.userId } },
+    select: { id: true },
+  });
+  if (!pw) return { ok: false, error: "validation" };
+
+  await prisma.advanceRequest.update({
+    where: { id: parsed.data.id },
+    data: { status: "SETTLED", sectionId: parsed.data.sectionId, settledAt: new Date() },
+  });
+  return { ok: true };
+}
+
+/** Admin reopens a SETTLED advance back to open (postpone / move to another section). */
+export async function reopenAdvanceAction(fd: FormData): Promise<AdvanceResult> {
+  await requireAdmin();
+  const id = String(fd.get("id") ?? "");
+  if (!id) return { ok: false, error: "validation" };
+
+  const adv = await prisma.advanceRequest.findUnique({ where: { id } });
+  if (!adv) return { ok: false, error: "validation" };
+  if (adv.status !== "SETTLED") return { ok: false, error: "bad-state" };
+
+  await prisma.advanceRequest.update({
+    where: { id },
+    data: { status: "PAID", sectionId: null, settledAt: null },
+  });
+  return { ok: true };
+}
