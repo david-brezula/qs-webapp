@@ -266,7 +266,7 @@ describe("computeWagesBySection", () => {
     expect(rows.map((r) => r.sectionId).sort()).toEqual(["s1", "s2"]);
   });
 
-  it("omits sections with zero earnings and zero accommodation", () => {
+  it("omits sections with zero earnings, accommodation, and advance", () => {
     const rows = computeWagesBySection(sectionBreakdownInput);
     expect(rows.find((r) => r.sectionId === "s3")).toBeUndefined();
   });
@@ -414,6 +414,19 @@ describe("computeWagesBySection settled advances", () => {
     expect(s1.advance).toBe(0);
     expect(s1.wage).toBe(100);
   });
+
+  it("sums multiple settled advances for the same section", () => {
+    const rows = computeWagesBySection({
+      ...sectionAdvanceInput,
+      settledAdvances: [
+        { sectionId: "s1", amount: 30 },
+        { sectionId: "s1", amount: 20 },
+      ],
+    });
+    const s1 = rows.find((r) => r.sectionId === "s1")!;
+    expect(s1.advance).toBe(50);
+    expect(s1.wage).toBe(50); // 100 - 0 - 50
+  });
 });
 
 describe("sumOpenAdvances", () => {
@@ -425,6 +438,9 @@ describe("sumOpenAdvances", () => {
   ];
   it("sums only PAID (open) advances", () => {
     expect(sumOpenAdvances(advs)).toBe(100);
+  });
+  it("excludes SETTLED advances", () => {
+    expect(sumOpenAdvances([{ amount: 25, status: "SETTLED" }, { amount: 100, status: "PAID" }])).toBe(100);
   });
   it("returns 0 for an empty list", () => {
     expect(sumOpenAdvances([])).toBe(0);

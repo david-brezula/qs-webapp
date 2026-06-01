@@ -269,6 +269,7 @@ export const ALL_TIME_TO = new Date(9999, 0, 1);
 /**
  * Sums the amount of OPEN advances (status PAID — paid to the worker but not yet
  * settled against a section). This is the worker's outstanding advance balance.
+ * Only the "PAID" status counts; "SETTLED" and all other statuses are excluded.
  * Currency mixing is out of scope (amounts are summed as-is).
  */
 export function sumOpenAdvances(advances: { amount: number; status: string }[]): number {
