@@ -5,17 +5,21 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import type { SectionWageRow, WageByProjectResult } from "@/lib/portal/wages";
+import type { WageByProjectResult } from "@/lib/portal/wages";
+import type { WorkerSectionRow } from "./section-row";
+import { toggleSectionInvoiceAction } from "@/lib/actions/section-invoice";
 import { WorkerSectionBreakdown } from "./WorkerSectionBreakdown";
 
 export function MyWagesView({
   from,
   to,
   result,
+  advances,
 }: {
   from: string;
   to: string;
   result: WageByProjectResult;
+  advances: number;
 }) {
   const router = useRouter();
   const sp = useSearchParams();
@@ -25,7 +29,7 @@ export function MyWagesView({
   const [tt, setTt] = useState(to);
 
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set());
-  const [sectionCache, setSectionCache] = useState<Map<string, SectionWageRow[]>>(new Map());
+  const [sectionCache, setSectionCache] = useState<Map<string, WorkerSectionRow[]>>(new Map());
   const [loadingSections, setLoadingSections] = useState<Set<string>>(new Set());
   const [sectionErrors, setSectionErrors] = useState<Set<string>>(new Set());
 
@@ -55,7 +59,7 @@ export function MyWagesView({
       const qs = new URLSearchParams({ from, to });
       const res = await fetch(`/api/wages/projects/${projectId}/sections?${qs}`);
       if (!res.ok) throw new Error(`sections fetch failed: ${res.status}`);
-      const data: { sections: SectionWageRow[] } = await res.json();
+      const data: { sections: WorkerSectionRow[] } = await res.json();
       setSectionCache((prev) => new Map(prev).set(projectId, data.sections));
       setExpandedProjects((prev) => new Set(prev).add(projectId));
     } catch {
@@ -69,7 +73,24 @@ export function MyWagesView({
     }
   }
 
-  const hasTotal = result.total.earnings !== 0 || result.total.accommodation !== 0;
+  function handleInvoiceToggle(projectId: string, sectionId: string) {
+    const fd = new FormData();
+    fd.set("sectionId", sectionId);
+    void (async () => {
+      const r = await toggleSectionInvoiceAction(fd);
+      if (!r.ok) return;
+      setSectionCache((prev) => {
+        const next = new Map(prev);
+        const rows = (next.get(projectId) ?? []).map((row) =>
+          row.sectionId === sectionId ? { ...row, invoiced: r.invoiced, invoicedAt: r.invoicedAt } : row,
+        );
+        next.set(projectId, rows);
+        return next;
+      });
+    })();
+  }
+
+  const hasTotal = result.total.earnings !== 0 || result.total.accommodation !== 0 || advances !== 0;
 
   return (
     <>
@@ -158,7 +179,10 @@ export function MyWagesView({
                     </tr>
                   )}
                   {expandedProjects.has(p.projectId) && (
-                    <WorkerSectionBreakdown sections={sectionCache.get(p.projectId) ?? []} />
+                    <WorkerSectionBreakdown
+                      sections={sectionCache.get(p.projectId) ?? []}
+                      onToggleInvoice={(sectionId) => handleInvoiceToggle(p.projectId, sectionId)}
+                    />
                   )}
                 </Fragment>
               ))}
@@ -172,7 +196,7 @@ export function MyWagesView({
           <div className="text-xs uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">
             {tCommon("total")}
           </div>
-          <dl className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
+          <dl className="grid grid-cols-2 sm:grid-cols-6 gap-3 text-sm">
             <div>
               <dt className="text-xs text-muted">{t("tie")}</dt>
               <dd className="font-semibold text-navy">{result.total.breakdown.tie.toFixed(2)}</dd>
@@ -192,6 +216,14 @@ export function MyWagesView({
             <div>
               <dt className="text-xs text-muted">{t("wage")}</dt>
               <dd className="font-semibold text-navy">{result.total.wage.toFixed(2)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs text-muted">{t("advances")}</dt>
+              <dd className="font-semibold text-navy">{advances.toFixed(2)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs text-muted">{t("netToPay")}</dt>
+              <dd className="font-semibold text-navy">{(result.total.wage - advances).toFixed(2)}</dd>
             </div>
           </dl>
         </div>

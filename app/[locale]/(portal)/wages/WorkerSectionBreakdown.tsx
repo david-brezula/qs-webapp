@@ -1,9 +1,15 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { SectionWageRow } from "@/lib/portal/wages";
+import type { WorkerSectionRow } from "./section-row";
 
-export function WorkerSectionBreakdown({ sections }: { sections: SectionWageRow[] }) {
+export function WorkerSectionBreakdown({
+  sections,
+  onToggleInvoice,
+}: {
+  sections: WorkerSectionRow[];
+  onToggleInvoice: (sectionId: string) => void;
+}) {
   const t = useTranslations("wages");
 
   if (sections.length === 0) {
@@ -21,12 +27,23 @@ export function WorkerSectionBreakdown({ sections }: { sections: SectionWageRow[
       {sections.map((s) => (
         <tr key={s.sectionId} className="bg-bg/30">
           <td />
-          <td className="px-4 py-2 pl-10 text-sm text-slate-ink">{s.sectionName}</td>
+          <td className="px-4 py-2 pl-10 text-sm text-slate-ink">
+            <span className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={s.invoiced}
+                onChange={() => onToggleInvoice(s.sectionId)}
+                title={t("invoiced")}
+                aria-label={t("invoiced")}
+              />
+              {s.sectionName}
+            </span>
+          </td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.tie.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.connect.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.earnings.toFixed(2)}</td>
-          <td />
-          <td />
+          <td className="px-4 py-2 text-sm text-slate-ink">{s.accommodation.toFixed(2)}</td>
+          <td className="px-4 py-2 text-sm text-slate-ink">{s.wage.toFixed(2)}</td>
         </tr>
       ))}
     </>
