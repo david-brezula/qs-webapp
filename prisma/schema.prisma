@@ -50,6 +50,7 @@ enum AdvanceStatus {
   APPROVED
   REJECTED
   PAID
+  SETTLED
 }
 
 model User {
@@ -93,8 +94,9 @@ model Section {
   orderIndex Int      @default(0)
   tables     Table[]
 
-  invoices       SectionInvoice[]
-  accommodations Accommodation[]
+  invoices         SectionInvoice[]
+  accommodations   Accommodation[]
+  advanceRequests  AdvanceRequest[]
 
   @@index([projectId])
 }
@@ -258,9 +260,13 @@ model AdvanceRequest {
   requestedAt DateTime      @default(now())
   decidedAt   DateTime?
   paidAt      DateTime?
+  sectionId   String?
+  settledAt   DateTime?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  section Section? @relation(fields: [sectionId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([status])
+  @@index([sectionId])
 }
