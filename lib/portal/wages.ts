@@ -28,6 +28,7 @@ export interface WageInput {
     endDate: Date;
     workerIds: string[];
     projectId: string | null;
+    sectionId?: string | null;
   }[];
 }
 
@@ -97,6 +98,7 @@ export function computeWages(input: WageInput): WageResult {
   // Accommodation
   const overlappingAccommodations = input.accommodations.filter((acc) => {
     if (projectFilter && acc.projectId !== projectFilter) return false;
+    if (sectionFilter && acc.sectionId !== sectionFilter) return false;
     return overlaps(range, { start: acc.startDate, end: acc.endDate });
   });
 

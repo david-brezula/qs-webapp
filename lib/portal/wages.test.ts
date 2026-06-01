@@ -295,3 +295,36 @@ describe("computeWagesBySection", () => {
     expect(rows[1].sectionId).toBe("s2");
   });
 });
+
+const sectionAccInput: WageInput = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  workers: [{ id: "w1", name: "Alice" }],
+  prices: [{ projectId: "p1", userId: "w1", priceTie: 1.0, priceConnect: 1.0 }],
+  activity: [
+    { userId: "w1", projectId: "p1", sectionId: "s1", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+    { userId: "w1", projectId: "p1", sectionId: "s2", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+  ],
+  accommodations: [
+    { id: "a1", totalCost: 60, currency: "EUR", startDate: new Date("2026-05-01"), endDate: new Date("2026-05-31"), workerIds: ["w1"], projectId: "p1", sectionId: "s1" },
+  ],
+};
+
+describe("computeWages section accommodation", () => {
+  it("deducts a section-assigned accommodation only in that section", () => {
+    const s1 = computeWages({ ...sectionAccInput, projectId: "p1", sectionId: "s1" }).rows[0];
+    expect(s1.accommodation).toBe(60);
+    const s2 = computeWages({ ...sectionAccInput, projectId: "p1", sectionId: "s2" }).rows[0];
+    expect(s2.accommodation).toBe(0);
+  });
+
+  it("counts a section-assigned accommodation once in the project total", () => {
+    const proj = computeWages({ ...sectionAccInput, projectId: "p1" }).rows[0];
+    expect(proj.accommodation).toBe(60);
+  });
+
+  it("ignores a section-assigned accommodation under a non-matching section filter", () => {
+    const none = computeWages({ ...sectionAccInput, projectId: "p1", sectionId: "s3" }).rows[0];
+    expect(none.accommodation).toBe(0);
+  });
+});
