@@ -29,7 +29,9 @@ GRANT SELECT ON
   "ProjectWorker",
   "ActivityLog",
   "Accommodation",
-  "AccommodationWorker"
+  "AccommodationWorker",
+  "SectionInvoice",
+  "AdvanceRequest"
 TO qs_worker;
 
 GRANT EXECUTE ON FUNCTION app_worker_accommodation_ids() TO qs_worker;
