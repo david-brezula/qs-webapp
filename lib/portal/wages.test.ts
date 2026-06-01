@@ -408,7 +408,8 @@ describe("computeWagesBySection settled advances", () => {
   });
 
   it("treats missing settledAdvances as zero", () => {
-    const { settledAdvances: _omit, ...noAdv } = sectionAdvanceInput;
+    const { settledAdvances, ...noAdv } = sectionAdvanceInput;
+    expect(settledAdvances.length).toBeGreaterThan(0); // base fixture has advances; this case omits them
     const rows = computeWagesBySection(noAdv);
     const s1 = rows.find((r) => r.sectionId === "s1")!;
     expect(s1.advance).toBe(0);
