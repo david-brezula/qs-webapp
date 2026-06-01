@@ -4,10 +4,12 @@ export function DataTable({
   headers,
   rows,
   empty,
+  rowKeys,
 }: {
   headers: ReactNode[];
   rows: ReactNode[][];
   empty?: ReactNode;
+  rowKeys?: (string | number)[];
 }) {
   if (rows.length === 0) {
     return (
@@ -30,7 +32,7 @@ export function DataTable({
         </thead>
         <tbody className="divide-y divide-border-soft">
           {rows.map((row, i) => (
-            <tr key={i} className="hover:bg-bg/50">
+            <tr key={rowKeys?.[i] ?? i} className="hover:bg-bg/50">
               {row.map((cell, j) => (
                 <td key={j} className="px-4 py-3 text-slate-ink align-middle">
                   {cell}

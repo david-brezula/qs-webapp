@@ -91,12 +91,13 @@ export function AdminAdvancesView({ requests }: { requests: Row[] }) {
       <DataTable
         headers={[t("worker"), t("amount"), tCommon("currency"), tCommon("status"), t("section"), t("requestedAt"), t("note"), tCommon("actions")]}
         empty={t("noRequests")}
+        rowKeys={shown.map((r) => r.id)}
         rows={shown.map((r) => [
           r.workerName,
           r.amount,
           r.currency,
           t(`status.${r.status}`),
-          r.sectionName ?? "—",
+          r.sectionName ? (r.settledAt ? `${r.sectionName} · ${r.settledAt}` : r.sectionName) : "—",
           r.requestedAt,
           r.note ?? "—",
           actionsFor(r),
