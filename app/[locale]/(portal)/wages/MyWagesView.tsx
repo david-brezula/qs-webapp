@@ -155,6 +155,7 @@ export function MyWagesView({
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("connect")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("earnings")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("accommodation")}</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("advance")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("wage")}</th>
               </tr>
             </thead>
@@ -179,12 +180,13 @@ export function MyWagesView({
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.breakdown.connect.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.earnings.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.accommodation.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-muted align-middle">—</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.wage.toFixed(2)}</td>
                   </tr>
                   {sectionErrors.has(p.projectId) && (
                     <tr>
                       <td />
-                      <td colSpan={6} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
+                      <td colSpan={7} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
                         {t("loadError")}
                       </td>
                     </tr>

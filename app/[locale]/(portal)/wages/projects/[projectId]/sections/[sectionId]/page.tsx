@@ -13,7 +13,7 @@ export default async function AdminSectionWagePage({
   await requireAdmin();
   const { projectId, sectionId } = await params;
 
-  const [section, project, workers, prices, activity, accommodations, invoices] = await Promise.all([
+  const [section, project, workers, prices, activity, accommodations, invoices, settledAdvances] = await Promise.all([
     prisma.section.findUnique({
       where: { id: sectionId },
       select: { id: true, name: true, projectId: true },
@@ -30,6 +30,7 @@ export default async function AdminSectionWagePage({
     }),
     prisma.accommodation.findMany({ where: { sectionId }, include: { workers: true } }),
     prisma.sectionInvoice.findMany({ where: { sectionId }, include: { projectWorker: true } }),
+    prisma.advanceRequest.findMany({ where: { sectionId, status: "SETTLED" }, select: { userId: true, amount: true } }),
   ]);
 
   if (!section || !project) notFound();
@@ -69,6 +70,11 @@ export default async function AdminSectionWagePage({
 
   const invoicedByUser = new Map(invoices.map((i) => [i.projectWorker.userId, i.invoicedAt.toISOString()] as const));
 
+  const advanceByUser = new Map<string, number>();
+  for (const a of settledAdvances) {
+    advanceByUser.set(a.userId, (advanceByUser.get(a.userId) ?? 0) + Number(a.amount));
+  }
+
   const workerRows = result.rows
     .map((r) => ({
       userId: r.userId,
@@ -77,10 +83,11 @@ export default async function AdminSectionWagePage({
       connect: r.breakdown.connect,
       earnings: r.earnings,
       accommodation: r.accommodation,
+      advance: advanceByUser.get(r.userId) ?? 0,
       invoicedAt: invoicedByUser.get(r.userId) ?? null,
       warnings: r.warnings,
     }))
-    .filter((r) => r.earnings !== 0 || r.accommodation !== 0);
+    .filter((r) => r.earnings !== 0 || r.accommodation !== 0 || r.advance !== 0);
 
   return (
     <div>

@@ -18,7 +18,7 @@ export function WorkerSectionBreakdown({
     return (
       <tr>
         <td />
-        <td colSpan={6} className="px-4 py-2 pl-10 text-sm text-muted italic">
+        <td colSpan={7} className="px-4 py-2 pl-10 text-sm text-muted italic">
           {t("noData")}
         </td>
       </tr>
@@ -46,6 +46,7 @@ export function WorkerSectionBreakdown({
           <td className="px-4 py-2 text-sm text-slate-ink">{s.connect.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.earnings.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.accommodation.toFixed(2)}</td>
+          <td className="px-4 py-2 text-sm text-slate-ink">{s.advance.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.wage.toFixed(2)}</td>
         </tr>
       ))}

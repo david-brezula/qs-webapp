@@ -29,7 +29,7 @@ export async function GET(
   const userId = session.user.id as string;
 
   const data = await withWorkerScope(userId, async (tx) => {
-    const [prices, activity, sections, accommodations, invoices] = await Promise.all([
+    const [prices, activity, sections, accommodations, invoices, settledAdvances] = await Promise.all([
       tx.projectWorker.findMany({ where: { projectId, userId } }),
       tx.activityLog.findMany({
         where: {
@@ -47,8 +47,12 @@ export async function GET(
         where: { projectWorker: { projectId, userId } },
         select: { sectionId: true, invoicedAt: true },
       }),
+      tx.advanceRequest.findMany({
+        where: { userId, status: "SETTLED", section: { projectId } },
+        select: { sectionId: true, amount: true },
+      }),
     ]);
-    return { prices, activity, sections, accommodations, invoices };
+    return { prices, activity, sections, accommodations, invoices, settledAdvances };
   });
 
   const sectionRows = computeWagesBySection({
@@ -81,6 +85,9 @@ export async function GET(
       sectionId: acc.sectionId,
     })),
     sections: data.sections.map((s) => ({ id: s.id, name: s.name })),
+    settledAdvances: data.settledAdvances
+      .filter((a) => a.sectionId)
+      .map((a) => ({ sectionId: a.sectionId as string, amount: Number(a.amount) })),
   });
 
   const invoicedAt = new Map(data.invoices.map((i) => [i.sectionId, i.invoicedAt.toISOString()] as const));
