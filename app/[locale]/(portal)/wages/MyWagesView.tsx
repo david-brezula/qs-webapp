@@ -14,12 +14,12 @@ export function MyWagesView({
   from,
   to,
   result,
-  advances,
+  openAdvances,
 }: {
   from: string;
   to: string;
   result: WageByProjectResult;
-  advances: number;
+  openAdvances: number;
 }) {
   const router = useRouter();
   const sp = useSearchParams();
@@ -101,7 +101,7 @@ export function MyWagesView({
     })();
   }
 
-  const hasTotal = result.total.earnings !== 0 || result.total.accommodation !== 0 || advances !== 0;
+  const hasTotal = result.total.earnings !== 0 || result.total.accommodation !== 0 || openAdvances !== 0;
 
   return (
     <>
@@ -208,7 +208,7 @@ export function MyWagesView({
           <div className="text-xs uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">
             {tCommon("total")}
           </div>
-          <dl className="grid grid-cols-2 sm:grid-cols-7 gap-3 text-sm">
+          <dl className="grid grid-cols-2 sm:grid-cols-6 gap-3 text-sm">
             <div>
               <dt className="text-xs text-muted">{t("tie")}</dt>
               <dd className="font-semibold text-navy">{result.total.breakdown.tie.toFixed(2)}</dd>
@@ -230,12 +230,8 @@ export function MyWagesView({
               <dd className="font-semibold text-navy">{result.total.wage.toFixed(2)}</dd>
             </div>
             <div>
-              <dt className="text-xs text-muted">{t("advances")}</dt>
-              <dd className="font-semibold text-navy">{advances.toFixed(2)}</dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted">{t("netToPay")}</dt>
-              <dd className="font-semibold text-navy">{(result.total.wage - advances).toFixed(2)}</dd>
+              <dt className="text-xs text-muted">{t("openAdvances")}</dt>
+              <dd className="font-semibold text-navy">{openAdvances.toFixed(2)}</dd>
             </div>
           </dl>
         </div>
