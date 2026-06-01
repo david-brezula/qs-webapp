@@ -6,9 +6,11 @@ import type { WorkerSectionRow } from "./section-row";
 export function WorkerSectionBreakdown({
   sections,
   onToggleInvoice,
+  pendingSections,
 }: {
   sections: WorkerSectionRow[];
   onToggleInvoice: (sectionId: string) => void;
+  pendingSections: Set<string>;
 }) {
   const t = useTranslations("wages");
 
@@ -33,6 +35,7 @@ export function WorkerSectionBreakdown({
                 type="checkbox"
                 checked={s.invoiced}
                 onChange={() => onToggleInvoice(s.sectionId)}
+                disabled={pendingSections.has(s.sectionId)}
                 title={t("invoiced")}
                 aria-label={t("invoiced")}
               />

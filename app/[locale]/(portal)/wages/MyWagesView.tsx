@@ -32,6 +32,7 @@ export function MyWagesView({
   const [sectionCache, setSectionCache] = useState<Map<string, WorkerSectionRow[]>>(new Map());
   const [loadingSections, setLoadingSections] = useState<Set<string>>(new Set());
   const [sectionErrors, setSectionErrors] = useState<Set<string>>(new Set());
+  const [invoicing, setInvoicing] = useState<Set<string>>(new Set());
 
   // Cached sections are reset when the date range changes via a `key` on this
   // component in the parent (it remounts), so no reset effect is needed here.
@@ -74,19 +75,29 @@ export function MyWagesView({
   }
 
   function handleInvoiceToggle(projectId: string, sectionId: string) {
+    if (invoicing.has(sectionId)) return;
+    setInvoicing((prev) => new Set(prev).add(sectionId));
     const fd = new FormData();
     fd.set("sectionId", sectionId);
     void (async () => {
-      const r = await toggleSectionInvoiceAction(fd);
-      if (!r.ok) return;
-      setSectionCache((prev) => {
-        const next = new Map(prev);
-        const rows = (next.get(projectId) ?? []).map((row) =>
-          row.sectionId === sectionId ? { ...row, invoiced: r.invoiced, invoicedAt: r.invoicedAt } : row,
-        );
-        next.set(projectId, rows);
-        return next;
-      });
+      try {
+        const r = await toggleSectionInvoiceAction(fd);
+        if (!r.ok) return;
+        setSectionCache((prev) => {
+          const next = new Map(prev);
+          const rows = (next.get(projectId) ?? []).map((row) =>
+            row.sectionId === sectionId ? { ...row, invoiced: r.invoiced, invoicedAt: r.invoicedAt } : row,
+          );
+          next.set(projectId, rows);
+          return next;
+        });
+      } finally {
+        setInvoicing((prev) => {
+          const next = new Set(prev);
+          next.delete(sectionId);
+          return next;
+        });
+      }
     })();
   }
 
@@ -182,6 +193,7 @@ export function MyWagesView({
                     <WorkerSectionBreakdown
                       sections={sectionCache.get(p.projectId) ?? []}
                       onToggleInvoice={(sectionId) => handleInvoiceToggle(p.projectId, sectionId)}
+                      pendingSections={invoicing}
                     />
                   )}
                 </Fragment>
@@ -196,7 +208,7 @@ export function MyWagesView({
           <div className="text-xs uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">
             {tCommon("total")}
           </div>
-          <dl className="grid grid-cols-2 sm:grid-cols-6 gap-3 text-sm">
+          <dl className="grid grid-cols-2 sm:grid-cols-7 gap-3 text-sm">
             <div>
               <dt className="text-xs text-muted">{t("tie")}</dt>
               <dd className="font-semibold text-navy">{result.total.breakdown.tie.toFixed(2)}</dd>
