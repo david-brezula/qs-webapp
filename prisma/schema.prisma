@@ -45,6 +45,13 @@ enum InquiryStatus {
   CLOSED
 }
 
+enum AdvanceStatus {
+  REQUESTED
+  APPROVED
+  REJECTED
+  PAID
+}
+
 model User {
   id                 String   @id @default(cuid())
   username           String   @unique
@@ -62,6 +69,7 @@ model User {
 
   projectWorkers     ProjectWorker[]
   accommodationStays AccommodationWorker[]
+  advanceRequests    AdvanceRequest[]
 }
 
 model Project {
@@ -84,6 +92,9 @@ model Section {
   name       String
   orderIndex Int      @default(0)
   tables     Table[]
+
+  invoices       SectionInvoice[]
+  accommodations Accommodation[]
 
   @@index([projectId])
 }
@@ -131,6 +142,7 @@ model ProjectWorker {
   user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   logs    ActivityLog[]
   claims  TableClaim[]
+  sectionInvoices SectionInvoice[]
 
   @@unique([projectId, userId])
   @@index([userId])
@@ -158,6 +170,8 @@ model Accommodation {
   id        String   @id @default(cuid())
   projectId String?
   project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  sectionId String?
+  section   Section? @relation(fields: [sectionId], references: [id], onDelete: SetNull)
   name      String
   startDate DateTime @db.Date
   endDate   DateTime @db.Date
@@ -169,6 +183,7 @@ model Accommodation {
   workers AccommodationWorker[]
 
   @@index([projectId])
+  @@index([sectionId])
   @@index([startDate, endDate])
 }
 
@@ -218,4 +233,34 @@ model WorkerApplication {
 
   @@index([status])
   @@index([createdAt])
+}
+
+model SectionInvoice {
+  id              String   @id @default(cuid())
+  sectionId       String
+  projectWorkerId String
+  invoicedAt      DateTime @default(now())
+
+  section       Section       @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  projectWorker ProjectWorker @relation(fields: [projectWorkerId], references: [id], onDelete: Cascade)
+
+  @@unique([sectionId, projectWorkerId])
+  @@index([projectWorkerId])
+}
+
+model AdvanceRequest {
+  id          String        @id @default(cuid())
+  userId      String
+  amount      Decimal       @db.Decimal(10, 2)
+  currency    Currency      @default(EUR)
+  note        String?
+  status      AdvanceStatus @default(REQUESTED)
+  requestedAt DateTime      @default(now())
+  decidedAt   DateTime?
+  paidAt      DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
 }
