@@ -11,13 +11,14 @@ export type AdvanceResult = { ok: true } | { ok: false; error: "validation" | "f
 const requestSchema = z.object({
   amount: z.coerce.number().positive(),
   currency: z.enum(["USD", "EUR"]),
-  note: z.string().trim().optional(),
+  note: z.string().trim().max(500).optional(),
 });
 
 /** Worker creates an advance request in REQUESTED state. */
 export async function requestAdvanceAction(fd: FormData): Promise<AdvanceResult> {
   const session = await auth();
   if (!session?.user) return { ok: false, error: "forbidden" };
+  if (session.user.role !== "WORKER") return { ok: false, error: "forbidden" };
 
   const parsed = requestSchema.safeParse({
     amount: fd.get("amount"),
