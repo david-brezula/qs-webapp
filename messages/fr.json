@@ -545,7 +545,9 @@
     "invoiced": "Facturé",
     "advances": "Avances",
     "netToPay": "Net à payer",
-    "net": "Net"
+    "net": "Net",
+    "advance": "Avance",
+    "openAdvances": "Avances ouvertes (en cours)"
   },
   "log": {
     "title": "Saisir le travail",
@@ -1292,6 +1294,13 @@
     "markPaid": "Marquer payé",
     "cancel": "Annuler",
     "confirmCancel": "Annuler cette demande ?",
-    "status": { "REQUESTED": "Demandée", "APPROVED": "Approuvée", "REJECTED": "Rejetée", "PAID": "Payée" }
+    "status": { "REQUESTED": "Demandée", "APPROVED": "Approuvée", "REJECTED": "Rejetée", "PAID": "Payée", "SETTLED": "Déduite" },
+    "settle": "Déduire",
+    "reopen": "Rouvrir",
+    "section": "Section",
+    "outstanding": "Avances ouvertes (en cours)",
+    "filterOpen": "Ouvertes",
+    "filterSettled": "Déduites",
+    "filterAll": "Toutes"
   }
 }

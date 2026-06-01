@@ -545,7 +545,9 @@
     "invoiced": "Fakturiert",
     "advances": "Vorschüsse",
     "netToPay": "Auszuzahlen",
-    "net": "Netto"
+    "net": "Netto",
+    "advance": "Vorschuss",
+    "openAdvances": "Offene Vorschüsse (ausstehend)"
   },
   "log": {
     "title": "Arbeit erfassen",
@@ -1292,6 +1294,13 @@
     "markPaid": "Als bezahlt markieren",
     "cancel": "Stornieren",
     "confirmCancel": "Diese Anfrage stornieren?",
-    "status": { "REQUESTED": "Angefordert", "APPROVED": "Genehmigt", "REJECTED": "Abgelehnt", "PAID": "Bezahlt" }
+    "status": { "REQUESTED": "Angefordert", "APPROVED": "Genehmigt", "REJECTED": "Abgelehnt", "PAID": "Bezahlt", "SETTLED": "Verrechnet" },
+    "settle": "Verrechnen",
+    "reopen": "Wieder öffnen",
+    "section": "Abschnitt",
+    "outstanding": "Offene Vorschüsse (ausstehend)",
+    "filterOpen": "Offen",
+    "filterSettled": "Verrechnet",
+    "filterAll": "Alle"
   }
 }

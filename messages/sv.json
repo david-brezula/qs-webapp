@@ -545,7 +545,9 @@
     "invoiced": "Fakturerad",
     "advances": "Förskott",
     "netToPay": "Att betala",
-    "net": "Netto"
+    "net": "Netto",
+    "advance": "Förskott",
+    "openAdvances": "Öppna förskott (utestående)"
   },
   "log": {
     "title": "Registrera arbete",
@@ -1292,6 +1294,13 @@
     "markPaid": "Markera betald",
     "cancel": "Avbryt",
     "confirmCancel": "Avbryt denna förfrågan?",
-    "status": { "REQUESTED": "Begärd", "APPROVED": "Godkänd", "REJECTED": "Avvisad", "PAID": "Betald" }
+    "status": { "REQUESTED": "Begärd", "APPROVED": "Godkänd", "REJECTED": "Avvisad", "PAID": "Betald", "SETTLED": "Avräknad" },
+    "settle": "Avräkna",
+    "reopen": "Öppna igen",
+    "section": "Sektion",
+    "outstanding": "Öppna förskott (utestående)",
+    "filterOpen": "Öppna",
+    "filterSettled": "Avräknade",
+    "filterAll": "Alla"
   }
 }

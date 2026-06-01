@@ -544,7 +544,9 @@
     "invoiced": "Invoiced",
     "advances": "Advances",
     "netToPay": "Net to pay",
-    "net": "Net"
+    "net": "Net",
+    "advance": "Advance",
+    "openAdvances": "Open advances (outstanding)"
   },
   "log": {
     "title": "Log work",
@@ -1292,6 +1294,13 @@
     "markPaid": "Mark paid",
     "cancel": "Cancel",
     "confirmCancel": "Cancel this request?",
-    "status": { "REQUESTED": "Requested", "APPROVED": "Approved", "REJECTED": "Rejected", "PAID": "Paid" }
+    "status": { "REQUESTED": "Requested", "APPROVED": "Approved", "REJECTED": "Rejected", "PAID": "Paid", "SETTLED": "Settled" },
+    "settle": "Settle",
+    "reopen": "Reopen",
+    "section": "Section",
+    "outstanding": "Open advances (outstanding)",
+    "filterOpen": "Open",
+    "filterSettled": "Settled",
+    "filterAll": "All"
   }
 }

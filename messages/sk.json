@@ -544,7 +544,9 @@
     "invoiced": "Vyfakturované",
     "advances": "Zálohy",
     "netToPay": "Na vyplatenie",
-    "net": "Čisté"
+    "net": "Čisté",
+    "advance": "Záloha",
+    "openAdvances": "Otvorené zálohy (nesplatené)"
   },
   "log": {
     "title": "Zapísať prácu",
@@ -1289,6 +1291,13 @@
     "markPaid": "Označiť vyplatené",
     "cancel": "Zrušiť",
     "confirmCancel": "Zrušiť túto žiadosť?",
-    "status": { "REQUESTED": "Požiadané", "APPROVED": "Schválené", "REJECTED": "Zamietnuté", "PAID": "Vyplatené" }
+    "status": { "REQUESTED": "Požiadané", "APPROVED": "Schválené", "REJECTED": "Zamietnuté", "PAID": "Vyplatené", "SETTLED": "Uzavretá" },
+    "settle": "Strhnúť",
+    "reopen": "Otvoriť späť",
+    "section": "Sekcia",
+    "outstanding": "Otvorené zálohy (nesplatené)",
+    "filterOpen": "Otvorené",
+    "filterSettled": "Uzavreté",
+    "filterAll": "Všetky"
   }
 }
