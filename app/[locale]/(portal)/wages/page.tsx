@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/portal/session";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 import {
   ALL_TIME_FROM,
   ALL_TIME_TO,
@@ -21,6 +22,7 @@ export default async function WagesPage({
   const user = await requireUser();
   const sp = await searchParams;
   const t = await getTranslations("wages");
+  const tNav = await getTranslations("nav");
 
   // Worker: only their own wages, read through the RLS-enforced connection.
   if (user.role !== "ADMIN") {
@@ -83,7 +85,10 @@ export default async function WagesPage({
 
     return (
       <div>
-        <h1 className="text-2xl font-semibold text-navy mb-8">{t("title")}</h1>
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-2xl font-semibold text-navy">{t("title")}</h1>
+          <Link href="/wages/advances" className="text-sm text-accent hover:underline">{tNav("advances")} →</Link>
+        </div>
         <MyWagesView key={`${fromStr}-${toStr}`} from={fromStr} to={toStr} result={result} openAdvances={openAdvances} />
       </div>
     );
@@ -153,7 +158,10 @@ export default async function WagesPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-navy mb-8">{t("title")}</h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-semibold text-navy">{t("title")}</h1>
+        <Link href="/wages/advances" className="text-sm text-accent hover:underline">{tNav("advances")} →</Link>
+      </div>
       <AdminProjectList projects={projectRows} mixedCurrencies={anyMixed} />
     </div>
   );

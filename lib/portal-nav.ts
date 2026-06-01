@@ -6,7 +6,6 @@ export type PortalNavItem = {
     | "workers"
     | "accommodations"
     | "wages"
-    | "advances"
     | "applications"
     | "inquiries";
 };
@@ -23,7 +22,6 @@ export function getPortalNavItems(role: "ADMIN" | "WORKER"): PortalNavItem[] {
       { href: "/workers", labelKey: "workers" },
       { href: "/accommodations", labelKey: "accommodations" },
       { href: "/wages", labelKey: "wages" },
-      { href: "/advances", labelKey: "advances" },
       { href: "/applications", labelKey: "applications" },
       { href: "/inquiries", labelKey: "inquiries" },
     ];
@@ -31,6 +29,5 @@ export function getPortalNavItems(role: "ADMIN" | "WORKER"): PortalNavItem[] {
   return [
     { href: "/dashboard", labelKey: "dashboard" },
     { href: "/wages", labelKey: "wages" },
-    { href: "/advances", labelKey: "advances" },
   ];
 }
