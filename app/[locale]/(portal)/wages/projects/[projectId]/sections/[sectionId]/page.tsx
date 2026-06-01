@@ -83,6 +83,10 @@ export default async function AdminSectionWagePage({
       connect: r.breakdown.connect,
       earnings: r.earnings,
       accommodation: r.accommodation,
+      // advance is informational only here; this admin view has no net-wage column.
+      // computeWages (used above) does NOT subtract advances — that happens in
+      // computeWagesBySection on the worker path. If a net column is ever added here,
+      // subtract `advance` explicitly.
       advance: advanceByUser.get(r.userId) ?? 0,
       invoicedAt: invoicedByUser.get(r.userId) ?? null,
       warnings: r.warnings,
