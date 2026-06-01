@@ -54,7 +54,7 @@ export function MyAdvancesView({ requests }: { requests: Row[] }) {
 
   return (
     <div className="space-y-8">
-      <form onSubmit={onSubmit} className="space-y-5 max-w-md">
+      <form onSubmit={onSubmit} className="space-y-5 max-w-md" noValidate>
         <div className="grid grid-cols-2 gap-4">
           <FormField label={t("amount")} name="amount" type="number" step="0.01" required />
           <FormSelect
@@ -81,7 +81,7 @@ export function MyAdvancesView({ requests }: { requests: Row[] }) {
             r.requestedAt,
             r.note ?? "—",
             r.status === "REQUESTED" ? (
-              <button key={r.id} onClick={() => onCancel(r.id)} disabled={pending} className="text-red-600 underline">
+              <button onClick={() => onCancel(r.id)} disabled={pending} className="text-red-600 underline">
                 {t("cancel")}
               </button>
             ) : "—",
