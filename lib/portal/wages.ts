@@ -251,3 +251,23 @@ export function computeWagesBySection(
  *  pages that want both an all-time total and a user-selected range total. */
 export const ALL_TIME_FROM = new Date(0);
 export const ALL_TIME_TO = new Date(9999, 0, 1);
+
+/**
+ * Sums the amount of PAID advances whose `paidAt` falls within [from, to].
+ * Advances are general (not tied to a project/section); they are deducted from
+ * the worker's net at the page level, gated by paid date like other range-based
+ * figures. Currency mixing is out of scope (amounts are summed as-is).
+ */
+export function sumPaidAdvances(
+  advances: { amount: number; status: string; paidAt: Date | null }[],
+  from: Date,
+  to: Date,
+): number {
+  let total = 0;
+  for (const a of advances) {
+    if (a.status !== "PAID" || !a.paidAt) continue;
+    if (a.paidAt < from || a.paidAt > to) continue;
+    total += a.amount;
+  }
+  return total;
+}

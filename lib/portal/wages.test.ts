@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, type WageInput, type WageRow } from "./wages";
+import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, sumPaidAdvances, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -361,5 +361,26 @@ describe("computeWagesBySection accommodation", () => {
     expect(s2.earnings).toBe(0);
     expect(s2.accommodation).toBe(25);
     expect(s2.wage).toBe(-25);
+  });
+});
+
+describe("sumPaidAdvances", () => {
+  const advs = [
+    { amount: 100, status: "PAID", paidAt: new Date("2026-05-10") },
+    { amount: 50, status: "PAID", paidAt: new Date("2026-04-10") },   // out of range
+    { amount: 30, status: "APPROVED", paidAt: null },
+    { amount: 20, status: "REQUESTED", paidAt: null },
+  ];
+
+  it("sums only PAID advances with paidAt inside the range", () => {
+    expect(sumPaidAdvances(advs, new Date("2026-05-01"), new Date("2026-05-31"))).toBe(100);
+  });
+
+  it("ignores PAID advances with a null paidAt", () => {
+    expect(sumPaidAdvances([{ amount: 99, status: "PAID", paidAt: null }], new Date("2026-05-01"), new Date("2026-05-31"))).toBe(0);
+  });
+
+  it("returns 0 for an empty list", () => {
+    expect(sumPaidAdvances([], new Date("2026-05-01"), new Date("2026-05-31"))).toBe(0);
   });
 });
