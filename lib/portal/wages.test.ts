@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, sumPaidAdvances, type WageInput, type WageRow } from "./wages";
+import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, sumOpenAdvances, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -364,38 +364,69 @@ describe("computeWagesBySection accommodation", () => {
   });
 });
 
-describe("sumPaidAdvances", () => {
+const sectionAdvanceInput: WageInput & { sections: { id: string; name: string }[]; settledAdvances: { sectionId: string; amount: number }[] } = {
+  from: new Date("2026-05-01"),
+  to: new Date("2026-05-31"),
+  projectId: "p1",
+  workers: [{ id: "w1", name: "Alice" }],
+  sections: [{ id: "s1", name: "North" }, { id: "s2", name: "South" }, { id: "s3", name: "East" }],
+  prices: [{ projectId: "p1", userId: "w1", priceTie: 1.0, priceConnect: 1.0 }],
+  activity: [
+    { userId: "w1", projectId: "p1", sectionId: "s1", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+    { userId: "w1", projectId: "p1", sectionId: "s2", action: "TIE", count: 100, workDate: new Date("2026-05-10") },
+  ],
+  accommodations: [],
+  settledAdvances: [
+    { sectionId: "s1", amount: 30 },
+    { sectionId: "s3", amount: 50 }, // s3 has no earnings — advance-only section
+  ],
+};
+
+describe("computeWagesBySection settled advances", () => {
+  it("deducts a settled advance in its section's net", () => {
+    const rows = computeWagesBySection(sectionAdvanceInput);
+    const s1 = rows.find((r) => r.sectionId === "s1")!;
+    expect(s1.earnings).toBe(100);
+    expect(s1.advance).toBe(30);
+    expect(s1.wage).toBe(70); // 100 - 0 - 30
+  });
+
+  it("does not deduct another section's advance", () => {
+    const rows = computeWagesBySection(sectionAdvanceInput);
+    const s2 = rows.find((r) => r.sectionId === "s2")!;
+    expect(s2.advance).toBe(0);
+    expect(s2.wage).toBe(100);
+  });
+
+  it("includes an advance-only section (no earnings) with negative net", () => {
+    const rows = computeWagesBySection(sectionAdvanceInput);
+    const s3 = rows.find((r) => r.sectionId === "s3")!;
+    expect(s3).toBeDefined();
+    expect(s3.earnings).toBe(0);
+    expect(s3.advance).toBe(50);
+    expect(s3.wage).toBe(-50);
+  });
+
+  it("treats missing settledAdvances as zero", () => {
+    const { settledAdvances: _omit, ...noAdv } = sectionAdvanceInput;
+    const rows = computeWagesBySection(noAdv);
+    const s1 = rows.find((r) => r.sectionId === "s1")!;
+    expect(s1.advance).toBe(0);
+    expect(s1.wage).toBe(100);
+  });
+});
+
+describe("sumOpenAdvances", () => {
   const advs = [
-    { amount: 100, status: "PAID", paidAt: new Date("2026-05-10") },
-    { amount: 50, status: "PAID", paidAt: new Date("2026-04-10") },   // out of range
-    { amount: 30, status: "APPROVED", paidAt: null },
-    { amount: 20, status: "REQUESTED", paidAt: null },
-    { amount: 40, status: "REJECTED", paidAt: new Date("2026-05-12") }, // rejected, in range → excluded
+    { amount: 100, status: "PAID" },
+    { amount: 40, status: "APPROVED" },
+    { amount: 25, status: "SETTLED" },
+    { amount: 10, status: "REQUESTED" },
   ];
-
-  it("sums only PAID advances with paidAt inside the range", () => {
-    expect(sumPaidAdvances(advs, new Date("2026-05-01"), new Date("2026-05-31"))).toBe(100);
+  it("sums only PAID (open) advances", () => {
+    expect(sumOpenAdvances(advs)).toBe(100);
   });
-
-  it("excludes a REJECTED advance even with a paidAt inside the range", () => {
-    expect(sumPaidAdvances(advs, new Date("2026-05-01"), new Date("2026-05-31"))).toBe(100);
-  });
-
-  it("ignores PAID advances with a null paidAt", () => {
-    expect(sumPaidAdvances([{ amount: 99, status: "PAID", paidAt: null }], new Date("2026-05-01"), new Date("2026-05-31"))).toBe(0);
-  });
-
-  it("includes PAID advances with paidAt exactly on the range boundaries", () => {
-    const from = new Date("2026-05-01");
-    const to = new Date("2026-05-31");
-    const boundary = [
-      { amount: 10, status: "PAID", paidAt: from },
-      { amount: 25, status: "PAID", paidAt: to },
-    ];
-    expect(sumPaidAdvances(boundary, from, to)).toBe(35);
-  });
-
   it("returns 0 for an empty list", () => {
-    expect(sumPaidAdvances([], new Date("2026-05-01"), new Date("2026-05-31"))).toBe(0);
+    expect(sumOpenAdvances([])).toBe(0);
   });
 });

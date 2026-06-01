@@ -218,23 +218,35 @@ export interface SectionWageRow {
   connect: number;
   earnings: number;
   accommodation: number;
+  advance: number;
   wage: number;
 }
 
 /**
- * For a single worker, returns one row per section that had activity or an
- * accommodation cost within the range. Sections with zero earnings AND zero
- * accommodation are omitted. Each row includes accommodation and net wage
- * figures filtered to that section. Accommodations without a `sectionId` are
- * NOT attributed to any section row — they appear in the project total only.
+ * For a single worker, returns one row per section that had activity, an
+ * accommodation cost, or a settled advance within the range. Sections with
+ * zero earnings, zero accommodation, and zero advance are omitted. Each row
+ * includes accommodation, settled-advance deduction, and net wage figures
+ * filtered to that section. Accommodations without a `sectionId` are NOT
+ * attributed to any section row — they appear in the project total only.
  */
 export function computeWagesBySection(
-  input: WageInput & { sections: { id: string; name: string }[] },
+  input: WageInput & {
+    sections: { id: string; name: string }[];
+    settledAdvances?: { sectionId: string; amount: number }[];
+  },
 ): SectionWageRow[] {
+  const advanceBySection = new Map<string, number>();
+  for (const a of input.settledAdvances ?? []) {
+    advanceBySection.set(a.sectionId, (advanceBySection.get(a.sectionId) ?? 0) + a.amount);
+  }
+
   const results: SectionWageRow[] = [];
   for (const section of input.sections) {
     const row = computeWages({ ...input, sectionId: section.id }).rows[0];
-    if (!row || (row.earnings === 0 && row.accommodation === 0)) continue;
+    const advance = advanceBySection.get(section.id) ?? 0;
+    if (!row) continue;
+    if (row.earnings === 0 && row.accommodation === 0 && advance === 0) continue;
     results.push({
       sectionId: section.id,
       sectionName: section.name,
@@ -242,7 +254,8 @@ export function computeWagesBySection(
       connect: row.breakdown.connect,
       earnings: row.earnings,
       accommodation: row.accommodation,
-      wage: row.wage,
+      advance,
+      wage: row.wage - advance,
     });
   }
   return results;
@@ -254,21 +267,14 @@ export const ALL_TIME_FROM = new Date(0);
 export const ALL_TIME_TO = new Date(9999, 0, 1);
 
 /**
- * Sums the amount of PAID advances whose `paidAt` falls within [from, to].
- * Advances are general (not tied to a project/section); they are deducted from
- * the worker's net at the page level, gated by paid date like other range-based
- * figures. Currency mixing is out of scope (amounts are summed as-is).
+ * Sums the amount of OPEN advances (status PAID — paid to the worker but not yet
+ * settled against a section). This is the worker's outstanding advance balance.
+ * Currency mixing is out of scope (amounts are summed as-is).
  */
-export function sumPaidAdvances(
-  advances: { amount: number; status: string; paidAt: Date | null }[],
-  from: Date,
-  to: Date,
-): number {
+export function sumOpenAdvances(advances: { amount: number; status: string }[]): number {
   let total = 0;
   for (const a of advances) {
-    if (a.status !== "PAID" || !a.paidAt) continue;
-    if (a.paidAt < from || a.paidAt > to) continue;
-    total += a.amount;
+    if (a.status === "PAID") total += a.amount;
   }
   return total;
 }
