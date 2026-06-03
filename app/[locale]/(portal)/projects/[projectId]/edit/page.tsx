@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
 import { SectionsEditor } from "./SectionsEditor";
 import { WorkersPanel } from "./WorkersPanel";
+import { ClientPanel } from "./ClientPanel";
+import { PhotosPanel } from "./PhotosPanel";
+import { DocumentsPanel } from "./DocumentsPanel";
 import { computeModules } from "@/lib/portal/modules";
 
 export default async function ProjectEditorPage({
@@ -14,18 +17,23 @@ export default async function ProjectEditorPage({
   await requireAdmin();
   const { projectId } = await params;
 
-  const [project, allWorkers] = await Promise.all([
+  const [project, allWorkers, allClients] = await Promise.all([
     prisma.project.findUnique({
       where: { id: projectId },
       include: {
         sections: { orderBy: { orderIndex: "asc" }, include: { tables: { orderBy: { orderIndex: "asc" } } } },
         projectWorkers: { include: { user: true } },
+        client: { select: { id: true, name: true } },
+        photos: { orderBy: [{ orderIndex: "asc" }, { createdAt: "asc" }], select: { id: true, caption: true } },
+        documents: { orderBy: { createdAt: "desc" }, select: { id: true, title: true } },
       },
     }),
     prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } }, orderBy: { name: "asc" } }),
+    prisma.client.findMany({ where: { active: true }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
   ]);
   if (!project) notFound();
   const t = await getTranslations("projects");
+  const tp = await getTranslations("portalProjects");
 
   return (
     <div>
@@ -87,6 +95,22 @@ export default async function ProjectEditorPage({
             priceConnect: t("priceConnect"),
           }}
         />
+      </div>
+
+      <div className="mt-12">
+        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("client")}</h2>
+        <ClientPanel projectId={project.id} current={project.client} clients={allClients}
+          labels={{ assign: tp("assignClient"), clear: tp("clearClient") }} />
+      </div>
+      <div className="mt-12">
+        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("photos")}</h2>
+        <PhotosPanel projectId={project.id} photos={project.photos}
+          labels={{ upload: tp("upload"), caption: tp("caption"), delete: tp("deleteLabel") }} />
+      </div>
+      <div className="mt-12">
+        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("documents")}</h2>
+        <DocumentsPanel projectId={project.id} documents={project.documents}
+          labels={{ upload: tp("upload"), title: tp("docTitle"), delete: tp("deleteLabel") }} />
       </div>
     </div>
   );
