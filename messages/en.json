@@ -61,7 +61,10 @@
     "contact": "Contact",
     "portal": "Work portal",
     "clientPortal": "Client portal",
-    "work": "Projects"
+    "work": "Projects",
+    "signIn": "Sign in",
+    "clientPortalHint": "Track your projects",
+    "portalHint": "For staff"
   },
   "portalProjects": {
     "list": "Projects",

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Menu, X, LogIn, Building2, ChevronDown } from "lucide-react";
+import { Menu, X, LogIn, Building2, ChevronDown, KeyRound } from "lucide-react";
 import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
@@ -47,7 +47,9 @@ export function MarketingHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const loginRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -58,8 +60,12 @@ export function MarketingHeader() {
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (servicesRef.current && !servicesRef.current.contains(target)) {
         setServicesOpen(false);
+      }
+      if (loginRef.current && !loginRef.current.contains(target)) {
+        setLoginOpen(false);
       }
     }
     document.addEventListener("mousedown", onDoc);
@@ -77,12 +83,9 @@ export function MarketingHeader() {
       <Container className="flex items-center justify-between py-5">
         <Logo />
 
-        {/* Desktop nav — tablets keep the hamburger to avoid overflow. */}
+        {/* Desktop nav — tablets keep the hamburger to avoid overflow.
+            No "Home" link: the logo already navigates home. */}
         <nav className="hidden lg:flex items-center gap-9">
-          <Link href="/" className={navLinkCls}>
-            {t("home")}
-          </Link>
-
           <div
             ref={servicesRef}
             className="relative"
@@ -132,24 +135,72 @@ export function MarketingHeader() {
           <Link href="/careers" className={navLinkCls}>
             {t("careers")}
           </Link>
-          <Link href="/contact" className={navLinkCls}>
-            {t("contact")}
-          </Link>
+          {/* "Contact" lives only as the primary CTA button on the right. */}
         </nav>
 
         <div className="hidden lg:flex items-center gap-5">
           <LanguageSwitcher />
-          <PortalLink
-            path="/portal"
-            className="inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] transition-colors"
+
+          {/* Sign-in dropdown — collapses the client zone + work portal into a
+              single compact trigger, mirroring the Services menu pattern. */}
+          <div
+            ref={loginRef}
+            className="relative"
+            onMouseEnter={() => setLoginOpen(true)}
+            onMouseLeave={() => setLoginOpen(false)}
           >
-            <Building2 size={13} strokeWidth={1.5} />
-            {t("clientPortal")}
-          </PortalLink>
-          <PortalLink className="inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] transition-colors">
-            <LogIn size={13} strokeWidth={1.5} />
-            {t("portal")}
-          </PortalLink>
+            <button
+              type="button"
+              aria-expanded={loginOpen}
+              className={`${navLinkCls} inline-flex items-center gap-1.5 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-fjord)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-paper)]`}
+              onClick={() => setLoginOpen((v) => !v)}
+            >
+              <LogIn size={14} strokeWidth={1.5} />
+              {t("signIn")}
+              <ChevronDown
+                size={13}
+                strokeWidth={1.5}
+                className={`transition-transform ${loginOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {loginOpen && (
+              <div className="absolute right-0 top-full pt-3">
+                <ul className="min-w-[16.5rem] rounded-[var(--radius-feature)] border border-[var(--color-rule)] bg-[var(--color-paper)] p-2 shadow-[var(--shadow-float)]">
+                  <li>
+                    <PortalLink
+                      path="/portal"
+                      onClick={() => setLoginOpen(false)}
+                      className="flex items-center gap-3 rounded-[var(--radius-card)] px-3 py-2.5 transition-colors hover:bg-[var(--color-canvas)]"
+                    >
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[var(--radius-card)] bg-[var(--color-paper-2)]">
+                        <Building2 size={17} strokeWidth={1.75} className="text-[var(--color-fjord)]" />
+                      </span>
+                      <span className="flex flex-col leading-tight">
+                        <span className="text-[0.875rem] text-[var(--color-ink)]">{t("clientPortal")}</span>
+                        <span className="text-[0.75rem] text-[var(--color-mist)]">{t("clientPortalHint")}</span>
+                      </span>
+                    </PortalLink>
+                  </li>
+                  <li aria-hidden className="my-1 border-t border-[var(--color-rule)]" />
+                  <li>
+                    <PortalLink
+                      onClick={() => setLoginOpen(false)}
+                      className="flex items-center gap-3 rounded-[var(--radius-card)] px-3 py-2.5 transition-colors hover:bg-[var(--color-canvas)]"
+                    >
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[var(--radius-card)] bg-[var(--color-paper-2)]">
+                        <KeyRound size={17} strokeWidth={1.75} className="text-[var(--color-fjord)]" />
+                      </span>
+                      <span className="flex flex-col leading-tight">
+                        <span className="text-[0.875rem] text-[var(--color-ink)]">{t("portal")}</span>
+                        <span className="text-[0.75rem] text-[var(--color-mist)]">{t("portalHint")}</span>
+                      </span>
+                    </PortalLink>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+
           <Link href="/contact" className={buttonClass("primary")}>
             {t("contact")}
           </Link>
@@ -168,10 +219,6 @@ export function MarketingHeader() {
       {open && (
         <div className="lg:hidden border-t border-[var(--color-rule)] bg-[var(--color-paper)]">
           <Container className="py-6 flex flex-col gap-1">
-            <Link href="/" className={mobileLinkCls} onClick={() => setOpen(false)}>
-              {t("home")}
-            </Link>
-
             <div className="py-2">
               <div className="eyebrow mb-2 px-1">{t("services")}</div>
               <div className="flex flex-col gap-1">
@@ -199,9 +246,6 @@ export function MarketingHeader() {
             </Link>
             <Link href="/careers" className={mobileLinkCls} onClick={() => setOpen(false)}>
               {t("careers")}
-            </Link>
-            <Link href="/contact" className={mobileLinkCls} onClick={() => setOpen(false)}>
-              {t("contact")}
             </Link>
 
             <div className="mt-4 flex flex-col gap-3 border-t border-[var(--color-rule)] pt-5">

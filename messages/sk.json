@@ -61,7 +61,10 @@
     "contact": "Kontakt",
     "portal": "Pracovný portál",
     "clientPortal": "Klientska zóna",
-    "work": "Realizácie"
+    "work": "Realizácie",
+    "signIn": "Prihlásenie",
+    "clientPortalHint": "Prehľad vašich projektov",
+    "portalHint": "Pre zamestnancov"
   },
   "portalProjects": {
     "list": "Projekty",

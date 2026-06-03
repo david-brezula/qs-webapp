@@ -62,7 +62,10 @@
     "contact": "Kontakt",
     "portal": "Arbetsportal",
     "clientPortal": "Kundportal",
-    "work": "Projekt"
+    "work": "Projekt",
+    "signIn": "Logga in",
+    "clientPortalHint": "Översikt över dina projekt",
+    "portalHint": "För personal"
   },
   "portalProjects": {
     "list": "Projekt",

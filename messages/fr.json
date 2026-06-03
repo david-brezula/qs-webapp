@@ -62,7 +62,10 @@
     "contact": "Contact",
     "portal": "Portail de travail",
     "clientPortal": "Espace client",
-    "work": "Projets"
+    "work": "Projets",
+    "signIn": "Connexion",
+    "clientPortalHint": "Suivi de vos projets",
+    "portalHint": "Pour le personnel"
   },
   "portalProjects": {
     "list": "Projets",
