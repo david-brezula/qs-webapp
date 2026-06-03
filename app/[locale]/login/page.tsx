@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Building2, HardHat } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PortalLanguageSwitcher } from "@/components/portal/PortalLanguageSwitcher";
@@ -12,6 +12,7 @@ import { loginAction } from "@/lib/actions/auth";
 export default function LoginPage() {
   const t = useTranslations("login");
   const tCommon = useTranslations("common");
+  const tNav = useTranslations("nav");
   const locale = useLocale();
   // In production the marketing landing lives on a different host
   // (NEXT_PUBLIC_SITE_URL); in dev it's the same host. Plain anchor either way.
@@ -21,6 +22,26 @@ export default function LoginPage() {
   const [pending, start] = useTransition();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
+
+  // Theme the login by intent: clients arrive via /portal (-> ?from=/portal),
+  // staff via the work portal. Distinct background, glow, accent, and label.
+  const isClientLogin = /(^|\/)portal(\/|$)/.test(params.get("from") ?? "");
+  const theme = isClientLogin
+    ? {
+        bg: "linear-gradient(160deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-accent) 14%, var(--color-bg)) 100%)",
+        glow: "radial-gradient(55% 45% at 82% 16%, color-mix(in srgb, var(--color-accent) 24%, transparent), transparent 70%)",
+        accent: "var(--color-accent)",
+        label: tNav("clientPortal"),
+        Icon: Building2,
+      }
+    : {
+        bg: "linear-gradient(160deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-navy) 12%, var(--color-bg)) 100%)",
+        glow: "radial-gradient(55% 45% at 18% 16%, color-mix(in srgb, var(--color-navy) 20%, transparent), transparent 70%)",
+        accent: "var(--color-navy)",
+        label: tNav("portal"),
+        Icon: HardHat,
+      };
+  const PortalIcon = theme.Icon;
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,8 +73,16 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col">
-      <Container className="flex items-center justify-between py-4">
+    <div
+      className="relative min-h-screen flex flex-col overflow-hidden"
+      style={{ background: theme.bg }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: theme.glow }}
+      />
+      <Container className="relative z-10 flex items-center justify-between py-4">
         <a href={homeHref} className="flex items-center gap-2" aria-label={t("backToHome")}>
           <span
             aria-hidden
@@ -70,9 +99,17 @@ export default function LoginPage() {
         <PortalLanguageSwitcher />
       </Container>
 
-      <main className="flex-1 grid place-items-center px-6 py-10">
+      <main className="relative z-10 flex-1 grid place-items-center px-6 py-10">
         <div className="flex flex-col items-center gap-6">
-        <div className="w-full max-w-sm bg-surface border border-border-soft rounded-lg p-8">
+        <div className="w-full max-w-sm bg-surface border border-border-soft rounded-lg p-8 shadow-[var(--shadow-card,0_1px_3px_rgba(15,23,42,0.06))]">
+          <div className="mb-5 h-1 w-10 rounded-full" style={{ background: theme.accent }} aria-hidden />
+          <div
+            className="mb-2 inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: theme.accent }}
+          >
+            <PortalIcon size={14} strokeWidth={1.75} />
+            {theme.label}
+          </div>
           <h1 className="text-2xl font-semibold text-navy mb-6">{t("title")}</h1>
           <form onSubmit={onSubmit} className="space-y-4" noValidate>
             <div>
