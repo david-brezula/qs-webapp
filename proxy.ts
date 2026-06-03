@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./lib/i18n/routing";
+import { isPortalPath, isBlockedForWorker, isAllowedForClient } from "./lib/portal/access";
 
 // Next.js 16 proxy convention (formerly middleware.ts): export a plain `proxy`
 // function. Order: host split (prod) -> locale handling (next-intl) -> auth gate.
@@ -15,20 +16,6 @@ const MARKETING_HOST = process.env.NEXT_PUBLIC_SITE_URL
 const PORTAL_HOST = process.env.NEXT_PUBLIC_APP_URL
   ? new URL(process.env.NEXT_PUBLIC_APP_URL).host
   : "app.quantum-sphere.eu";
-
-// Locale-stripped (internal) portal paths that require authentication.
-const PORTAL_PATHS = [
-  "/dashboard",
-  "/projects",
-  "/workers",
-  "/accommodations",
-  "/wages",
-  "/login",
-  "/change-password",
-];
-
-const ADMIN_ONLY_PREFIXES = ["/projects", "/workers", "/accommodations", "/wages"];
-const ADMIN_ONLY_SUBPATHS = ["/edit", "/new"];
 
 function isLocalOrPreview(host: string): boolean {
   return (
@@ -46,21 +33,6 @@ function stripLocale(pathname: string): { locale: string | null; path: string } 
     return { locale: first, path: "/" + segments.slice(1).join("/") };
   }
   return { locale: null, path: pathname };
-}
-
-function isPortalPath(p: string): boolean {
-  return PORTAL_PATHS.some((prefix) => p === prefix || p.startsWith(prefix + "/"));
-}
-
-function isAdminOnly(p: string): boolean {
-  return (
-    ADMIN_ONLY_PREFIXES.some((pre) => p === pre || p.startsWith(pre + "/")) ||
-    ADMIN_ONLY_SUBPATHS.some((sub) => p.endsWith(sub))
-  );
-}
-
-function isWorkerAllowedAdminPath(p: string): boolean {
-  return /^\/projects\/[^/]+\/log\/?$/.test(p) || p === "/wages";
 }
 
 export async function proxy(request: NextRequest) {
@@ -112,15 +84,25 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (
-    isAdminOnly(strippedPath) &&
-    token.role !== "ADMIN" &&
-    !isWorkerAllowedAdminPath(strippedPath)
-  ) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale ?? routing.defaultLocale}/dashboard`;
-    return NextResponse.redirect(url);
+  // 3) Role-explicit authorization (allow-list per role — NOT deny-by-exception,
+  //    so a CLIENT never inherits worker access).
+  const loc = locale ?? routing.defaultLocale;
+  if (token.role === "CLIENT") {
+    // Clients may reach only their client area (+ change-password); anything
+    // else bounces to the client home — never /dashboard (worker/admin-shaped).
+    if (!isAllowedForClient(strippedPath)) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${loc}/portal`;
+      return NextResponse.redirect(url);
+    }
+  } else if (token.role === "WORKER") {
+    if (isBlockedForWorker(strippedPath)) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${loc}/dashboard`;
+      return NextResponse.redirect(url);
+    }
   }
+  // ADMIN: full access, no redirect.
 
   return intlResponse;
 }
