@@ -37,6 +37,7 @@
     "errorGeneric": "Something went wrong, please try again."
   },
   "login": {
+    "backToHome": "Back to homepage",
     "title": "Sign in",
     "submit": "Sign in",
     "error": "Invalid email or password.",

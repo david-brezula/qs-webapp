@@ -38,6 +38,7 @@
     "errorGeneric": "Något gick fel, försök igen."
   },
   "login": {
+    "backToHome": "Tillbaka till startsidan",
     "title": "Logga in",
     "submit": "Logga in",
     "error": "Felaktig e-post eller lösenord.",

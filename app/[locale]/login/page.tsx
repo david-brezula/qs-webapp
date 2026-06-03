@@ -2,7 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PortalLanguageSwitcher } from "@/components/portal/PortalLanguageSwitcher";
@@ -11,6 +12,10 @@ import { loginAction } from "@/lib/actions/auth";
 export default function LoginPage() {
   const t = useTranslations("login");
   const tCommon = useTranslations("common");
+  const locale = useLocale();
+  // In production the marketing landing lives on a different host
+  // (NEXT_PUBLIC_SITE_URL); in dev it's the same host. Plain anchor either way.
+  const homeHref = `${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/${locale}`;
   const router = useRouter();
   const params = useSearchParams();
   const [pending, start] = useTransition();
@@ -49,7 +54,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-bg flex flex-col">
       <Container className="flex items-center justify-between py-4">
-        <div className="flex items-center gap-2">
+        <a href={homeHref} className="flex items-center gap-2" aria-label={t("backToHome")}>
           <span
             aria-hidden
             className="inline-block h-6 w-6 rounded-sm"
@@ -61,11 +66,12 @@ export default function LoginPage() {
           <span className="font-semibold tracking-[0.2em] text-navy text-sm">
             QUANTUM SPHERE
           </span>
-        </div>
+        </a>
         <PortalLanguageSwitcher />
       </Container>
 
-      <main className="flex-1 grid place-items-center px-6">
+      <main className="flex-1 grid place-items-center px-6 py-10">
+        <div className="flex flex-col items-center gap-6">
         <div className="w-full max-w-sm bg-surface border border-border-soft rounded-lg p-8">
           <h1 className="text-2xl font-semibold text-navy mb-6">{t("title")}</h1>
           <form onSubmit={onSubmit} className="space-y-4" noValidate>
@@ -112,6 +118,14 @@ export default function LoginPage() {
               {pending ? tCommon("loading") : t("submit")}
             </Button>
           </form>
+        </div>
+          <a
+            href={homeHref}
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-navy transition-colors"
+          >
+            <ArrowLeft size={14} strokeWidth={1.5} />
+            {t("backToHome")}
+          </a>
         </div>
       </main>
     </div>

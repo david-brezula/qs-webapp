@@ -38,6 +38,7 @@
     "errorGeneric": "Etwas ist schiefgelaufen, bitte versuchen Sie es erneut."
   },
   "login": {
+    "backToHome": "Zurück zur Startseite",
     "title": "Anmelden",
     "submit": "Anmelden",
     "error": "Ungültige E-Mail-Adresse oder ungültiges Passwort.",

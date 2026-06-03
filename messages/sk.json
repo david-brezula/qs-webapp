@@ -37,6 +37,7 @@
     "errorGeneric": "Nastala chyba, skúste to znovu."
   },
   "login": {
+    "backToHome": "Späť na úvodnú stránku",
     "title": "Prihlásenie",
     "submit": "Prihlásiť sa",
     "error": "Nesprávny email alebo heslo.",

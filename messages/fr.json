@@ -38,6 +38,7 @@
     "errorGeneric": "Une erreur s'est produite, veuillez réessayer."
   },
   "login": {
+    "backToHome": "Retour à l'accueil",
     "title": "Connexion",
     "submit": "Se connecter",
     "error": "E-mail ou mot de passe invalide.",
