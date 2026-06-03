@@ -2,16 +2,16 @@ import { FOOTER } from "./content";
 
 const COMPANY_NAME = "Quantum Sphere s.r.o.";
 
-// Parse "Mlynské Nivy 5 · 821 09 Bratislava · Slovak Republic"
+// Parse "Lančár 113 · 922 04 Kočín-Lančár · Slovak Republic"
 // into structured PostalAddress parts by splitting on " · ".
 function parseAddress() {
   const parts = FOOTER.address.split(" · ");
-  // parts[0] = "Mlynské Nivy 5"
-  // parts[1] = "821 09 Bratislava"  → postalCode + addressLocality
+  // parts[0] = "Lančár 113"
+  // parts[1] = "922 04 Kočín-Lančár"  → postalCode + addressLocality
   // parts[2] = "Slovak Republic"    → country
   const streetAddress = parts[0] ?? "";
   const cityPart = parts[1] ?? "";
-  // cityPart is "821 09 Bratislava" — split on first space cluster
+  // cityPart is "922 04 Kočín-Lančár" — split on first space cluster
   const cityMatch = cityPart.match(/^(\d[\d\s]*)(.+)$/);
   const postalCode = cityMatch ? cityMatch[1].trim() : "";
   const addressLocality = cityMatch ? cityMatch[2].trim() : cityPart;

@@ -39,7 +39,7 @@ export function AdminProjectWageView({
   mixedCurrencies: boolean;
 }) {
   const t = useTranslations("wages");
-  const tProjects = useTranslations("projects");
+  const tProjects = useTranslations("portalProjects");
   const tCommon = useTranslations("common");
 
   const hasMissingPrice = workers.some((w) => w.warnings.includes("missing-price"));

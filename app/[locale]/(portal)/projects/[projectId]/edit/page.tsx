@@ -25,7 +25,7 @@ export default async function ProjectEditorPage({
     prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
   ]);
   if (!project) notFound();
-  const t = await getTranslations("projects");
+  const t = await getTranslations("portalProjects");
 
   return (
     <div>

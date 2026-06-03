@@ -50,7 +50,7 @@ export async function SectionTables({
   isClosed: boolean;
 }) {
   const t = await getTranslations("log");
-  const tProj = await getTranslations("projects");
+  const tProj = await getTranslations("portalProjects");
 
   return (
     <div className="space-y-3">

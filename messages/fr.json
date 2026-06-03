@@ -61,6 +61,35 @@
     "portal": "Se connecter",
     "work": "Projets"
   },
+  "portalProjects": {
+    "list": "Projets",
+    "new": "Nouveau projet",
+    "name": "Nom du projet",
+    "location": "Lieu",
+    "section": "Section",
+    "newSection": "Ajouter une section",
+    "table": "Table",
+    "newTable": "Ajouter une table",
+    "rows": "Rangées (A)",
+    "cols": "Colonnes (B)",
+    "skipped": "Ignorées (C)",
+    "modules": "Modules",
+    "modulesTotal": "{count} modules au total",
+    "assignedWorkers": "Ouvriers affectés",
+    "assignWorker": "Affecter un ouvrier",
+    "priceTie": "Prix par fixation",
+    "priceConnect": "Prix par raccordement",
+    "tied": "Fixé",
+    "connected": "Raccordé",
+    "noProjects": "Aucun projet pour le moment.",
+    "close": "Clôturer le projet",
+    "reopen": "Rouvrir",
+    "bulkAdd": "Ajout groupé",
+    "namePrefix": "Préfixe de nom",
+    "startNumber": "Numéro de départ",
+    "quantity": "Quantité",
+    "addQuantity": "Ajouter {count} tables"
+  },
   "projects": {
     "meta": {
       "title": "Projets et études de cas",
@@ -1063,7 +1092,7 @@
       "updated": "Mis à jour le 26 mai 2026",
       "controller": {
         "heading": "1. Responsable du traitement",
-        "body": "Le responsable du traitement au sens de l'art. 4 § 7 du RGPD est :\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, République slovaque\nN° de registre : __ICO_PLACEHOLDER__\nN° TVA : SK2120988117\nImmatriculée au registre du commerce __OR_SUD_PLACEHOLDER__, section __OR_ODDIEL_PLACEHOLDER__, feuillet n° __OR_VLOZKA_PLACEHOLDER__\nContact : rfp@quantum-sphere.eu · +421 2 5556 0188"
+        "body": "Le responsable du traitement au sens de l'art. 4 § 7 du RGPD est :\n\nQuantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, République slovaque\nN° de registre : 56018835\nN° TVA : SK2122162680\nImmatriculée au registre du commerce Okresný súd Trnava, section Sro, feuillet n° 55939/T\nContact : rfp@quantum-sphere.eu · +421 948 389 255"
       },
       "scope": {
         "heading": "2. Données que nous traitons",
@@ -1104,19 +1133,19 @@
       "updated": "Mis à jour le 30 mai 2026",
       "provider": {
         "heading": "Éditeur du site",
-        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, République slovaque\n\nN° d'immatriculation : [TODO: IČO]\nN° TVA : SK2120988117\nImmatriculée : [TODO: registrový súd, oddiel, vložka]"
+        "body": "Quantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, République slovaque\n\nN° d'immatriculation : 56018835\nN° fiscal (DIČ) : 2122162680\nN° TVA : SK2122162680 (assujettie à la TVA selon le §4 depuis le 01/11/2024)\nImmatriculée : Okresný súd Trnava (tribunal de district de Trnava), section Sro, feuillet n° 55939/T\nDate de création : 27 janvier 2024"
       },
       "represented": {
         "heading": "Représentée par",
-        "body": "[TODO: konateľ]"
+        "body": "David Brezula"
       },
       "contact": {
         "heading": "Contact",
-        "body": "Téléphone : +421 2 5556 0188\nE-mail : rfp@quantum-sphere.eu"
+        "body": "Téléphone : +421 948 389 255\nE-mail : rfp@quantum-sphere.eu"
       },
       "supervisory": {
         "heading": "Autorité de contrôle compétente",
-        "body": "[TODO: dozorný orgán]"
+        "body": "Slovenská obchodná inšpekcia (SOI), Inšpektorát SOI pre Trnavský kraj, Pekárska 23, 917 01 Trnava 1; Okresný úrad Trnava, odbor živnostenského podnikania"
       },
       "disclaimer": {
         "heading": "Responsabilité pour le contenu",
@@ -1133,7 +1162,7 @@
       "updated": "Mis à jour le 30 mai 2026",
       "scope": {
         "heading": "1. Champ d'application",
-        "body": "Les présentes conditions générales (« CG ») régissent la relation contractuelle entre la société Quantum Sphere s.r.o., dont le siège social est situé Mlynské Nivy 5, 821 09 Bratislava, République slovaque (« Prestataire »), et le client (personne physique ou morale ; « Client »). Les CG s'appliquent à tous les travaux de construction et d'installation réalisés par le Prestataire, sauf accord écrit contraire entre les parties."
+        "body": "Les présentes conditions générales (« CG ») régissent la relation contractuelle entre la société Quantum Sphere s.r.o., dont le siège social est situé Lančár 113, 922 04 Kočín-Lančár, République slovaque (« Prestataire »), et le client (personne physique ou morale ; « Client »). Les CG s'appliquent à tous les travaux de construction et d'installation réalisés par le Prestataire, sauf accord écrit contraire entre les parties."
       },
       "services": {
         "heading": "2. Objet des prestations",
@@ -1145,7 +1174,7 @@
       },
       "pricing": {
         "heading": "4. Prix et conditions de paiement",
-        "body": "Les prix sont indiqués hors TVA, sauf mention contraire. La TVA sera ajoutée au taux légal en vigueur à la date de la réalisation de la prestation.\n\n[TODO: conditions de paiement — délai, acompte, mode de règlement]\n\nEn cas de retard de paiement, le Prestataire est en droit de facturer des intérêts de retard au taux légal."
+        "body": "Les prix sont indiqués hors TVA, sauf mention contraire. La TVA sera ajoutée au taux légal en vigueur à la date de la réalisation de la prestation.\n\nLes conditions de paiement précises (délai, acompte éventuel et mode de règlement) sont convenues individuellement pour chaque projet et précisées dans le devis ou le contrat de travaux.\n\nEn cas de retard de paiement, le Prestataire est en droit de facturer des intérêts de retard au taux légal."
       },
       "warranty": {
         "heading": "5. Garantie et responsabilité",

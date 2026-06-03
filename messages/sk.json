@@ -60,6 +60,35 @@
     "portal": "Prihlásiť sa",
     "work": "Realizácie"
   },
+  "portalProjects": {
+    "list": "Projekty",
+    "new": "Nový projekt",
+    "name": "Názov projektu",
+    "location": "Lokalita",
+    "section": "Sekcia",
+    "newSection": "Pridať sekciu",
+    "table": "Tabuľka",
+    "newTable": "Pridať tabuľku",
+    "rows": "Riadky (A)",
+    "cols": "Stĺpce (B)",
+    "skipped": "Vynechané (C)",
+    "modules": "Moduly",
+    "modulesTotal": "{count} modulov spolu",
+    "assignedWorkers": "Priradení pracovníci",
+    "assignWorker": "Priradiť pracovníka",
+    "priceTie": "Cena za uviazanie",
+    "priceConnect": "Cena za zapojenie",
+    "tied": "Uviazané",
+    "connected": "Zapojené",
+    "noProjects": "Zatiaľ žiadne projekty.",
+    "close": "Uzavrieť projekt",
+    "reopen": "Otvoriť",
+    "bulkAdd": "Hromadné pridanie",
+    "namePrefix": "Predpona názvu",
+    "startNumber": "Začať od",
+    "quantity": "Počet",
+    "addQuantity": "Pridať {count} tabuliek"
+  },
   "projects": {
     "meta": {
       "title": "Projekty a prípadové štúdie",
@@ -1061,7 +1090,7 @@
       "updated": "Aktualizované 26. mája 2026",
       "controller": {
         "heading": "1. Prevádzkovateľ",
-        "body": "Prevádzkovateľom v zmysle čl. 4 ods. 7 GDPR je:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovenská republika\nIČO: __ICO_PLACEHOLDER__\nDIČ: SK2120988117\nZapísaná v OR __OR_SUD_PLACEHOLDER__, oddiel __OR_ODDIEL_PLACEHOLDER__, vložka č. __OR_VLOZKA_PLACEHOLDER__\nKontakt: rfp@quantum-sphere.eu · +421 2 5556 0188"
+        "body": "Prevádzkovateľom v zmysle čl. 4 ods. 7 GDPR je:\n\nQuantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slovenská republika\nIČO: 56018835\nDIČ: 2122162680\nIČ DPH: SK2122162680\nZapísaná v OR Okresný súd Trnava, oddiel Sro, vložka č. 55939/T\nKontakt: rfp@quantum-sphere.eu · +421 948 389 255"
       },
       "scope": {
         "heading": "2. Aké údaje spracúvame",
@@ -1102,19 +1131,19 @@
       "updated": "Aktualizované 30. mája 2026",
       "provider": {
         "heading": "Prevádzkovateľ",
-        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovenská republika\n\nIČO: [TODO: IČO]\nIČ DPH: SK2120988117\nZápis: [TODO: registrový súd, oddiel, vložka]"
+        "body": "Quantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slovenská republika\n\nIČO: 56018835\nDIČ: 2122162680\nIČ DPH: SK2122162680 (platiteľ DPH podľa §4 od 1. 11. 2024)\nZápis: Okresný súd Trnava, oddiel Sro, vložka č. 55939/T\nDátum vzniku: 27. 1. 2024"
       },
       "represented": {
         "heading": "Zastúpený",
-        "body": "[TODO: konateľ]"
+        "body": "David Brezula"
       },
       "contact": {
         "heading": "Kontakt",
-        "body": "Telefón: +421 2 5556 0188\nE-mail: rfp@quantum-sphere.eu"
+        "body": "Telefón: +421 948 389 255\nE-mail: rfp@quantum-sphere.eu"
       },
       "supervisory": {
         "heading": "Dozorný orgán",
-        "body": "[TODO: dozorný orgán]"
+        "body": "Slovenská obchodná inšpekcia (SOI), Inšpektorát SOI pre Trnavský kraj, Pekárska 23, 917 01 Trnava 1; Okresný úrad Trnava, odbor živnostenského podnikania"
       },
       "disclaimer": {
         "heading": "Zodpovednosť za obsah",
@@ -1131,7 +1160,7 @@
       "updated": "Aktualizované 30. mája 2026",
       "scope": {
         "heading": "1. Rozsah pôsobnosti",
-        "body": "Tieto všeobecné obchodné podmienky (ďalej „VOP“) upravujú zmluvný vzťah medzi spoločnosťou Quantum Sphere s.r.o., so sídlom Mlynské Nivy 5, 821 09 Bratislava, Slovenská republika (ďalej „Zhotoviteľ“), a objednávateľom (fyzickou alebo právnickou osobou; ďalej „Objednávateľ“). VOP sa vzťahujú na všetky stavebné a inštalačné práce vykonávané Zhotoviteľom, pokiaľ sa zmluvné strany písomne nedohodli inak."
+        "body": "Tieto všeobecné obchodné podmienky (ďalej „VOP“) upravujú zmluvný vzťah medzi spoločnosťou Quantum Sphere s.r.o., so sídlom Lančár 113, 922 04 Kočín-Lančár, Slovenská republika (ďalej „Zhotoviteľ“), a objednávateľom (fyzickou alebo právnickou osobou; ďalej „Objednávateľ“). VOP sa vzťahujú na všetky stavebné a inštalačné práce vykonávané Zhotoviteľom, pokiaľ sa zmluvné strany písomne nedohodli inak."
       },
       "services": {
         "heading": "2. Predmet plnenia",
@@ -1143,7 +1172,7 @@
       },
       "pricing": {
         "heading": "4. Ceny a platobné podmienky",
-        "body": "Ceny sú uvedené bez DPH, ak nie je výslovne stanovené inak. K cene bude pripočítaná DPH v zákonnej sadzbe platnej v deň uskutočnenia zdaniteľného plnenia.\n\n[TODO: platobné podmienky — splatnosť, záloha, spôsob úhrady]\n\nV prípade omeškania s platbou je Zhotoviteľ oprávnený účtovať zákonný úrok z omeškania."
+        "body": "Ceny sú uvedené bez DPH, ak nie je výslovne stanovené inak. K cene bude pripočítaná DPH v zákonnej sadzbe platnej v deň uskutočnenia zdaniteľného plnenia.\n\nKonkrétne platobné podmienky (splatnosť, prípadná záloha a spôsob úhrady) sa dohodnú individuálne pre každú zákazku a uvedú sa v cenovej ponuke alebo v zmluve o dielo.\n\nV prípade omeškania s platbou je Zhotoviteľ oprávnený účtovať zákonný úrok z omeškania."
       },
       "warranty": {
         "heading": "5. Záruka a zodpovednosť",
@@ -1199,7 +1228,7 @@
     "impressum": "Impressum",
     "terms": "Obchodné podmienky",
     "companyIdLabel": "IČO",
-    "vatLabel": "DIČ",
+    "vatLabel": "IČ DPH",
     "registrationLabel": "Zápis"
   },
   "consent": {

@@ -60,6 +60,35 @@
     "portal": "Sign in",
     "work": "Projects"
   },
+  "portalProjects": {
+    "list": "Projects",
+    "new": "New project",
+    "name": "Project name",
+    "location": "Location",
+    "section": "Section",
+    "newSection": "Add section",
+    "table": "Table",
+    "newTable": "Add table",
+    "rows": "Rows (A)",
+    "cols": "Columns (B)",
+    "skipped": "Skipped (C)",
+    "modules": "Modules",
+    "modulesTotal": "{count} modules total",
+    "assignedWorkers": "Assigned workers",
+    "assignWorker": "Assign worker",
+    "priceTie": "Price per tie",
+    "priceConnect": "Price per connect",
+    "tied": "Tied",
+    "connected": "Connected",
+    "noProjects": "No projects yet.",
+    "close": "Close project",
+    "reopen": "Reopen",
+    "bulkAdd": "Bulk add",
+    "namePrefix": "Name prefix",
+    "startNumber": "Start number",
+    "quantity": "Quantity",
+    "addQuantity": "Add {count} tables"
+  },
   "projects": {
     "meta": {
       "title": "Projects & case studies",
@@ -1062,7 +1091,7 @@
       "updated": "Updated 26 May 2026",
       "controller": {
         "heading": "1. Controller",
-        "body": "The controller within the meaning of Art. 4(7) GDPR is:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovak Republic\nCo. Reg. No.: __ICO_PLACEHOLDER__\nVAT: SK2120988117\nRegistered in the Commercial Register __OR_SUD_PLACEHOLDER__, section __OR_ODDIEL_PLACEHOLDER__, insert no. __OR_VLOZKA_PLACEHOLDER__\nContact: rfp@quantum-sphere.eu · +421 2 5556 0188"
+        "body": "The controller within the meaning of Art. 4(7) GDPR is:\n\nQuantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slovak Republic\nCo. Reg. No.: 56018835\nVAT: SK2122162680\nRegistered in the Commercial Register Okresný súd Trnava, section Sro, insert no. 55939/T\nContact: rfp@quantum-sphere.eu · +421 948 389 255"
       },
       "scope": {
         "heading": "2. Data we process",
@@ -1103,19 +1132,19 @@
       "updated": "Updated 30 May 2026",
       "provider": {
         "heading": "Provider",
-        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slovak Republic\n\nCompany ID: [TODO: IČO]\nVAT: SK2120988117\nRegistered: [TODO: registrový súd, oddiel, vložka]"
+        "body": "Quantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slovak Republic\n\nCompany ID: 56018835\nTax ID (DIČ): 2122162680\nVAT (IČ DPH): SK2122162680 (VAT-registered under §4 since 1 November 2024)\nRegistered: Okresný súd Trnava (Trnava District Court), section Sro, insert no. 55939/T\nDate of establishment: 27 January 2024"
       },
       "represented": {
         "heading": "Represented by",
-        "body": "[TODO: konateľ]"
+        "body": "David Brezula"
       },
       "contact": {
         "heading": "Contact",
-        "body": "Phone: +421 2 5556 0188\nEmail: rfp@quantum-sphere.eu"
+        "body": "Phone: +421 948 389 255\nEmail: rfp@quantum-sphere.eu"
       },
       "supervisory": {
         "heading": "Supervisory authority",
-        "body": "[TODO: dozorný orgán]"
+        "body": "Slovenská obchodná inšpekcia (SOI), Inšpektorát SOI pre Trnavský kraj, Pekárska 23, 917 01 Trnava 1; Okresný úrad Trnava, odbor živnostenského podnikania"
       },
       "disclaimer": {
         "heading": "Liability for content",
@@ -1132,7 +1161,7 @@
       "updated": "Updated 30 May 2026",
       "scope": {
         "heading": "1. Scope",
-        "body": "These General Terms and Conditions (\"GTC\") govern the contractual relationship between Quantum Sphere s.r.o., registered at Mlynské Nivy 5, 821 09 Bratislava, Slovak Republic (\"Contractor\"), and the client (a natural or legal person; \"Client\"). The GTC apply to all construction and installation work carried out by the Contractor, unless the parties have agreed otherwise in writing."
+        "body": "These General Terms and Conditions (\"GTC\") govern the contractual relationship between Quantum Sphere s.r.o., registered at Lančár 113, 922 04 Kočín-Lančár, Slovak Republic (\"Contractor\"), and the client (a natural or legal person; \"Client\"). The GTC apply to all construction and installation work carried out by the Contractor, unless the parties have agreed otherwise in writing."
       },
       "services": {
         "heading": "2. Scope of Services",
@@ -1144,7 +1173,7 @@
       },
       "pricing": {
         "heading": "4. Prices and Payment Terms",
-        "body": "Prices are quoted exclusive of VAT unless expressly stated otherwise. VAT will be added at the statutory rate applicable on the date of the taxable supply.\n\n[TODO: payment terms — due date, deposit, payment method]\n\nIn the event of late payment, the Contractor is entitled to charge statutory interest on arrears."
+        "body": "Prices are quoted exclusive of VAT unless expressly stated otherwise. VAT will be added at the statutory rate applicable on the date of the taxable supply.\n\nSpecific payment terms (due date, any deposit and method of payment) are agreed individually for each project and set out in the quotation or works contract.\n\nIn the event of late payment, the Contractor is entitled to charge statutory interest on arrears."
       },
       "warranty": {
         "heading": "5. Warranty and Liability",

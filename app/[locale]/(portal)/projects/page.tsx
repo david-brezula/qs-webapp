@@ -8,7 +8,7 @@ import { computeModules } from "@/lib/portal/modules";
 
 export default async function ProjectsListPage() {
   await requireAdmin();
-  const t = await getTranslations("projects");
+  const t = await getTranslations("portalProjects");
   const tCommon = await getTranslations("common");
 
   const projects = await prisma.project.findMany({
