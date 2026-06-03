@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { getPortalNavItems } from "@/lib/portal-nav";
 
-export function MobileNav({ role }: { role: "ADMIN" | "WORKER" }) {
+export function MobileNav({ role }: { role: "ADMIN" | "WORKER" | "CLIENT" }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);

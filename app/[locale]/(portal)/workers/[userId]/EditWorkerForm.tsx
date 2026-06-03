@@ -15,7 +15,7 @@ export function EditWorkerForm({
     id: string;
     name: string;
     email: string | null;
-    role: "ADMIN" | "WORKER";
+    role: "ADMIN" | "WORKER" | "CLIENT";
     language: "EN" | "SK";
     active: boolean;
     defaultPriceTie: number;

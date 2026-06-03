@@ -22,7 +22,7 @@ export default async function AdminSectionWagePage({
       where: { id: projectId },
       select: { id: true, name: true },
     }),
-    prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
+    prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } }, orderBy: { name: "asc" } }),
     prisma.projectWorker.findMany({ where: { projectId } }),
     prisma.activityLog.findMany({
       where: { table: { sectionId } },

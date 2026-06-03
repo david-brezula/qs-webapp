@@ -12,7 +12,7 @@ export function TopBar({
 }: {
   name: string;
   email: string;
-  role: "ADMIN" | "WORKER";
+  role: "ADMIN" | "WORKER" | "CLIENT";
   signOutAction: () => Promise<void>;
 }) {
   const t = useTranslations("nav");

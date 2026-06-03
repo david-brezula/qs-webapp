@@ -37,7 +37,7 @@ export default async function SectionPage({
       },
     }),
     prisma.user.findMany({
-      where: { active: true },
+      where: { active: true, role: { not: "CLIENT" } },
       orderBy: { name: "asc" },
       select: { id: true, name: true },
     }),

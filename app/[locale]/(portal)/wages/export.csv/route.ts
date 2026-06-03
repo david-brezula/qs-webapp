@@ -18,7 +18,7 @@ export async function GET(req: Request) {
   const to = new Date(toStr);
 
   const [workers, prices, activity, accommodations] = await Promise.all([
-    prisma.user.findMany({ where: { active: true } }),
+    prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } } }),
     prisma.projectWorker.findMany({}),
     prisma.activityLog.findMany({
       where: { workDate: { gte: from, lte: to } },

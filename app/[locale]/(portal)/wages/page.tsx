@@ -97,7 +97,7 @@ export default async function WagesPage({
   // Admin: project drill-down (all-time only).
   const [projects, workers, prices, activity, accommodations] = await Promise.all([
     prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
-    prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
+    prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } }, orderBy: { name: "asc" } }),
     prisma.projectWorker.findMany({}),
     prisma.activityLog.findMany({
       include: { projectWorker: true, table: { include: { section: true } } },

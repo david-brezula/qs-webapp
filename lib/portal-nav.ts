@@ -14,7 +14,7 @@ export type PortalNavItem = {
  * Portal navigation destinations. `labelKey` is a key in the `nav`
  * next-intl namespace — each consumer resolves it with its own `t`.
  */
-export function getPortalNavItems(role: "ADMIN" | "WORKER"): PortalNavItem[] {
+export function getPortalNavItems(role: "ADMIN" | "WORKER" | "CLIENT"): PortalNavItem[] {
   if (role === "ADMIN") {
     return [
       { href: "/dashboard", labelKey: "dashboard" },
@@ -26,8 +26,11 @@ export function getPortalNavItems(role: "ADMIN" | "WORKER"): PortalNavItem[] {
       { href: "/inquiries", labelKey: "inquiries" },
     ];
   }
-  return [
-    { href: "/dashboard", labelKey: "dashboard" },
-    { href: "/wages", labelKey: "wages" },
-  ];
+  if (role === "WORKER") {
+    return [
+      { href: "/dashboard", labelKey: "dashboard" },
+      { href: "/wages", labelKey: "wages" },
+    ];
+  }
+  return [];
 }

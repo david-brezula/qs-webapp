@@ -9,7 +9,7 @@ export default async function WorkersListPage() {
   await requireAdmin();
   const t = await getTranslations("workers");
   const tCommon = await getTranslations("common");
-  const users = await prisma.user.findMany({ orderBy: { name: "asc" } });
+  const users = await prisma.user.findMany({ where: { role: { not: "CLIENT" } }, orderBy: { name: "asc" } });
 
   return (
     <div>
