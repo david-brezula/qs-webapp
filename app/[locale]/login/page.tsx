@@ -28,16 +28,26 @@ export default function LoginPage() {
   const isClientLogin = /(^|\/)portal(\/|$)/.test(params.get("from") ?? "");
   const theme = isClientLogin
     ? {
-        bg: "linear-gradient(160deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-accent) 14%, var(--color-bg)) 100%)",
-        glow: "radial-gradient(55% 45% at 82% 16%, color-mix(in srgb, var(--color-accent) 24%, transparent), transparent 70%)",
+        // Client: bright, welcoming accent canvas.
+        pageBg:
+          "linear-gradient(160deg, color-mix(in srgb, var(--color-accent) 16%, var(--color-bg)) 0%, color-mix(in srgb, var(--color-accent) 46%, var(--color-bg)) 100%)",
+        overlay:
+          "radial-gradient(70% 55% at 50% -10%, color-mix(in srgb, var(--color-accent) 42%, white), transparent 60%)",
         accent: "var(--color-accent)",
+        onBg: "text-slate-ink hover:text-navy",
+        cardShadow: "0 30px 60px -24px color-mix(in srgb, var(--color-accent) 50%, transparent)",
         label: tNav("clientPortal"),
         Icon: Building2,
       }
     : {
-        bg: "linear-gradient(160deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-navy) 12%, var(--color-bg)) 100%)",
-        glow: "radial-gradient(55% 45% at 18% 16%, color-mix(in srgb, var(--color-navy) 20%, transparent), transparent 70%)",
-        accent: "var(--color-navy)",
+        // Work: dark, industrial navy canvas with a faint blueprint grid.
+        pageBg:
+          "linear-gradient(160deg, color-mix(in srgb, var(--color-navy), black 6%) 0%, color-mix(in srgb, var(--color-navy), black 52%) 100%)",
+        overlay:
+          "radial-gradient(70% 50% at 50% -8%, color-mix(in srgb, var(--color-accent) 28%, transparent), transparent 58%), repeating-linear-gradient(0deg, transparent 0 39px, rgba(255,255,255,0.05) 39px 40px), repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,0.05) 39px 40px)",
+        accent: "var(--color-accent)",
+        onBg: "text-white/70 hover:text-white",
+        cardShadow: "0 35px 70px -25px rgba(0,0,0,0.6)",
         label: tNav("portal"),
         Icon: HardHat,
       };
@@ -73,15 +83,7 @@ export default function LoginPage() {
 
 
   return (
-    <div
-      className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ background: theme.bg }}
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ background: theme.glow }}
-      />
+    <div className="min-h-screen flex flex-col bg-bg">
       <Container className="relative z-10 flex items-center justify-between py-4">
         <a href={homeHref} className="flex items-center gap-2" aria-label={t("backToHome")}>
           <span
@@ -99,9 +101,20 @@ export default function LoginPage() {
         <PortalLanguageSwitcher />
       </Container>
 
-      <main className="relative z-10 flex-1 grid place-items-center px-6 py-10">
-        <div className="flex flex-col items-center gap-6">
-        <div className="w-full max-w-sm bg-surface border border-border-soft rounded-lg p-8 shadow-[var(--shadow-card,0_1px_3px_rgba(15,23,42,0.06))]">
+      <main
+        className="relative flex-1 grid place-items-center overflow-hidden px-6 py-12"
+        style={{ background: theme.pageBg }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ background: theme.overlay }}
+        />
+        <div className="relative z-10 flex flex-col items-center gap-6">
+        <div
+          className="w-full max-w-sm bg-surface border border-border-soft rounded-xl p-8"
+          style={{ boxShadow: theme.cardShadow }}
+        >
           <div className="mb-5 h-1 w-10 rounded-full" style={{ background: theme.accent }} aria-hidden />
           <div
             className="mb-2 inline-flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em]"
@@ -158,7 +171,7 @@ export default function LoginPage() {
         </div>
           <a
             href={homeHref}
-            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-navy transition-colors"
+            className={`inline-flex items-center gap-1.5 text-sm transition-colors ${theme.onBg}`}
           >
             <ArrowLeft size={14} strokeWidth={1.5} />
             {t("backToHome")}
