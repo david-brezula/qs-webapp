@@ -1,3 +1,5 @@
+import type { PortalRole } from "@/lib/portal/roles";
+
 export type PortalNavItem = {
   href: string;
   labelKey:
@@ -14,7 +16,7 @@ export type PortalNavItem = {
  * Portal navigation destinations. `labelKey` is a key in the `nav`
  * next-intl namespace — each consumer resolves it with its own `t`.
  */
-export function getPortalNavItems(role: "ADMIN" | "WORKER" | "CLIENT"): PortalNavItem[] {
+export function getPortalNavItems(role: PortalRole): PortalNavItem[] {
   if (role === "ADMIN") {
     return [
       { href: "/dashboard", labelKey: "dashboard" },

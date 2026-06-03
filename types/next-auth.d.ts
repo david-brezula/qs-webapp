@@ -1,6 +1,5 @@
 import type { DefaultSession } from "next-auth";
-
-type PortalRole = "ADMIN" | "WORKER" | "CLIENT";
+import type { PortalRole } from "@/lib/portal/roles";
 
 declare module "next-auth" {
   interface Session {

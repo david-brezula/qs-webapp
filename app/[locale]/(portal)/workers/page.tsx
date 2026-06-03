@@ -9,6 +9,8 @@ export default async function WorkersListPage() {
   await requireAdmin();
   const t = await getTranslations("workers");
   const tCommon = await getTranslations("common");
+  // The admin worker list intentionally includes inactive workers (no `active`
+  // filter) so admins can manage them; it only excludes client accounts.
   const users = await prisma.user.findMany({ where: { role: { not: "CLIENT" } }, orderBy: { name: "asc" } });
 
   return (

@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { PortalLanguageSwitcher } from "@/components/portal/PortalLanguageSwitcher";
 import { MobileNav } from "@/components/portal/MobileNav";
+import type { PortalRole } from "@/lib/portal/roles";
 
 export function TopBar({
   name,
@@ -12,7 +13,7 @@ export function TopBar({
 }: {
   name: string;
   email: string;
-  role: "ADMIN" | "WORKER" | "CLIENT";
+  role: PortalRole;
   signOutAction: () => Promise<void>;
 }) {
   const t = useTranslations("nav");

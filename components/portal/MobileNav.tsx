@@ -6,8 +6,9 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { getPortalNavItems } from "@/lib/portal-nav";
+import type { PortalRole } from "@/lib/portal/roles";
 
-export function MobileNav({ role }: { role: "ADMIN" | "WORKER" | "CLIENT" }) {
+export function MobileNav({ role }: { role: PortalRole }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);

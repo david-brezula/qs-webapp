@@ -1,4 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
+import type { PortalRole } from "@/lib/portal/roles";
 
 /**
  * Edge-safe subset of the Auth.js config. Used by middleware/proxy where the
@@ -16,7 +17,7 @@ export const authConfig: NextAuthConfig = {
       if (user) {
         token.id = (user as { id: string }).id;
         token.username = (user as { username?: string }).username ?? "";
-        token.role = (user as { role: "ADMIN" | "WORKER" | "CLIENT" }).role;
+        token.role = (user as { role: PortalRole }).role;
         token.language = (user as { language: "EN" | "SK" }).language;
         token.clientId = (user as { clientId?: string | null }).clientId ?? null;
       }
@@ -29,7 +30,7 @@ export const authConfig: NextAuthConfig = {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.username = token.username as string;
-        session.user.role = token.role as "ADMIN" | "WORKER" | "CLIENT";
+        session.user.role = token.role as PortalRole;
         session.user.language = token.language as "EN" | "SK";
         session.user.clientId = (token.clientId as string | null) ?? null;
       }

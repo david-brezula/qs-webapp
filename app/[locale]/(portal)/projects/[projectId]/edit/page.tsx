@@ -22,7 +22,7 @@ export default async function ProjectEditorPage({
         projectWorkers: { include: { user: true } },
       },
     }),
-    prisma.user.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
+    prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } }, orderBy: { name: "asc" } }),
   ]);
   if (!project) notFound();
   const t = await getTranslations("projects");

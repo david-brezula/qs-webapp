@@ -12,6 +12,8 @@ export default async function EditWorkerPage({
   const { userId } = await params;
   const user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) notFound();
+  // Clients are managed under /clients, not the worker editor.
+  if (user.role === "CLIENT") notFound();
 
   return (
     <div className="max-w-xl">

@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { getPortalNavItems } from "@/lib/portal-nav";
+import type { PortalRole } from "@/lib/portal/roles";
 
-export function Sidebar({ role }: { role: "ADMIN" | "WORKER" | "CLIENT" }) {
+export function Sidebar({ role }: { role: PortalRole }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const items = getPortalNavItems(role);
