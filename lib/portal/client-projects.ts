@@ -1,3 +1,11 @@
+// SECURITY: This is the ONLY data path for CLIENT-role users. The firewall is
+// enforced at the APPLICATION layer (these queries run on the owner DATABASE_URL
+// connection, which bypasses Postgres RLS). Therefore EVERY query here MUST scope
+// by the caller's clientId (`where: { clientId }` or `where: { id, clientId }`),
+// and the returned DTOs (see ./client-project-dto) must never include pricing,
+// wages, advances, accommodations, worker identities, raw activity logs, or
+// storageKey. If RLS is added later, treat it as defense-in-depth, not a
+// replacement for these filters.
 import { prisma } from "@/lib/prisma";
 import { computeModules } from "./modules";
 import { toPercent } from "./progress";

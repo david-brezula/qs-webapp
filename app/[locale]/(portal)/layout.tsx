@@ -14,6 +14,7 @@ export default async function PortalLayout({
   children: React.ReactNode;
 }) {
   const user = await requireUser();
+  if (user.role === "CLIENT") redirect("/portal");
 
   const fresh = await prisma.user.findUnique({
     where: { id: user.id },
