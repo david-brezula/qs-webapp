@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Menu, X, LogIn, ChevronDown } from "lucide-react";
+import { Menu, X, LogIn, Building2, ChevronDown } from "lucide-react";
 import { Link } from "@/lib/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { buttonClass } from "@/components/ui/Button";
@@ -18,27 +18,25 @@ const mobileLinkCls =
 // Links to the portal. In production (NEXT_PUBLIC_APP_URL set) it points straight
 // at the portal host; otherwise a same-host locale-aware link (dev/preview).
 function PortalLink({
+  path = "/login",
   className,
   onClick,
   children,
 }: {
+  path?: string;
   className?: string;
   onClick?: () => void;
   children: React.ReactNode;
 }) {
   const locale = useLocale();
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
-  if (appUrl) {
-    return (
-      <a href={`${appUrl}/${locale}/login`} className={className} onClick={onClick}>
-        {children}
-      </a>
-    );
-  }
+  // Marketing -> portal is a cross-area navigation (in production a different
+  // host via NEXT_PUBLIC_APP_URL), so use a plain locale-prefixed anchor rather
+  // than the typed next-intl Link (portal slugs aren't localized pathnames).
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
   return (
-    <Link href="/login" className={className} onClick={onClick}>
+    <a href={`${base}/${locale}${path}`} className={className} onClick={onClick}>
       {children}
-    </Link>
+    </a>
   );
 }
 
@@ -141,6 +139,13 @@ export function MarketingHeader() {
 
         <div className="hidden lg:flex items-center gap-5">
           <LanguageSwitcher />
+          <PortalLink
+            path="/portal"
+            className="inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] transition-colors"
+          >
+            <Building2 size={13} strokeWidth={1.5} />
+            {t("clientPortal")}
+          </PortalLink>
           <PortalLink className="inline-flex items-center gap-1.5 text-[0.8125rem] text-[var(--color-slate)] hover:text-[var(--color-ink)] transition-colors">
             <LogIn size={13} strokeWidth={1.5} />
             {t("portal")}
@@ -199,15 +204,25 @@ export function MarketingHeader() {
               {t("contact")}
             </Link>
 
-            <div className="mt-4 flex items-center justify-between border-t border-[var(--color-rule)] pt-5">
+            <div className="mt-4 flex flex-col gap-3 border-t border-[var(--color-rule)] pt-5">
               <PortalLink
+                path="/portal"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-1.5 text-[0.875rem] text-[var(--color-slate)] hover:text-[var(--color-ink)]"
               >
-                <LogIn size={15} strokeWidth={1.5} />
-                {t("portal")}
+                <Building2 size={15} strokeWidth={1.5} />
+                {t("clientPortal")}
               </PortalLink>
-              <LanguageSwitcher align="right" />
+              <div className="flex items-center justify-between">
+                <PortalLink
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center gap-1.5 text-[0.875rem] text-[var(--color-slate)] hover:text-[var(--color-ink)]"
+                >
+                  <LogIn size={15} strokeWidth={1.5} />
+                  {t("portal")}
+                </PortalLink>
+                <LanguageSwitcher align="right" />
+              </div>
             </div>
 
             <Link
