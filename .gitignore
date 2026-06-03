@@ -53,5 +53,21 @@ next-env.d.ts
 
 # DB backups / dumps (may contain PII — never commit)
 /backups/
+/scripts/db-backup.sql
 
 .vercel
+
+# Playwright MCP scratch (console + page snapshots)
+/.playwright-mcp/
+
+# Dev server / debug logs
+dev*.log
+
+# Local dev scratch, captures, and screenshots (repo root)
+/page.html
+/ssheet.css
+/CLAUDE_CODE_PROMPT.md
+/qs-*.png
+
+# Stray Windows temp paths accidentally written into the repo root
+/C：*
