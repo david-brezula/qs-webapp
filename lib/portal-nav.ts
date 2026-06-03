@@ -6,6 +6,7 @@ export type PortalNavItem = {
     | "dashboard"
     | "projects"
     | "workers"
+    | "clients"
     | "accommodations"
     | "wages"
     | "applications"
@@ -22,6 +23,7 @@ export function getPortalNavItems(role: PortalRole): PortalNavItem[] {
       { href: "/dashboard", labelKey: "dashboard" },
       { href: "/projects", labelKey: "projects" },
       { href: "/workers", labelKey: "workers" },
+      { href: "/clients", labelKey: "clients" },
       { href: "/accommodations", labelKey: "accommodations" },
       { href: "/wages", labelKey: "wages" },
       { href: "/applications", labelKey: "applications" },
