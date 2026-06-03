@@ -28,7 +28,7 @@ export function AdminProjectList({
   mixedCurrencies: boolean;
 }) {
   const t = useTranslations("wages");
-  const tProjects = useTranslations("projects");
+  const tProjects = useTranslations("portalProjects");
   const tCommon = useTranslations("common");
 
   const hasMissingPrice = projects.some((p) => p.warnings.includes("missing-price"));

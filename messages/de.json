@@ -62,6 +62,44 @@
     "portal": "Anmelden",
     "work": "Projekte"
   },
+  "portalProjects": {
+    "list": "Projekte",
+    "new": "Neues Projekt",
+    "name": "Projektname",
+    "location": "Standort",
+    "section": "Abschnitt",
+    "newSection": "Abschnitt hinzufügen",
+    "table": "Tisch",
+    "newTable": "Tisch hinzufügen",
+    "rows": "Reihen (A)",
+    "cols": "Spalten (B)",
+    "skipped": "Ausgelassen (C)",
+    "modules": "Module",
+    "modulesTotal": "{count} Module insgesamt",
+    "assignedWorkers": "Zugewiesene Mitarbeiter",
+    "assignWorker": "Mitarbeiter zuweisen",
+    "priceTie": "Preis pro Befestigung",
+    "priceConnect": "Preis pro Anschluss",
+    "tied": "Befestigt",
+    "connected": "Angeschlossen",
+    "noProjects": "Noch keine Projekte.",
+    "close": "Projekt schließen",
+    "reopen": "Wieder öffnen",
+    "bulkAdd": "Sammeleintrag",
+    "namePrefix": "Namenspräfix",
+    "startNumber": "Startnummer",
+    "quantity": "Anzahl",
+    "addQuantity": "{count} Tische hinzufügen",
+    "client": "Kunde",
+    "assignClient": "Kunde zuweisen",
+    "clearClient": "Entfernen",
+    "photos": "Fotos",
+    "documents": "Dokumente",
+    "upload": "Hochladen",
+    "caption": "Bildtext",
+    "docTitle": "Dokumenttitel",
+    "deleteLabel": "Löschen"
+  },
   "projects": {
     "meta": {
       "title": "Projekte & Referenzen",
@@ -1064,7 +1102,7 @@
       "updated": "Aktualisiert am 26. Mai 2026",
       "controller": {
         "heading": "1. Verantwortlicher",
-        "body": "Verantwortlicher im Sinne von Art. 4 Abs. 7 DSGVO ist:\n\nQuantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slowakische Republik\nHandelsreg.-Nr.: __ICO_PLACEHOLDER__\nUSt-IdNr.: SK2120988117\nEingetragen im Handelsregister __OR_SUD_PLACEHOLDER__, Abt. __OR_ODDIEL_PLACEHOLDER__, Einlage Nr. __OR_VLOZKA_PLACEHOLDER__\nKontakt: rfp@quantum-sphere.eu · +421 2 5556 0188"
+        "body": "Verantwortlicher im Sinne von Art. 4 Abs. 7 DSGVO ist:\n\nQuantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slowakische Republik\nHandelsreg.-Nr.: 56018835\nUSt-IdNr.: SK2122162680\nEingetragen im Handelsregister Okresný súd Trnava, Abt. Sro, Einlage Nr. 55939/T\nKontakt: rfp@quantum-sphere.eu · +421 948 389 255"
       },
       "scope": {
         "heading": "2. Welche Daten wir verarbeiten",
@@ -1105,19 +1143,19 @@
       "updated": "Aktualisiert am 30. Mai 2026",
       "provider": {
         "heading": "Angaben gemäß § 5 DDG",
-        "body": "Quantum Sphere s.r.o.\nMlynské Nivy 5, 821 09 Bratislava, Slowakische Republik\n\nHandelsreg.-Nr.: [TODO: IČO]\nUSt-IdNr.: SK2120988117\nEingetragen: [TODO: registrový súd, oddiel, vložka]"
+        "body": "Quantum Sphere s.r.o.\nLančár 113, 922 04 Kočín-Lančár, Slowakische Republik\n\nHandelsreg.-Nr.: 56018835\nSteuernummer (DIČ): 2122162680\nUSt-IdNr.: SK2122162680 (umsatzsteuerpflichtig gem. §4 seit 1.11.2024)\nEingetragen: Okresný súd Trnava (Bezirksgericht Trnava), Abt. Sro, Einlage Nr. 55939/T\nGründungsdatum: 27.01.2024"
       },
       "represented": {
         "heading": "Vertreten durch",
-        "body": "[TODO: konateľ]"
+        "body": "David Brezula"
       },
       "contact": {
         "heading": "Kontakt",
-        "body": "Telefon: +421 2 5556 0188\nE-Mail: rfp@quantum-sphere.eu"
+        "body": "Telefon: +421 948 389 255\nE-Mail: rfp@quantum-sphere.eu"
       },
       "supervisory": {
         "heading": "Zuständige Aufsichtsbehörde",
-        "body": "[TODO: dozorný orgán]"
+        "body": "Slovenská obchodná inšpekcia (SOI), Inšpektorát SOI pre Trnavský kraj, Pekárska 23, 917 01 Trnava 1; Okresný úrad Trnava, odbor živnostenského podnikania"
       },
       "disclaimer": {
         "heading": "Haftung für Inhalte",
@@ -1134,7 +1172,7 @@
       "updated": "Aktualisiert am 30. Mai 2026",
       "scope": {
         "heading": "1. Geltungsbereich",
-        "body": "Diese Allgemeinen Geschäftsbedingungen (\"AGB\") regeln das Vertragsverhältnis zwischen der Quantum Sphere s.r.o., eingetragen unter Mlynské Nivy 5, 821 09 Bratislava, Slowakische Republik (\"Auftragnehmer\"), und dem Auftraggeber (natürliche oder juristische Person; \"Auftraggeber\"). Die AGB gelten für alle vom Auftragnehmer ausgeführten Bau- und Installationsarbeiten, sofern die Vertragsparteien nicht schriftlich etwas anderes vereinbart haben."
+        "body": "Diese Allgemeinen Geschäftsbedingungen (\"AGB\") regeln das Vertragsverhältnis zwischen der Quantum Sphere s.r.o., eingetragen unter Lančár 113, 922 04 Kočín-Lančár, Slowakische Republik (\"Auftragnehmer\"), und dem Auftraggeber (natürliche oder juristische Person; \"Auftraggeber\"). Die AGB gelten für alle vom Auftragnehmer ausgeführten Bau- und Installationsarbeiten, sofern die Vertragsparteien nicht schriftlich etwas anderes vereinbart haben."
       },
       "services": {
         "heading": "2. Leistungsgegenstand",
@@ -1146,7 +1184,7 @@
       },
       "pricing": {
         "heading": "4. Preise und Zahlungsbedingungen",
-        "body": "Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern nicht ausdrücklich anders angegeben. Die Mehrwertsteuer wird zum gesetzlichen Satz zum Zeitpunkt der Leistungserbringung hinzugerechnet.\n\n[TODO: Zahlungsbedingungen — Fälligkeit, Anzahlung, Zahlungsart]\n\nBei Zahlungsverzug ist der Auftragnehmer berechtigt, gesetzliche Verzugszinsen zu berechnen."
+        "body": "Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer, sofern nicht ausdrücklich anders angegeben. Die Mehrwertsteuer wird zum gesetzlichen Satz zum Zeitpunkt der Leistungserbringung hinzugerechnet.\n\nDie konkreten Zahlungsbedingungen (Fälligkeit, etwaige Anzahlung und Zahlungsart) werden für jedes Projekt individuell vereinbart und im Angebot bzw. Werkvertrag festgehalten.\n\nBei Zahlungsverzug ist der Auftragnehmer berechtigt, gesetzliche Verzugszinsen zu berechnen."
       },
       "warranty": {
         "heading": "5. Gewährleistung und Haftung",
@@ -1342,16 +1380,5 @@
     "evtProjectClosed": "Projekt abgeschlossen",
     "evtSectionStarted": "Abschnitt gestartet: {section}",
     "evtSectionCompleted": "Abschnitt abgeschlossen: {section}"
-  },
-  "portalProjects": {
-    "client": "Kunde",
-    "assignClient": "Kunde zuweisen",
-    "clearClient": "Entfernen",
-    "photos": "Fotos",
-    "documents": "Dokumente",
-    "upload": "Hochladen",
-    "caption": "Bildtext",
-    "docTitle": "Dokumenttitel",
-    "deleteLabel": "Löschen"
   }
 }

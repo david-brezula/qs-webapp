@@ -8,7 +8,7 @@ import { FormField } from "@/components/portal/FormField";
 import { createProjectAction } from "@/lib/actions/projects";
 
 export default function NewProjectPage() {
-  const t = useTranslations("projects");
+  const t = useTranslations("portalProjects");
   const tCommon = useTranslations("common");
   const router = useRouter();
   const [pending, start] = useTransition();

@@ -32,8 +32,7 @@ export default async function ProjectEditorPage({
     prisma.client.findMany({ where: { active: true }, orderBy: { name: "asc" }, select: { id: true, name: true } }),
   ]);
   if (!project) notFound();
-  const t = await getTranslations("projects");
-  const tp = await getTranslations("portalProjects");
+  const t = await getTranslations("portalProjects");
 
   return (
     <div>
@@ -98,19 +97,19 @@ export default async function ProjectEditorPage({
       </div>
 
       <div className="mt-12">
-        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("client")}</h2>
+        <h2 className="mb-4 text-lg font-semibold text-navy">{t("client")}</h2>
         <ClientPanel projectId={project.id} current={project.client} clients={allClients}
-          labels={{ assign: tp("assignClient"), clear: tp("clearClient") }} />
+          labels={{ assign: t("assignClient"), clear: t("clearClient") }} />
       </div>
       <div className="mt-12">
-        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("photos")}</h2>
+        <h2 className="mb-4 text-lg font-semibold text-navy">{t("photos")}</h2>
         <PhotosPanel projectId={project.id} photos={project.photos}
-          labels={{ upload: tp("upload"), caption: tp("caption"), delete: tp("deleteLabel") }} />
+          labels={{ upload: t("upload"), caption: t("caption"), delete: t("deleteLabel") }} />
       </div>
       <div className="mt-12">
-        <h2 className="mb-4 text-lg font-semibold text-navy">{tp("documents")}</h2>
+        <h2 className="mb-4 text-lg font-semibold text-navy">{t("documents")}</h2>
         <DocumentsPanel projectId={project.id} documents={project.documents}
-          labels={{ upload: tp("upload"), title: tp("docTitle"), delete: tp("deleteLabel") }} />
+          labels={{ upload: t("upload"), title: t("docTitle"), delete: t("deleteLabel") }} />
       </div>
     </div>
   );
