@@ -12,3 +12,9 @@ export async function requireAdmin() {
   if (user.role !== "ADMIN") redirect("/dashboard");
   return user;
 }
+
+export async function requireClient() {
+  const user = await requireUser();
+  if (user.role !== "CLIENT" || !user.clientId) redirect("/login");
+  return { ...user, clientId: user.clientId };
+}
