@@ -112,7 +112,7 @@ export default function LoginPage() {
         />
         <div className="relative z-10 flex flex-col items-center gap-6">
         <div
-          className="w-full max-w-sm bg-surface border border-border-soft rounded-xl p-8"
+          className="w-full max-w-md bg-surface border border-border-soft rounded-xl p-10"
           style={{ boxShadow: theme.cardShadow }}
         >
           <div className="mb-5 h-1 w-10 rounded-full" style={{ background: theme.accent }} aria-hidden />
@@ -123,8 +123,8 @@ export default function LoginPage() {
             <PortalIcon size={14} strokeWidth={1.75} />
             {theme.label}
           </div>
-          <h1 className="text-2xl font-semibold text-navy mb-6">{t("title")}</h1>
-          <form onSubmit={onSubmit} className="space-y-4" noValidate>
+          <h1 className="text-3xl font-semibold text-navy mb-7">{t("title")}</h1>
+          <form onSubmit={onSubmit} className="space-y-5" noValidate>
             <div>
               <label htmlFor="username" className="text-sm font-semibold text-navy block mb-2">
                 {tCommon("username")}
@@ -137,7 +137,7 @@ export default function LoginPage() {
                 autoCapitalize="none"
                 spellCheck={false}
                 aria-invalid={Boolean(errors.username)}
-                className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
+                className="w-full rounded-md border border-border-soft bg-surface px-3.5 py-2.5 text-[0.95rem] focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
               />
               {errors.username && (
                 <p className="mt-1 text-xs text-red-600">{errors.username}</p>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 aria-invalid={Boolean(errors.password)}
-                className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
+                className="w-full rounded-md border border-border-soft bg-surface px-3.5 py-2.5 text-[0.95rem] focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20"
               />
               {errors.password && (
                 <p className="mt-1 text-xs text-red-600">{errors.password}</p>
