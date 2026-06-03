@@ -9,6 +9,7 @@ datasource db {
 enum Role {
   ADMIN
   WORKER
+  CLIENT
 }
 
 enum Locale {
@@ -67,10 +68,14 @@ model User {
   defaultPriceTie     Decimal  @default(0) @db.Decimal(10, 2)
   defaultPriceConnect Decimal  @default(0) @db.Decimal(10, 2)
   createdAt           DateTime @default(now())
+  clientId            String?
+  client              Client?  @relation(fields: [clientId], references: [id], onDelete: SetNull)
 
   projectWorkers     ProjectWorker[]
   accommodationStays AccommodationWorker[]
   advanceRequests    AdvanceRequest[]
+
+  @@index([clientId])
 }
 
 model Project {
@@ -81,9 +86,16 @@ model Project {
   createdAt DateTime      @default(now())
   closedAt  DateTime?
 
+  clientId String?
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
+
   sections       Section[]
   projectWorkers ProjectWorker[]
   accommodations Accommodation[]
+  photos         ProjectPhoto[]
+  documents      ProjectDocument[]
+
+  @@index([clientId])
 }
 
 model Section {
@@ -269,4 +281,44 @@ model AdvanceRequest {
   @@index([userId])
   @@index([status])
   @@index([sectionId])
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  company   String?
+  email     String?  @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  users    User[]
+  projects Project[]
+
+  @@index([active])
+}
+
+model ProjectPhoto {
+  id         String    @id @default(cuid())
+  projectId  String
+  project    Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  storageKey String
+  caption    String?
+  takenAt    DateTime? @db.Date
+  orderIndex Int       @default(0)
+  createdAt  DateTime  @default(now())
+
+  @@index([projectId])
+}
+
+model ProjectDocument {
+  id         String   @id @default(cuid())
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  storageKey String
+  title      String
+  mimeType   String?
+  sizeBytes  Int?
+  createdAt  DateTime @default(now())
+
+  @@index([projectId])
 }
