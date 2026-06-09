@@ -18,7 +18,8 @@ const requestSchema = z.object({
 export async function requestAdvanceAction(fd: FormData): Promise<AdvanceResult> {
   const session = await auth();
   if (!session?.user) return { ok: false, error: "forbidden" };
-  if (session.user.role !== "WORKER") return { ok: false, error: "forbidden" };
+  // Workers request advances; admins who also work on projects may request their own.
+  if (session.user.role !== "WORKER" && session.user.role !== "ADMIN") return { ok: false, error: "forbidden" };
 
   const parsed = requestSchema.safeParse({
     amount: fd.get("amount"),
