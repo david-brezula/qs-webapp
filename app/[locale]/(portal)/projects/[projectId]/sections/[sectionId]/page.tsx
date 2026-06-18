@@ -5,7 +5,7 @@ import { requireUser } from "@/lib/portal/session";
 import { ProgressGraph } from "@/components/portal/ProgressGraph";
 import { SectionTables } from "@/components/portal/SectionTables";
 import { computeProgress } from "@/lib/portal/progress";
-import { getTableAggregates, getMyLogs } from "@/lib/portal/activity-aggregates";
+import { getTableAggregates, getMyLogs, getRecentTableLogs } from "@/lib/portal/activity-aggregates";
 
 export default async function SectionPage({
   params,
@@ -52,9 +52,12 @@ export default async function SectionPage({
 
   const tableIds = section.tables.map((tbl) => tbl.id);
   const myPwIds = myPw ? [myPw.id] : [];
-  const [aggregates, myLogsMap, myInvoice] = await Promise.all([
+  const isAdmin = user.role === "ADMIN";
+  const [aggregates, myLogsMap, adminLogsMap, myInvoice] = await Promise.all([
     getTableAggregates(tableIds),
     getMyLogs(tableIds, myPwIds),
+    // Admins see every worker's recent entries inline (and may edit them).
+    isAdmin ? getRecentTableLogs(tableIds) : Promise.resolve(new Map()),
     myPw
       ? prisma.sectionInvoice.findUnique({
           where: { sectionId_projectWorkerId: { sectionId, projectWorkerId: myPw.id } },
@@ -73,6 +76,7 @@ export default async function SectionPage({
       totalConnected: agg.totalConnected,
       myLogs: logEntry.logs,
       hasMyActivity: logEntry.hasActivity,
+      allLogs: adminLogsMap.get(tbl.id) ?? [],
     };
   });
 
@@ -107,7 +111,7 @@ export default async function SectionPage({
           }))}
           allActiveWorkers={allActiveWorkers}
           projectWorkerId={myPw?.id ?? null}
-          isAdmin={user.role === "ADMIN"}
+          isAdmin={isAdmin}
           isClosed={project.status === "CLOSED"}
           sectionInvoiced={sectionInvoiced}
         />

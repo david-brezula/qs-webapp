@@ -5,7 +5,7 @@ import { requireUser } from "@/lib/portal/session";
 import { Card } from "@/components/ui/Card";
 import { ProjectLogView } from "@/components/portal/ProjectLogView";
 import { computeModules } from "@/lib/portal/modules";
-import { getTableAggregates, getMyLogs } from "@/lib/portal/activity-aggregates";
+import { getTableAggregates, getMyLogs, getRecentTableLogs } from "@/lib/portal/activity-aggregates";
 
 export default async function DashboardPage() {
   const user = await requireUser();
@@ -61,9 +61,12 @@ export default async function DashboardPage() {
   );
   const myPwIds = myProjectWorkers.map((pw) => pw.id);
 
-  const [aggregates, myLogsMap, myInvoices] = await Promise.all([
+  const isAdmin = user.role === "ADMIN";
+  const [aggregates, myLogsMap, adminLogsMap, myInvoices] = await Promise.all([
     getTableAggregates(allTableIds),
     getMyLogs(allTableIds, myPwIds),
+    // Admins see every worker's recent entries inline (and may edit them).
+    isAdmin ? getRecentTableLogs(allTableIds) : Promise.resolve(new Map()),
     myPwIds.length > 0
       ? prisma.sectionInvoice.findMany({
           where: { projectWorkerId: { in: myPwIds } },
@@ -109,6 +112,7 @@ export default async function DashboardPage() {
               totalConnected: agg.totalConnected,
               myLogs: logEntry.logs,
               hasMyActivity: logEntry.hasActivity,
+              allLogs: adminLogsMap.get(tbl.id) ?? [],
             };
           }),
         }));

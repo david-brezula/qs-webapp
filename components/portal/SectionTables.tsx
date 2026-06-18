@@ -17,6 +17,17 @@ export type Claim = {
   projectWorker: { userId: string; user: { name: string } };
 };
 
+export type AdminLog = {
+  id: string;
+  projectWorkerId: string;
+  userId: string;
+  workerName: string;
+  action: "TIE" | "CONNECT";
+  count: number;
+  workDate: Date;
+  createdAt: Date;
+};
+
 export type Table = {
   id: string;
   name: string;
@@ -27,6 +38,8 @@ export type Table = {
   totalConnected: number;
   myLogs: ActivityLog[];
   hasMyActivity: boolean;
+  /** All workers' recent entries (admin view only); omitted for workers. */
+  allLogs?: AdminLog[];
   claims: Claim[];
 };
 
@@ -86,6 +99,15 @@ export async function SectionTables({
             table={{ id: tbl.id, name: tbl.name, total, tied, connected }}
             myLogs={tbl.myLogs.map((l) => ({
               id: l.id,
+              action: l.action,
+              count: l.count,
+              workDate: l.workDate.toISOString().slice(0, 10),
+              createdAt: l.createdAt.toISOString(),
+            }))}
+            adminLogs={(tbl.allLogs ?? []).map((l) => ({
+              id: l.id,
+              userId: l.userId,
+              workerName: l.workerName,
               action: l.action,
               count: l.count,
               workDate: l.workDate.toISOString().slice(0, 10),

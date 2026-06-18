@@ -104,6 +104,7 @@ function Counter({
 export function TableLogger({
   table,
   myLogs,
+  adminLogs = [],
   claims,
   myClaim,
   hasMyActivity,
@@ -116,6 +117,7 @@ export function TableLogger({
 }: {
   table: { id: string; name: string; total: number; tied: number; connected: number };
   myLogs: { id: string; action: "TIE" | "CONNECT"; count: number; workDate: string; createdAt: string }[];
+  adminLogs?: { id: string; userId: string; workerName: string; action: "TIE" | "CONNECT"; count: number; workDate: string; createdAt: string }[];
   claims: Claim[];
   myClaim: { id: string } | null;
   hasMyActivity: boolean;
@@ -148,6 +150,15 @@ export function TableLogger({
   const canClaim = !myClaim && isAssigned && !isClosed;
   // Workers may correct their own entries until they invoice the section; admins always may.
   const canEditOwn = isAdmin || !sectionInvoiced;
+  // Admins see (and may edit) every worker's recent entries; workers see only
+  // their own. `workerName` is present only on the admin rows.
+  const displayLogs: {
+    id: string;
+    workerName?: string;
+    action: "TIE" | "CONNECT";
+    count: number;
+    workDate: string;
+  }[] = isAdmin ? adminLogs : myLogs;
   const isFinished = isTableFinished({
     total: table.total,
     tied: table.tied,
@@ -506,10 +517,10 @@ export function TableLogger({
           id={`table-detail-${table.id}`}
           className="mt-3 pt-2 border-t border-border-soft"
         >
-          {myLogs.length > 0 ? (
+          {displayLogs.length > 0 ? (
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
               <span className="text-navy/60 uppercase tracking-wide">{labels.recent}:</span>
-              {myLogs.map((l) => (
+              {displayLogs.map((l) => (
                 <span key={l.id} className="inline-flex items-center gap-1 text-slate-ink">
                   {editingId === l.id ? (
                     <>
@@ -538,6 +549,9 @@ export function TableLogger({
                     </>
                   ) : (
                     <>
+                      {l.workerName && (
+                        <span className="font-medium text-navy/70">{l.workerName}:</span>
+                      )}
                       <span className="font-semibold text-navy">{l.count}</span>
                       {l.action === "TIE" ? labels.tied : labels.connected}
                       <span className="text-muted">· {l.workDate}</span>
