@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { ModulesCell } from "@/components/portal/ModulesCell";
 import type { WorkerSectionRow } from "./section-row";
 
 export function WorkerSectionBreakdown({
@@ -18,7 +19,7 @@ export function WorkerSectionBreakdown({
     return (
       <tr>
         <td />
-        <td colSpan={7} className="px-4 py-2 pl-10 text-sm text-muted italic">
+        <td colSpan={8} className="px-4 py-2 pl-10 text-sm text-muted italic">
           {t("noData")}
         </td>
       </tr>
@@ -42,6 +43,7 @@ export function WorkerSectionBreakdown({
               {s.sectionName}
             </span>
           </td>
+          <td className="px-4 py-2"><ModulesCell tied={s.tieCount} connected={s.connectCount} /></td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.tie.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.connect.toFixed(2)}</td>
           <td className="px-4 py-2 text-sm text-slate-ink">{s.earnings.toFixed(2)}</td>

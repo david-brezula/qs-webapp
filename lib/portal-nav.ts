@@ -9,6 +9,7 @@ export type PortalNavItem = {
     | "clients"
     | "accommodations"
     | "wages"
+    | "myActivity"
     | "applications"
     | "inquiries";
 };
@@ -33,6 +34,7 @@ export function getPortalNavItems(role: PortalRole): PortalNavItem[] {
   if (role === "WORKER") {
     return [
       { href: "/dashboard", labelKey: "dashboard" },
+      { href: "/my-activity", labelKey: "myActivity" },
       { href: "/wages", labelKey: "wages" },
     ];
   }

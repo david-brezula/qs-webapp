@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, sumOpenAdvances, type WageInput, type WageRow } from "./wages";
+import { computeWages, computeWagesByProject, computeWagesBySection, sumWageRows, sumOpenAdvances, sumCapacity, type WageInput, type WageRow } from "./wages";
 
 const baseInput: WageInput = {
   from: new Date("2026-05-01"),
@@ -36,6 +36,27 @@ describe("computeWages", () => {
     const alice = r.rows.find((x) => x.userId === "w1")!;
     // Alice: 100*1.5 + 50*2.0 = 150 + 100 = 250
     expect(alice.earnings).toBe(250);
+  });
+
+  it("accumulates module counts (tied/connected) per worker", () => {
+    const r = computeWages(baseInput);
+    const alice = r.rows.find((x) => x.userId === "w1")!;
+    expect(alice.breakdown.tieCount).toBe(100);
+    expect(alice.breakdown.connectCount).toBe(50);
+    const bob = r.rows.find((x) => x.userId === "w2")!;
+    expect(bob.breakdown.tieCount).toBe(80);
+    expect(bob.breakdown.connectCount).toBe(0);
+  });
+
+  it("counts modules even when the worker has no price set", () => {
+    const r = computeWages({
+      ...baseInput,
+      prices: baseInput.prices.filter((p) => !(p.userId === "w2" && p.projectId === "p1")),
+    });
+    const bob = r.rows.find((x) => x.userId === "w2")!;
+    expect(bob.warnings).toContain("missing-price");
+    expect(bob.earnings).toBe(0);
+    expect(bob.breakdown.tieCount).toBe(80); // work volume still recorded
   });
 
   it("deducts equal-share accommodation when any overlap", () => {
@@ -208,16 +229,18 @@ describe("computeWages sectionId filter", () => {
 });
 
 describe("sumWageRows", () => {
-  it("sums tie / connect / earnings / accommodation / wage across rows", () => {
+  it("sums tie / connect / counts / earnings / accommodation / wage across rows", () => {
     const rows: WageRow[] = [
       { userId: "w1", name: "A", earnings: 10, accommodation: 2, wage: 8,
-        breakdown: { tie: 6, connect: 4 }, warnings: [] },
+        breakdown: { tie: 6, connect: 4, tieCount: 6, connectCount: 4 }, warnings: [] },
       { userId: "w2", name: "B", earnings: 20, accommodation: 5, wage: 15,
-        breakdown: { tie: 12, connect: 8 }, warnings: ["missing-price"] },
+        breakdown: { tie: 12, connect: 8, tieCount: 24, connectCount: 16 }, warnings: ["missing-price"] },
     ];
     const t = sumWageRows(rows);
     expect(t.tie).toBe(18);
     expect(t.connect).toBe(12);
+    expect(t.tieCount).toBe(30);
+    expect(t.connectCount).toBe(20);
     expect(t.earnings).toBe(30);
     expect(t.accommodation).toBe(7);
     expect(t.wage).toBe(23);
@@ -226,16 +249,16 @@ describe("sumWageRows", () => {
 
   it("returns zeros for empty input", () => {
     expect(sumWageRows([])).toEqual({
-      tie: 0, connect: 0, earnings: 0, accommodation: 0, wage: 0, warnings: [],
+      tie: 0, connect: 0, tieCount: 0, connectCount: 0, earnings: 0, accommodation: 0, wage: 0, warnings: [],
     });
   });
 
   it("deduplicates warnings across rows", () => {
     const rows: WageRow[] = [
       { userId: "w1", name: "A", earnings: 0, accommodation: 0, wage: 0,
-        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+        breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 }, warnings: ["missing-price"] },
       { userId: "w2", name: "B", earnings: 0, accommodation: 0, wage: 0,
-        breakdown: { tie: 0, connect: 0 }, warnings: ["missing-price"] },
+        breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 }, warnings: ["missing-price"] },
     ];
     expect(sumWageRows(rows).warnings).toEqual(["missing-price"]);
   });
@@ -427,6 +450,18 @@ describe("computeWagesBySection settled advances", () => {
     const s1 = rows.find((r) => r.sectionId === "s1")!;
     expect(s1.advance).toBe(50);
     expect(s1.wage).toBe(50); // 100 - 0 - 50
+  });
+});
+
+describe("sumCapacity", () => {
+  it("sums rows*cols-skipped across tables", () => {
+    expect(sumCapacity([
+      { rows: 10, cols: 10, skipped: 0 },  // 100
+      { rows: 5, cols: 4, skipped: 2 },    // 18
+    ])).toBe(118);
+  });
+  it("returns 0 for no tables", () => {
+    expect(sumCapacity([])).toBe(0);
   });
 });
 

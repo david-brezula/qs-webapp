@@ -50,6 +50,7 @@
     "clients": "Klienti",
     "accommodations": "Ubytovanie",
     "wages": "Mzdy",
+    "myActivity": "Moja aktivita",
     "advances": "Zálohy",
     "applications": "Žiadosti",
     "inquiries": "Dopyty",
@@ -543,7 +544,13 @@
     "tempPassword": "Dočasné heslo: {password}",
     "usernameHint": "Malé písmená, čísla, bodka, pomlčka, podtržítko. Min 3 znaky.",
     "defaultPriceTie": "Predvolená cena za uviazanie",
-    "defaultPriceConnect": "Predvolená cena za zapojenie"
+    "defaultPriceConnect": "Predvolená cena za zapojenie",
+    "activityTitle": "Posledná aktivita",
+    "activityHint": "Opravte alebo odstráňte záznam, ktorý ste zapísali omylom. Záznamy sa uzamknú po vyfakturovaní sekcie — tie zmení administrátor.",
+    "noActivity": "Zatiaľ žiadna zaznamenaná aktivita.",
+    "action": "Akcia",
+    "count": "Počet",
+    "workDate": "Dátum práce"
   },
   "changePassword": {
     "title": "Zmena hesla",
@@ -590,7 +597,11 @@
     "netToPay": "Na vyplatenie",
     "net": "Čisté",
     "advance": "Záloha",
-    "openAdvances": "Otvorené zálohy (nesplatené)"
+    "openAdvances": "Otvorené zálohy (nesplatené)",
+    "modules": "Moduly (uv. / zap.)",
+    "capacity": "Kapacita",
+    "capacityTotal": "Modulov celkom: {count}",
+    "modulesDone": "Hotové moduly"
   },
   "log": {
     "title": "Zapísať prácu",
@@ -601,6 +612,9 @@
     "recentEntries": "Posledné záznamy",
     "noEntriesYet": "Zatiaľ žiadne záznamy.",
     "editWindowOver": "Záznam uzamknutý (starší ako 24h)",
+    "lockedInvoiced": "Uzamknuté — túto sekciu ste vyfakturovali. O zmenu požiadajte administrátora.",
+    "logForWorker": "Zapísať pre pracovníka:",
+    "logEntry": "Zapísať",
     "overCap": "Nemôžete prekročiť {remaining} zostávajúcich pre túto akciu.",
     "claim": "Prevziať tabuľku",
     "release": "Uvoľniť",

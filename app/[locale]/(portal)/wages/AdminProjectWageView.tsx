@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/portal/DataTable";
+import { ModulesCell } from "@/components/portal/ModulesCell";
 
 type SectionRow = {
   id: string;
   name: string;
   tie: number;
   connect: number;
+  tieCount: number;
+  connectCount: number;
+  capacity: number;
   earnings: number;
 };
 
@@ -17,6 +21,8 @@ type WorkerRow = {
   name: string;
   tie: number;
   connect: number;
+  tieCount: number;
+  connectCount: number;
   earnings: number;
   accommodation: number;
   wage: number;
@@ -31,11 +37,13 @@ export function AdminProjectWageView({
   projectId,
   sections,
   workers,
+  capacity,
   mixedCurrencies,
 }: {
   projectId: string;
   sections: SectionRow[];
   workers: WorkerRow[];
+  capacity: number;
   mixedCurrencies: boolean;
 }) {
   const t = useTranslations("wages");
@@ -46,6 +54,8 @@ export function AdminProjectWageView({
 
   return (
     <>
+      <p className="text-sm text-muted mb-4">{t("capacityTotal", { count: capacity })}</p>
+
       {mixedCurrencies && (
         <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-md p-2 mb-4">
           {t("mixedCurrencies")}
@@ -59,7 +69,7 @@ export function AdminProjectWageView({
 
       <h2 className="text-lg font-semibold text-navy mt-6 mb-3">{t("sections")}</h2>
       <DataTable
-        headers={[tProjects("section"), t("tie"), t("connect"), t("earnings")]}
+        headers={[tProjects("section"), t("modules"), t("capacity"), t("tie"), t("connect"), t("earnings")]}
         empty={t("noSections")}
         rows={sections.map((s) => [
           <Link
@@ -69,6 +79,8 @@ export function AdminProjectWageView({
           >
             {s.name}
           </Link>,
+          <ModulesCell key={`mod-${s.id}`} tied={s.tieCount} connected={s.connectCount} />,
+          <span key={`cap-${s.id}`} className="text-sm text-slate-ink">{s.capacity}</span>,
           <NumCell key={`tie-${s.id}`} value={s.tie} />,
           <NumCell key={`con-${s.id}`} value={s.connect} />,
           <NumCell key={`ear-${s.id}`} value={s.earnings} />,
@@ -79,6 +91,7 @@ export function AdminProjectWageView({
       <DataTable
         headers={[
           tCommon("name"),
+          t("modules"),
           t("tie"),
           t("connect"),
           t("earnings"),
@@ -88,6 +101,7 @@ export function AdminProjectWageView({
         empty={t("noActivityYet")}
         rows={workers.map((w) => [
           w.name,
+          <ModulesCell key={`mod-${w.userId}`} tied={w.tieCount} connected={w.connectCount} />,
           <NumCell key={`tie-${w.userId}`} value={w.tie} />,
           <NumCell key={`con-${w.userId}`} value={w.connect} />,
           <NumCell key={`ear-${w.userId}`} value={w.earnings} />,

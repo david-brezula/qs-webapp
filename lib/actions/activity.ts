@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { checkOverCap } from "@/lib/portal/over-cap";
 import { computeModules } from "@/lib/portal/modules";
+import { canEditLog } from "@/lib/portal/log-edit";
 
 const logSchema = z.object({
   tableId: z.string().min(1),
@@ -19,9 +20,25 @@ export type LogResult =
   | { ok: true }
   | {
       ok: false;
-      error: "validation" | "over-cap" | "not-assigned" | "not-claimed" | "closed" | "has-activity";
+      error:
+        | "validation"
+        | "over-cap"
+        | "not-assigned"
+        | "not-claimed"
+        | "closed"
+        | "has-activity"
+        | "locked";
       remaining?: number;
     };
+
+/** True if the worker has invoiced the given section (lock for self-edits). */
+async function isSectionInvoiced(sectionId: string, projectWorkerId: string): Promise<boolean> {
+  const inv = await prisma.sectionInvoice.findUnique({
+    where: { sectionId_projectWorkerId: { sectionId, projectWorkerId } },
+    select: { id: true },
+  });
+  return inv !== null;
+}
 
 export async function claimTableAction(fd: FormData): Promise<LogResult> {
   const session = await auth();
@@ -52,7 +69,12 @@ export async function claimTableAction(fd: FormData): Promise<LogResult> {
       const pw = await prisma.projectWorker.upsert({
         where: { projectId_userId: { projectId, userId: onBehalfOfUserId } },
         update: {},
-        create: { projectId, userId: onBehalfOfUserId, priceTie: 0, priceConnect: 0 },
+        create: {
+          projectId,
+          userId: onBehalfOfUserId,
+          priceTie: targetUser.defaultPriceTie,
+          priceConnect: targetUser.defaultPriceConnect,
+        },
       });
       targetPwId = pw.id;
     }
@@ -122,6 +144,11 @@ export async function logActivityAction(fd: FormData): Promise<LogResult> {
   });
   if (!parsed.success) return { ok: false, error: "validation" };
 
+  // Optional admin "log on behalf of" target.
+  const onBehalfOfPwId = String(fd.get("projectWorkerId") ?? "");
+  const onBehalfOfUserId = String(fd.get("userId") ?? "");
+  const onBehalf = Boolean(onBehalfOfPwId || onBehalfOfUserId);
+
   const table = await prisma.table.findUnique({
     where: { id: parsed.data.tableId },
     include: {
@@ -131,25 +158,53 @@ export async function logActivityAction(fd: FormData): Promise<LogResult> {
   });
   if (!table) return { ok: false, error: "validation" };
   if (table.section.project.status === "CLOSED") return { ok: false, error: "closed" };
+  const projectId = table.section.projectId;
 
-  const pw = await prisma.projectWorker.findUnique({
-    where: {
-      projectId_userId: {
-        projectId: table.section.projectId,
-        userId: session.user.id,
-      },
-    },
-  });
-  if (!pw) return { ok: false, error: "not-assigned" };
-
-  const claim = await prisma.tableClaim.findUnique({
-    where: { tableId_projectWorkerId: { tableId: parsed.data.tableId, projectWorkerId: pw.id } },
-  });
-  if (!claim) return { ok: false, error: "not-claimed" };
+  // Resolve the ProjectWorker the entry is logged against.
+  let targetPwId: string;
+  if (onBehalf) {
+    if (session.user.role !== "ADMIN") return { ok: false, error: "validation" };
+    if (onBehalfOfPwId) {
+      const target = await prisma.projectWorker.findUnique({ where: { id: onBehalfOfPwId } });
+      if (!target || target.projectId !== projectId) return { ok: false, error: "validation" };
+      targetPwId = target.id;
+    } else {
+      const targetUser = await prisma.user.findUnique({ where: { id: onBehalfOfUserId } });
+      if (!targetUser || !targetUser.active) return { ok: false, error: "validation" };
+      const pw = await prisma.projectWorker.upsert({
+        where: { projectId_userId: { projectId, userId: onBehalfOfUserId } },
+        update: {},
+        create: {
+          projectId,
+          userId: onBehalfOfUserId,
+          priceTie: targetUser.defaultPriceTie,
+          priceConnect: targetUser.defaultPriceConnect,
+        },
+      });
+      targetPwId = pw.id;
+    }
+    // Make the worker show as a participant on the table.
+    await prisma.tableClaim.upsert({
+      where: { tableId_projectWorkerId: { tableId: parsed.data.tableId, projectWorkerId: targetPwId } },
+      update: {},
+      create: { tableId: parsed.data.tableId, projectWorkerId: targetPwId },
+    });
+  } else {
+    const pw = await prisma.projectWorker.findUnique({
+      where: { projectId_userId: { projectId, userId: session.user.id } },
+    });
+    if (!pw) return { ok: false, error: "not-assigned" };
+    const claim = await prisma.tableClaim.findUnique({
+      where: { tableId_projectWorkerId: { tableId: parsed.data.tableId, projectWorkerId: pw.id } },
+    });
+    if (!claim) return { ok: false, error: "not-claimed" };
+    targetPwId = pw.id;
+  }
 
   const totalModules = computeModules({ rows: table.rows, cols: table.cols, skipped: table.skipped });
   const existing = table.activityLogs.reduce((a, b) => a + b.count, 0);
 
+  // Over-cap is enforced for everyone, admins included.
   const check = checkOverCap({
     totalModules,
     existing,
@@ -160,19 +215,37 @@ export async function logActivityAction(fd: FormData): Promise<LogResult> {
     return { ok: false, error: "over-cap", remaining: check.remaining };
   }
 
-  await prisma.activityLog.create({
-    data: {
-      projectWorkerId: pw.id,
-      tableId: parsed.data.tableId,
-      action: parsed.data.action,
-      count: parsed.data.count,
-      workDate: new Date(parsed.data.workDate),
-      notes: parsed.data.notes ?? null,
-    },
+  await prisma.$transaction(async (tx) => {
+    const created = await tx.activityLog.create({
+      data: {
+        projectWorkerId: targetPwId,
+        tableId: parsed.data.tableId,
+        action: parsed.data.action,
+        count: parsed.data.count,
+        workDate: new Date(parsed.data.workDate),
+        notes: parsed.data.notes ?? null,
+      },
+    });
+    await tx.activityLogAudit.create({
+      data: {
+        activityLogId: created.id,
+        projectWorkerId: targetPwId,
+        tableId: parsed.data.tableId,
+        action: parsed.data.action,
+        change: "CREATE",
+        oldCount: null,
+        newCount: parsed.data.count,
+        workDate: created.workDate,
+        changedById: session.user.id,
+        changedByRole: session.user.role,
+      },
+    });
   });
 
-  revalidatePath(`/projects/${table.section.projectId}/log`);
-  revalidatePath(`/projects/${table.section.projectId}`);
+  revalidatePath(`/projects/${projectId}/log`);
+  revalidatePath(`/projects/${projectId}`);
+  revalidatePath(`/projects/${projectId}/sections/${table.sectionId}`);
+  revalidatePath(`/wages`);
   return { ok: true };
 }
 
@@ -203,9 +276,10 @@ export async function updateLogAction(fd: FormData): Promise<LogResult> {
 
   const isOwn = log.projectWorker.userId === session.user.id;
   const isAdmin = session.user.role === "ADMIN";
-  const ageMs = Date.now() - log.createdAt.getTime();
-  const withinWindow = ageMs < 24 * 60 * 60 * 1000;
-  if (!isAdmin && !(isOwn && withinWindow)) return { ok: false, error: "validation" };
+  const sectionInvoiced = await isSectionInvoiced(log.table.sectionId, log.projectWorkerId);
+  if (!canEditLog({ isAdmin, isOwn, sectionInvoiced })) {
+    return { ok: false, error: "locked" };
+  }
 
   const total = computeModules({ rows: log.table.rows, cols: log.table.cols, skipped: log.table.skipped });
   const otherCount = log.table.activityLogs
@@ -216,11 +290,32 @@ export async function updateLogAction(fd: FormData): Promise<LogResult> {
     return { ok: false, error: "over-cap", remaining: Math.max(0, total - otherCount) };
   }
 
-  await prisma.activityLog.update({
-    where: { id: parsed.data.logId },
-    data: { count: parsed.data.count },
+  const oldCount = log.count;
+  await prisma.$transaction(async (tx) => {
+    await tx.activityLog.update({
+      where: { id: parsed.data.logId },
+      data: { count: parsed.data.count },
+    });
+    await tx.activityLogAudit.create({
+      data: {
+        activityLogId: log.id,
+        projectWorkerId: log.projectWorkerId,
+        tableId: log.tableId,
+        action: log.action,
+        change: "UPDATE",
+        oldCount,
+        newCount: parsed.data.count,
+        workDate: log.workDate,
+        changedById: session.user.id,
+        changedByRole: session.user.role,
+      },
+    });
   });
+
   revalidatePath(`/projects/${log.table.section.projectId}/log`);
+  revalidatePath(`/projects/${log.table.section.projectId}/sections/${log.table.sectionId}`);
+  revalidatePath(`/workers/${log.projectWorker.userId}`);
+  revalidatePath(`/wages`);
   return { ok: true };
 }
 
@@ -235,10 +330,32 @@ export async function deleteLogAction(fd: FormData): Promise<LogResult> {
   if (!log) return { ok: false, error: "validation" };
   const isOwn = log.projectWorker.userId === session.user.id;
   const isAdmin = session.user.role === "ADMIN";
-  const withinWindow = Date.now() - log.createdAt.getTime() < 24 * 60 * 60 * 1000;
-  if (!isAdmin && !(isOwn && withinWindow)) return { ok: false, error: "validation" };
+  const sectionInvoiced = await isSectionInvoiced(log.table.sectionId, log.projectWorkerId);
+  if (!canEditLog({ isAdmin, isOwn, sectionInvoiced })) {
+    return { ok: false, error: "locked" };
+  }
 
-  await prisma.activityLog.delete({ where: { id: logId } });
+  await prisma.$transaction(async (tx) => {
+    await tx.activityLogAudit.create({
+      data: {
+        activityLogId: log.id,
+        projectWorkerId: log.projectWorkerId,
+        tableId: log.tableId,
+        action: log.action,
+        change: "DELETE",
+        oldCount: log.count,
+        newCount: null,
+        workDate: log.workDate,
+        changedById: session.user.id,
+        changedByRole: session.user.role,
+      },
+    });
+    await tx.activityLog.delete({ where: { id: logId } });
+  });
+
   revalidatePath(`/projects/${log.table.section.projectId}/log`);
+  revalidatePath(`/projects/${log.table.section.projectId}/sections/${log.table.sectionId}`);
+  revalidatePath(`/workers/${log.projectWorker.userId}`);
+  revalidatePath(`/wages`);
   return { ok: true };
 }

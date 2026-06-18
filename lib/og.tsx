@@ -5,18 +5,37 @@ export const OG_SIZE = { width: 1200, height: 630 };
 // Best-effort load of Plus Jakarta Sans (700) so Latin-Extended diacritics
 // (sk/cz/de/fr/sv) render. Falls back to the built-in font if the fetch fails
 // (e.g. no network at build/runtime) — never throws.
-async function loadDisplayFont(): Promise<ArrayBuffer | null> {
-  try {
-    const css = await fetch(
-      "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700",
-      { headers: { "User-Agent": "Mozilla/5.0" } },
-    ).then((r) => r.text());
-    const url = css.match(/src:\s*url\((.+?)\)/)?.[1];
-    if (!url) return null;
-    return await fetch(url).then((r) => r.arrayBuffer());
-  } catch {
-    return null;
-  }
+//
+// Memoised at module scope so the font is fetched at most once per server
+// process: a build prerenders ~30 OG images (6 routes × 5 locales) and each
+// previously re-ran two uncached Google Fonts fetches. A short abort timeout
+// stops a slow/unreachable fonts.googleapis.com from stalling the whole build.
+let fontPromise: Promise<ArrayBuffer | null> | undefined;
+
+function fetchDisplayFont(): Promise<ArrayBuffer | null> {
+  return (async () => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    try {
+      const css = await fetch(
+        "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700",
+        { headers: { "User-Agent": "Mozilla/5.0" }, signal: controller.signal },
+      ).then((r) => r.text());
+      const url = css.match(/src:\s*url\((.+?)\)/)?.[1];
+      if (!url) return null;
+      return await fetch(url, { signal: controller.signal }).then((r) =>
+        r.arrayBuffer(),
+      );
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(timer);
+    }
+  })();
+}
+
+function loadDisplayFont(): Promise<ArrayBuffer | null> {
+  return (fontPromise ??= fetchDisplayFont());
 }
 
 export async function renderOgImage({

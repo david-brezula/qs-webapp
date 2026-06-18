@@ -95,7 +95,7 @@ export default async function WagesPage({
   }
 
   // Admin: project drill-down (all-time only).
-  const [projects, workers, prices, activity, accommodations] = await Promise.all([
+  const [projects, workers, prices, activity, accommodations, tables] = await Promise.all([
     prisma.project.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.user.findMany({ where: { active: true, role: { not: "CLIENT" } }, orderBy: { name: "asc" } }),
     prisma.projectWorker.findMany({}),
@@ -103,7 +103,17 @@ export default async function WagesPage({
       include: { projectWorker: true, table: { include: { section: true } } },
     }),
     prisma.accommodation.findMany({ include: { workers: true } }),
+    prisma.table.findMany({
+      select: { rows: true, cols: true, skipped: true, section: { select: { projectId: true } } },
+    }),
   ]);
+
+  // Module capacity (rows*cols-skipped) per project.
+  const capacityByProject = new Map<string, number>();
+  for (const tbl of tables) {
+    const pid = tbl.section.projectId;
+    capacityByProject.set(pid, (capacityByProject.get(pid) ?? 0) + Math.max(0, tbl.rows * tbl.cols - tbl.skipped));
+  }
 
   const baseInput = {
     from: ALL_TIME_FROM,
@@ -150,6 +160,9 @@ export default async function WagesPage({
       status: project.status,
       tie: totals.tie,
       connect: totals.connect,
+      tieCount: totals.tieCount,
+      connectCount: totals.connectCount,
+      capacity: capacityByProject.get(project.id) ?? 0,
       accommodation: totals.accommodation,
       wage: totals.wage,
       warnings: totals.warnings,

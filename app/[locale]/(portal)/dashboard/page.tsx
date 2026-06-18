@@ -61,10 +61,17 @@ export default async function DashboardPage() {
   );
   const myPwIds = myProjectWorkers.map((pw) => pw.id);
 
-  const [aggregates, myLogsMap] = await Promise.all([
+  const [aggregates, myLogsMap, myInvoices] = await Promise.all([
     getTableAggregates(allTableIds),
     getMyLogs(allTableIds, myPwIds),
+    myPwIds.length > 0
+      ? prisma.sectionInvoice.findMany({
+          where: { projectWorkerId: { in: myPwIds } },
+          select: { sectionId: true },
+        })
+      : Promise.resolve([]),
   ]);
+  const invoicedSectionIds = myInvoices.map((i) => i.sectionId);
 
   return (
     <div>
@@ -154,6 +161,7 @@ export default async function DashboardPage() {
                 allActiveWorkers={allActiveWorkers}
                 projectWorkerId={pwId}
                 isAdmin={user.role === "ADMIN"}
+                invoicedSectionIds={invoicedSectionIds}
               />
             </div>
           </details>

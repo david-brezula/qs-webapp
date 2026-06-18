@@ -10,6 +10,7 @@ import {
   claimTableAction,
   releaseClaimAction,
   logActivityAction,
+  updateLogAction,
   deleteLogAction,
 } from "@/lib/actions/activity";
 import { isTableFinished } from "@/lib/portal/table-status";
@@ -109,6 +110,7 @@ export function TableLogger({
   isClosed,
   isAdmin,
   isAssigned,
+  sectionInvoiced,
   selectableWorkers,
   labels,
 }: {
@@ -120,6 +122,7 @@ export function TableLogger({
   isClosed: boolean;
   isAdmin: boolean;
   isAssigned: boolean;
+  sectionInvoiced: boolean;
   selectableWorkers: SelectableWorker[];
   labels: Record<string, string>;
 }) {
@@ -133,9 +136,18 @@ export function TableLogger({
   const [error, setError] = useState<string | null>(null);
   const [adminClaimUserId, setAdminClaimUserId] = useState("");
   const [openFraction, setOpenFraction] = useState<"TIE" | "CONNECT" | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState("");
+
+  // Admin "log for worker" mini-form state.
+  const [adminLogUserId, setAdminLogUserId] = useState("");
+  const [adminLogAction, setAdminLogAction] = useState<"TIE" | "CONNECT">("TIE");
+  const [adminLogCount, setAdminLogCount] = useState("");
 
   const canSubmit = Boolean(myClaim) && !isClosed;
   const canClaim = !myClaim && isAssigned && !isClosed;
+  // Workers may correct their own entries until they invoice the section; admins always may.
+  const canEditOwn = isAdmin || !sectionInvoiced;
   const isFinished = isTableFinished({
     total: table.total,
     tied: table.tied,
@@ -173,6 +185,30 @@ export function TableLogger({
       }
       setAdminClaimUserId("");
       router.refresh();
+    });
+  }
+
+  function adminLog() {
+    if (!adminLogUserId || !adminLogCount) return;
+    const fd = new FormData();
+    fd.set("tableId", table.id);
+    fd.set("userId", adminLogUserId);
+    fd.set("action", adminLogAction);
+    fd.set("count", adminLogCount);
+    fd.set("workDate", workDate);
+    setError(null);
+    start(async () => {
+      const r = await logActivityAction(fd);
+      if (r.ok) {
+        setAdminLogCount("");
+        router.refresh();
+      } else if (r.error === "over-cap") {
+        setError(labels.overCap.replace("{r}", String(r.remaining ?? 0)));
+      } else if (r.error === "closed") {
+        setError("Project is closed.");
+      } else {
+        setError(tCommon("save"));
+      }
     });
   }
 
@@ -228,11 +264,44 @@ export function TableLogger({
     });
   }
 
+  function startEdit(logId: string, current: number) {
+    setEditingId(logId);
+    setEditValue(String(current));
+    setError(null);
+  }
+
+  function saveEdit(logId: string) {
+    if (!editValue) return;
+    const fd = new FormData();
+    fd.set("logId", logId);
+    fd.set("count", editValue);
+    setError(null);
+    start(async () => {
+      const r = await updateLogAction(fd);
+      if (r.ok) {
+        setEditingId(null);
+        setEditValue("");
+        router.refresh();
+      } else if (r.error === "over-cap") {
+        setError(labels.overCap.replace("{r}", String(r.remaining ?? 0)));
+      } else if (r.error === "locked") {
+        setError(labels.locked);
+      } else {
+        setError(tCommon("save"));
+      }
+    });
+  }
+
   function remove(logId: string) {
     const fd = new FormData();
     fd.set("logId", logId);
+    setError(null);
     start(async () => {
-      await deleteLogAction(fd);
+      const r = await deleteLogAction(fd);
+      if (!r.ok && r.error === "locked") {
+        setError(labels.locked);
+        return;
+      }
       router.refresh();
     });
   }
@@ -385,6 +454,53 @@ export function TableLogger({
         </div>
       )}
 
+      {isAdmin && !isClosed && (
+        <div className="mt-3 flex flex-wrap items-end gap-2 text-xs border-t border-border-soft pt-3">
+          <span className="text-muted">{labels.logForWorker}</span>
+          <select
+            value={adminLogUserId}
+            onChange={(e) => setAdminLogUserId(e.target.value)}
+            disabled={pending}
+            className="rounded-md border border-border-soft bg-bg px-2 py-1 text-xs max-w-[12rem]"
+          >
+            <option value="">{labels.selectWorker}</option>
+            {claims.map((c) => (
+              <option key={c.userId} value={c.userId}>{c.name}</option>
+            ))}
+            {selectableWorkers.map((w) => (
+              <option key={w.userId} value={w.userId}>
+                {w.name}{!w.inProject ? ` · ${labels.notInProject}` : ""}
+              </option>
+            ))}
+          </select>
+          <select
+            value={adminLogAction}
+            onChange={(e) => setAdminLogAction(e.target.value as "TIE" | "CONNECT")}
+            disabled={pending}
+            className="rounded-md border border-border-soft bg-bg px-2 py-1 text-xs"
+          >
+            <option value="TIE">{labels.tied}</option>
+            <option value="CONNECT">{labels.connected}</option>
+          </select>
+          <input
+            type="number"
+            min="1"
+            value={adminLogCount}
+            onChange={(e) => setAdminLogCount(e.target.value)}
+            placeholder="0"
+            className="w-16 rounded-md border border-border-soft bg-bg px-2 py-1 text-xs"
+          />
+          <Button
+            onClick={adminLog}
+            variant="secondary"
+            disabled={pending || !adminLogUserId || !adminLogCount}
+            className={iconBtn}
+          >
+            {labels.logEntry}
+          </Button>
+        </div>
+      )}
+
       {expanded && (
         <div
           id={`table-detail-${table.id}`}
@@ -393,32 +509,64 @@ export function TableLogger({
           {myLogs.length > 0 ? (
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
               <span className="text-navy/60 uppercase tracking-wide">{labels.recent}:</span>
-              {myLogs.map((l) => {
-                // Wall-clock is intentional here: an entry locks 24h after
-                // creation, so the lock state must reflect the current time.
-                // eslint-disable-next-line react-hooks/purity
-                const ageMs = Date.now() - new Date(l.createdAt).getTime();
-                const locked = !isAdmin && ageMs >= 24 * 60 * 60 * 1000;
-                return (
-                  <span key={l.id} className="inline-flex items-center gap-1 text-slate-ink">
-                    <span className="font-semibold text-navy">{l.count}</span>
-                    {l.action === "TIE" ? labels.tied : labels.connected}
-                    <span className="text-muted">· {l.workDate}</span>
-                    {!locked ? (
+              {myLogs.map((l) => (
+                <span key={l.id} className="inline-flex items-center gap-1 text-slate-ink">
+                  {editingId === l.id ? (
+                    <>
+                      <input
+                        type="number"
+                        min="1"
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        className="w-16 rounded-md border border-border-soft bg-bg px-2 py-1 text-xs"
+                      />
+                      {l.action === "TIE" ? labels.tied : labels.connected}
                       <button
-                        onClick={() => remove(l.id)}
-                        disabled={pending}
-                        className="text-red-600 hover:underline leading-none"
-                        aria-label={tCommon("delete")}
+                        onClick={() => saveEdit(l.id)}
+                        disabled={pending || !editValue}
+                        className="text-accent hover:underline leading-none disabled:opacity-50"
                       >
-                        ×
+                        {tCommon("save")}
                       </button>
-                    ) : (
-                      <span className="text-muted" title={labels.locked}>—</span>
-                    )}
-                  </span>
-                );
-              })}
+                      <button
+                        onClick={() => { setEditingId(null); setEditValue(""); }}
+                        disabled={pending}
+                        className="text-muted hover:underline leading-none"
+                      >
+                        {tCommon("cancel")}
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <span className="font-semibold text-navy">{l.count}</span>
+                      {l.action === "TIE" ? labels.tied : labels.connected}
+                      <span className="text-muted">· {l.workDate}</span>
+                      {canEditOwn ? (
+                        <>
+                          <button
+                            onClick={() => startEdit(l.id, l.count)}
+                            disabled={pending}
+                            className="text-accent hover:underline leading-none"
+                            aria-label={tCommon("edit")}
+                          >
+                            {tCommon("edit")}
+                          </button>
+                          <button
+                            onClick={() => remove(l.id)}
+                            disabled={pending}
+                            className="text-red-600 hover:underline leading-none"
+                            aria-label={tCommon("delete")}
+                          >
+                            ×
+                          </button>
+                        </>
+                      ) : (
+                        <span className="text-muted" title={labels.locked}>🔒</span>
+                      )}
+                    </>
+                  )}
+                </span>
+              ))}
             </div>
           ) : (
             <p className="text-xs text-muted">{labels.noEntries}</p>

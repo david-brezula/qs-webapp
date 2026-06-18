@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
-import { ALL_TIME_FROM, ALL_TIME_TO, computeWages } from "@/lib/portal/wages";
+import { ALL_TIME_FROM, ALL_TIME_TO, computeWages, sumCapacity } from "@/lib/portal/wages";
 import { AdminSectionWageView } from "../../../../AdminSectionWageView";
 
 export default async function AdminSectionWagePage({
@@ -13,7 +13,7 @@ export default async function AdminSectionWagePage({
   await requireAdmin();
   const { projectId, sectionId } = await params;
 
-  const [section, project, workers, prices, activity, accommodations, invoices, settledAdvances] = await Promise.all([
+  const [section, project, workers, prices, activity, accommodations, invoices, settledAdvances, tables] = await Promise.all([
     prisma.section.findUnique({
       where: { id: sectionId },
       select: { id: true, name: true, projectId: true },
@@ -31,6 +31,7 @@ export default async function AdminSectionWagePage({
     prisma.accommodation.findMany({ where: { sectionId }, include: { workers: true } }),
     prisma.sectionInvoice.findMany({ where: { sectionId }, include: { projectWorker: true } }),
     prisma.advanceRequest.findMany({ where: { sectionId, status: "SETTLED" }, select: { userId: true, amount: true } }),
+    prisma.table.findMany({ where: { sectionId }, select: { rows: true, cols: true, skipped: true } }),
   ]);
 
   if (!section || !project) notFound();
@@ -81,6 +82,8 @@ export default async function AdminSectionWagePage({
       name: r.name,
       tie: r.breakdown.tie,
       connect: r.breakdown.connect,
+      tieCount: r.breakdown.tieCount,
+      connectCount: r.breakdown.connectCount,
       earnings: r.earnings,
       accommodation: r.accommodation,
       // advance is informational only here; this admin view has no net-wage column.
@@ -91,7 +94,7 @@ export default async function AdminSectionWagePage({
       invoicedAt: invoicedByUser.get(r.userId) ?? null,
       warnings: r.warnings,
     }))
-    .filter((r) => r.earnings !== 0 || r.accommodation !== 0 || r.advance !== 0);
+    .filter((r) => r.earnings !== 0 || r.accommodation !== 0 || r.advance !== 0 || r.tieCount !== 0 || r.connectCount !== 0);
 
   return (
     <div>
@@ -102,7 +105,7 @@ export default async function AdminSectionWagePage({
         ‹ {project.name}
       </Link>
       <h1 className="mt-2 mb-8 text-2xl font-semibold text-navy">{section.name}</h1>
-      <AdminSectionWageView workers={workerRows} />
+      <AdminSectionWageView workers={workerRows} capacity={sumCapacity(tables)} />
     </div>
   );
 }

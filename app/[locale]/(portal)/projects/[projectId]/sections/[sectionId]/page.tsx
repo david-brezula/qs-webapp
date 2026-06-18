@@ -52,10 +52,17 @@ export default async function SectionPage({
 
   const tableIds = section.tables.map((tbl) => tbl.id);
   const myPwIds = myPw ? [myPw.id] : [];
-  const [aggregates, myLogsMap] = await Promise.all([
+  const [aggregates, myLogsMap, myInvoice] = await Promise.all([
     getTableAggregates(tableIds),
     getMyLogs(tableIds, myPwIds),
+    myPw
+      ? prisma.sectionInvoice.findUnique({
+          where: { sectionId_projectWorkerId: { sectionId, projectWorkerId: myPw.id } },
+          select: { id: true },
+        })
+      : Promise.resolve(null),
   ]);
+  const sectionInvoiced = myInvoice !== null;
 
   const tables = section.tables.map((tbl) => {
     const agg = aggregates.get(tbl.id) ?? { totalTied: 0, totalConnected: 0 };
@@ -102,6 +109,7 @@ export default async function SectionPage({
           projectWorkerId={myPw?.id ?? null}
           isAdmin={user.role === "ADMIN"}
           isClosed={project.status === "CLOSED"}
+          sectionInvoiced={sectionInvoiced}
         />
       )}
     </div>

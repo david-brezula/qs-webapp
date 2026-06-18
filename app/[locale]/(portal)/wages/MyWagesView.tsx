@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ModulesCell } from "@/components/portal/ModulesCell";
 import type { WageByProjectResult } from "@/lib/portal/wages";
 import type { WorkerSectionRow } from "./section-row";
 import { toggleSectionInvoiceAction } from "@/lib/actions/section-invoice";
@@ -151,6 +152,7 @@ export function MyWagesView({
               <tr className="text-left">
                 <th className="px-4 py-3 w-8" />
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("project")}</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("modules")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("tie")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("connect")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("earnings")}</th>
@@ -176,6 +178,9 @@ export function MyWagesView({
                       )}
                     </td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.projectName}</td>
+                    <td className="px-4 py-3 align-middle">
+                      <ModulesCell tied={p.breakdown.tieCount} connected={p.breakdown.connectCount} />
+                    </td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.breakdown.tie.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.breakdown.connect.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.earnings.toFixed(2)}</td>
@@ -186,7 +191,7 @@ export function MyWagesView({
                   {sectionErrors.has(p.projectId) && (
                     <tr>
                       <td />
-                      <td colSpan={7} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
+                      <td colSpan={8} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
                         {t("loadError")}
                       </td>
                     </tr>
@@ -210,7 +215,13 @@ export function MyWagesView({
           <div className="text-xs uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">
             {tCommon("total")}
           </div>
-          <dl className="grid grid-cols-2 sm:grid-cols-6 gap-3 text-sm">
+          <dl className="grid grid-cols-2 sm:grid-cols-7 gap-3 text-sm">
+            <div>
+              <dt className="text-xs text-muted">{t("modules")}</dt>
+              <dd className="font-semibold text-navy">
+                {result.total.breakdown.tieCount} / {result.total.breakdown.connectCount}
+              </dd>
+            </div>
             <div>
               <dt className="text-xs text-muted">{t("tie")}</dt>
               <dd className="font-semibold text-navy">{result.total.breakdown.tie.toFixed(2)}</dd>

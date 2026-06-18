@@ -1,3 +1,5 @@
+import { computeModules } from "./modules";
+
 export type Currency = "USD" | "EUR";
 
 export interface WageInput {
@@ -38,7 +40,12 @@ export interface WageRow {
   earnings: number;
   accommodation: number;
   wage: number;
-  breakdown: { tie: number; connect: number };
+  /**
+   * `tie` / `connect` are earnings (money) split by action. `tieCount` /
+   * `connectCount` are the number of modules tied / connected — the raw work
+   * volume, independent of price.
+   */
+  breakdown: { tie: number; connect: number; tieCount: number; connectCount: number };
   warnings: string[];
 }
 
@@ -70,7 +77,7 @@ export function computeWages(input: WageInput): WageResult {
     earnings: 0,
     accommodation: 0,
     wage: 0,
-    breakdown: { tie: 0, connect: 0 },
+    breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 },
     warnings: [],
   }));
 
@@ -83,6 +90,10 @@ export function computeWages(input: WageInput): WageResult {
     if (a.workDate < range.start || a.workDate > range.end) continue;
     const row = rowById.get(a.userId);
     if (!row) continue;
+    // Module counts reflect actual work and are accumulated even when no price
+    // is set, so "modules done" is shown independently of the wage calculation.
+    if (a.action === "TIE") row.breakdown.tieCount += a.count;
+    else row.breakdown.connectCount += a.count;
     const price = priceLookup.get(`${a.userId}|${a.projectId}`);
     if (!price) {
       if (!row.warnings.includes("missing-price")) row.warnings.push("missing-price");
@@ -125,7 +136,7 @@ export interface ProjectWageBreakdown {
   earnings: number;
   accommodation: number;
   wage: number;
-  breakdown: { tie: number; connect: number };
+  breakdown: { tie: number; connect: number; tieCount: number; connectCount: number };
 }
 
 export interface WageByProjectResult {
@@ -153,7 +164,7 @@ export function computeWagesByProject(
     earnings: 0,
     accommodation: 0,
     wage: 0,
-    breakdown: { tie: 0, connect: 0 },
+    breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 },
     warnings: [],
   };
 
@@ -175,9 +186,18 @@ export function computeWagesByProject(
   return { total, byProject, mixedCurrencies: overall.mixedCurrencies };
 }
 
+/** Total module capacity (rows*cols-skipped) summed over a set of tables. */
+export function sumCapacity(tables: { rows: number; cols: number; skipped: number }[]): number {
+  let total = 0;
+  for (const t of tables) total += computeModules(t);
+  return total;
+}
+
 export interface WageTotals {
   tie: number;
   connect: number;
+  tieCount: number;
+  connectCount: number;
   earnings: number;
   accommodation: number;
   wage: number;
@@ -193,6 +213,8 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
   const totals: WageTotals = {
     tie: 0,
     connect: 0,
+    tieCount: 0,
+    connectCount: 0,
     earnings: 0,
     accommodation: 0,
     wage: 0,
@@ -201,6 +223,8 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
   for (const r of rows) {
     totals.tie += r.breakdown.tie;
     totals.connect += r.breakdown.connect;
+    totals.tieCount += r.breakdown.tieCount;
+    totals.connectCount += r.breakdown.connectCount;
     totals.earnings += r.earnings;
     totals.accommodation += r.accommodation;
     totals.wage += r.wage;
@@ -216,6 +240,8 @@ export interface SectionWageRow {
   sectionName: string;
   tie: number;
   connect: number;
+  tieCount: number;
+  connectCount: number;
   earnings: number;
   accommodation: number;
   advance: number;
@@ -252,6 +278,8 @@ export function computeWagesBySection(
       sectionName: section.name,
       tie: row.breakdown.tie,
       connect: row.breakdown.connect,
+      tieCount: row.breakdown.tieCount,
+      connectCount: row.breakdown.connectCount,
       earnings: row.earnings,
       accommodation: row.accommodation,
       advance,

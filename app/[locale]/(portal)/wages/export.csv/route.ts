@@ -62,12 +62,14 @@ export async function GET(req: Request) {
     })),
   });
 
-  const header = ["Worker", "Tie earnings", "Connect earnings", "Earnings total", "Accommodation", "Wage", "Warnings"];
+  const header = ["Worker", "Modules tied", "Modules connected", "Tie earnings", "Connect earnings", "Earnings total", "Accommodation", "Wage", "Warnings"];
   const lines = [header.join(",")];
   for (const r of result.rows) {
-    if (r.earnings === 0 && r.accommodation === 0) continue;
+    if (r.earnings === 0 && r.accommodation === 0 && r.breakdown.tieCount === 0 && r.breakdown.connectCount === 0) continue;
     lines.push([
       JSON.stringify(r.name),
+      String(r.breakdown.tieCount),
+      String(r.breakdown.connectCount),
       r.breakdown.tie.toFixed(2),
       r.breakdown.connect.toFixed(2),
       r.earnings.toFixed(2),

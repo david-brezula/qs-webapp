@@ -50,6 +50,7 @@
     "clients": "Clients",
     "accommodations": "Accommodations",
     "wages": "Wages",
+    "myActivity": "My activity",
     "advances": "Advances",
     "applications": "Applications",
     "inquiries": "Inquiries",
@@ -543,7 +544,13 @@
     "tempPassword": "Temporary password: {password}",
     "usernameHint": "Lowercase letters, digits, dot, hyphen, underscore. Min 3 chars.",
     "defaultPriceTie": "Default tie rate",
-    "defaultPriceConnect": "Default connect rate"
+    "defaultPriceConnect": "Default connect rate",
+    "activityTitle": "Recent activity",
+    "activityHint": "Fix or remove an entry you logged by mistake. Entries lock once you invoice their section — ask an admin to change those.",
+    "noActivity": "No activity logged yet.",
+    "action": "Action",
+    "count": "Count",
+    "workDate": "Work date"
   },
   "changePassword": {
     "title": "Change password",
@@ -590,7 +597,11 @@
     "netToPay": "Net to pay",
     "net": "Net",
     "advance": "Advance",
-    "openAdvances": "Open advances (outstanding)"
+    "openAdvances": "Open advances (outstanding)",
+    "modules": "Modules (tied / conn.)",
+    "capacity": "Capacity",
+    "capacityTotal": "Total modules: {count}",
+    "modulesDone": "Modules done"
   },
   "log": {
     "title": "Log work",
@@ -601,6 +612,9 @@
     "recentEntries": "Recent entries",
     "noEntriesYet": "No entries yet.",
     "editWindowOver": "Entry locked (over 24h old)",
+    "lockedInvoiced": "Locked — you invoiced this section. Ask an admin to change it.",
+    "logForWorker": "Log for worker:",
+    "logEntry": "Log",
     "overCap": "Cannot exceed {remaining} remaining for this action.",
     "claim": "Claim this table",
     "release": "Release",

@@ -41,6 +41,7 @@ export async function SectionTables({
   projectWorkerId,
   isAdmin,
   isClosed,
+  sectionInvoiced = false,
 }: {
   tables: Table[];
   assignedWorkers: { id: string; userId: string; name: string }[];
@@ -48,6 +49,7 @@ export async function SectionTables({
   projectWorkerId: string | null;
   isAdmin: boolean;
   isClosed: boolean;
+  sectionInvoiced?: boolean;
 }) {
   const t = await getTranslations("log");
   const tProj = await getTranslations("portalProjects");
@@ -99,6 +101,7 @@ export async function SectionTables({
             isClosed={isClosed}
             isAdmin={isAdmin}
             isAssigned={Boolean(projectWorkerId)}
+            sectionInvoiced={sectionInvoiced}
             selectableWorkers={selectableWorkers}
             labels={{
               iTied: t("iTied"),
@@ -109,7 +112,7 @@ export async function SectionTables({
               progressConnected: t("progressConnected"),
               recent: t("recentEntries"),
               noEntries: t("noEntriesYet"),
-              locked: t("editWindowOver"),
+              locked: t("lockedInvoiced"),
               overCap: t("overCap", { remaining: "{r}" }),
               tied: tProj("tied"),
               connected: tProj("connected"),
@@ -123,6 +126,8 @@ export async function SectionTables({
               addClaimFor: t("addClaimFor"),
               selectWorker: t("selectWorker"),
               add: t("add"),
+              logForWorker: t("logForWorker"),
+              logEntry: t("logEntry"),
               noWorkersToClaim: t("noWorkersToClaim"),
               notInProject: t("notInProject"),
               done: t("done"),

@@ -27,6 +27,12 @@ enum ActivityAction {
   CONNECT
 }
 
+enum ActivityLogChange {
+  CREATE
+  UPDATE
+  DELETE
+}
+
 enum Currency {
   USD
   EUR
@@ -178,6 +184,31 @@ model ActivityLog {
 
   @@index([projectWorkerId, workDate])
   @@index([tableId, action])
+}
+
+/// Append-only audit trail for every ActivityLog write (create / update /
+/// delete). Columns are plain strings, not foreign keys, so a row survives even
+/// after the ActivityLog it describes is deleted. Read by admins only; the
+/// restricted `qs_worker` role is never granted SELECT on this table, so it is
+/// inaccessible through the worker (RLS) connection.
+model ActivityLogAudit {
+  id              String            @id @default(cuid())
+  activityLogId   String
+  projectWorkerId String
+  tableId         String
+  action          ActivityAction
+  change          ActivityLogChange
+  oldCount        Int?
+  newCount        Int?
+  workDate        DateTime          @db.Date
+  changedById     String
+  changedByRole   Role
+  createdAt       DateTime          @default(now())
+
+  @@index([projectWorkerId])
+  @@index([changedById])
+  @@index([activityLogId])
+  @@index([createdAt])
 }
 
 model Accommodation {

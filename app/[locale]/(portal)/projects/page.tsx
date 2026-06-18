@@ -5,6 +5,7 @@ import { requireAdmin } from "@/lib/portal/session";
 import { Button } from "@/components/ui/Button";
 import { DataTable } from "@/components/portal/DataTable";
 import { computeModules } from "@/lib/portal/modules";
+import { getTableAggregates } from "@/lib/portal/activity-aggregates";
 
 export default async function ProjectsListPage() {
   await requireAdmin();
@@ -13,10 +14,22 @@ export default async function ProjectsListPage() {
 
   const projects = await prisma.project.findMany({
     include: {
-      sections: { include: { tables: { include: { activityLogs: true } } } },
+      sections: {
+        include: {
+          tables: { select: { id: true, rows: true, cols: true, skipped: true } },
+        },
+      },
     },
     orderBy: { createdAt: "desc" },
   });
+
+  // Sum tie/connect counts in the DB (groupBy) instead of streaming every
+  // ActivityLog row to the server and summing in JS — identical numbers, far
+  // less data transferred. Mirrors the dashboard's getTableAggregates pattern.
+  const allTableIds = projects.flatMap((p) =>
+    p.sections.flatMap((s) => s.tables.map((tbl) => tbl.id)),
+  );
+  const aggregates = await getTableAggregates(allTableIds);
 
   return (
     <div>
@@ -32,10 +45,9 @@ export default async function ProjectsListPage() {
           for (const s of p.sections)
             for (const tbl of s.tables) {
               total += computeModules({ rows: tbl.rows, cols: tbl.cols, skipped: tbl.skipped });
-              for (const a of tbl.activityLogs) {
-                if (a.action === "TIE") tied += a.count;
-                else connected += a.count;
-              }
+              const agg = aggregates.get(tbl.id);
+              tied += agg?.totalTied ?? 0;
+              connected += agg?.totalConnected ?? 0;
             }
           return [
             <Link key="n" href={`/projects/${p.id}`} className="text-navy underline">{p.name}</Link>,

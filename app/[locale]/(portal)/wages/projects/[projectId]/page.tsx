@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
-import { ALL_TIME_FROM, ALL_TIME_TO, computeWages, sumWageRows } from "@/lib/portal/wages";
+import { ALL_TIME_FROM, ALL_TIME_TO, computeWages, sumWageRows, sumCapacity } from "@/lib/portal/wages";
 import { AdminProjectWageView } from "../../AdminProjectWageView";
 
 export default async function AdminProjectWagePage({
@@ -15,7 +15,7 @@ export default async function AdminProjectWagePage({
   const { projectId } = await params;
   const t = await getTranslations("wages");
 
-  const [project, workers, prices, activity, accommodations] = await Promise.all([
+  const [project, workers, prices, activity, accommodations, tables] = await Promise.all([
     prisma.project.findUnique({
       where: { id: projectId },
       include: {
@@ -32,9 +32,23 @@ export default async function AdminProjectWagePage({
       where: { projectId },
       include: { workers: true },
     }),
+    prisma.table.findMany({
+      where: { section: { projectId } },
+      select: { rows: true, cols: true, skipped: true, sectionId: true },
+    }),
   ]);
 
   if (!project) notFound();
+
+  // Module capacity (rows*cols-skipped) per section and for the whole project.
+  const capacityBySection = new Map<string, number>();
+  for (const tbl of tables) {
+    capacityBySection.set(
+      tbl.sectionId,
+      (capacityBySection.get(tbl.sectionId) ?? 0) + Math.max(0, tbl.rows * tbl.cols - tbl.skipped),
+    );
+  }
+  const projectCapacity = sumCapacity(tables);
 
   const baseInput = {
     from: ALL_TIME_FROM,
@@ -75,12 +89,14 @@ export default async function AdminProjectWagePage({
       name: r.name,
       tie: r.breakdown.tie,
       connect: r.breakdown.connect,
+      tieCount: r.breakdown.tieCount,
+      connectCount: r.breakdown.connectCount,
       earnings: r.earnings,
       accommodation: r.accommodation,
       wage: r.wage,
       warnings: r.warnings,
     }))
-    .filter((r) => r.earnings !== 0 || r.accommodation !== 0);
+    .filter((r) => r.earnings !== 0 || r.accommodation !== 0 || r.tieCount !== 0 || r.connectCount !== 0);
 
   // Per-section totals (sum across all workers, no accommodation). Each
   // section runs one full scan of the activity array; acceptable at current
@@ -97,6 +113,9 @@ export default async function AdminProjectWagePage({
       name: section.name,
       tie: totals.tie,
       connect: totals.connect,
+      tieCount: totals.tieCount,
+      connectCount: totals.connectCount,
+      capacity: capacityBySection.get(section.id) ?? 0,
       earnings: totals.earnings,
     };
   });
@@ -115,6 +134,7 @@ export default async function AdminProjectWagePage({
         projectId={project.id}
         sections={sectionRows}
         workers={workerRows}
+        capacity={projectCapacity}
         mixedCurrencies={projectResult.mixedCurrencies}
       />
     </div>

@@ -71,3 +71,6 @@ dev*.log
 
 # Stray Windows temp paths accidentally written into the repo root
 /C：*
+
+# Claude-Flow / ruflo local scratch (memory store, neural patterns)
+/.claude-flow/

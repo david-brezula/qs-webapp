@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { DataTable } from "@/components/portal/DataTable";
+import { ModulesCell } from "@/components/portal/ModulesCell";
 
 type ProjectRow = {
   id: string;
@@ -11,6 +12,9 @@ type ProjectRow = {
   status: "ACTIVE" | "CLOSED";
   tie: number;
   connect: number;
+  tieCount: number;
+  connectCount: number;
+  capacity: number;
   accommodation: number;
   wage: number;
   warnings: string[];
@@ -51,6 +55,8 @@ export function AdminProjectList({
           tProjects("name"),
           tProjects("location"),
           tCommon("status"),
+          t("modules"),
+          t("capacity"),
           t("tie"),
           t("connect"),
           t("accommodation"),
@@ -67,6 +73,8 @@ export function AdminProjectList({
           </Link>,
           p.location ?? "",
           p.status === "ACTIVE" ? tCommon("active") : tCommon("closed"),
+          <ModulesCell key={`mod-${p.id}`} tied={p.tieCount} connected={p.connectCount} />,
+          <span key={`cap-${p.id}`} className="text-sm text-slate-ink">{p.capacity}</span>,
           <NumCell key={`tie-${p.id}`} value={p.tie} />,
           <NumCell key={`con-${p.id}`} value={p.connect} />,
           <NumCell key={`acc-${p.id}`} value={p.accommodation} />,

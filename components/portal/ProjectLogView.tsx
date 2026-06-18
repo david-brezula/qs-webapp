@@ -15,6 +15,7 @@ export async function ProjectLogView({
   allActiveWorkers,
   projectWorkerId,
   isAdmin,
+  invoicedSectionIds = [],
 }: {
   project: {
     id: string;
@@ -27,6 +28,7 @@ export async function ProjectLogView({
   allActiveWorkers: { id: string; name: string }[];
   projectWorkerId: string | null;
   isAdmin: boolean;
+  invoicedSectionIds?: string[];
 }) {
   const t = await getTranslations("log");
   const isClosed = project.status === "CLOSED";
@@ -74,6 +76,7 @@ export async function ProjectLogView({
               projectWorkerId={projectWorkerId}
               isAdmin={isAdmin}
               isClosed={isClosed}
+              sectionInvoiced={invoicedSectionIds.includes(s.id)}
             />
           </section>
         );
