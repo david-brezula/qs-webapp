@@ -14,44 +14,34 @@ import { withWorkerScope } from "@/lib/prisma-worker";
 import { MyWagesView } from "./MyWagesView";
 import { AdminProjectList } from "./AdminProjectList";
 
-export default async function WagesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ from?: string; to?: string; projectId?: string }>;
-}) {
+export default async function WagesPage() {
   const user = await requireUser();
-  const sp = await searchParams;
   const t = await getTranslations("wages");
   const tNav = await getTranslations("nav");
 
   // Worker: only their own wages, read through the RLS-enforced connection.
+  // We invoice per section, so wages are computed over ALL TIME (no date filter).
   if (user.role !== "ADMIN") {
-    const today = new Date().toISOString().slice(0, 10);
-    const fromStr = sp.from ?? today;
-    const toStr = sp.to ?? today;
-    const from = new Date(fromStr);
-    const to = new Date(toStr);
-
     const data = await withWorkerScope(user.id, async (tx) => {
       const [prices, activity, accommodations, projects, advances] = await Promise.all([
         tx.projectWorker.findMany(),
         tx.activityLog.findMany({
-          where: { workDate: { gte: from, lte: to } },
           include: { projectWorker: true, table: { include: { section: true } } },
         }),
         tx.accommodation.findMany({
-          where: { startDate: { lte: to }, endDate: { gte: from } },
           include: { workers: true },
         }),
-        tx.project.findMany({ orderBy: { createdAt: "desc" } }),
+        // Explicit select: never pull company-rate columns into the worker
+        // (RLS) path. Only id/name are needed here.
+        tx.project.findMany({ orderBy: { createdAt: "desc" }, select: { id: true, name: true } }),
         tx.advanceRequest.findMany({ where: { status: "PAID" }, select: { amount: true, status: true } }),
       ]);
       return { prices, activity, accommodations, projects, advances };
     });
 
     const result = computeWagesByProject({
-      from,
-      to,
+      from: ALL_TIME_FROM,
+      to: ALL_TIME_TO,
       projectId: null,
       workers: [{ id: user.id, name: user.name ?? "" }],
       projects: data.projects.map((p) => ({ id: p.id, name: p.name })),
@@ -89,7 +79,7 @@ export default async function WagesPage({
           <h1 className="text-2xl font-semibold text-navy">{t("title")}</h1>
           <Link href="/wages/advances" className="text-sm text-accent hover:underline">{tNav("advances")} →</Link>
         </div>
-        <MyWagesView key={`${fromStr}-${toStr}`} from={fromStr} to={toStr} result={result} openAdvances={openAdvances} />
+        <MyWagesView result={result} openAdvances={openAdvances} />
       </div>
     );
   }

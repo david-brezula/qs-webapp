@@ -4,6 +4,7 @@ import { withWorkerScope } from "@/lib/prisma-worker";
 import { requireUser } from "@/lib/portal/session";
 import { MyAdvancesView } from "./MyAdvancesView";
 import { AdminAdvancesView } from "./AdminAdvancesView";
+import { RecordAdvanceForm } from "./RecordAdvanceForm";
 
 export default async function AdvancesPage() {
   const user = await requireUser();
@@ -34,13 +35,18 @@ export default async function AdvancesPage() {
     );
   }
 
-  const [rows, allSections, projectWorkers] = await Promise.all([
+  const [rows, allSections, projectWorkers, employees] = await Promise.all([
     prisma.advanceRequest.findMany({
       orderBy: [{ status: "asc" }, { requestedAt: "desc" }],
       include: { user: true, section: { select: { name: true } } },
     }),
     prisma.section.findMany({ select: { id: true, name: true, projectId: true }, orderBy: { orderIndex: "asc" } }),
     prisma.projectWorker.findMany({ select: { userId: true, projectId: true } }),
+    prisma.user.findMany({
+      where: { active: true, role: { not: "CLIENT" } },
+      orderBy: { name: "asc" },
+      select: { id: true, name: true },
+    }),
   ]);
 
   const projectsByUser = new Map<string, Set<string>>();
@@ -71,6 +77,12 @@ export default async function AdvancesPage() {
       <section className="mb-12">
         <h2 className="text-lg font-semibold text-navy mb-4">{t("request")}</h2>
         <MyAdvancesView requests={myRequests} />
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-lg font-semibold text-navy mb-1">{t("recordForWorker")}</h2>
+        <p className="text-sm text-muted mb-4">{t("recordHint")}</p>
+        <RecordAdvanceForm workers={employees} />
       </section>
 
       <section>

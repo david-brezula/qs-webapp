@@ -14,6 +14,17 @@ export interface WageInput {
     priceTie: number;
     priceConnect: number;
   }[];
+  /**
+   * Company (firm) rate billed to the client per module, per project, split by
+   * action. Optional: only admin wage views pass it. When omitted, company
+   * revenue/profit stay 0 and no company-price warnings are emitted — so the
+   * worker portal (which never supplies it) is unaffected.
+   */
+  companyPrices?: {
+    projectId: string;
+    companyPriceTie: number;
+    companyPriceConnect: number;
+  }[];
   activity: {
     userId: string;
     projectId: string;
@@ -40,6 +51,13 @@ export interface WageRow {
   earnings: number;
   accommodation: number;
   wage: number;
+  /**
+   * Company revenue (companyRate × counts) and company profit
+   * (companyEarnings − earnings). Both stay 0 unless `companyPrices` was
+   * supplied — i.e. they are meaningful only in admin wage views.
+   */
+  companyEarnings: number;
+  profit: number;
   /**
    * `tie` / `connect` are earnings (money) split by action. `tieCount` /
    * `connectCount` are the number of modules tied / connected — the raw work
@@ -71,12 +89,20 @@ export function computeWages(input: WageInput): WageResult {
     });
   }
 
+  const companyPriceLookup = new Map<string, { tie: number; connect: number }>();
+  for (const cp of input.companyPrices ?? []) {
+    companyPriceLookup.set(cp.projectId, { tie: cp.companyPriceTie, connect: cp.companyPriceConnect });
+  }
+  const hasCompanyPrices = companyPriceLookup.size > 0;
+
   const rows: WageRow[] = input.workers.map((w) => ({
     userId: w.id,
     name: w.name,
     earnings: 0,
     accommodation: 0,
     wage: 0,
+    companyEarnings: 0,
+    profit: 0,
     breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 },
     warnings: [],
   }));
@@ -94,6 +120,16 @@ export function computeWages(input: WageInput): WageResult {
     // is set, so "modules done" is shown independently of the wage calculation.
     if (a.action === "TIE") row.breakdown.tieCount += a.count;
     else row.breakdown.connectCount += a.count;
+    // Company revenue is independent of the worker's price (it is what the firm
+    // bills the client). Computed only when company rates were supplied.
+    if (hasCompanyPrices) {
+      const cp = companyPriceLookup.get(a.projectId);
+      if (!cp || (cp.tie === 0 && cp.connect === 0)) {
+        if (!row.warnings.includes("missing-company-price")) row.warnings.push("missing-company-price");
+      } else {
+        row.companyEarnings += a.count * (a.action === "TIE" ? cp.tie : cp.connect);
+      }
+    }
     const price = priceLookup.get(`${a.userId}|${a.projectId}`);
     if (!price) {
       if (!row.warnings.includes("missing-price")) row.warnings.push("missing-price");
@@ -122,7 +158,10 @@ export function computeWages(input: WageInput): WageResult {
     }
   }
 
-  for (const r of rows) r.wage = r.earnings - r.accommodation;
+  for (const r of rows) {
+    r.wage = r.earnings - r.accommodation;
+    r.profit = hasCompanyPrices ? r.companyEarnings - r.earnings : 0;
+  }
 
   const distinctCurrencies = new Set(overlappingAccommodations.map((a) => a.currency));
   const mixedCurrencies = distinctCurrencies.size > 1;
@@ -136,6 +175,8 @@ export interface ProjectWageBreakdown {
   earnings: number;
   accommodation: number;
   wage: number;
+  companyEarnings: number;
+  profit: number;
   breakdown: { tie: number; connect: number; tieCount: number; connectCount: number };
 }
 
@@ -164,6 +205,8 @@ export function computeWagesByProject(
     earnings: 0,
     accommodation: 0,
     wage: 0,
+    companyEarnings: 0,
+    profit: 0,
     breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 },
     warnings: [],
   };
@@ -179,6 +222,8 @@ export function computeWagesByProject(
       earnings: row.earnings,
       accommodation: row.accommodation,
       wage: row.wage,
+      companyEarnings: row.companyEarnings,
+      profit: row.profit,
       breakdown: row.breakdown,
     });
   }
@@ -201,6 +246,8 @@ export interface WageTotals {
   earnings: number;
   accommodation: number;
   wage: number;
+  companyEarnings: number;
+  profit: number;
   warnings: string[];
 }
 
@@ -218,6 +265,8 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
     earnings: 0,
     accommodation: 0,
     wage: 0,
+    companyEarnings: 0,
+    profit: 0,
     warnings: [],
   };
   for (const r of rows) {
@@ -228,6 +277,8 @@ export function sumWageRows(rows: WageRow[]): WageTotals {
     totals.earnings += r.earnings;
     totals.accommodation += r.accommodation;
     totals.wage += r.wage;
+    totals.companyEarnings += r.companyEarnings;
+    totals.profit += r.profit;
     for (const w of r.warnings) {
       if (!totals.warnings.includes(w)) totals.warnings.push(w);
     }
@@ -246,6 +297,8 @@ export interface SectionWageRow {
   accommodation: number;
   advance: number;
   wage: number;
+  companyEarnings: number;
+  profit: number;
 }
 
 /**
@@ -284,6 +337,8 @@ export function computeWagesBySection(
       accommodation: row.accommodation,
       advance,
       wage: row.wage - advance,
+      companyEarnings: row.companyEarnings,
+      profit: row.profit,
     });
   }
   return results;

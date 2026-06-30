@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { withWorkerScope } from "@/lib/prisma-worker";
-import { computeWagesBySection } from "@/lib/portal/wages";
+import { ALL_TIME_FROM, ALL_TIME_TO, computeWagesBySection } from "@/lib/portal/wages";
 import type { WorkerSectionRow } from "@/app/[locale]/(portal)/wages/section-row";
 
 export async function GET(
@@ -17,15 +17,7 @@ export async function GET(
   if (!projectId) {
     return new NextResponse("Bad Request", { status: 400 });
   }
-  const url = new URL(req.url);
-  const today = new Date().toISOString().slice(0, 10);
-  const from = new Date(url.searchParams.get("from") ?? today);
-  const to = new Date(url.searchParams.get("to") ?? today);
-
-  if (isNaN(from.getTime()) || isNaN(to.getTime())) {
-    return new NextResponse("Invalid date parameters", { status: 400 });
-  }
-
+  // We invoice per section, so the breakdown covers ALL TIME (no date filter).
   const userId = session.user.id as string;
 
   const data = await withWorkerScope(userId, async (tx) => {
@@ -34,13 +26,12 @@ export async function GET(
       tx.activityLog.findMany({
         where: {
           table: { section: { projectId } },
-          workDate: { gte: from, lte: to },
         },
         include: { projectWorker: true, table: { include: { section: true } } },
       }),
       tx.section.findMany({ where: { projectId }, orderBy: { orderIndex: "asc" } }),
       tx.accommodation.findMany({
-        where: { projectId, startDate: { lte: to }, endDate: { gte: from } },
+        where: { projectId },
         include: { workers: true },
       }),
       tx.sectionInvoice.findMany({
@@ -56,8 +47,8 @@ export async function GET(
   });
 
   const sectionRows = computeWagesBySection({
-    from,
-    to,
+    from: ALL_TIME_FROM,
+    to: ALL_TIME_TO,
     projectId,
     workers: [{ id: userId, name: (session.user.name as string) ?? "" }],
     prices: data.prices.map((p) => ({
@@ -90,7 +81,12 @@ export async function GET(
       .map((a) => ({ sectionId: a.sectionId as string, amount: Number(a.amount) })),
   });
 
-  const invoicedAt = new Map(data.invoices.map((i) => [i.sectionId, i.invoicedAt.toISOString()] as const));
+  // invoicedAt is now nullable (a row may exist only for an admin-set payment);
+  // a section counts as invoiced only when invoicedAt is set. paidAt is never
+  // selected here, so the worker portal never sees the paid state.
+  const invoicedAt = new Map(
+    data.invoices.filter((i) => i.invoicedAt).map((i) => [i.sectionId, i.invoicedAt!.toISOString()] as const),
+  );
   const sections: WorkerSectionRow[] = sectionRows.map((s) => ({
     ...s,
     invoiced: invoicedAt.has(s.sectionId),

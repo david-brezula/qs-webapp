@@ -60,6 +60,13 @@ export default async function AdminProjectWagePage({
       priceTie: Number(p.priceTie),
       priceConnect: Number(p.priceConnect),
     })),
+    companyPrices: [
+      {
+        projectId,
+        companyPriceTie: Number(project.companyPriceTie),
+        companyPriceConnect: Number(project.companyPriceConnect),
+      },
+    ],
     activity: activity.map((a) => ({
       userId: a.projectWorker.userId,
       projectId,
@@ -94,9 +101,13 @@ export default async function AdminProjectWagePage({
       earnings: r.earnings,
       accommodation: r.accommodation,
       wage: r.wage,
+      profit: r.profit,
       warnings: r.warnings,
     }))
     .filter((r) => r.earnings !== 0 || r.accommodation !== 0 || r.tieCount !== 0 || r.connectCount !== 0);
+
+  // Whole-project company totals for the summary header.
+  const projectTotals = sumWageRows(projectResult.rows);
 
   // Per-section totals (sum across all workers, no accommodation). Each
   // section runs one full scan of the activity array; acceptable at current
@@ -117,6 +128,8 @@ export default async function AdminProjectWagePage({
       connectCount: totals.connectCount,
       capacity: capacityBySection.get(section.id) ?? 0,
       earnings: totals.earnings,
+      companyEarnings: totals.companyEarnings,
+      profit: totals.profit,
     };
   });
 
@@ -136,6 +149,12 @@ export default async function AdminProjectWagePage({
         workers={workerRows}
         capacity={projectCapacity}
         mixedCurrencies={projectResult.mixedCurrencies}
+        totals={{
+          companyEarnings: projectTotals.companyEarnings,
+          earnings: projectTotals.earnings,
+          profit: projectTotals.profit,
+          accommodationReturned: projectTotals.accommodation,
+        }}
       />
     </div>
   );

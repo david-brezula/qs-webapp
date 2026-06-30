@@ -38,6 +38,33 @@ export async function updateProjectAction(fd: FormData) {
   return { ok: true as const };
 }
 
+const companyRateSchema = z.object({
+  projectId: z.string().min(1),
+  companyPriceTie: z.coerce.number().nonnegative(),
+  companyPriceConnect: z.coerce.number().nonnegative(),
+});
+
+export async function updateProjectCompanyRateAction(fd: FormData) {
+  await requireAdmin();
+  const parsed = companyRateSchema.safeParse({
+    projectId: fd.get("projectId"),
+    companyPriceTie: fd.get("companyPriceTie"),
+    companyPriceConnect: fd.get("companyPriceConnect"),
+  });
+  if (!parsed.success) return { ok: false as const, error: "validation" };
+  await prisma.project.update({
+    where: { id: parsed.data.projectId },
+    data: {
+      companyPriceTie: parsed.data.companyPriceTie,
+      companyPriceConnect: parsed.data.companyPriceConnect,
+    },
+  });
+  revalidatePath(`/projects/${parsed.data.projectId}/edit`);
+  revalidatePath(`/wages/projects/${parsed.data.projectId}`);
+  revalidatePath("/wages");
+  return { ok: true as const };
+}
+
 export async function setProjectStatusAction(fd: FormData) {
   await requireAdmin();
   const id = String(fd.get("projectId") ?? "");

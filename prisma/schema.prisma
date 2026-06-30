@@ -92,6 +92,12 @@ model Project {
   createdAt DateTime      @default(now())
   closedAt  DateTime?
 
+  // Company (firm) rate billed to the client per module, split by action. Used
+  // only by admin wage views to compute company profit (companyRate -
+  // workerRate). Never exposed to the worker/client portal.
+  companyPriceTie     Decimal @default(0) @db.Decimal(10, 2)
+  companyPriceConnect Decimal @default(0) @db.Decimal(10, 2)
+
   clientId String?
   client   Client? @relation(fields: [clientId], references: [id], onDelete: SetNull)
 
@@ -284,7 +290,12 @@ model SectionInvoice {
   id              String   @id @default(cuid())
   sectionId       String
   projectWorkerId String
-  invoicedAt      DateTime @default(now())
+  // Two independent lifecycle states for one (section, worker):
+  //   invoicedAt — worker self-marks the section invoiced (nullable so a row can
+  //                exist for a payment recorded before the worker invoices).
+  //   paidAt     — admin marks the worker paid for the section (admin-only).
+  invoicedAt      DateTime? @default(now())
+  paidAt          DateTime?
 
   section       Section       @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   projectWorker ProjectWorker @relation(fields: [projectWorkerId], references: [id], onDelete: Cascade)

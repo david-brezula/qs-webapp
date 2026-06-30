@@ -85,6 +85,11 @@
     "assignWorker": "Assign worker",
     "priceTie": "Price per tie",
     "priceConnect": "Price per connect",
+    "companyRates": "Company rate (per panel)",
+    "companyRatesHint": "What the company bills the client per panel. Company profit is this minus the worker's rate.",
+    "companyPriceTie": "Company price per tie",
+    "companyPriceConnect": "Company price per connect",
+    "save": "Save",
     "tied": "Tied",
     "connected": "Connected",
     "noProjects": "No projects yet.",
@@ -581,6 +586,14 @@
     "earnings": "Earnings",
     "accommodation": "Accommodation",
     "wage": "Wage",
+    "invoiceable": "Invoiceable",
+    "invoiceableHint": "How much you can invoice per section — earnings minus accommodation and advances. Expand a project to see each section.",
+    "paid": "Paid",
+    "payouts": "Worker payouts",
+    "totalToPay": "Total to pay",
+    "paidOut": "Paid out",
+    "remainingToPay": "Remaining to pay",
+    "clientReturn": "Client income (returns to you)",
     "missingPrice": "Set prices for this worker on the project to compute wages.",
     "mixedCurrencies": "Mixed currencies in this range; figures are nominal.",
     "noData": "No activity in this range.",
@@ -601,7 +614,11 @@
     "modules": "Modules (tied / conn.)",
     "capacity": "Capacity",
     "capacityTotal": "Total modules: {count}",
-    "modulesDone": "Modules done"
+    "modulesDone": "Modules done",
+    "companyEarnings": "Company revenue",
+    "profit": "Company profit",
+    "accommodationReturned": "Accommodation returned",
+    "missingCompanyPrice": "Set the company rate on the project to compute profit."
   },
   "log": {
     "title": "Log work",
@@ -1359,7 +1376,11 @@
     "outstanding": "Open advances (outstanding)",
     "filterOpen": "Open",
     "filterSettled": "Settled",
-    "filterAll": "All"
+    "filterAll": "All",
+    "recordForWorker": "Record advance for employee",
+    "recordHint": "Records an advance you already sent. It shows in the overview below and counts as outstanding until settled against a section.",
+    "selectWorker": "Select employee",
+    "record": "Record advance"
   },
   "clients": {
     "list": "Clients",

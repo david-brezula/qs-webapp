@@ -135,6 +135,56 @@ describe("computeWages", () => {
   });
 });
 
+describe("computeWages company profit", () => {
+  const withCompany: WageInput = {
+    ...baseInput,
+    companyPrices: [{ projectId: "p1", companyPriceTie: 1.6, companyPriceConnect: 2.2 }],
+  };
+
+  it("computes companyEarnings = count * companyRate per action", () => {
+    const r = computeWages(withCompany);
+    const alice = r.rows.find((x) => x.userId === "w1")!;
+    // Alice company: 100*1.6 + 50*2.2 = 160 + 110 = 270
+    expect(alice.companyEarnings).toBe(270);
+  });
+
+  it("computes profit = companyEarnings - worker earnings", () => {
+    const r = computeWages(withCompany);
+    const alice = r.rows.find((x) => x.userId === "w1")!;
+    // Alice: 270 company - 250 worker = 20
+    expect(alice.profit).toBe(20);
+    const bob = r.rows.find((x) => x.userId === "w2")!;
+    // Bob company: 80*1.6 = 128 ; worker: 80*1.0 = 80 ; profit = 48
+    expect(bob.companyEarnings).toBe(128);
+    expect(bob.profit).toBe(48);
+  });
+
+  it("leaves companyEarnings and profit at 0 when no company prices supplied", () => {
+    const r = computeWages(baseInput);
+    const alice = r.rows.find((x) => x.userId === "w1")!;
+    expect(alice.companyEarnings).toBe(0);
+    expect(alice.profit).toBe(0);
+    expect(alice.warnings).not.toContain("missing-company-price");
+  });
+
+  it("warns missing-company-price when the project rate is unset (0) but there is activity", () => {
+    const r = computeWages({
+      ...baseInput,
+      companyPrices: [{ projectId: "p1", companyPriceTie: 0, companyPriceConnect: 0 }],
+    });
+    const alice = r.rows.find((x) => x.userId === "w1")!;
+    expect(alice.warnings).toContain("missing-company-price");
+    expect(alice.companyEarnings).toBe(0);
+  });
+
+  it("aggregates companyEarnings and profit in sumWageRows", () => {
+    const totals = sumWageRows(computeWages(withCompany).rows);
+    // company: 270 (Alice) + 128 (Bob) = 398 ; worker earnings: 250 + 80 = 330
+    expect(totals.companyEarnings).toBe(398);
+    expect(totals.profit).toBe(68);
+  });
+});
+
 const soloInput: WageInput & { projects: { id: string; name: string }[] } = {
   from: new Date("2026-05-01"),
   to: new Date("2026-05-31"),
@@ -231,9 +281,9 @@ describe("computeWages sectionId filter", () => {
 describe("sumWageRows", () => {
   it("sums tie / connect / counts / earnings / accommodation / wage across rows", () => {
     const rows: WageRow[] = [
-      { userId: "w1", name: "A", earnings: 10, accommodation: 2, wage: 8,
+      { userId: "w1", name: "A", earnings: 10, accommodation: 2, wage: 8, companyEarnings: 0, profit: 0,
         breakdown: { tie: 6, connect: 4, tieCount: 6, connectCount: 4 }, warnings: [] },
-      { userId: "w2", name: "B", earnings: 20, accommodation: 5, wage: 15,
+      { userId: "w2", name: "B", earnings: 20, accommodation: 5, wage: 15, companyEarnings: 0, profit: 0,
         breakdown: { tie: 12, connect: 8, tieCount: 24, connectCount: 16 }, warnings: ["missing-price"] },
     ];
     const t = sumWageRows(rows);
@@ -249,15 +299,15 @@ describe("sumWageRows", () => {
 
   it("returns zeros for empty input", () => {
     expect(sumWageRows([])).toEqual({
-      tie: 0, connect: 0, tieCount: 0, connectCount: 0, earnings: 0, accommodation: 0, wage: 0, warnings: [],
+      tie: 0, connect: 0, tieCount: 0, connectCount: 0, earnings: 0, accommodation: 0, wage: 0, companyEarnings: 0, profit: 0, warnings: [],
     });
   });
 
   it("deduplicates warnings across rows", () => {
     const rows: WageRow[] = [
-      { userId: "w1", name: "A", earnings: 0, accommodation: 0, wage: 0,
+      { userId: "w1", name: "A", earnings: 0, accommodation: 0, wage: 0, companyEarnings: 0, profit: 0,
         breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 }, warnings: ["missing-price"] },
-      { userId: "w2", name: "B", earnings: 0, accommodation: 0, wage: 0,
+      { userId: "w2", name: "B", earnings: 0, accommodation: 0, wage: 0, companyEarnings: 0, profit: 0,
         breakdown: { tie: 0, connect: 0, tieCount: 0, connectCount: 0 }, warnings: ["missing-price"] },
     ];
     expect(sumWageRows(rows).warnings).toEqual(["missing-price"]);
