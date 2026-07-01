@@ -39,6 +39,51 @@ export async function requestAdvanceAction(fd: FormData): Promise<AdvanceResult>
   return { ok: true };
 }
 
+const recordSchema = z.object({
+  userId: z.string().min(1),
+  amount: z.coerce.number().positive(),
+  currency: z.enum(["USD", "EUR"]),
+  note: z.string().trim().max(500).optional(),
+});
+
+/**
+ * Admin records an advance that was already SENT to an employee (e.g. cash /
+ * transfer). It is created directly in PAID state — skipping the
+ * request/approve flow — so it immediately shows as an open (outstanding)
+ * advance in the admin overview and can later be settled against a section.
+ */
+export async function createAdvanceForWorkerAction(fd: FormData): Promise<AdvanceResult> {
+  await requireAdmin();
+  const parsed = recordSchema.safeParse({
+    userId: fd.get("userId"),
+    amount: fd.get("amount"),
+    currency: fd.get("currency") || "EUR",
+    note: fd.get("note") || undefined,
+  });
+  if (!parsed.success) return { ok: false, error: "validation" };
+
+  // Only real employees (workers / working admins) receive advances — never clients.
+  const target = await prisma.user.findUnique({
+    where: { id: parsed.data.userId },
+    select: { role: true },
+  });
+  if (!target || target.role === "CLIENT") return { ok: false, error: "validation" };
+
+  const now = new Date();
+  await prisma.advanceRequest.create({
+    data: {
+      userId: parsed.data.userId,
+      amount: parsed.data.amount,
+      currency: parsed.data.currency as Currency,
+      note: parsed.data.note ?? null,
+      status: "PAID",
+      decidedAt: now,
+      paidAt: now,
+    },
+  });
+  return { ok: true };
+}
+
 /** Worker cancels their own request, only while still REQUESTED. */
 export async function cancelAdvanceAction(fd: FormData): Promise<AdvanceResult> {
   const session = await auth();

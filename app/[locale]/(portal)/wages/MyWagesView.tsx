@@ -1,10 +1,8 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { ModulesCell } from "@/components/portal/ModulesCell";
 import type { WageByProjectResult } from "@/lib/portal/wages";
 import type { WorkerSectionRow } from "./section-row";
@@ -12,38 +10,20 @@ import { toggleSectionInvoiceAction } from "@/lib/actions/section-invoice";
 import { WorkerSectionBreakdown } from "./WorkerSectionBreakdown";
 
 export function MyWagesView({
-  from,
-  to,
   result,
   openAdvances,
 }: {
-  from: string;
-  to: string;
   result: WageByProjectResult;
   openAdvances: number;
 }) {
-  const router = useRouter();
-  const sp = useSearchParams();
   const t = useTranslations("wages");
   const tCommon = useTranslations("common");
-  const [f, setF] = useState(from);
-  const [tt, setTt] = useState(to);
 
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set());
   const [sectionCache, setSectionCache] = useState<Map<string, WorkerSectionRow[]>>(new Map());
   const [loadingSections, setLoadingSections] = useState<Set<string>>(new Set());
   const [sectionErrors, setSectionErrors] = useState<Set<string>>(new Set());
   const [invoicing, setInvoicing] = useState<Set<string>>(new Set());
-
-  // Cached sections are reset when the date range changes via a `key` on this
-  // component in the parent (it remounts), so no reset effect is needed here.
-
-  function apply() {
-    const params = new URLSearchParams(sp);
-    params.set("from", f);
-    params.set("to", tt);
-    router.push(`/wages?${params.toString()}`);
-  }
 
   async function handleToggle(projectId: string) {
     if (sectionCache.has(projectId)) {
@@ -58,8 +38,7 @@ export function MyWagesView({
     setSectionErrors((prev) => { const next = new Set(prev); next.delete(projectId); return next; });
     setLoadingSections((prev) => new Set(prev).add(projectId));
     try {
-      const qs = new URLSearchParams({ from, to });
-      const res = await fetch(`/api/wages/projects/${projectId}/sections?${qs}`);
+      const res = await fetch(`/api/wages/projects/${projectId}/sections`);
       if (!res.ok) throw new Error(`sections fetch failed: ${res.status}`);
       const data: { sections: WorkerSectionRow[] } = await res.json();
       setSectionCache((prev) => new Map(prev).set(projectId, data.sections));
@@ -106,29 +85,7 @@ export function MyWagesView({
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:items-end mb-6">
-        <div className="w-full sm:w-auto">
-          <label htmlFor="my-wages-from" className="text-xs text-muted block mb-1">{t("from")}</label>
-          <input
-            id="my-wages-from"
-            type="date"
-            value={f}
-            onChange={(e) => setF(e.target.value)}
-            className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm"
-          />
-        </div>
-        <div className="w-full sm:w-auto">
-          <label htmlFor="my-wages-to" className="text-xs text-muted block mb-1">{t("to")}</label>
-          <input
-            id="my-wages-to"
-            type="date"
-            value={tt}
-            onChange={(e) => setTt(e.target.value)}
-            className="w-full rounded-md border border-border-soft bg-surface px-3 py-2 text-sm"
-          />
-        </div>
-        <Button onClick={apply} variant="primary" className="w-full sm:w-auto">{t("calculate")}</Button>
-      </div>
+      <p className="text-sm text-muted mb-4">{t("invoiceableHint")}</p>
 
       {result.mixedCurrencies && (
         <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-md p-2 mb-4">
@@ -153,12 +110,10 @@ export function MyWagesView({
                 <th className="px-4 py-3 w-8" />
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("project")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("modules")}</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("tie")}</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("connect")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("earnings")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("accommodation")}</th>
                 <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("advance")}</th>
-                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("wage")}</th>
+                <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-navy/70">{t("invoiceable")}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border-soft">
@@ -181,8 +136,6 @@ export function MyWagesView({
                     <td className="px-4 py-3 align-middle">
                       <ModulesCell tied={p.breakdown.tieCount} connected={p.breakdown.connectCount} />
                     </td>
-                    <td className="px-4 py-3 text-slate-ink align-middle">{p.breakdown.tie.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-slate-ink align-middle">{p.breakdown.connect.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.earnings.toFixed(2)}</td>
                     <td className="px-4 py-3 text-slate-ink align-middle">{p.accommodation.toFixed(2)}</td>
                     <td className="px-4 py-3 text-muted align-middle">—</td>
@@ -191,7 +144,7 @@ export function MyWagesView({
                   {sectionErrors.has(p.projectId) && (
                     <tr>
                       <td />
-                      <td colSpan={8} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
+                      <td colSpan={6} className="px-4 py-2 pl-10 text-sm text-red-600 italic">
                         {t("loadError")}
                       </td>
                     </tr>
@@ -215,20 +168,12 @@ export function MyWagesView({
           <div className="text-xs uppercase tracking-[0.15em] font-semibold text-navy/70 mb-3">
             {tCommon("total")}
           </div>
-          <dl className="grid grid-cols-2 sm:grid-cols-7 gap-3 text-sm">
+          <dl className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
             <div>
               <dt className="text-xs text-muted">{t("modules")}</dt>
               <dd className="font-semibold text-navy">
                 {result.total.breakdown.tieCount} / {result.total.breakdown.connectCount}
               </dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted">{t("tie")}</dt>
-              <dd className="font-semibold text-navy">{result.total.breakdown.tie.toFixed(2)}</dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted">{t("connect")}</dt>
-              <dd className="font-semibold text-navy">{result.total.breakdown.connect.toFixed(2)}</dd>
             </div>
             <div>
               <dt className="text-xs text-muted">{t("earnings")}</dt>
@@ -239,7 +184,7 @@ export function MyWagesView({
               <dd className="font-semibold text-navy">{result.total.accommodation.toFixed(2)}</dd>
             </div>
             <div>
-              <dt className="text-xs text-muted">{t("wage")}</dt>
+              <dt className="text-xs text-muted">{t("invoiceable")}</dt>
               <dd className="font-semibold text-navy">{result.total.wage.toFixed(2)}</dd>
             </div>
             <div>

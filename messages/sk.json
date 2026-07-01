@@ -85,6 +85,11 @@
     "assignWorker": "Priradiť pracovníka",
     "priceTie": "Cena za uviazanie",
     "priceConnect": "Cena za zapojenie",
+    "companyRates": "Firemná sadzba (za panel)",
+    "companyRatesHint": "Koľko firma účtuje klientovi za panel. Zisk firmy = táto sadzba mínus sadzba pracovníka.",
+    "companyPriceTie": "Firemná cena za uviazanie",
+    "companyPriceConnect": "Firemná cena za zapojenie",
+    "save": "Uložiť",
     "tied": "Uviazané",
     "connected": "Zapojené",
     "noProjects": "Zatiaľ žiadne projekty.",
@@ -581,6 +586,14 @@
     "earnings": "Zárobok",
     "accommodation": "Ubytovanie",
     "wage": "Mzda",
+    "invoiceable": "Na fakturáciu",
+    "invoiceableHint": "Koľko môžeš fakturovať za sekciu — zárobok mínus ubytovanie a zálohy. Rozbaľ projekt pre jednotlivé sekcie.",
+    "paid": "Zaplatené",
+    "payouts": "Výplaty pracovníkom",
+    "totalToPay": "Spolu na výplatu",
+    "paidOut": "Už vyplatené",
+    "remainingToPay": "Zostáva vyplatiť",
+    "clientReturn": "Príjem od klienta",
     "missingPrice": "Nastavte ceny pre tohto pracovníka na projekte.",
     "mixedCurrencies": "Rôzne meny v tomto rozsahu; čísla sú orientačné.",
     "noData": "Žiadna aktivita v tomto rozsahu.",
@@ -601,7 +614,11 @@
     "modules": "Moduly (uv. / zap.)",
     "capacity": "Kapacita",
     "capacityTotal": "Modulov celkom: {count}",
-    "modulesDone": "Hotové moduly"
+    "modulesDone": "Hotové moduly",
+    "companyEarnings": "Príjem firmy",
+    "profit": "Zisk firmy",
+    "accommodationReturned": "Vrátené ubytovanie",
+    "missingCompanyPrice": "Nastavte firemnú sadzbu na projekte, aby sa počítal zisk."
   },
   "log": {
     "title": "Zapísať prácu",
@@ -1356,7 +1373,11 @@
     "outstanding": "Otvorené zálohy (nesplatené)",
     "filterOpen": "Otvorené",
     "filterSettled": "Uzavreté",
-    "filterAll": "Všetky"
+    "filterAll": "Všetky",
+    "recordForWorker": "Zaznamenať zálohu pre zamestnanca",
+    "recordHint": "Zaznamená zálohu, ktorú si už poslal. Zobrazí sa v prehľade nižšie a počíta sa ako nesplatená, kým ju nestrhneš zo sekcie.",
+    "selectWorker": "Vyber zamestnanca",
+    "record": "Zaznamenať zálohu"
   },
   "clients": {
     "list": "Klienti",

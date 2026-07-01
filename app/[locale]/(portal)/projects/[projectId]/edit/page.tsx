@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/portal/session";
 import { SectionsEditor } from "./SectionsEditor";
 import { WorkersPanel } from "./WorkersPanel";
+import { CompanyRatePanel } from "./CompanyRatePanel";
 import { ClientPanel } from "./ClientPanel";
 import { PhotosPanel } from "./PhotosPanel";
 import { DocumentsPanel } from "./DocumentsPanel";
@@ -92,6 +93,21 @@ export default async function ProjectEditorPage({
             assignWorker: t("assignWorker"),
             priceTie: t("priceTie"),
             priceConnect: t("priceConnect"),
+          }}
+        />
+      </div>
+
+      <div className="mt-12">
+        <h2 className="mb-1 text-lg font-semibold text-navy">{t("companyRates")}</h2>
+        <p className="mb-4 text-sm text-muted">{t("companyRatesHint")}</p>
+        <CompanyRatePanel
+          projectId={project.id}
+          companyPriceTie={Number(project.companyPriceTie)}
+          companyPriceConnect={Number(project.companyPriceConnect)}
+          labels={{
+            companyPriceTie: t("companyPriceTie"),
+            companyPriceConnect: t("companyPriceConnect"),
+            save: t("save"),
           }}
         />
       </div>
